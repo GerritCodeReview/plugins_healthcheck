@@ -21,6 +21,7 @@ public class SshModule extends PluginCommandModule {
   @Override
   protected void configureCommands() {
     command(FsckCommand.class);
+    command(IndexCommand.class);
   }
 
 }

@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b89d23a_edf44599",
+        "filename": ".buckconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2016-04-13T01:58:51Z",
+      "side": 1,
+      "message": "Aliases should be \"healthcheck\"?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 35
+      },
+      "revId": "ba397a2f6dca8fa2a3481ffb3c90b2b34b8ebe7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bc47260_95fda481",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2016-04-13T01:58:51Z",
+      "side": 1,
+      "message": "The /check endpoint requires \"maintainServer\".  Should it be the same here?\n\nAnd is it possible to use the constant from GlobalCapability rather than hard coding it?",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "ba397a2f6dca8fa2a3481ffb3c90b2b34b8ebe7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bc47260_b5faa084",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2016-04-13T01:58:51Z",
+      "side": 1,
+      "message": "nit: wrap long lines",
+      "revId": "ba397a2f6dca8fa2a3481ffb3c90b2b34b8ebe7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b89d23a_0d35112a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2016-04-13T01:58:51Z",
+      "side": 1,
+      "message": "Can we convert the change array to a List?  That might make handling here and at line 103 a bit more Java-ish?",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "ba397a2f6dca8fa2a3481ffb3c90b2b34b8ebe7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

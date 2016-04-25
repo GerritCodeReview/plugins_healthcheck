@@ -16,6 +16,24 @@
       "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8e86966_4299727d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/SshModule.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1012612
+      },
+      "writtenOn": "2016-04-25T12:15:10Z",
+      "side": 1,
+      "message": "I think that\u0027s a decent idea... Maybe add a few extra buttons to change and project screens to easily access the fsck and index APIs, for starters?\n\nRight now, this project does very little novel that can\u0027t be done over the REST API -- I just wanted to use it as an easier way to expose those.\n\nOne other thought I had recently was looking at the error log outside Gerrit, and if we encounter some type of fatal error, using that as a means to disable a mirror or fail over to another server.  I\u0027m not sure how I\u0027d actually do this, but this seems like an option worth exploring in the future, too.",
+      "parentUuid": "48d52c29_b9b8fb38",
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

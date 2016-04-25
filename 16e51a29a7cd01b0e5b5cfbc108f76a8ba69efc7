@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48d52c29_b9b8fb38",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/SshModule.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-25T08:01:48Z",
+      "side": 1,
+      "message": "I was expecting a WebModule as well, as the \"health-check\" is for \"checking your health\" and then if you are sick ... you can do some repairing or switch to failover.\n\nHealthchecks are primarily used over an HTTP call to check their status from the WLB.",
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

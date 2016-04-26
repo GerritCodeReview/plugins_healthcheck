@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68591145_a876dbf4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/IndexCommand.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:28:37Z",
+      "side": 1,
+      "message": "This is already available as plugin script:\nhttps://gerrit.googlesource.com/plugins/scripts/+/refs/heads/master/admin/reindexer-1.0.groovy\n\nUses the same on-line reindexer activated from SSH command line.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "d3f5688644d9e6240701e96da599c26600ba450d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "282ab97a_ee761fc8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/IndexCommand.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:28:37Z",
+      "side": 1,
+      "message": "Does this make sense in core Gerrit? It is actually possible to trigger the reindex of a single change via REST-API but not via SSH :-(",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "d3f5688644d9e6240701e96da599c26600ba450d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

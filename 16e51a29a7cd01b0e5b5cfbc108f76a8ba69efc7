@@ -2,6 +2,92 @@
   "comments": [
     {
       "key": {
+        "uuid": "282ab97a_6e634f0b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:25:33Z",
+      "side": 1,
+      "message": "The \"--fix\" would justify the maintain server capability, however the ability to only verify if a project is fine or not could be potentially more opened.\n\nI am imagine a scenario where a regular user wants only to know if his project is actually OK or not.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "282ab97a_2e6d47f5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:25:33Z",
+      "side": 1,
+      "message": "Is this actually used?",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68591145_e86cd328",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/FsckCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:25:33Z",
+      "side": 1,
+      "message": "This would not actually return the real full list of changes if the index is misaligned, which may happen.\n\nI check and repair command should not rely on the index but rather read the list of all changes from DB (or NoteDB).",
+      "range": {
+        "startLine": 95,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 75
+      },
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "282ab97a_0e728bd5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/Module.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2016-04-26T08:25:33Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this?",
+      "revId": "16e51a29a7cd01b0e5b5cfbc108f76a8ba69efc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48d52c29_b9b8fb38",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/SshModule.java",
         "patchSetId": 3

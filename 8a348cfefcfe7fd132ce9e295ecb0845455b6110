@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8dea021_adb09438",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckServlet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-14T16:24:07Z",
+      "side": 1,
+      "message": "Why it needs to be its own serlvet, and not just an endpoint? Like we did in readonly plugin: [1]?\n\n  public static class Get implements RestReadView\u003cConfigResource\u003e {\n\n* [1] https://gerrit.googlesource.com/plugins/readonly/+/68e1cf9d27148d7bf40b431d12d9c2c09ccc5d8e/src/main/java/com/googlesource/gerrit/plugins/readonly/ReadOnlyEndpoint.java#34",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

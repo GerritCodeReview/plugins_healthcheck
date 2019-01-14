@@ -14,14 +14,15 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
+import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.AbstractModule;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
 
-public class Module extends AbstractModule {
+public class HealthCheckSubsystemsModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    install(new HealthCheckModule());
-    install(new HealthCheckSubsystemsModule());
-    install(new HealthCheckApiModule());
+    DynamicSet.bind(binder(), HealthCheck.class).to(ReviewDbHealthCheck.class);
   }
 }

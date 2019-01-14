@@ -12,21 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.healthcheck;
+package com.googlesource.gerrit.plugins.healthcheck.api;
 
-import com.google.gerrit.extensions.restapi.AuthException;
-import com.google.gerrit.extensions.restapi.BadRequestException;
-import com.google.gerrit.extensions.restapi.ResourceConflictException;
-import com.google.gerrit.extensions.restapi.RestReadView;
+import com.google.gerrit.extensions.restapi.*;
 import com.google.gerrit.server.config.ConfigResource;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Singleton
 public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
 
+  private final GlobalHealthCheck healthChecks;
+
+  @Inject
+  public HealthCheckStatusEndpoint(GlobalHealthCheck healthChecks) {
+    this.healthChecks = healthChecks;
+  }
+
   @Override
   public Object apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
-    return "{}";
+    Map<String, Boolean> result = healthChecks.run();
+    return Response.withStatusCode(getResultStatus(result), result);
+  }
+
+  private int getResultStatus(Map<String,Boolean> result) {
+    if(result.containsValue(new Boolean(false))) {
+      return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+    }
+    return HttpServletResponse.SC_OK;
   }
 }

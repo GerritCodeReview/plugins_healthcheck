@@ -12,16 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.healthcheck;
+package com.googlesource.gerrit.plugins.healthcheck.check;
 
-import com.google.inject.AbstractModule;
+public interface HealthCheck {
 
-public class Module extends AbstractModule {
+  public class Result {
+    public final boolean healthy;
+    public final long ts;
+    public final long elapsed;
 
-  @Override
-  protected void configure() {
-    install(new HealthCheckModule());
-    install(new HealthCheckSubsystemsModule());
-    install(new HealthCheckApiModule());
+    public Result(boolean healthy, long ts, long elapsed) {
+      this.healthy = healthy;
+      this.ts = ts;
+      this.elapsed = elapsed;
+    }
   }
+
+  Result run();
+
+  String name();
 }

@@ -19,6 +19,7 @@ import static com.google.common.truth.Truth.assertThat;
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gson.Gson;
 import org.junit.Test;
 
 @TestPlugin(
@@ -36,5 +37,14 @@ public class HealthCheckTest extends LightweightPluginDaemonTest {
   public void shouldReturnAJsonPayload() throws Exception {
     RestResponse resp = adminRestSession.get("/plugins/healthcheck/");
     assertThat(resp.getHeader("Content-Type")).contains("application/json");
+  }
+
+  @Test
+  public void shouldReturnReviewDbCheck() throws Exception {
+    RestResponse resp = adminRestSession.get("/plugins/healthcheck/");
+    Gson gson = new Gson();
+
+    CheckStatus checkStatus = gson.fromJson(resp.getReader(), CheckStatus.class);
+    assertThat(checkStatus.reviewdb).isTrue();
   }
 }

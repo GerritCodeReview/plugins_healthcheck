@@ -14,16 +14,8 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.googlesource.gerrit.plugins.healthcheck.HealthCheck.REVIEWDB;
+public interface HealthCheck {
+  String REVIEWDB = "ReviewDb";
 
-import com.google.gerrit.httpd.plugins.HttpPluginModule;
-import com.google.inject.name.Names;
-
-class HttpModule extends HttpPluginModule {
-  @Override
-  protected void configureServlets() {
-    bind(HealthCheck.class).annotatedWith(Names.named(REVIEWDB)).to(ReviewDbCheck.class);
-
-    serve("/").with(HealthCheckServlet.class);
-  }
+  boolean check();
 }

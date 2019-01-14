@@ -22,6 +22,40 @@
       "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "affefac6_36d87e42",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-14T17:16:20Z",
+      "side": 1,
+      "message": "Perhaps would be useful to add a specific header to the response (X-Gerrit-Healthcheck), to make it easier for the clients to verify the response is coming from the healthcheck endpoint and not from any layer above that (fastly, HA, ELBs, etc).\nBut I understand might not be necessary at this point quite yet.",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c31988f_22375fb5",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-14T17:16:20Z",
+      "side": 1,
+      "message": "Why instead of a boolean don\u0027t we expose a string with the detail of the failure?\nthat would make it easier to investigate what\u0027s happening without needing to dig into the logs.\nIs it a security concern?",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

@@ -14,14 +14,14 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import com.google.inject.AbstractModule;
+import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
 
-public class Module extends AbstractModule {
+import com.google.gerrit.extensions.restapi.RestApiModule;
+import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 
+public class HealthCheckApiModule extends RestApiModule {
   @Override
   protected void configure() {
-    install(new HealthCheckModule());
-    install(new HealthCheckSubsystemsModule());
-    install(new HealthCheckApiModule());
+    get(CONFIG_KIND, "status").to(HealthCheckStatusEndpoint.class);
   }
 }

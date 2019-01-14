@@ -19,6 +19,10 @@ import static com.google.common.truth.Truth.assertThat;
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 import org.junit.Test;
 
 @TestPlugin(
@@ -36,5 +40,23 @@ public class HealthCheckTest extends LightweightPluginDaemonTest {
   public void shouldReturnAJsonPayload() throws Exception {
     RestResponse resp = adminRestSession.get("/plugins/healthcheck/");
     assertThat(resp.getHeader("Content-Type")).contains("application/json");
+  }
+
+  @Test
+  public void shouldReturnReviewDbCheck() throws Exception {
+    RestResponse resp = adminRestSession.get("/plugins/healthcheck/");
+    Gson gson = new Gson();
+
+    String respBody = readFully(resp.getReader());
+    CheckStatus checkStatus = gson.fromJson(respBody, CheckStatus.class);
+    assertThat(checkStatus.reviewdb).isTrue();
+  }
+
+  private String readFully(Reader reader) throws IOException {
+    StringBuilder body = new StringBuilder();
+    try (BufferedReader in = new BufferedReader(reader)) {
+      body.append(in.readLine());
+      return body.toString();
+    }
   }
 }

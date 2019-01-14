@@ -12,16 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.healthcheck;
+package com.googlesource.gerrit.plugins.healthcheck.check;
 
-import com.google.inject.AbstractModule;
+import com.google.gson.annotations.SerializedName;
 
-public class Module extends AbstractModule {
+public interface HealthCheck {
 
-  @Override
-  protected void configure() {
-    install(new HealthCheckModule());
-    install(new HealthCheckSubsystemsModule());
-    install(new HealthCheckApiModule());
+  public enum Result {
+    @SerializedName("passed")
+    PASSED,
+    @SerializedName("failed")
+    FAILED,
+    @SerializedName("timeout")
+    TIMEOUT;
   }
+
+  public class Status {
+    public final Result result;
+    public final long ts;
+    public final long elapsed;
+
+    public Status(Result result, long ts, long elapsed) {
+      this.result = result;
+      this.ts = ts;
+      this.elapsed = elapsed;
+    }
+  }
+
+  Status run();
+
+  String name();
 }

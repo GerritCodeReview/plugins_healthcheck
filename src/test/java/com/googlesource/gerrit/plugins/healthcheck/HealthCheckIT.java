@@ -16,18 +16,21 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
+
+import java.io.IOException;
+
+import org.junit.Test;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.TestPlugin;
-import java.io.IOException;
-import org.junit.Test;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
-@TestPlugin(
-    name = "healthcheck",
-    sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
-    httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
-public class HealthCheckTest extends LightweightPluginDaemonTest {
+@TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
+public class HealthCheckIT extends LightweightPluginDaemonTest {
+  Gson gson = new Gson();
 
   @Test
   public void shouldReturnOkWhenHealthy() throws Exception {
@@ -37,6 +40,19 @@ public class HealthCheckTest extends LightweightPluginDaemonTest {
   @Test
   public void shouldReturnAJsonPayload() throws Exception {
     assertThat(getHealthCheckStatus().getHeader(CONTENT_TYPE)).contains("application/json");
+  }
+
+  @Test
+  public void shouldReturnReviewDbCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+    assertThat(respPayload.has(REVIEWDB)).isTrue();
+
+    JsonObject reviewDbStatus = respPayload.get(REVIEWDB).getAsJsonObject();
+    assertThat(reviewDbStatus.has("result")).isTrue();
+    assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo("passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {

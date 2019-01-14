@@ -14,19 +14,14 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import com.google.gerrit.extensions.restapi.AuthException;
-import com.google.gerrit.extensions.restapi.BadRequestException;
-import com.google.gerrit.extensions.restapi.ResourceConflictException;
-import com.google.gerrit.extensions.restapi.RestReadView;
-import com.google.gerrit.server.config.ConfigResource;
-import com.google.inject.Singleton;
+import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.inject.AbstractModule;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 
-@Singleton
-public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
+public class HealthCheckModule extends AbstractModule {
 
   @Override
-  public Object apply(ConfigResource resource)
-      throws AuthException, BadRequestException, ResourceConflictException, Exception {
-    return "{}";
+  protected void configure() {
+    DynamicSet.setOf(binder(), HealthCheck.class);
   }
 }

@@ -11,8 +11,7 @@ gerrit_plugin(
     srcs = glob(["src/main/java/**/*.java"]),
     manifest_entries = [
         "Gerrit-PluginName: healthcheck",
-        "Gerrit-SysModule: com.googlesource.gerrit.plugins.healthcheck.Module",
-        "Gerrit-HttpModule: com.googlesource.gerrit.plugins.healthcheck.HttpModule",
+        "Gerrit-Module: com.googlesource.gerrit.plugins.healthcheck.Module"
     ],
     resources = glob(["src/main/resources/**/*"]),
 )

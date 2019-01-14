@@ -15,14 +15,20 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.gerrit.server.config.ConfigResource.CONFIG_KIND;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckNames.REVIEWDB;
 
+import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.RestApiModule;
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 
 public class Module extends AbstractModule {
 
   @Override
   protected void configure() {
+    DynamicSet.setOf(binder(), HealthCheck.class);
+    bind(HealthCheck.class).annotatedWith(Names.named(REVIEWDB)).to(ReviewDbCheck.class);
+
     install(
         new RestApiModule() {
 

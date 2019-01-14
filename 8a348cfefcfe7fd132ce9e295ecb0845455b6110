@@ -142,6 +142,30 @@
       "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27fe972b_da39c9d8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckServlet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-14T23:49:46Z",
+      "side": 1,
+      "message": "Oh yes, a lot better :-) Thanks DavidO for the useful suggestion.",
+      "parentUuid": "7bf93778_a998847d",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90282b6d_5859b5ad",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-14T16:19:40Z",
+      "side": 1,
+      "message": "What release line this plugi is targeting? I guess \u003c 2.16? Can we provide NoteDb status for sites migrated to NoteDb?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -42,7 +42,7 @@ The HTTP response payload is a JSON output that contains the details of the chec
 Example of a healthy Gerrit response:
 
 ```
-GET /plugins/healthcheck/
+GET /config/server/healthcheck~status
 
 200 OK
 Content-Type: application/json
@@ -53,7 +53,7 @@ Content-Type: application/json
 Example of a Gerrit instance with the projects list not available:
 
 ```
-GET /plugins/healthcheck/
+GET /config/server/healthcheck~status
 
 500 ERROR
 Content-Type: application/json

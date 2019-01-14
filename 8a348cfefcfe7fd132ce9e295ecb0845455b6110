@@ -22,6 +22,30 @@
       "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5fca80_75e3ee61",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckServlet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-14T16:57:57Z",
+      "side": 1,
+      "message": "Oh, very good point. Let me refactoring in that direction.",
+      "parentUuid": "d8dea021_adb09438",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

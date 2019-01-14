@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8382bad_ffdbca69",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpoint.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-14T23:53:23Z",
+      "side": 1,
+      "message": "This isn\u0027t right: it should return a 500 in case of any errors.",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 63
+      },
+      "revId": "cdc6b5f46c24c1b22f0487542e8cd073a4f5955b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

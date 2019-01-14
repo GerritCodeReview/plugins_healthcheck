@@ -118,6 +118,30 @@
       "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bf93778_a998847d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckServlet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-14T22:10:09Z",
+      "side": 1,
+      "message": "\u003e This endpoint sounds right to me:\n\u003e \n\u003e   /config/server/healthcheck~status\n\nCool, let me give it a try then :-)",
+      "parentUuid": "b0aac87b_1c35ac4e",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8a348cfefcfe7fd132ce9e295ecb0845455b6110",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

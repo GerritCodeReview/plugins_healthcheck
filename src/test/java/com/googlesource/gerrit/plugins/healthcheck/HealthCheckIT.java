@@ -16,17 +16,16 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
-
-import java.io.IOException;
-
-import org.junit.Test;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import java.io.IOException;
+import org.junit.Test;
 
 @TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
 public class HealthCheckIT extends LightweightPluginDaemonTest {
@@ -48,14 +47,28 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     resp.assertOK();
 
     JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
-    assertThat(respPayload.has(REVIEWDB)).isTrue();
 
-    JsonObject reviewDbStatus = respPayload.get(REVIEWDB).getAsJsonObject();
-    assertThat(reviewDbStatus.has("result")).isTrue();
-    assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo("passed");
+    assertCheckResult(respPayload, REVIEWDB, "passed");
+  }
+
+  @Test
+  public void shouldReturnJGitCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+
+    assertCheckResult(respPayload, JGIT, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {
     return adminRestSession.get("/config/server/healthcheck~status");
+  }
+
+  private void assertCheckResult(JsonObject respPayload, String checkName, String result) {
+    assertThat(respPayload.has(checkName)).isTrue();
+    JsonObject reviewDbStatus = respPayload.get(checkName).getAsJsonObject();
+    assertThat(reviewDbStatus.has("result")).isTrue();
+    assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo(result);
   }
 }

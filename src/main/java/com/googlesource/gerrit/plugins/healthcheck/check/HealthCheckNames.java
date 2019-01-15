@@ -17,4 +17,5 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 public interface HealthCheckNames {
 
   String REVIEWDB = "reviewdb";
+  String JGIT = "jgit";
 }

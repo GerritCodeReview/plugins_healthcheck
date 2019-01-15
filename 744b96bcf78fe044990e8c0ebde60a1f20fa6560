@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "32ba266a_6a516779",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T08:46:25Z",
+      "side": 1,
+      "message": "\u003e Maybe encapsulate the results in a class similar to the consistency check result [1]?  The API could have a regular mode that returns true/false and a verbose mode that includes more details. If it is done like this it would be bette to do it from the initial commit rathe than rewriting it later.\n\u003e \n\u003e [1] https://gerrit-review.googlesource.com/c/gerrit/+/61730/5/gerrit-server/src/main/java/com/google/gerrit/server/change/CheckResult.java\n\nI have thought about it and have more details in the response has two issues:\n\n- Calculating a bigger payload takes more time, occupy more heap and CPU\n- Having more details and exposing them to a potentially malicious user isn\u0027t good at all\n\nThe purpose of this plugin is to provide a fast, effective and super-reliable API that can tell if Gerrit is healthy or not. This needs to work *always*, even when Gerrit is heavily constrained on resources.\n\nThe API should not require any authentication and is intended to be used by robots for querying constantly the status of Gerrit and, in case of any issues, report the problem and take automatic decisions.",
+      "parentUuid": "06b77a17_46c18b50",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "affefac6_36d87e42",
         "filename": "README.md",
         "patchSetId": 1
@@ -191,6 +215,24 @@
       "side": 1,
       "message": "We could have something more structured as this one for example https://github.com/beamly/SE4/blob/master/SE4.md#healthcheck\n\nWe could keep it in mind for a follow-up changeset, what do you think?",
       "parentUuid": "a591856b_7a291fbd",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2519bdd0_91184e55",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T08:46:25Z",
+      "side": 1,
+      "message": "\u003e We could have something more structured as this one for example https://github.com/beamly/SE4/blob/master/SE4.md#healthcheck\n\u003e \n\u003e We could keep it in mind for a follow-up changeset, what do you think?\n\nSee the answer above: exposing more details would be dangerous as you could expose information to a potentially malicious user.",
+      "parentUuid": "550ae9b6_9fd6b2b8",
       "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false

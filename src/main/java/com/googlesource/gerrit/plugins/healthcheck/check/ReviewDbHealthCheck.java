@@ -23,38 +23,22 @@ import com.google.inject.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ReviewDbHealthCheck implements HealthCheck {
+public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(ReviewDbHealthCheck.class);
 
   private final Provider<ReviewDb> reviewDb;
 
   @Inject
   public ReviewDbHealthCheck(Provider<ReviewDb> reviewDb) {
+    super(REVIEWDB);
     this.reviewDb = reviewDb;
   }
 
   @Override
-  public HealthCheck.Status run() {
-    HealthCheck.Result healthy;
-    long ts = System.currentTimeMillis();
-    try {
-      healthy = doCheck();
-    } catch (Exception e) {
-      log.warn("Check reviewdb has failed", e);
-      healthy = HealthCheck.Result.FAILED;
-    }
-    return new HealthCheck.Status(healthy, ts, System.currentTimeMillis() - ts);
-  }
-
-  @Override
-  public String name() {
-    return REVIEWDB;
-  }
-
-  private HealthCheck.Result doCheck() throws Exception {
+  protected Result doCheck() throws Exception {
     try (ReviewDb db = reviewDb.get()) {
       db.schemaVersion().get(new CurrentSchemaVersion.Key());
-      return HealthCheck.Result.PASSED;
+      return Result.PASSED;
     }
   }
 }

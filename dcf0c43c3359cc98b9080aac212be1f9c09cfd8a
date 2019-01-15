@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "faf7b755_54b4c10c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpoint.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T11:43:01Z",
+      "side": 1,
+      "message": "License missing.",
+      "revId": "dcf0c43c3359cc98b9080aac212be1f9c09cfd8a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "f041a57d_8652ad60",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T11:42:04Z",
+      "side": 1,
+      "message": "@DavidP I\u0027ve encapsulated the check result in a JSON object. I won\u0027t include dynamic strings so that I can minimize the heap footprint of the check itself. Date/time as well are represented as integers.",
+      "parentUuid": "32ba266a_6a516779",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "affefac6_36d87e42",
         "filename": "README.md",
         "patchSetId": 1

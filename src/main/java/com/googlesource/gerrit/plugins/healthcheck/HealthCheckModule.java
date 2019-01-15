@@ -14,14 +14,21 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import java.util.concurrent.Executors;
 
 public class HealthCheckModule extends AbstractModule {
+  public static final int CHECK_THREADS_DEFAULT = 10;
 
   @Override
   protected void configure() {
+    bind(ListeningExecutorService.class)
+        .toInstance(
+            MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(CHECK_THREADS_DEFAULT)));
     DynamicSet.setOf(binder(), HealthCheck.class);
   }
 }

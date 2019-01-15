@@ -16,27 +16,28 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.reviewdb.client.CurrentSchemaVersion;
 import com.google.gerrit.reviewdb.server.ReviewDb;
+import com.google.gwtorm.server.SchemaFactory;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(ReviewDbHealthCheck.class);
 
-  private final Provider<ReviewDb> reviewDb;
+  private final SchemaFactory<ReviewDb> reviewDb;
 
   @Inject
-  public ReviewDbHealthCheck(Provider<ReviewDb> reviewDb) {
-    super(REVIEWDB);
+  public ReviewDbHealthCheck(ListeningExecutorService executor, SchemaFactory<ReviewDb> reviewDb) {
+    super(executor, REVIEWDB);
     this.reviewDb = reviewDb;
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    try (ReviewDb db = reviewDb.get()) {
+    try (ReviewDb db = reviewDb.open()) {
       db.schemaVersion().get(new CurrentSchemaVersion.Key());
       return Result.PASSED;
     }

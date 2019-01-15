@@ -21,6 +21,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
+import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 @TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
+@Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
 

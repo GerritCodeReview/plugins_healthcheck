@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "06b77a17_46c18b50",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-01-15T08:03:34Z",
+      "side": 1,
+      "message": "Maybe encapsulate the results in a class similar to the consistency check result [1]?  The API could have a regular mode that returns true/false and a verbose mode that includes more details. If it is done like this it would be bette to do it from the initial commit rathe than rewriting it later.\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/61730/5/gerrit-server/src/main/java/com/google/gerrit/server/change/CheckResult.java",
+      "parentUuid": "81af6659_12d0821b",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "affefac6_36d87e42",
         "filename": "README.md",
         "patchSetId": 1

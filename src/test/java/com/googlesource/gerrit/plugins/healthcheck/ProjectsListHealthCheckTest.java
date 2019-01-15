@@ -19,7 +19,7 @@ import static com.google.common.truth.Truth.assertThat;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.BadRequestException;
-import com.google.gerrit.server.project.ListProjects;
+import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
@@ -61,7 +61,7 @@ public class ProjectsListHealthCheckTest {
   }
 
   private ListProjects getFailingProjectList() {
-    return new ListProjects(null, null, null, null, null, null, null) {
+    return new ListProjects(null, null, null, null, null, null, null, null) {
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         throw new IllegalArgumentException("Unable to return project list");
@@ -70,7 +70,7 @@ public class ProjectsListHealthCheckTest {
   }
 
   private ListProjects getWorkingProjectList(long execTime) {
-    return new ListProjects(null, null, null, null, null, null, null) {
+    return new ListProjects(null, null, null, null, null, null, null, null) {
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         SortedMap<String, ProjectInfo> projects = new TreeMap<>();

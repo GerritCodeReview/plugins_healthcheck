@@ -16,26 +16,38 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.lifecycle.LifecycleManager;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gerrit.testutil.DisabledReviewDb;
 import com.google.gerrit.testutil.InMemoryDatabase;
 import com.google.gwtorm.server.OrmException;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ReviewDbHealthCheckTest {
+  @Inject private ListeningExecutorService executor;
+
+  @Before
+  public void setUp() {
+    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+  }
 
   @Test
   public void shouldBeHealthyWhenReviewDbIsWorking() throws OrmException {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(getWorkingReviewDbProvider());
+    ReviewDbHealthCheck reviewDbCheck =
+        new ReviewDbHealthCheck(executor, getWorkingReviewDbProvider());
     assertThat(reviewDbCheck.run().healthy).isTrue();
   }
 
   @Test
   public void shouldBeUnhealthyWhenReviewDbIsFailing() {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(getFailingReviewDbProvider());
+    ReviewDbHealthCheck reviewDbCheck =
+        new ReviewDbHealthCheck(executor, getFailingReviewDbProvider());
     assertThat(reviewDbCheck.run().healthy).isFalse();
   }
 

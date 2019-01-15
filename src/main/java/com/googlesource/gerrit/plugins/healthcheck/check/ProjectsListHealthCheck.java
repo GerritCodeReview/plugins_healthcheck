@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.PROJECTSLIST;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.server.project.ListProjects;
 import com.google.inject.Inject;
@@ -29,8 +30,8 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private final ListProjects listProjects;
 
   @Inject
-  public ProjectsListHealthCheck(ListProjects listProjects) {
-    super(PROJECTSLIST);
+  public ProjectsListHealthCheck(ListeningExecutorService executor, ListProjects listProjects) {
+    super(executor, PROJECTSLIST);
     this.listProjects = listProjects;
   }
 

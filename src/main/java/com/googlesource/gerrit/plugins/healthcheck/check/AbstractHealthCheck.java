@@ -14,10 +14,20 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
-public abstract class AbstractHealthCheck implements HealthCheck {
-  private final String name;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-  protected AbstractHealthCheck(String name) {
+public abstract class AbstractHealthCheck implements HealthCheck {
+  private static Logger log = LoggerFactory.getLogger(AbstractHealthCheck.class);
+  public static final long CHECK_TIMEOUT = 500L;
+  private final String name;
+  private final ListeningExecutorService executor;
+
+  protected AbstractHealthCheck(ListeningExecutorService executor, String name) {
+    this.executor = executor;
     this.name = name;
   }
 
@@ -28,12 +38,24 @@ public abstract class AbstractHealthCheck implements HealthCheck {
 
   @Override
   public Result run() {
-    boolean healthy = false;
-    long ts = System.currentTimeMillis();
+    final long ts = System.currentTimeMillis();
+    ListenableFuture<Result> resultFuture =
+        executor.submit(
+            () -> {
+              boolean healthy = false;
+              try {
+                healthy = doCheck();
+              } catch (Exception e) {
+                log.warn("Check {} failed", name, e);
+              }
+              return new Result(healthy, ts, System.currentTimeMillis() - ts);
+            });
+
     try {
-      healthy = doCheck();
-    } finally {
-      return new Result(healthy, ts, System.currentTimeMillis() - ts);
+      return resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
+    } catch (Exception e) {
+      log.warn("Check {} timed out", name, e);
+      return new Result(false, ts, CHECK_TIMEOUT);
     }
   }
 

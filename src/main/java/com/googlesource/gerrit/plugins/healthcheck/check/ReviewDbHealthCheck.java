@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.reviewdb.client.CurrentSchemaVersion;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.inject.Inject;
@@ -29,8 +30,8 @@ public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private final Provider<ReviewDb> reviewDb;
 
   @Inject
-  public ReviewDbHealthCheck(Provider<ReviewDb> reviewDb) {
-    super(REVIEWDB);
+  public ReviewDbHealthCheck(ListeningExecutorService executor, Provider<ReviewDb> reviewDb) {
+    super(executor, REVIEWDB);
     this.reviewDb = reviewDb;
   }
 

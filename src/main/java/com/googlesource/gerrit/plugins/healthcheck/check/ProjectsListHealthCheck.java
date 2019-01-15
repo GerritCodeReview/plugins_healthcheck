@@ -18,7 +18,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
-import com.google.gerrit.server.project.ListProjects;
+import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Inject;
 import java.util.SortedMap;
 import org.slf4j.Logger;

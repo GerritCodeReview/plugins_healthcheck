@@ -18,8 +18,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import com.google.gerrit.lifecycle.LifecycleManager;
 import com.google.gerrit.reviewdb.server.ReviewDb;
-import com.google.gerrit.testutil.DisabledReviewDb;
-import com.google.gerrit.testutil.InMemoryDatabase;
+import com.google.gerrit.testing.DisabledReviewDb;
+import com.google.gerrit.testing.InMemoryDatabase;
 import com.google.gwtorm.server.OrmException;
 import com.google.inject.Provider;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;

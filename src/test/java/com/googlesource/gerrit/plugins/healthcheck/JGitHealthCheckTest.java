@@ -21,7 +21,7 @@ import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.RepositoryCaseMismatchException;
-import com.google.gerrit.testutil.InMemoryRepositoryManager;
+import com.google.gerrit.testing.InMemoryRepositoryManager;
 import com.google.gwtorm.server.OrmException;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import java.io.IOException;

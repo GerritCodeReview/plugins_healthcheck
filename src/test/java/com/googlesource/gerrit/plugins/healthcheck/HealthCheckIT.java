@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
@@ -24,7 +25,6 @@ import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.google.gwtorm.server.SchemaFactory;
 import com.google.inject.Inject;
 import java.io.IOException;
@@ -52,14 +52,28 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     resp.assertOK();
 
     JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
-    assertThat(respPayload.has(REVIEWDB)).isTrue();
 
-    JsonObject reviewDbStatus = respPayload.get(REVIEWDB).getAsJsonObject();
-    assertThat(reviewDbStatus.has("healthy")).isTrue();
-    assertThat(reviewDbStatus.get("healthy").getAsBoolean()).isTrue();
+    assertIsHealthy(respPayload, REVIEWDB);
+  }
+
+  @Test
+  public void shouldReturnJGitCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+
+    assertIsHealthy(respPayload, JGIT);
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {
     return adminRestSession.get("/config/server/healthcheck~status");
+  }
+
+  private void assertIsHealthy(JsonObject respPayload, String checkName) {
+    assertThat(respPayload.has(checkName)).isTrue();
+    JsonObject reviewDbStatus = respPayload.get(checkName).getAsJsonObject();
+    assertThat(reviewDbStatus.has("healthy")).isTrue();
+    assertThat(reviewDbStatus.get("healthy").getAsBoolean()).isTrue();
   }
 }

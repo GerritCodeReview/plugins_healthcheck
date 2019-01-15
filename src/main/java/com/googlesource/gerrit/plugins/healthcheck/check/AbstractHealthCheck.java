@@ -14,8 +14,28 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
-public interface HealthCheckNames {
+public abstract class AbstractHealthCheck implements HealthCheck {
+  private final String name;
 
-  String REVIEWDB = "reviewdb";
-  String JGIT = "jgit";
+  protected AbstractHealthCheck(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String name() {
+    return name;
+  }
+
+  @Override
+  public Result run() {
+    boolean healthy = false;
+    long ts = System.currentTimeMillis();
+    try {
+      healthy = doCheck();
+    } finally {
+      return new Result(healthy, ts, System.currentTimeMillis() - ts);
+    }
+  }
+
+  protected abstract boolean doCheck();
 }

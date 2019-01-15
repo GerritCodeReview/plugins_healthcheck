@@ -22,6 +22,30 @@
       "revId": "94fddef46d9553a5297a9d772a3f9351601aa3b2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38750e4e_a4ad4d13",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ProjectsListHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T21:11:20Z",
+      "side": 1,
+      "message": "It seems that really doesn\u0027t help that much: many other things changed anyway in v2.16 and, at the end of the day, the resulting code is more complex anyway.",
+      "parentUuid": "580f150c_96bb190e",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "94fddef46d9553a5297a9d772a3f9351601aa3b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

@@ -152,6 +152,24 @@
       "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "550ae9b6_9fd6b2b8",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-15T07:31:13Z",
+      "side": 1,
+      "message": "We could have something more structured as this one for example https://github.com/beamly/SE4/blob/master/SE4.md#healthcheck\n\nWe could keep it in mind for a follow-up changeset, what do you think?",
+      "parentUuid": "a591856b_7a291fbd",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

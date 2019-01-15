@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35c7f55a_9b5d9efc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ReviewDbHealthCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T16:02:46Z",
+      "side": 1,
+      "message": "We are missing a test that makes sure that this check is actually failing when ReviewDb isn\u0027t working.",
+      "revId": "668ce6662954546df114460603e4099afc8d69fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

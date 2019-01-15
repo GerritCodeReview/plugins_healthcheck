@@ -236,6 +236,24 @@
       "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18fd4c82_9ba53747",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-15T10:15:39Z",
+      "side": 1,
+      "message": "Yep, fair enough. I was referring to the json structure (i.e.: having the tests in an array) and non-dangerous information like the timestamp of the report generation, duration of the tests. Something like:\n\n{\n    \"report_as_of\": \"2014-04-25T14:33:33.383Z\",\n    \"report_duration\": \"0 seconds\",\n    \"tests\": [\n        {\n            \"duration_millis\": 1.0,\n            \"test_name\": \"ReviewDB\",\n            \"test_result\": \"passed\",\n            \"tested_at\": \"2014-04-25T14:33:15.229Z\"\n        }\n    ]\n}\n\nAnyway, I believe it is ok as it is to start with.",
+      "parentUuid": "2519bdd0_91184e55",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

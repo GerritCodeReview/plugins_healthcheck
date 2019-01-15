@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "580f150c_96bb190e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ProjectsListHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T20:51:56Z",
+      "side": 1,
+      "message": "This is very likely to change between releases: why not using the GerritApi which is a much more stable interface?",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "94fddef46d9553a5297a9d772a3f9351601aa3b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

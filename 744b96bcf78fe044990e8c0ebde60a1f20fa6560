@@ -272,6 +272,24 @@
       "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "388fea11_6d6e5d1a",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-15T11:25:21Z",
+      "side": 1,
+      "message": "I don\u0027t like the JSON Array structure for tests for two reasons:\n\n- gives the idea that some tests can be missing, and that is fine.\n- makes super-hard to extract data automatically",
+      "parentUuid": "58db6f16_c3b1f859",
+      "revId": "744b96bcf78fe044990e8c0ebde60a1f20fa6560",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

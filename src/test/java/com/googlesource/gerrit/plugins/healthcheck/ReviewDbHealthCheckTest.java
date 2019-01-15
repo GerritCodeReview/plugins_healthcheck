@@ -16,50 +16,47 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.lifecycle.LifecycleManager;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gerrit.testutil.DisabledReviewDb;
 import com.google.gerrit.testutil.InMemoryDatabase;
-import com.google.gwtorm.server.OrmException;
-import com.google.inject.Provider;
+import com.google.gwtorm.server.SchemaFactory;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ReviewDbHealthCheckTest {
+  private SchemaFactory<ReviewDb> workingReviewDbFactory;
+
+  @Inject private ListeningExecutorService executor;
+
+  @Before
+  public void setUp() throws Exception {
+    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+    workingReviewDbFactory = InMemoryDatabase.newDatabase(new LifecycleManager()).create();
+  }
 
   @Test
-  public void shouldBeHealthyWhenReviewDbIsWorking() throws OrmException {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(getWorkingReviewDbProvider());
+  public void shouldBeHealthyWhenReviewDbIsWorking() {
+    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(executor, workingReviewDbFactory);
     assertThat(reviewDbCheck.run().healthy).isTrue();
   }
 
   @Test
   public void shouldBeUnhealthyWhenReviewDbIsFailing() {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(getFailingReviewDbProvider());
+    ReviewDbHealthCheck reviewDbCheck =
+        new ReviewDbHealthCheck(executor, getFailingReviewDbProvider());
     assertThat(reviewDbCheck.run().healthy).isFalse();
   }
 
-  private Provider<ReviewDb> getFailingReviewDbProvider() {
-    return new Provider<ReviewDb>() {
+  private SchemaFactory<ReviewDb> getFailingReviewDbProvider() {
+    return new SchemaFactory<ReviewDb>() {
       @Override
-      public ReviewDb get() {
+      public ReviewDb open() {
         return new DisabledReviewDb();
-      }
-    };
-  }
-
-  private Provider<ReviewDb> getWorkingReviewDbProvider() throws OrmException {
-    InMemoryDatabase inMemoryDatabase =
-        InMemoryDatabase.newDatabase(new LifecycleManager()).create();
-    return new Provider<ReviewDb>() {
-      @Override
-      public ReviewDb get() {
-        try {
-          return inMemoryDatabase.open();
-        } catch (OrmException e) {
-          e.printStackTrace();
-          return null;
-        }
       }
     };
   }

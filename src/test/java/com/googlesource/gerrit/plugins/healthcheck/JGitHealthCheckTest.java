@@ -17,11 +17,14 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.truth.Truth.assertThat;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.RepositoryCaseMismatchException;
 import com.google.gerrit.testutil.InMemoryRepositoryManager;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import java.io.IOException;
 import java.util.Collections;
@@ -40,10 +43,14 @@ import org.junit.Test;
 public class JGitHealthCheckTest {
   private AllProjectsName allProjectsName = new AllProjectsName("All-Projects");
   private InMemoryRepositoryManager inMemoryRepositoryManager = new InMemoryRepositoryManager();
-  PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
+  private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
+
+  @Inject private ListeningExecutorService executor;
 
   @Before
   public void setupAllProjects() throws Exception {
+    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+
     InMemoryRepositoryManager.Repo repo =
         inMemoryRepositoryManager.createRepository(allProjectsName);
     createCommit(repo, "refs/meta/config");
@@ -52,14 +59,14 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
-        new JGitHealthCheck(getWorkingRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(executor, getWorkingRepositoryManager(), allProjectsName);
     assertThat(reviewDbCheck.run().healthy).isTrue();
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailing() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(getFailingGitRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(executor, getFailingGitRepositoryManager(), allProjectsName);
     assertThat(jGitHealthCheck.run().healthy).isFalse();
   }
 

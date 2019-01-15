@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
@@ -31,8 +32,11 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   private final AllProjectsName allProjectsName;
 
   @Inject
-  public JGitHealthCheck(GitRepositoryManager repositoryManager, AllProjectsName allProjectsName) {
-    super(JGIT);
+  public JGitHealthCheck(
+      ListeningExecutorService executor,
+      GitRepositoryManager repositoryManager,
+      AllProjectsName allProjectsName) {
+    super(executor, JGIT);
     this.repositoryManager = repositoryManager;
     this.allProjectsName = allProjectsName;
   }

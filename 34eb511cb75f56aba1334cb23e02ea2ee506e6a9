@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "44655f4d_871d212e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T21:59:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adc54d37_d91ac4cd",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2328d5c_46bf2390",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 3
@@ -116,6 +140,30 @@
       "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94cafbb7_dc8856d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T21:59:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2328d5c_46bf2390",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 59,
+        "endChar": 57
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

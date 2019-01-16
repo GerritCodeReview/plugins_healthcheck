@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b233177c_a7cc33a0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T10:26:35Z",
+      "side": 1,
+      "message": "In this version of the code, we need to maintain the same thread. The parallelization is done in a follow-up change because involve many more changes.\n\nGerrit behaves differently if things are executed in a separate thread, a lot of stuff is in the thread-local.",
+      "parentUuid": "fe9fe097_39e79f01",
+      "range": {
+        "startLine": 35,
+        "startChar": 56,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f80f421_c081f487",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
         "patchSetId": 13
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f00af3d5_08e02261",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T10:26:35Z",
+      "side": 1,
+      "message": "We could introduce more \"states\" instead of just a boolean. It isn\u0027t clear to me anyway, how a workload balancer (for instance) would need to manage \"running\" or \"skipped\" state?\n\nIt isn\u0027t clear to me either how can the test still be running if we have created a Result value object. Bear in mind that healthy field is a final and can\u0027t be changed.",
+      "parentUuid": "130b6a50_96e806c8",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65417a5b_e6edb8c0",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
         "patchSetId": 13
@@ -86,6 +134,24 @@
       "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "127ca5e5_f6d484d6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T10:26:35Z",
+      "side": 1,
+      "message": "Yes, we could. However, is that a real scenario? The binding is done in the code and there is always at least one health checker.",
+      "parentUuid": "65417a5b_e6edb8c0",
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

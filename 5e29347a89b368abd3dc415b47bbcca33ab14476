@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "d9970ef5_6bb1136c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T14:19:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05d0ad06_60cfe442",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65417a5b_e6edb8c0",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
         "patchSetId": 13

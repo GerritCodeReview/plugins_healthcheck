@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e500328_562fde2f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T19:47:13Z",
+      "side": 1,
+      "message": "Probably the check timeout should be set per HealthCheck type, so they can be independently tuned.",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "669e562a_10fb916b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T19:47:13Z",
+      "side": 1,
+      "message": "Should we just catch TimeOut exceptions here? And throw a \"Result.FAILED\" for generic exceptions?",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

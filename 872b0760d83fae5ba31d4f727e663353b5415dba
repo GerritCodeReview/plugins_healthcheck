@@ -46,6 +46,30 @@
       "revId": "872b0760d83fae5ba31d4f727e663353b5415dba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8d28e33_bbe0a999",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ProjectsListHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T10:57:08Z",
+      "side": 1,
+      "message": "to 100 (not 200) :-)",
+      "parentUuid": "0219c0b0_4ba57e8c",
+      "range": {
+        "startLine": 28,
+        "startChar": 49,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "872b0760d83fae5ba31d4f727e663353b5415dba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

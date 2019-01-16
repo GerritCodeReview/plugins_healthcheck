@@ -69,6 +69,23 @@
       "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65417a5b_e6edb8c0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-16T09:34:21Z",
+      "side": 1,
+      "message": "it would be interesting to test the case where no bindings are provided, still returns 200 OK",
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

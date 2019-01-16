@@ -45,6 +45,30 @@
       "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "130b6a50_96e806c8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T08:13:06Z",
+      "side": 1,
+      "message": "I can\u0027t come up with an example for the \"running\" state in our case, but I was thinking to a test which takes time to run. The \"skipped\" instead one might be the case where, for example, ReviewDB is disabled, or any other downstream component we are testing can be switched off.",
+      "parentUuid": "2f80f421_c081f487",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

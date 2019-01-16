@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe9fe097_39e79f01",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T07:59:39Z",
+      "side": 1,
+      "message": "Why not parallelising it and sorting it afterwards, if ordering is important?",
+      "range": {
+        "startLine": 35,
+        "startChar": 56,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f80f421_c081f487",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T07:59:39Z",
+      "side": 1,
+      "message": "What if the test is still running while hitting this API? Wouldn\u0027t it be better to have an Enum of String instead to describe the statues of the check (i.e.: failed, passed, running, skipped)",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

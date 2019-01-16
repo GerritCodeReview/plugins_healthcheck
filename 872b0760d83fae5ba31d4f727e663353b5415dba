@@ -22,6 +22,30 @@
       "revId": "872b0760d83fae5ba31d4f727e663353b5415dba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0219c0b0_4ba57e8c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ProjectsListHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T10:56:37Z",
+      "side": 1,
+      "message": "Oh yes, let me put it back to 200. I was unsure that it was the number of repos the slowness issue (tested last night on GerritHub.io) but indeed was the lack of search prefix the problem.",
+      "parentUuid": "e43cb02e_35de2ee9",
+      "range": {
+        "startLine": 28,
+        "startChar": 49,
+        "endLine": 28,
+        "endChar": 50
+      },
+      "revId": "872b0760d83fae5ba31d4f727e663353b5415dba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

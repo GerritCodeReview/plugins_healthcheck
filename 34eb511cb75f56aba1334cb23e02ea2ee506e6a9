@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "227985c9_7883ead1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T22:23:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0482592a_6ed43d15",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "669e562a_10fb916b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 3

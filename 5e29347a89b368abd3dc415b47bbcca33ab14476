@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "05d0ad06_60cfe442",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T11:22:56Z",
+      "side": 1,
+      "message": "Point taken: HAProxy cares about the HTTP status only.\n\nIt would be useful to get it right the first time :-)\nWhat about:\n\n- failed\n- passed\n- skipped (when you would do that?)\n- running (because the value class is final, when would you return \u0027running\u0027 ?)",
+      "parentUuid": "5e3b7f1c_d737dc3e",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "65417a5b_e6edb8c0",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
         "patchSetId": 13

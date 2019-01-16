@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "86355cea_deb684fa",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T10:44:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b233177c_a7cc33a0",
+      "range": {
+        "startLine": 35,
+        "startChar": 56,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f80f421_c081f487",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
         "patchSetId": 13
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "We could introduce more \"states\" instead of just a boolean. It isn\u0027t clear to me anyway, how a workload balancer (for instance) would need to manage \"running\" or \"skipped\" state?\n\nIt isn\u0027t clear to me either how can the test still be running if we have created a Result value object. Bear in mind that healthy field is a final and can\u0027t be changed.",
       "parentUuid": "130b6a50_96e806c8",
+      "range": {
+        "startLine": 20,
+        "startChar": 25,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "5e29347a89b368abd3dc415b47bbcca33ab14476",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e3b7f1c_d737dc3e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-16T10:44:16Z",
+      "side": 1,
+      "message": "The load balancer wouldn\u0027t probably care about all the values of the \"healthy\" field. Still, I think it can be useful for debugging purposes. We can add it later on, if we think it can be useful.",
+      "parentUuid": "f00af3d5_08e02261",
       "range": {
         "startLine": 20,
         "startChar": 25,

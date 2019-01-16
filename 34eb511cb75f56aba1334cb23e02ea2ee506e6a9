@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0482592a_6ed43d15",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T20:26:28Z",
+      "side": 1,
+      "message": "Good point, however, I\u0027d put into a separate change where we introduce the healthcheck configuration so that it can be:\n\n- Be configurable and not hardcoded\n- Be defined on a per-check basis\n\nIn the same config, we can then enable/disable checks as well. E.g. If you are on v2.16, you possibly don\u0027t care anymore about ReviewDb ;-)",
+      "parentUuid": "3e500328_562fde2f",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 40
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "669e562a_10fb916b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 3
@@ -41,6 +65,53 @@
         "startChar": 13,
         "endLine": 57,
         "endChar": 24
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc54d37_d91ac4cd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T20:26:28Z",
+      "side": 1,
+      "message": "Right, good point: let me amend the code accordingly.",
+      "parentUuid": "669e562a_10fb916b",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 24
+      },
+      "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2328d5c_46bf2390",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-16T20:26:28Z",
+      "side": 1,
+      "message": "This is wrong also: we may fail for another reason that isn\u0027t timeout and we should track the exact elasped msecs.",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 59,
+        "endChar": 57
       },
       "revId": "34eb511cb75f56aba1334cb23e02ea2ee506e6a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",

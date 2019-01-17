@@ -16,10 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.AbstractModule;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.*;
 
 public class HealthCheckSubsystemsModule extends AbstractModule {
 
@@ -28,6 +25,7 @@ public class HealthCheckSubsystemsModule extends AbstractModule {
     bindChecker(ReviewDbHealthCheck.class);
     bindChecker(JGitHealthCheck.class);
     bindChecker(ProjectsListHealthCheck.class);
+    bindChecker(QueryChangesHealthCheck.class);
   }
 
   private void bindChecker(Class<? extends HealthCheck> healthCheckClass) {

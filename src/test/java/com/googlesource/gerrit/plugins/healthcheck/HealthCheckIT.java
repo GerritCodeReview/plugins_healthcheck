@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
@@ -26,12 +27,18 @@ import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+import java.util.stream.IntStream;
+
+import com.google.inject.Inject;
 import org.junit.Test;
 
 @TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
+
+  @Inject
+  private HealthCheckConfig config;
 
   @Test
   public void shouldReturnOkWhenHealthy() throws Exception {
@@ -61,6 +68,18 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
 
     assertCheckResult(respPayload, JGIT, "passed");
+  }
+
+  @Test
+  public void shouldReturnQueryChangesCheck() throws Exception {
+    IntStream.range()
+    createChange("refs/for/master");
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+
+    assertCheckResult(respPayload, QUERYCHANGES, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {

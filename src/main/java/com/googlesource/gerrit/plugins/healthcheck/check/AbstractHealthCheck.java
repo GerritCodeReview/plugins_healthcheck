@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -24,13 +25,15 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractHealthCheck implements HealthCheck {
   private static final Logger log = LoggerFactory.getLogger(AbstractHealthCheck.class);
-  public static final long CHECK_TIMEOUT = 500L;
+  private final long timeout;
   private final String name;
   private final ListeningExecutorService executor;
 
-  protected AbstractHealthCheck(ListeningExecutorService executor, String name) {
+  protected AbstractHealthCheck(
+      ListeningExecutorService executor, HealthCheckConfig config, String name) {
     this.executor = executor;
     this.name = name;
+    this.timeout = config.getTimeout(name);
   }
 
   @Override
@@ -55,7 +58,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
             });
 
     try {
-      return resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
+      return resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
       return new Status(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);

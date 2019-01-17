@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.lifecycle.LifecycleManager;
@@ -42,14 +43,15 @@ public class ReviewDbHealthCheckTest {
 
   @Test
   public void shouldBeHealthyWhenReviewDbIsWorking() {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(executor, workingReviewDbFactory);
+    ReviewDbHealthCheck reviewDbCheck =
+        new ReviewDbHealthCheck(executor, DEFAULT_CONFIG, workingReviewDbFactory);
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenReviewDbIsFailing() {
     ReviewDbHealthCheck reviewDbCheck =
-        new ReviewDbHealthCheck(executor, getFailingReviewDbProvider());
+        new ReviewDbHealthCheck(executor, DEFAULT_CONFIG, getFailingReviewDbProvider());
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.FAILED);
   }
 

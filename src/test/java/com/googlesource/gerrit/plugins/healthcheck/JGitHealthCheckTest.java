@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -60,14 +61,16 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
-        new JGitHealthCheck(executor, getWorkingRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(
+            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), allProjectsName);
     assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailing() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, getFailingGitRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(
+            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), allProjectsName);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

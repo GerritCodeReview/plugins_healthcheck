@@ -17,7 +17,6 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
-import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
@@ -41,16 +40,6 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   @Test
   public void shouldReturnAJsonPayload() throws Exception {
     assertThat(getHealthCheckStatus().getHeader(CONTENT_TYPE)).contains("application/json");
-  }
-
-  @Test
-  public void shouldReturnReviewDbCheck() throws Exception {
-    RestResponse resp = getHealthCheckStatus();
-    resp.assertOK();
-
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
-
-    assertCheckResult(respPayload, REVIEWDB, "passed");
   }
 
   @Test

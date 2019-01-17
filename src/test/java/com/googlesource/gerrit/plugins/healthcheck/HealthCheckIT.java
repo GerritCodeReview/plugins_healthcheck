@@ -17,21 +17,49 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.inject.AbstractModule;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
+import org.junit.Before;
 import org.junit.Test;
 
 @TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
+  HealthCheckConfig config;
+
+  @Override
+  @Before
+  public void setUp() throws Exception {
+    super.setUp();
+
+    config =
+        server
+            .getTestInjector()
+            .createChildInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(String.class).annotatedWith(PluginName.class).toInstance("healthcheck");
+                  }
+                })
+            .getInstance(HealthCheckConfig.class);
+    int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
+    for (int i = 0; i < numChanges; i++) {
+      createChange("refs/for/master");
+    }
+  }
 
   @Test
   public void shouldReturnOkWhenHealthy() throws Exception {
@@ -61,6 +89,17 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
 
     assertCheckResult(respPayload, JGIT, "passed");
+  }
+
+  @Test
+  public void shouldReturnQueryChangesCheck() throws Exception {
+    createChange("refs/for/master");
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+
+    assertCheckResult(respPayload, QUERYCHANGES, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {

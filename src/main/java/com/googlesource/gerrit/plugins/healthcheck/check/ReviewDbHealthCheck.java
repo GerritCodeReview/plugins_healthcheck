@@ -21,13 +21,17 @@ import com.google.gerrit.reviewdb.client.CurrentSchemaVersion;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gwtorm.server.SchemaFactory;
 import com.google.inject.Inject;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 
 public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private final SchemaFactory<ReviewDb> reviewDb;
 
   @Inject
-  public ReviewDbHealthCheck(ListeningExecutorService executor, SchemaFactory<ReviewDb> reviewDb) {
-    super(executor, REVIEWDB);
+  public ReviewDbHealthCheck(
+      ListeningExecutorService executor,
+      HealthCheckConfig config,
+      SchemaFactory<ReviewDb> reviewDb) {
+    super(executor, config, REVIEWDB);
     this.reviewDb = reviewDb;
   }
 

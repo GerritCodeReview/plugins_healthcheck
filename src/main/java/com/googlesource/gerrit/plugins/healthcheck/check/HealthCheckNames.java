@@ -18,4 +18,5 @@ public interface HealthCheckNames {
   String REVIEWDB = "reviewdb";
   String JGIT = "jgit";
   String PROJECTSLIST = "projectslist";
+  String QUERYCHANGES = "querychanges";
 }

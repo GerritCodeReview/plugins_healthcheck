@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe566fab_32f214e2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T16:17:43Z",
+      "side": 1,
+      "message": "Nope: it is HEALTHCHECK_TIEMOUT_DEFAULT only if there is no global timeout defined in healthcheck.config, as explained in the config.md.",
+      "parentUuid": "5c36cc36_160f4463",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 23
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "162e2e6f_3857dc3e",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e00d83ed_a4fbde6b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T16:17:43Z",
+      "side": 1,
+      "message": "Nope, otherwise you won\u0027t use the global override.",
+      "parentUuid": "162e2e6f_3857dc3e",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 3
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a30c07c_f37e34c5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2019-01-18T15:08:53Z",
       "side": 1,
       "message": "These are checks specific configuration parameters. I think defaulting should happen in the check itself.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96fc1bbe_9f892ec9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T16:17:43Z",
+      "side": 1,
+      "message": "Oops, these are supposed to go to the next change about ChangeQueryHealthCheck",
+      "parentUuid": "4a30c07c_f37e34c5",
       "range": {
         "startLine": 64,
         "startChar": 2,
@@ -129,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "9e7589d5_811ba64d",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfigTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T16:17:43Z",
+      "side": 1,
+      "message": "Possibly the assertion itself doesn\u0027t make any sense IMHO :-)",
+      "parentUuid": "bfd7b2ed_04fec05b",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 49
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab3a5810_8f54d1bd",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 5
@@ -140,6 +236,30 @@
       "writtenOn": "2019-01-18T15:08:53Z",
       "side": 1,
       "message": "Same as previous comment, this is probably slipped in as part of the \"Query Check\" change.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 0
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d2f62f2_a5b131c0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T16:17:43Z",
+      "side": 1,
+      "message": "Yes, this needs to go in the follow-up change about QueryChangesHealthCheck",
+      "parentUuid": "ab3a5810_8f54d1bd",
       "range": {
         "startLine": 94,
         "startChar": 2,

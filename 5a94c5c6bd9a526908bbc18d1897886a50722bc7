@@ -88,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "728bb6a1_ea0bd61f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-18T15:11:42Z",
+      "side": 1,
+      "message": "Oh yes, that was supposed to come afterwards :-) Let me split this huge Change into two.",
+      "parentUuid": "f8df3494_8ba20001",
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bfd7b2ed_04fec05b",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfigTest.java",
         "patchSetId": 5

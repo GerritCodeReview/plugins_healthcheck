@@ -21,6 +21,7 @@ import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.QueryChangesHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
 
 public class HealthCheckSubsystemsModule extends AbstractModule {
@@ -35,6 +36,7 @@ public class HealthCheckSubsystemsModule extends AbstractModule {
     bindChecker(ReviewDbHealthCheck.class);
     bindChecker(JGitHealthCheck.class);
     bindChecker(ProjectsListHealthCheck.class);
+    bindChecker(QueryChangesHealthCheck.class);
   }
 
   private void bindChecker(Class<? extends HealthCheck> healthCheckClass) {

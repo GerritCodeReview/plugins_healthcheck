@@ -54,3 +54,13 @@ The follwing parameters are available:
   healthcheck to complete. Zero means that there is no timeout.
 
   Default: 500
+
+- `healthcheck.<checkName>.query` : Query to be executed for extracting
+   elements from the check.
+
+  Default: status:open
+
+- `healthcheck.<checkName>.limit` : Maximum number of elements to retrieve from
+  the the check results.
+
+  Default: 10

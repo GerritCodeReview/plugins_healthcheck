@@ -16,21 +16,26 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AbstractHealthCheck implements HealthCheck {
   private static final Logger log = LoggerFactory.getLogger(AbstractHealthCheck.class);
   public static final long CHECK_TIMEOUT = 500L;
   private final String name;
   private final ListeningExecutorService executor;
+  private final Metrics metrics;
 
-  protected AbstractHealthCheck(ListeningExecutorService executor, String name) {
+
+  protected AbstractHealthCheck(ListeningExecutorService executor, String name, MetricMaker metricMaker) {
     this.executor = executor;
     this.name = name;
+    this.metrics = new Metrics(name, metricMaker);
   }
 
   @Override
@@ -51,9 +56,10 @@ public abstract class AbstractHealthCheck implements HealthCheck {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;
               }
-              return new Status(healthy, ts, System.currentTimeMillis() - ts);
+              Status status = new Status(healthy, ts, System.currentTimeMillis() - ts);
+              metrics.sendMetrics(status);
+              return status;
             });
-
     try {
       return resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {

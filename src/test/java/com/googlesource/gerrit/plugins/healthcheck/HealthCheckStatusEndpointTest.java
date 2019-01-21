@@ -14,17 +14,20 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.Response;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
+
+import javax.servlet.http.HttpServletResponse;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class HealthCheckStatusEndpointTest {
 
@@ -57,6 +60,8 @@ public class HealthCheckStatusEndpointTest {
               protected void configure() {
                 DynamicSet.bind(binder(), HealthCheck.class)
                     .toInstance(new TestHealthCheck("checkOk", HealthCheck.Result.PASSED, 1, 2));
+                DynamicSet.bind(binder(), MetricMaker.class)
+                    .toInstance(new DisabledMetricMaker());
               }
             });
 

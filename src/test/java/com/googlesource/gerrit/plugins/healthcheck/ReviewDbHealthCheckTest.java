@@ -14,42 +14,47 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.lifecycle.LifecycleManager;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gerrit.testutil.DisabledReviewDb;
 import com.google.gerrit.testutil.InMemoryDatabase;
 import com.google.gwtorm.server.SchemaFactory;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.common.truth.Truth.assertThat;
+
 public class ReviewDbHealthCheckTest {
   private SchemaFactory<ReviewDb> workingReviewDbFactory;
+  private final DisabledMetricMaker metricMaker = new DisabledMetricMaker();
 
   @Inject private ListeningExecutorService executor;
 
   @Before
   public void setUp() throws Exception {
-    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+    Injector testInjector = Guice.createInjector(new HealthCheckModule());
+    testInjector.injectMembers(this);
+
     workingReviewDbFactory = InMemoryDatabase.newDatabase(new LifecycleManager()).create();
   }
 
   @Test
   public void shouldBeHealthyWhenReviewDbIsWorking() {
-    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(executor, workingReviewDbFactory);
+    ReviewDbHealthCheck reviewDbCheck = new ReviewDbHealthCheck(executor, workingReviewDbFactory, metricMaker);
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenReviewDbIsFailing() {
     ReviewDbHealthCheck reviewDbCheck =
-        new ReviewDbHealthCheck(executor, getFailingReviewDbProvider());
+        new ReviewDbHealthCheck(executor, getFailingReviewDbProvider(), metricMaker);
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.FAILED);
   }
 

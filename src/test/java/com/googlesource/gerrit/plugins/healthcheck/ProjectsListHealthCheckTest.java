@@ -14,23 +14,26 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.BadRequestException;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import static com.google.common.truth.Truth.assertThat;
+
 public class ProjectsListHealthCheckTest {
+  private final DisabledMetricMaker metricMaker = new DisabledMetricMaker();
   @Inject private ListeningExecutorService executor;
 
   @Before
@@ -41,14 +44,14 @@ public class ProjectsListHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenListProjectsWorks() {
     ProjectsListHealthCheck jGitHealthCheck =
-        new ProjectsListHealthCheck(executor, getWorkingProjectList(0));
+        new ProjectsListHealthCheck(executor, getWorkingProjectList(0), metricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenListProjectsIsFailing() {
     ProjectsListHealthCheck jGitHealthCheck =
-        new ProjectsListHealthCheck(executor, getFailingProjectList());
+        new ProjectsListHealthCheck(executor, getFailingProjectList(), metricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -56,7 +59,7 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeUnhealthyWhenListProjectsIsTimingOut() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, getWorkingProjectList(AbstractHealthCheck.CHECK_TIMEOUT * 2));
+            executor, getWorkingProjectList(AbstractHealthCheck.CHECK_TIMEOUT * 2), metricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
   }
 

@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.reviewdb.client.CurrentSchemaVersion;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gwtorm.server.SchemaFactory;
@@ -26,8 +27,8 @@ public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private final SchemaFactory<ReviewDb> reviewDb;
 
   @Inject
-  public ReviewDbHealthCheck(ListeningExecutorService executor, SchemaFactory<ReviewDb> reviewDb) {
-    super(executor, REVIEWDB);
+  public ReviewDbHealthCheck(ListeningExecutorService executor, SchemaFactory<ReviewDb> reviewDb, MetricMaker metricMaker) {
+    super(executor, REVIEWDB, metricMaker);
     this.reviewDb = reviewDb;
   }
 

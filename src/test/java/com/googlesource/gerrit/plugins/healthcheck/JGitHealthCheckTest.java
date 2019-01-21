@@ -18,6 +18,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
@@ -45,6 +46,7 @@ public class JGitHealthCheckTest {
   private AllProjectsName allProjectsName = new AllProjectsName("All-Projects");
   private InMemoryRepositoryManager inMemoryRepositoryManager = new InMemoryRepositoryManager();
   private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
+  private final DisabledMetricMaker metricMaker = new DisabledMetricMaker();
 
   @Inject private ListeningExecutorService executor;
 
@@ -60,14 +62,15 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
-        new JGitHealthCheck(executor, getWorkingRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(executor, getWorkingRepositoryManager(), allProjectsName, metricMaker);
     assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailing() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, getFailingGitRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(
+            executor, getFailingGitRepositoryManager(), allProjectsName, metricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

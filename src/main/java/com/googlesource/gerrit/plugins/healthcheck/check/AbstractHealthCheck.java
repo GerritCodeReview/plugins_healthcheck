@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -27,10 +28,13 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   public static final long CHECK_TIMEOUT = 500L;
   private final String name;
   private final ListeningExecutorService executor;
+  private final MetricsHandler metricsHandler;
 
-  protected AbstractHealthCheck(ListeningExecutorService executor, String name) {
+  protected AbstractHealthCheck(
+      ListeningExecutorService executor, String name, MetricMaker metricMaker) {
     this.executor = executor;
     this.name = name;
+    this.metricsHandler = new MetricsHandler(name, metricMaker);
   }
 
   @Override
@@ -41,6 +45,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   @Override
   public Status run() {
     final long ts = System.currentTimeMillis();
+    Status status = null;
     ListenableFuture<Status> resultFuture =
         executor.submit(
             () -> {
@@ -53,15 +58,17 @@ public abstract class AbstractHealthCheck implements HealthCheck {
               }
               return new Status(healthy, ts, System.currentTimeMillis() - ts);
             });
-
     try {
-      return resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
+      status = resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
-      return new Status(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
+      status = new Status(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
-      return new Status(Result.FAILED, ts, System.currentTimeMillis() - ts);
+      status = new Status(Result.FAILED, ts, System.currentTimeMillis() - ts);
+    } finally {
+      metricsHandler.sendMetrics(status);
+      return status;
     }
   }
 

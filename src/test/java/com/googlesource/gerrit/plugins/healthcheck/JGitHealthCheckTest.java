@@ -18,6 +18,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
@@ -27,6 +28,7 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.SortedSet;
@@ -45,6 +47,13 @@ public class JGitHealthCheckTest {
   private AllProjectsName allProjectsName = new AllProjectsName("All-Projects");
   private InMemoryRepositoryManager inMemoryRepositoryManager = new InMemoryRepositoryManager();
   private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
+  private final MetricsHandler.Factory metricsHandlerFactory =
+      new MetricsHandler.Factory() {
+        @Override
+        public MetricsHandler create(String name) {
+          return new MetricsHandler("foo", new DisabledMetricMaker());
+        }
+      };
 
   @Inject private ListeningExecutorService executor;
 
@@ -60,14 +69,16 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
-        new JGitHealthCheck(executor, getWorkingRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(
+            executor, getWorkingRepositoryManager(), allProjectsName, metricsHandlerFactory);
     assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailing() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, getFailingGitRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(
+            executor, getFailingGitRepositoryManager(), allProjectsName, metricsHandlerFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

@@ -30,8 +30,11 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private final ListProjects listProjects;
 
   @Inject
-  public ProjectsListHealthCheck(ListeningExecutorService executor, ListProjects listProjects) {
-    super(executor, PROJECTSLIST);
+  public ProjectsListHealthCheck(
+      ListeningExecutorService executor,
+      ListProjects listProjects,
+      MetricsHandler.Factory metricHandlerFactory) {
+    super(executor, PROJECTSLIST, metricHandlerFactory);
     this.listProjects = listProjects;
   }
 

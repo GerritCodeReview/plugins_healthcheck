@@ -26,8 +26,11 @@ public class ReviewDbHealthCheck extends AbstractHealthCheck {
   private final SchemaFactory<ReviewDb> reviewDb;
 
   @Inject
-  public ReviewDbHealthCheck(ListeningExecutorService executor, SchemaFactory<ReviewDb> reviewDb) {
-    super(executor, REVIEWDB);
+  public ReviewDbHealthCheck(
+      ListeningExecutorService executor,
+      SchemaFactory<ReviewDb> reviewDb,
+      MetricsHandler.Factory metricHandlerFactory) {
+    super(executor, REVIEWDB, metricHandlerFactory);
     this.reviewDb = reviewDb;
   }
 

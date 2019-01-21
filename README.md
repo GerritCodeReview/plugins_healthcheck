@@ -39,7 +39,7 @@ The HTTP response payload is a JSON output that contains the details of the chec
 - elapsed: elapsed time in millis to perform the check
 - reviewdb: check that Gerrit can connect and query ReviewDb
 - projectslist: check that Gerrit can list projects
-- auth: check that Gerrit can authenticate users
+- jgit: check that Gerrit can access repositories 
 
 Each check returns a JSON payload with the following information:
 
@@ -72,7 +72,7 @@ Content-Type: application/json
     "elapsed": 100,
     "result": "passed"
   },
-  "auth": {
+  "jgit": {
     "ts": 139402910202,
     "elapsed": 80,
     "result": "passed"
@@ -101,7 +101,7 @@ Content-Type: application/json
     "elapsed": 100,
     "result": "timeout"
   },
-  "auth": {
+  "jgit": {
     "ts": 139402910202,
     "elapsed": 80,
     "result": "passed"
@@ -109,3 +109,89 @@ Content-Type: application/json
 }
 ```
 
+## Metrics
+
+As for all other endpoints in Gerrit, some metrics are automatically emitted when the  `/config/server/healthcheck~status`
+endpoint it hit (thanks to the [Dropwizard](https://metrics.dropwizard.io/3.1.0/manual/core/) library).
+For example, some of the metrics exposed will be:
+
+```
+# HELP http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint Generated from Dropwizard metric import (metric=http/server/rest_api/response_bytes/healthcheck-com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint, type=com.codahale.metrics.Histogram)
+# TYPE http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint summary
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.5",} 308.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.75",} 308.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.95",} 308.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.98",} 310.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.99",} 310.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.999",} 310.0
+http_server_rest_api_response_bytes_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_count 4.0
+
+# HELP http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint Generated from Dropwizard metric import (metric=http/server/rest_api/server_latency/healthcheck-com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint, type=com.codahale.metrics.Timer)
+# TYPE http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint summary
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.5",} 0.008638662
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.75",} 0.008638662
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.95",} 0.010553707
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.98",} 0.147902061
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.99",} 0.147902061
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint{quantile="0.999",} 0.147902061
+http_server_rest_api_server_latency_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_count 4.0
+
+# HELP http_server_rest_api_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_total Generated from Dropwizard metric import (metric=http/server/rest_api/count/healthcheck-com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint, type=com.codahale.metrics.Meter)
+# TYPE http_server_rest_api_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_total counter
+http_server_rest_api_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_total 4.0
+
+# HELP http_server_rest_api_error_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_500_total Generated from Dropwizard metric import (metric=http/server/rest_api/error_count/healthcheck-com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint/500, type=com.codahale.metrics.Meter)
+# TYPE http_server_rest_api_error_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_500_total counter
+http_server_rest_api_error_count_healthcheck_com_googlesource_gerrit_plugins_healthcheck_api_HealthCheckStatusEndpoint_500_total 2.0
+```
+
+However some extra metrics are also emitted to expose more details about the healthcheck result.
+Specifically two metrics are emitted for each component contributing to the overall healthcheck result (JGIT, PROJECTLIST, REVIEWDB).
+* plugins_healthcheck_<healthcheck_component>_latency: the cumulative latency (in ms) of performing the healthcheck for this specific component
+* plugins_healthcheck_jgit_failure_total: the cumulative number of failures for this specific component
+
+```
+# HELP plugins_healthcheck_jgit_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/latency, type=com.codahale.metrics.Timer)
+# TYPE plugins_healthcheck_jgit_latency summary
+plugins_healthcheck_jgit_latency{quantile="0.5",} 0.002
+plugins_healthcheck_jgit_latency{quantile="0.75",} 0.002
+plugins_healthcheck_jgit_latency{quantile="0.95",} 0.002
+plugins_healthcheck_jgit_latency{quantile="0.98",} 0.002
+plugins_healthcheck_jgit_latency{quantile="0.99",} 0.002
+plugins_healthcheck_jgit_latency{quantile="0.999",} 0.002
+plugins_healthcheck_jgit_latency_count 1.0
+
+# HELP plugins_healthcheck_projectslist_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/latency, type=com.codahale.metrics.Timer)
+# TYPE plugins_healthcheck_projectslist_latency summary
+plugins_healthcheck_projectslist_latency{quantile="0.5",} 0.001
+plugins_healthcheck_projectslist_latency{quantile="0.75",} 0.001
+plugins_healthcheck_projectslist_latency{quantile="0.95",} 0.001
+plugins_healthcheck_projectslist_latency{quantile="0.98",} 0.001
+plugins_healthcheck_projectslist_latency{quantile="0.99",} 0.001
+plugins_healthcheck_projectslist_latency{quantile="0.999",} 0.001
+plugins_healthcheck_projectslist_latency_count 1.0
+
+# HELP plugins_healthcheck_reviewdb_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/latency, type=com.codahale.metrics.Timer)
+# TYPE plugins_healthcheck_reviewdb_latency summary
+plugins_healthcheck_reviewdb_latency{quantile="0.5",} 0.001
+plugins_healthcheck_reviewdb_latency{quantile="0.75",} 0.001
+plugins_healthcheck_reviewdb_latency{quantile="0.95",} 0.001
+plugins_healthcheck_reviewdb_latency{quantile="0.98",} 0.001
+plugins_healthcheck_reviewdb_latency{quantile="0.99",} 0.001
+plugins_healthcheck_reviewdb_latency{quantile="0.999",} 0.001
+plugins_healthcheck_reviewdb_latency_count 1.0
+
+# HELP plugins_healthcheck_jgit_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_jgit_failure_total counter
+plugins_healthcheck_jgit_failure_total 0.0
+
+# HELP plugins_healthcheck_projectslist_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_projectslist_failure_total counter
+plugins_healthcheck_projectslist_failure_total 0.0
+
+# HELP plugins_healthcheck_reviewdb_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_reviewdb_failure_total counter
+plugins_healthcheck_reviewdb_failure_total 0.0
+```
+
+Metrics will be exposed to prometheus by the [metrics-reporter-prometheus](https://gerrit.googlesource.com/plugins/metrics-reporter-prometheus/) plugin.

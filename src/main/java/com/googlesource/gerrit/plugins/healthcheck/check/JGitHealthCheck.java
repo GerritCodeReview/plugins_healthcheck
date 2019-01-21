@@ -31,8 +31,9 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   public JGitHealthCheck(
       ListeningExecutorService executor,
       GitRepositoryManager repositoryManager,
-      AllProjectsName allProjectsName) {
-    super(executor, JGIT);
+      AllProjectsName allProjectsName,
+      MetricsHandler.Factory metricsHandlerFactory) {
+    super(executor, JGIT, metricsHandlerFactory);
     this.repositoryManager = repositoryManager;
     this.allProjectsName = allProjectsName;
   }

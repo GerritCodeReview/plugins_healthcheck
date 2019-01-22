@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "62bff6c3_0972bc4f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:17:05Z",
+      "side": 1,
+      "message": "Well spotted ponch. Let me fix this",
+      "parentUuid": "17160d9a_06834824",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 5
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f1343bc_17a399c6",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
         "patchSetId": 1

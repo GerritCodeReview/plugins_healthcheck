@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a6604b3_edbdceba",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T15:59:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b964ccb_6677c13b",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 3
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10d7633c_d3e17d35",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
         "patchSetId": 4
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "d88fc341_c028e72a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T15:59:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1a26b78d_db3388a7",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 7
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cc17218_35f40c86",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
         "patchSetId": 4
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "Yes, the timeout management is already managed upstream because this code is running into a secondary thread.",
       "parentUuid": "1cc17218_35f40c86",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0514efc0_0bafe105",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T15:59:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "411eed30_a4da8b98",
       "range": {
         "startLine": 53,
         "startChar": 24,

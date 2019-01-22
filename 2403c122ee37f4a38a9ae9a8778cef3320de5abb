@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "749715aa_9d66fd8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae63e2b8_2fc326af",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f979474_24789f1f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-22T07:54:19Z",
       "side": 1,
       "message": "You should use the newTimer / newCounter on the MetricMaker, but not instantiating it directly.",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6726c3d8_07053569",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "This does not instantiate any metrics.\nThis instantiates a metricsHandler, whose purpose is to send relevant metrics.\nPerhaps this is badly named, let me amend that.",
+      "parentUuid": "2f979474_24789f1f",
       "range": {
         "startLine": 38,
         "startChar": 18,
@@ -117,6 +165,54 @@
     },
     {
       "key": {
+        "uuid": "fd082dd7_ab6d7a56",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e79c649_ace35680",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6326a360_4243011b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "See my comment below. These metrics values are dependent on this class instance.",
+      "parentUuid": "7f1343bc_17a399c6",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "995a61a5_7340a2f8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
         "patchSetId": 1
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "95c312d2_ad39a231",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "52a23002_d9cf12b2",
+      "range": {
+        "startLine": 22,
+        "startChar": 33,
+        "endLine": 22,
+        "endChar": 72
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "617435b1_bd5de1f4",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
         "patchSetId": 1
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "dbfc887b_60611018",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "I don\u0027t think this method can be static because it depends on the instance member variable `name` (which is used to create a different set of metrics for different instances of this class)\n.\nThere will be different instances Metrics (I am going to rename this to metricsHandler), that will have different metrics definition/registration.",
+      "parentUuid": "617435b1_bd5de1f4",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "121f8b57_da8b7a36",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/JGitHealthCheckTest.java",
         "patchSetId": 1
@@ -200,6 +344,24 @@
       "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c1b4d7_e57cf1ec",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/JGitHealthCheckTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "121f8b57_da8b7a36",
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -223,6 +385,30 @@
       "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed2a661_5ae5d482",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ProjectsListHealthCheckTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-22T11:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cec4666c_139420ab",
+      "range": {
+        "startLine": 46,
+        "startChar": 71,
+        "endLine": 46,
+        "endChar": 97
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

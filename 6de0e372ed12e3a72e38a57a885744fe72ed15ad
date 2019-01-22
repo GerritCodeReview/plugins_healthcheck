@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7b964ccb_6677c13b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T15:54:28Z",
+      "side": 1,
+      "message": "They are not check specific because:\n- query is a generic term about selecting what you want to check. I\u0027ll introduce the same for projects also.\n- limit is a generic term about how many items you want to consume before saying that the service is healthy.",
+      "parentUuid": "79907cd4_0f96ab80",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 3
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10d7633c_d3e17d35",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a26b78d_db3388a7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T15:54:28Z",
+      "side": 1,
+      "message": "try() is used only for the auto-closeable ManualRequestContext. The exception handling is managed by the caller.",
+      "parentUuid": "10d7633c_d3e17d35",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 7
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cc17218_35f40c86",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "411eed30_a4da8b98",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T15:54:28Z",
+      "side": 1,
+      "message": "Yes, the timeout management is already managed upstream because this code is running into a secondary thread.",
+      "parentUuid": "1cc17218_35f40c86",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "6de0e372ed12e3a72e38a57a885744fe72ed15ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

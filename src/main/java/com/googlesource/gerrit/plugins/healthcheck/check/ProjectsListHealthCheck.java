@@ -20,6 +20,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.inject.Inject;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.SortedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +31,12 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private final ListProjects listProjects;
 
   @Inject
-  public ProjectsListHealthCheck(ListeningExecutorService executor, ListProjects listProjects) {
-    super(executor, PROJECTSLIST);
+  public ProjectsListHealthCheck(
+      ListeningExecutorService executor,
+      HealthCheckConfig config,
+      ListProjects listProjects,
+      MetricsHandler.Factory metricHandlerFactory) {
+    super(executor, config, PROJECTSLIST, metricHandlerFactory);
     this.listProjects = listProjects;
   }
 

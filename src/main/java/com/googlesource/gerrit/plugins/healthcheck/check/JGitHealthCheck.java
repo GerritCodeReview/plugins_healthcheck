@@ -20,6 +20,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 
@@ -30,9 +31,11 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   @Inject
   public JGitHealthCheck(
       ListeningExecutorService executor,
+      HealthCheckConfig config,
       GitRepositoryManager repositoryManager,
-      AllProjectsName allProjectsName) {
-    super(executor, JGIT);
+      AllProjectsName allProjectsName,
+      MetricsHandler.Factory metricsHandlerFactory) {
+    super(executor, config, JGIT, metricsHandlerFactory);
     this.repositoryManager = repositoryManager;
     this.allProjectsName = allProjectsName;
   }

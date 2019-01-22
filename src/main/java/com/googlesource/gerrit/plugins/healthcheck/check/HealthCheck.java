@@ -37,6 +37,10 @@ public interface HealthCheck {
       this.ts = ts;
       this.elapsed = elapsed;
     }
+
+    protected Boolean isFailure() {
+      return this.result != Result.PASSED;
+    }
   }
 
   Status run();

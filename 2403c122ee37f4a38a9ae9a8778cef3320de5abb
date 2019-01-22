@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae63e2b8_2fc326af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "Best to make this a counter, so that the value is the overall number of failures and the delta is the current number of failures.",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f979474_24789f1f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "You should use the newTimer / newCounter on the MetricMaker, but not instantiating it directly.",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f1343bc_17a399c6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "These look more like just memoized parameters for the sendMetrics method, rather than parts of the Metrics holding state.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "617435b1_bd5de1f4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "Pass the metricMaker here as parameter and make the method static. There isn\u0027t so much point in this object because it doesn\u0027t really hold state IMHO.",
+      "range": {
+        "startLine": 28,
+        "startChar": 21,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "121f8b57_da8b7a36",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/JGitHealthCheckTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "Make a constant DisabledMetricMaker and reuse it across test methods.",
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cec4666c_139420ab",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ProjectsListHealthCheckTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T07:54:19Z",
+      "side": 1,
+      "message": "Same as before.",
+      "range": {
+        "startLine": 46,
+        "startChar": 71,
+        "endLine": 46,
+        "endChar": 97
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

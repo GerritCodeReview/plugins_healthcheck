@@ -71,6 +71,75 @@
     },
     {
       "key": {
+        "uuid": "1e79c649_ace35680",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T10:48:51Z",
+      "side": 1,
+      "message": "Probably better using a Counter0? You could also set the rate in the description (see setRate() in the Description class) to suggest the monitoring system should also track the rate of increments.\n\nProbably the Histogram would have suited better if we had more than 2 response types from the plugin.",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "995a61a5_7340a2f8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T10:48:51Z",
+      "side": 1,
+      "message": "What about \"{name} health check latency execution\"?",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 80
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52a23002_d9cf12b2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-22T10:48:51Z",
+      "side": 1,
+      "message": "Same as before: \"{name} healthcheck failures\"",
+      "range": {
+        "startLine": 22,
+        "startChar": 33,
+        "endLine": 22,
+        "endChar": 72
+      },
+      "revId": "2403c122ee37f4a38a9ae9a8778cef3320de5abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "617435b1_bd5de1f4",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/Metrics.java",
         "patchSetId": 1

@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "fd611cb6_e5b1b28f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-22T08:07:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96fc1bbe_9f892ec9",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "5a94c5c6bd9a526908bbc18d1897886a50722bc7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8df3494_8ba20001",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
         "patchSetId": 5

@@ -39,7 +39,7 @@ The HTTP response payload is a JSON output that contains the details of the chec
 - elapsed: elapsed time in millis to perform the check
 - reviewdb: check that Gerrit can connect and query ReviewDb
 - projectslist: check that Gerrit can list projects
-- auth: check that Gerrit can authenticate users
+- jgit: check that Gerrit can access repositories 
 
 Each check returns a JSON payload with the following information:
 
@@ -72,7 +72,7 @@ Content-Type: application/json
     "elapsed": 100,
     "result": "passed"
   },
-  "auth": {
+  "jgit": {
     "ts": 139402910202,
     "elapsed": 80,
     "result": "passed"
@@ -101,7 +101,7 @@ Content-Type: application/json
     "elapsed": 100,
     "result": "timeout"
   },
-  "auth": {
+  "jgit": {
     "ts": 139402910202,
     "elapsed": 80,
     "result": "passed"
@@ -109,3 +109,12 @@ Content-Type: application/json
 }
 ```
 
+## Metrics
+
+As for all other endpoints in Gerrit, some metrics are automatically emitted when the  `/config/server/healthcheck~status`
+endpoint is hit (thanks to the [Dropwizard](https://metrics.dropwizard.io/3.1.0/manual/core/) library).
+
+Some additional metrics are also produced to give extra insights on their result about results and latency of healthcheck
+sub component, such as jgit, reviewdb, etc.
+
+More information can be found in the [config.md](resources/Documentation/config.md) file.

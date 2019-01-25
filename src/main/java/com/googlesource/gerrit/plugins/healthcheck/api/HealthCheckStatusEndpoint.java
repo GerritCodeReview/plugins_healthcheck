@@ -50,8 +50,8 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
         .stream()
         .filter(
             res ->
-                res instanceof HealthCheck.Status
-                    && ((HealthCheck.Status) res).result != HealthCheck.Result.PASSED)
+                res instanceof HealthCheck.StatusSummary
+                    && ((HealthCheck.StatusSummary) res).result != HealthCheck.Result.PASSED)
         .findFirst()
         .isPresent()) {
       return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;

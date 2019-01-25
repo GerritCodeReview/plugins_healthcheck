@@ -28,7 +28,6 @@ import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
 import java.util.concurrent.Executors;
 import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
@@ -41,17 +40,7 @@ public class HealthCheckStatusEndpointTest {
 
     public TestHealthCheck(
         HealthCheckConfig config, String checkName, HealthCheck.Result result, long sleep) {
-      super(
-          MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)),
-          config,
-          checkName,
-          new MetricsHandler.Factory() {
-
-            @Override
-            public MetricsHandler create(String name) {
-              return new MetricsHandler(checkName, new DisabledMetricMaker());
-            }
-          });
+      super(MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)), config, checkName);
       this.checkResult = result;
       this.sleep = sleep;
     }
@@ -63,6 +52,11 @@ public class HealthCheckStatusEndpointTest {
       } catch (InterruptedException e) {
       }
       return checkResult;
+    }
+
+    @Override
+    public StatusSummary getLatestStatus() {
+      return this.latestStatus;
     }
   }
 

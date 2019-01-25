@@ -14,12 +14,8 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
-
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.lifecycle.LifecycleManager;
-import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.reviewdb.server.ReviewDb;
 import com.google.gerrit.testutil.DisabledReviewDb;
 import com.google.gerrit.testutil.InMemoryDatabase;
@@ -28,20 +24,15 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
 import com.googlesource.gerrit.plugins.healthcheck.check.ReviewDbHealthCheck;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
+
 public class ReviewDbHealthCheckTest {
   private SchemaFactory<ReviewDb> workingReviewDbFactory;
-  private final MetricsHandler.Factory metricsHandlerFactory =
-      new MetricsHandler.Factory() {
-        @Override
-        public MetricsHandler create(String name) {
-          return new MetricsHandler("foo", new DisabledMetricMaker());
-        }
-      };
   @Inject private ListeningExecutorService executor;
 
   @Before
@@ -56,7 +47,7 @@ public class ReviewDbHealthCheckTest {
   public void shouldBeHealthyWhenReviewDbIsWorking() {
     ReviewDbHealthCheck reviewDbCheck =
         new ReviewDbHealthCheck(
-            executor, DEFAULT_CONFIG, workingReviewDbFactory, metricsHandlerFactory);
+            executor, DEFAULT_CONFIG, workingReviewDbFactory);
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.PASSED);
   }
 
@@ -64,7 +55,7 @@ public class ReviewDbHealthCheckTest {
   public void shouldBeUnhealthyWhenReviewDbIsFailing() {
     ReviewDbHealthCheck reviewDbCheck =
         new ReviewDbHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingReviewDbProvider(), metricsHandlerFactory);
+            executor, DEFAULT_CONFIG, getFailingReviewDbProvider());
     assertThat(reviewDbCheck.run().result).isEqualTo(HealthCheck.Result.FAILED);
   }
 

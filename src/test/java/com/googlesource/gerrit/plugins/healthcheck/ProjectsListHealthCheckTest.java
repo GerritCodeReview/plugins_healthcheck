@@ -14,32 +14,24 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
-
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.BadRequestException;
-import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.server.project.ListProjects;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
-import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
+
 public class ProjectsListHealthCheckTest {
-  private final MetricsHandler.Factory metricsHandlerFactory =
-      new MetricsHandler.Factory() {
-        @Override
-        public MetricsHandler create(String name) {
-          return new MetricsHandler("foo", new DisabledMetricMaker());
-        }
-      };
   @Inject private ListeningExecutorService executor;
 
   @Before
@@ -51,7 +43,7 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeHealthyWhenListProjectsWorks() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingProjectList(0), metricsHandlerFactory);
+            executor, DEFAULT_CONFIG, getWorkingProjectList(0));
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
   }
 
@@ -59,7 +51,7 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeUnhealthyWhenListProjectsIsFailing() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingProjectList(), metricsHandlerFactory);
+            executor, DEFAULT_CONFIG, getFailingProjectList());
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -69,8 +61,7 @@ public class ProjectsListHealthCheckTest {
         new ProjectsListHealthCheck(
             executor,
             DEFAULT_CONFIG,
-            getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2),
-            metricsHandlerFactory);
+            getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2));
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
   }
 

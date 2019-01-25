@@ -14,17 +14,20 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
-import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.PROJECTSLIST;
-
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.server.project.ListProjects;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.SortedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.SortedMap;
+
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.PROJECTSLIST;
+
+@Singleton
 public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(ProjectsListHealthCheck.class);
   private static final int PROJECTS_LIST_LIMIT = 100;
@@ -34,9 +37,9 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
   public ProjectsListHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
-      ListProjects listProjects,
-      MetricsHandler.Factory metricHandlerFactory) {
-    super(executor, config, PROJECTSLIST, metricHandlerFactory);
+      ListProjects listProjects) {
+    super(executor, config, PROJECTSLIST);
+
     this.listProjects = listProjects;
   }
 

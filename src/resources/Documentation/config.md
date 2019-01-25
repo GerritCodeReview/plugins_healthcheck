@@ -36,43 +36,25 @@ http_server_rest_api_error_count_healthcheck_com_googlesource_gerrit_plugins_hea
 
 However some extra metrics are also emitted to expose more details about the healthcheck result.
 Specifically two metrics are emitted for each component contributing to the overall healthcheck result (JGIT, PROJECTLIST, REVIEWDB).
-* plugins_healthcheck_<healthcheck_component>_latency: the cumulative latency (in ms) of performing the healthcheck for this specific component
+* plugins_healthcheck_<healthcheck_component>_latency: the latency of this compoenent in the latest executed healthcheck run
 * plugins_healthcheck_jgit_failure_total: the cumulative number of failures for this specific component
 
 ```
-# HELP plugins_healthcheck_jgit_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/latency, type=com.codahale.metrics.Timer)
-# TYPE plugins_healthcheck_jgit_latency summary
-plugins_healthcheck_jgit_latency{quantile="0.5",} 0.002
-plugins_healthcheck_jgit_latency{quantile="0.75",} 0.002
-plugins_healthcheck_jgit_latency{quantile="0.95",} 0.002
-plugins_healthcheck_jgit_latency{quantile="0.98",} 0.002
-plugins_healthcheck_jgit_latency{quantile="0.99",} 0.002
-plugins_healthcheck_jgit_latency{quantile="0.999",} 0.002
-plugins_healthcheck_jgit_latency_count 1.0
+# HELP plugins_healthcheck_jgit_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
+# TYPE plugins_healthcheck_jgit_latency gauge
+plugins_healthcheck_jgit_latency 4.0
 
-# HELP plugins_healthcheck_projectslist_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/latency, type=com.codahale.metrics.Timer)
-# TYPE plugins_healthcheck_projectslist_latency summary
-plugins_healthcheck_projectslist_latency{quantile="0.5",} 0.001
-plugins_healthcheck_projectslist_latency{quantile="0.75",} 0.001
-plugins_healthcheck_projectslist_latency{quantile="0.95",} 0.001
-plugins_healthcheck_projectslist_latency{quantile="0.98",} 0.001
-plugins_healthcheck_projectslist_latency{quantile="0.99",} 0.001
-plugins_healthcheck_projectslist_latency{quantile="0.999",} 0.001
-plugins_healthcheck_projectslist_latency_count 1.0
+# HELP plugins_healthcheck_projectslist_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
+# TYPE plugins_healthcheck_projectslist_latency gauge
+plugins_healthcheck_projectslist_latency 5.0
 
-# HELP plugins_healthcheck_reviewdb_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/latency, type=com.codahale.metrics.Timer)
-# TYPE plugins_healthcheck_reviewdb_latency summary
-plugins_healthcheck_reviewdb_latency{quantile="0.5",} 0.001
-plugins_healthcheck_reviewdb_latency{quantile="0.75",} 0.001
-plugins_healthcheck_reviewdb_latency{quantile="0.95",} 0.001
-plugins_healthcheck_reviewdb_latency{quantile="0.98",} 0.001
-plugins_healthcheck_reviewdb_latency{quantile="0.99",} 0.001
-plugins_healthcheck_reviewdb_latency{quantile="0.999",} 0.001
-plugins_healthcheck_reviewdb_latency_count 1.0
+# HELP plugins_healthcheck_reviewdb_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
+# TYPE plugins_healthcheck_reviewdb_latency gauge
+plugins_healthcheck_reviewdb_latency 3.0
 
 # HELP plugins_healthcheck_jgit_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_jgit_failure_total counter
-plugins_healthcheck_jgit_failure_total 0.0
+plugins_healthcheck_jgit_failure_total 3.0
 
 # HELP plugins_healthcheck_projectslist_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_projectslist_failure_total counter

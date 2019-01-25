@@ -28,6 +28,7 @@ public interface HealthCheck {
   }
 
   public class Status {
+    public static final Status INITIAL_STATUS = new Status(Result.PASSED, System.currentTimeMillis(), 0L);
     public final Result result;
     public final long ts;
     public final long elapsed;
@@ -38,7 +39,7 @@ public interface HealthCheck {
       this.elapsed = elapsed;
     }
 
-    protected Boolean isFailure() {
+    public Boolean isFailure() {
       return this.result != Result.PASSED;
     }
   }
@@ -46,4 +47,6 @@ public interface HealthCheck {
   Status run();
 
   String name();
+
+  Status getLatestStatus();
 }

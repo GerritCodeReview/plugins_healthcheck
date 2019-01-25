@@ -37,9 +37,8 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
       ListeningExecutorService executor,
       HealthCheckConfig config,
       QueryChanges queryChanges,
-      OneOffRequestContext oneOffCtx,
-      MetricsHandler.Factory metricsHandlerFactory) {
-    super(executor, config, QUERYCHANGES, metricsHandlerFactory);
+      OneOffRequestContext oneOffCtx) {
+    super(executor, config, QUERYCHANGES);
     this.queryChanges = queryChanges;
     this.limit = config.getLimit(QUERYCHANGES);
     queryChanges.setLimit(limit);

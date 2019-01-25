@@ -23,5 +23,7 @@ public class Module extends AbstractModule {
     install(new HealthCheckModule());
     install(new HealthCheckSubsystemsModule());
     install(new HealthCheckApiModule());
+
+//    install(new HealthCheckMetricsModule());
   }
 }

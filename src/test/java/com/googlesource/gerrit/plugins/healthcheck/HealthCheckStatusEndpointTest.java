@@ -14,9 +14,6 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
-
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.Response;
@@ -28,10 +25,13 @@ import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.MetricsHandler;
-import java.util.concurrent.Executors;
-import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.Executors;
+
+import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
 public class HealthCheckStatusEndpointTest {
 
@@ -44,14 +44,7 @@ public class HealthCheckStatusEndpointTest {
       super(
           MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)),
           config,
-          checkName,
-          new MetricsHandler.Factory() {
-
-            @Override
-            public MetricsHandler create(String name) {
-              return new MetricsHandler(checkName, new DisabledMetricMaker());
-            }
-          });
+          checkName);
       this.checkResult = result;
       this.sleep = sleep;
     }
@@ -63,6 +56,11 @@ public class HealthCheckStatusEndpointTest {
       } catch (InterruptedException e) {
       }
       return checkResult;
+    }
+
+    @Override
+    public Status getLatestStatus() {
+      return this.latestStatus;
     }
   }
 

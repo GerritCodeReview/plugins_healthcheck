@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "602ed384_1bd10e73",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1059414
+      },
+      "writtenOn": "2019-01-25T17:45:28Z",
+      "side": 1,
+      "message": "Is it left commented intentionally?",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde421c0_ff622311",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1059414
+      },
+      "writtenOn": "2019-01-25T17:45:28Z",
+      "side": 1,
+      "message": "Could we rename the Status class to a more specific name like \"HealthStatusSummary\" ? Is that the right interpretation? (I would do the same with Result called HealthCheckResult)",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "584bd3ce_97a67eec",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1059414
+      },
+      "writtenOn": "2019-01-25T17:45:28Z",
+      "side": 1,
+      "message": "I would be extremely explicit with the name and call it something like \"latest_measured_latency\"",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

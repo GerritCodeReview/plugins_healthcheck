@@ -28,17 +28,14 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   private final long timeout;
   private final String name;
   private final ListeningExecutorService executor;
-  private final MetricsHandler metricsHandler;
+  protected StatusSummary latestStatus;
 
   protected AbstractHealthCheck(
-      ListeningExecutorService executor,
-      HealthCheckConfig config,
-      String name,
-      MetricsHandler.Factory metricsHandler) {
+      ListeningExecutorService executor, HealthCheckConfig config, String name) {
     this.executor = executor;
     this.name = name;
-    this.metricsHandler = metricsHandler.create(name);
     this.timeout = config.getTimeout(name);
+    this.latestStatus = StatusSummary.INITIAL_STATUS;
   }
 
   @Override
@@ -47,10 +44,9 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   }
 
   @Override
-  public Status run() {
+  public Result run() {
     final long ts = System.currentTimeMillis();
-    Status status = null;
-    ListenableFuture<Status> resultFuture =
+    ListenableFuture<StatusSummary> resultFuture =
         executor.submit(
             () -> {
               Result healthy;
@@ -60,21 +56,24 @@ public abstract class AbstractHealthCheck implements HealthCheck {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;
               }
-              return new Status(healthy, ts, System.currentTimeMillis() - ts);
+              return new StatusSummary(healthy, ts, System.currentTimeMillis() - ts);
             });
     try {
-      status = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
+      latestStatus = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
-      status = new Status(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
+      latestStatus = new StatusSummary(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
-      status = new Status(Result.FAILED, ts, System.currentTimeMillis() - ts);
-    } finally {
-      metricsHandler.sendMetrics(status);
+      latestStatus = new StatusSummary(Result.FAILED, ts, System.currentTimeMillis() - ts);
     }
-    return status;
+    return latestStatus.result;
   }
 
   protected abstract Result doCheck() throws Exception;
+
+  @Override
+  public StatusSummary getLatestStatus() {
+    return latestStatus;
+  }
 }

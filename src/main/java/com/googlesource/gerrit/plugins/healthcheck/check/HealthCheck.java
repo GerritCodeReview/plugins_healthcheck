@@ -27,23 +27,27 @@ public interface HealthCheck {
     TIMEOUT;
   }
 
-  public class Status {
+  public class StatusSummary {
+    public static final StatusSummary INITIAL_STATUS =
+        new StatusSummary(Result.PASSED, System.currentTimeMillis(), 0L);
     public final Result result;
     public final long ts;
     public final long elapsed;
 
-    public Status(Result result, long ts, long elapsed) {
+    public StatusSummary(Result result, long ts, long elapsed) {
       this.result = result;
       this.ts = ts;
       this.elapsed = elapsed;
     }
 
-    protected Boolean isFailure() {
+    public Boolean isFailure() {
       return this.result != Result.PASSED;
     }
   }
 
-  Status run();
+  Result run();
 
   String name();
+
+  StatusSummary getLatestStatus();
 }

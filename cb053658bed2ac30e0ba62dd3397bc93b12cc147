@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "92c3be6b_660ab7d8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-01-26T15:16:06Z",
+      "side": 1,
+      "message": "Missing the file header",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "602ed384_1bd10e73",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/Module.java",
         "patchSetId": 1
@@ -47,6 +64,23 @@
       "writtenOn": "2019-01-25T17:45:28Z",
       "side": 1,
       "message": "I would be extremely explicit with the name and call it something like \"latest_measured_latency\"",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c1bf3d4_da727c94",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-01-26T15:16:06Z",
+      "side": 1,
+      "message": "Missing file header",
       "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true

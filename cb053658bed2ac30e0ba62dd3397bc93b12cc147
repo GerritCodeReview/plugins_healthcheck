@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "6f59a530_e1c6cc6a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-27T18:00:01Z",
+      "side": 1,
+      "message": "quantile is not needed -\u003e \"rather than the distribution of the previous runs\"",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a17c784d_1afc1350",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-27T18:00:01Z",
+      "side": 1,
+      "message": "accessible",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 13,
+        "endChar": 63
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92c3be6b_660ab7d8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
         "patchSetId": 1
@@ -249,6 +295,29 @@
     },
     {
       "key": {
+        "uuid": "dcd99b24_02b22339",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-27T18:00:01Z",
+      "side": 1,
+      "message": "Any reason why this is not a Singleton, while the other are?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ee537b60_7b7e7929",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ReviewDbHealthCheck.java",
         "patchSetId": 1
@@ -260,6 +329,52 @@
       "writtenOn": "2019-01-27T01:03:39Z",
       "side": 1,
       "message": "Why moving this down?",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba3fff59_ce10a251",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-27T18:00:01Z",
+      "side": 1,
+      "message": "typo: component",
+      "range": {
+        "startLine": 39,
+        "startChar": 75,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e8f7079_b0c5caeb",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-01-27T18:00:01Z",
+      "side": 1,
+      "message": "Can we include the unit? i.e.: ..._latency_ms",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 32
+      },
       "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true

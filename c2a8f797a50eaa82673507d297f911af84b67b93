@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "ef5e562a_d8e8c3c2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-28T23:22:04Z",
+      "side": 1,
+      "message": "Yes, that\u0027s why we moved to Gauge: we are interested in the latest status and not in the status history since the beginning of time.\n\nWith timer metrics, you get a percentile of the value since the beginning, which isn\u0027t useful at all for real-time monitoring.\n\nYou want to know if Gerrit is sick NOW, not if the 0.999 percentile is sick or not.",
+      "parentUuid": "d7cb5824_4ca6a290",
+      "range": {
+        "startLine": 72,
+        "startChar": 47,
+        "endLine": 72,
+        "endChar": 76
+      },
+      "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e6f2cb5_df14335b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 5
@@ -91,6 +115,30 @@
       "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9eba2121_d34f9ca9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-28T23:22:04Z",
+      "side": 1,
+      "message": "With a normal API, yes, that would be nasty because Client A and B would provide different parameters as input and would get results potentially mixed up, with B receiving the result of A.\n\nHowever, this case is different: there are no input parameters and the \"health status\" of Gerrit is the same, regardless of which client is calling in.\n\nIn theory, the calculation of the health status could have been done asynchronously in a single thread and the REST API would just expose the value of the latest status.\n\nThis is really like a thermometer on how Gerrit is feeling: if he has a fever, the temperature is high even if two thermometers are asking for it at the same time.\n\nWSYT?",
+      "parentUuid": "4e6f2cb5_df14335b",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

@@ -45,6 +45,52 @@
       "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7cb5824_4ca6a290",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-28T23:14:54Z",
+      "side": 1,
+      "message": "Wouldn\u0027t we potentially lose event, because this state is overwritten by subsequent healthcheck calls with potentially different outcome?",
+      "range": {
+        "startLine": 72,
+        "startChar": 47,
+        "endLine": 72,
+        "endChar": 76
+      },
+      "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6f2cb5_df14335b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-28T23:14:54Z",
+      "side": 1,
+      "message": "This change effectively introducing new state by adding StatusSummary as new member attribute. This change also changing all healthcheck endpoints to Singletons. Wouldn\u0027t this combination be problematic if two clients perform the same healthcheck at the same time, the first is failed, second is successful, but the successful outcome overwrites the failure outcome and thus lost by the metric machinery entirely?",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

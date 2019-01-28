@@ -50,6 +50,30 @@
     },
     {
       "key": {
+        "uuid": "54cef2bd_2a0bcbb6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-28T10:55:35Z",
+      "side": 1,
+      "message": "\u003e I am unsure about the different call stacks of Lifecycle listener.\n\u003e PluginMetricMaker.java does treat clean up of registration handles synchronously\n\u003e \n\u003e https://github.com/shubham1436/Gerrit/blob/master/gerrit-server/src/main/java/com/google/gerrit/server/plugins/PluginMetricMaker.java#L196\n\u003e \n\u003e so I thought this should too.\n\nThat is a different context: the PluginMetricMaker operates for *all plugins* and thus, in theory, could have concurrency. Here the stop is only for our plugin and Gerrit will never call start/stop concurrently. So we are fine without any synchronized.\n\n\u003e \n\u003e I can see you have changed this, so I guess this is resolved.\n\nYep :-)",
+      "parentUuid": "870b0610_201f39ca",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "05b879be76210338980e8bce0492824356764679",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52114063_61778df5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
         "patchSetId": 3

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "07ae178c_b35f56e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f59a530_e1c6cc6a",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a17c784d_1afc1350",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f591edc8_dae97bfa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a17c784d_1afc1350",
+      "range": {
+        "startLine": 13,
+        "startChar": 57,
+        "endLine": 13,
+        "endChar": 63
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -500,6 +548,30 @@
     },
     {
       "key": {
+        "uuid": "e840651b_e73faaa8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/JGitHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "I always optimize my imports for every file I touch.\n, I find it very useful, especially after working on rebase conflicts.\nSorry, after that, I forgot to run google-java-format before pushing",
+      "parentUuid": "f5bc8147_8af2e45c",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 86
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2953b674_435569a1",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ProjectsListHealthCheck.java",
         "patchSetId": 1
@@ -582,6 +654,30 @@
     },
     {
       "key": {
+        "uuid": "f3e3c8c6_9ec0529e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Luca fixed this",
+      "parentUuid": "c9c1f3d5_17741ed4",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee537b60_7b7e7929",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ReviewDbHealthCheck.java",
         "patchSetId": 1
@@ -640,6 +736,30 @@
     },
     {
       "key": {
+        "uuid": "06829c9d_ab9eadbf",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba3fff59_ce10a251",
+      "range": {
+        "startLine": 39,
+        "startChar": 75,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e8f7079_b0c5caeb",
         "filename": "src/resources/Documentation/config.md",
         "patchSetId": 1
@@ -663,6 +783,30 @@
     },
     {
       "key": {
+        "uuid": "f11dc4d5_66fd560a",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e8f7079_b0c5caeb",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "584bd3ce_97a67eec",
         "filename": "src/resources/Documentation/config.md",
         "patchSetId": 1
@@ -677,6 +821,24 @@
       "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61be0199_1c92121b",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "happy to change this, if it makes it more obvious.\nDone.\nWe need to remember to re-adjust grafana dashboards.",
+      "parentUuid": "584bd3ce_97a67eec",
+      "revId": "cb053658bed2ac30e0ba62dd3397bc93b12cc147",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {

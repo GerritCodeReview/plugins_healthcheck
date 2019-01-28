@@ -26,6 +26,30 @@
     },
     {
       "key": {
+        "uuid": "870b0610_201f39ca",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "I am unsure about the different call stacks of Lifecycle listener.\nPluginMetricMaker.java does treat clean up of registration handles synchronously\n\nhttps://github.com/shubham1436/Gerrit/blob/master/gerrit-server/src/main/java/com/google/gerrit/server/plugins/PluginMetricMaker.java#L196\n\nso I thought this should too.\n\nI can see you have changed this, so I guess this is resolved.",
+      "parentUuid": "b0198736_ea0a095f",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 16
+      },
+      "revId": "05b879be76210338980e8bce0492824356764679",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52114063_61778df5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
         "patchSetId": 3
@@ -47,6 +71,30 @@
       "revId": "05b879be76210338980e8bce0492824356764679",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59ddbcf_2fc92ceb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Luca fixed this",
+      "parentUuid": "52114063_61778df5",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 89,
+        "endChar": 28
+      },
+      "revId": "05b879be76210338980e8bce0492824356764679",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -74,6 +122,30 @@
     },
     {
       "key": {
+        "uuid": "8a60f383_d01e1cf2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Luca fixed this",
+      "parentUuid": "2c8c2796_f1ab2d5d",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 21
+      },
+      "revId": "05b879be76210338980e8bce0492824356764679",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "785cf035_7b1ee9c8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
         "patchSetId": 3
@@ -95,6 +167,30 @@
       "revId": "05b879be76210338980e8bce0492824356764679",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c6e31ea_b53a8c57",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-01-28T10:29:16Z",
+      "side": 1,
+      "message": "Luca fixed this",
+      "parentUuid": "785cf035_7b1ee9c8",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "05b879be76210338980e8bce0492824356764679",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

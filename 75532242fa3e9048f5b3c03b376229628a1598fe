@@ -22,6 +22,29 @@
       "revId": "75532242fa3e9048f5b3c03b376229628a1598fe",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "410e3aac_d5863e78",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-29T14:44:46Z",
+      "side": 1,
+      "message": "This needs to moved down into the doCheck() method, after the queryChangesProvider.get()",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "75532242fa3e9048f5b3c03b376229628a1598fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

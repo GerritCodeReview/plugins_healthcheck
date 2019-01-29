@@ -91,6 +91,18 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertCheckResult(respPayload, QUERYCHANGES, "passed");
   }
 
+  @Test
+  public void shouldReturnQueryChangesMultipleTimesCheck() throws Exception {
+    createChange("refs/for/master");
+    getHealthCheckStatus();
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+
+    assertCheckResult(respPayload, QUERYCHANGES, "passed");
+  }
+
   private RestResponse getHealthCheckStatus() throws IOException {
     return adminRestSession.get("/config/server/healthcheck~status");
   }

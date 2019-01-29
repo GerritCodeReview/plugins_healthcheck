@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -24,13 +25,17 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractHealthCheck implements HealthCheck {
   private static final Logger log = LoggerFactory.getLogger(AbstractHealthCheck.class);
-  public static final long CHECK_TIMEOUT = 500L;
+  private final long timeout;
   private final String name;
   private final ListeningExecutorService executor;
+  protected StatusSummary latestStatus;
 
-  protected AbstractHealthCheck(ListeningExecutorService executor, String name) {
+  protected AbstractHealthCheck(
+      ListeningExecutorService executor, HealthCheckConfig config, String name) {
     this.executor = executor;
     this.name = name;
+    this.timeout = config.getTimeout(name);
+    this.latestStatus = StatusSummary.INITIAL_STATUS;
   }
 
   @Override
@@ -39,9 +44,9 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   }
 
   @Override
-  public Status run() {
+  public StatusSummary run() {
     final long ts = System.currentTimeMillis();
-    ListenableFuture<Status> resultFuture =
+    ListenableFuture<StatusSummary> resultFuture =
         executor.submit(
             () -> {
               Result healthy;
@@ -51,19 +56,24 @@ public abstract class AbstractHealthCheck implements HealthCheck {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;
               }
-              return new Status(healthy, ts, System.currentTimeMillis() - ts);
+              return new StatusSummary(healthy, ts, System.currentTimeMillis() - ts);
             });
-
     try {
-      return resultFuture.get(CHECK_TIMEOUT, TimeUnit.MILLISECONDS);
+      latestStatus = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
-      return new Status(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
+      latestStatus = new StatusSummary(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
-      return new Status(Result.FAILED, ts, System.currentTimeMillis() - ts);
+      latestStatus = new StatusSummary(Result.FAILED, ts, System.currentTimeMillis() - ts);
     }
+    return latestStatus;
   }
 
   protected abstract Result doCheck() throws Exception;
+
+  @Override
+  public StatusSummary getLatestStatus() {
+    return latestStatus;
+  }
 }

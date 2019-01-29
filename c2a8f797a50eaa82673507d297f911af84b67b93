@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b3e6e9fa_57a1cfbd",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-29T11:52:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fbfe64d_ba9b37c5",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "c2a8f797a50eaa82673507d297f911af84b67b93",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7cb5824_4ca6a290",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
         "patchSetId": 5

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ba08912_7f9b9148",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/QueryChangesHealthCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-29T14:23:58Z",
+      "side": 1,
+      "message": "Because this class is now a singleton, the QueryChanges cannot be directly injected in this way because it would resulted in a QueryProcessor reused multiple times, which is not allowed.\n\nChange it to Provider\u003cQueryChanges\u003e",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "75532242fa3e9048f5b3c03b376229628a1598fe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

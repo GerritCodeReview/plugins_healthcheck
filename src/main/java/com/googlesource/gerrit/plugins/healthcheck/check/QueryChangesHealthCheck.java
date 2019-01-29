@@ -21,6 +21,7 @@ import com.google.gerrit.server.query.change.QueryChanges;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.List;
@@ -30,7 +31,8 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class QueryChangesHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(QueryChangesHealthCheck.class);
-  private final QueryChanges queryChanges;
+  private final Provider<QueryChanges> queryChangesProvider;
+  private final HealthCheckConfig config;
   private final int limit;
   private final OneOffRequestContext oneOffCtx;
 
@@ -38,20 +40,25 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
   public QueryChangesHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
-      QueryChanges queryChanges,
+      Provider<QueryChanges> queryChangesProvider,
       OneOffRequestContext oneOffCtx) {
     super(executor, config, QUERYCHANGES);
-    this.queryChanges = queryChanges;
+    this.queryChangesProvider = queryChangesProvider;
+    this.config = config;
     this.limit = config.getLimit(QUERYCHANGES);
-    queryChanges.setLimit(limit);
-    queryChanges.addQuery(config.getQuery(QUERYCHANGES));
-    queryChanges.setStart(0);
+
     this.oneOffCtx = oneOffCtx;
   }
 
   @Override
   protected Result doCheck() throws Exception {
     try (ManualRequestContext ctx = oneOffCtx.open()) {
+
+      QueryChanges queryChanges = this.queryChangesProvider.get();
+      queryChanges.setLimit(limit);
+      queryChanges.addQuery(config.getQuery(QUERYCHANGES));
+      queryChanges.setStart(0);
+
       List<?> changes = queryChanges.apply(null);
       if (changes == null) {
         log.warn("Cannot query changes: received a null list of results");

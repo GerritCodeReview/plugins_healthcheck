@@ -37,16 +37,17 @@ The HTTP response payload is a JSON output that contains the details of the chec
 
 - ts: epoch timestamp in millis of the test
 - elapsed: elapsed time in millis to perform the check
+- querychanges: check that Gerrit can query changes
 - reviewdb: check that Gerrit can connect and query ReviewDb
 - projectslist: check that Gerrit can list projects
-- jgit: check that Gerrit can access repositories 
+- jgit: check that Gerrit can access repositories
 
 Each check returns a JSON payload with the following information:
 
 - ts: epoch timestamp in millis of the individual check
 - elapsed: elapsed time in millis to complete the check
 - result: result of the health check
-  
+
   - passed: the check passed successfully
   - failed: the check failed with an error
   - timeout: the check took too long and timed out
@@ -59,9 +60,15 @@ GET /config/server/healthcheck~status
 200 OK
 Content-Type: application/json
 
+)]}'
 {
   "ts": 139402910202,
   "elapsed": 100,
+  "querychanges": {
+    "ts": 139402910202,
+    "elapsed": 20,
+    "result": "passed"
+  },
   "reviewdb": {
     "ts": 139402910202,
     "elapsed": 50,
@@ -88,9 +95,15 @@ GET /config/server/healthcheck~status
 500 ERROR
 Content-Type: application/json
 
+)]}'
 {
   "ts": 139402910202,
   "elapsed": 100,
+  "querychanges": {
+    "ts": 139402910202,
+    "elapsed": 20,
+    "result": "passed"
+  },
   "reviewdb": {
     "ts": 139402910202,
     "elapsed": 50,

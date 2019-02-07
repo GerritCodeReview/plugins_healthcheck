@@ -16,8 +16,11 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
+import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -28,26 +31,28 @@ import org.eclipse.jgit.lib.Repository;
 @Singleton
 public class JGitHealthCheck extends AbstractHealthCheck {
   private final GitRepositoryManager repositoryManager;
-  private final AllProjectsName allProjectsName;
+  private final ImmutableList<Project.NameKey> systemRepoNameKeys;
 
   @Inject
   public JGitHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
       GitRepositoryManager repositoryManager,
-      AllProjectsName allProjectsName) {
+      AllProjectsName allProjectsName,
+      AllUsersName allUsersName) {
     super(executor, config, JGIT);
 
     this.repositoryManager = repositoryManager;
-    this.allProjectsName = allProjectsName;
+    this.systemRepoNameKeys = ImmutableList.of(allProjectsName, allUsersName);
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    try (Repository allProjects = repositoryManager.openRepository(allProjectsName)) {
-      ObjectId headObj = allProjects.resolve("refs/meta/config");
-      allProjects.open(headObj).getType();
-      return Result.PASSED;
+    for(Project.NameKey repoNameKey : this.systemRepoNameKeys) {
+        Repository repo = repositoryManager.openRepository(repoNameKey);
+        ObjectId headObj = repo.resolve("refs/meta/config");
+        repo.open(headObj).getType();
     }
+    return Result.PASSED;
   }
 }

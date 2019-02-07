@@ -21,6 +21,7 @@ import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
+import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.RepositoryCaseMismatchException;
 import com.google.gerrit.testing.InMemoryRepositoryManager;
@@ -29,6 +30,7 @@ import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.SortedSet;
 import org.eclipse.jgit.errors.RepositoryNotFoundException;
@@ -44,6 +46,7 @@ import org.junit.Test;
 
 public class JGitHealthCheckTest {
   private AllProjectsName allProjectsName = new AllProjectsName("All-Projects");
+  private AllUsersName allUsersName = new AllUsersName("All-Users");
   private InMemoryRepositoryManager inMemoryRepositoryManager = new InMemoryRepositoryManager();
   private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
 
@@ -53,40 +56,60 @@ public class JGitHealthCheckTest {
   public void setupAllProjects() throws Exception {
     Guice.createInjector(new HealthCheckModule()).injectMembers(this);
 
-    InMemoryRepositoryManager.Repo repo =
+    InMemoryRepositoryManager.Repo allProjectsRepo =
         inMemoryRepositoryManager.createRepository(allProjectsName);
-    createCommit(repo, "refs/meta/config");
+    createCommit(allProjectsRepo, "refs/meta/config");
+
+    InMemoryRepositoryManager.Repo allUsersRepo =
+            inMemoryRepositoryManager.createRepository(allUsersName);
+    createCommit(allUsersRepo, "refs/meta/config");
   }
 
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
         new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), allProjectsName);
+            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), allProjectsName, allUsersName);
     assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
-  public void shouldBeUnhealthyWhenJGitIsFailing() {
+  public void shouldBeUnhealthyWhenJGitIsFailingToOpenAllProjects() {
     JGitHealthCheck jGitHealthCheck =
         new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), allProjectsName);
+            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(allProjectsName, allUsersName), allProjectsName, allUsersName);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
-  private GitRepositoryManager getFailingGitRepositoryManager() {
+  @Test
+  public void shouldBeUnhealthyWhenJGitIsFailingToOpenOneProject() {
+    JGitHealthCheck jGitHealthCheck =
+            new JGitHealthCheck(
+                    executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(allUsersName), allProjectsName, allUsersName);
+    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
+  }
+
+  private GitRepositoryManager getFailingGitRepositoryManager(Project.NameKey... failingRepos) {
     return new GitRepositoryManager() {
 
       @Override
       public Repository openRepository(Project.NameKey name)
           throws RepositoryNotFoundException, IOException {
-        throw new RepositoryNotFoundException("Can't fine repository " + name);
+        if (Arrays.asList(failingRepos).contains(name)) {
+          throw new RepositoryNotFoundException("Can't fine repository " + name);
+        } else {
+          return inMemoryRepositoryManager.openRepository(name);
+        }
       }
 
       @Override
       public Repository createRepository(Project.NameKey name)
           throws RepositoryCaseMismatchException, RepositoryNotFoundException, IOException {
-        throw new IOException("Can't create repositories");
+        if (Arrays.asList(failingRepos).contains(name)) {
+          throw new IOException("Can't create repositories");
+        } else {
+          return inMemoryRepositoryManager.createRepository(name);
+        }
       }
 
       @Override

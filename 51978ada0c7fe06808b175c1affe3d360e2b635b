@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1ee1fd_8629c57c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/JGitHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-02-07T17:45:27Z",
+      "side": 0,
+      "message": "Is the \"try\" not needed anymore?",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "51978ada0c7fe06808b175c1affe3d360e2b635b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

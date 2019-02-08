@@ -17,11 +17,18 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableSet;
 import com.google.gerrit.extensions.annotations.PluginName;
+import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.server.config.AllProjectsName;
+import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.eclipse.jgit.lib.Config;
 
@@ -32,12 +39,20 @@ public class HealthCheckConfig {
   private static final long HEALTHCHECK_TIMEOUT_DEFAULT = 500L;
   private static final String QUERY_DEFAULT = "status:open";
   private static final int LIMIT_DEFAULT = 10;
+  private final AllProjectsName allProjectsName;
+  private final AllUsersName allUsersName;
 
   private final Config config;
 
   @Inject
-  public HealthCheckConfig(PluginConfigFactory configFactory, @PluginName String pluginName) {
+  public HealthCheckConfig(
+      PluginConfigFactory configFactory,
+      @PluginName String pluginName,
+      AllProjectsName allProjectsName,
+      AllUsersName allUsersName) {
     config = configFactory.getGlobalPluginConfig(pluginName);
+    this.allProjectsName = allProjectsName;
+    this.allUsersName = allUsersName;
   }
 
   @VisibleForTesting
@@ -50,6 +65,8 @@ public class HealthCheckConfig {
         throw new IllegalArgumentException("Invalid configuration " + configText, e);
       }
     }
+    allProjectsName = new AllProjectsName("All-Projects");
+    allUsersName = new AllUsersName("All-Users");
   }
 
   public long getTimeout() {
@@ -71,5 +88,16 @@ public class HealthCheckConfig {
   public int getLimit(String healthCheckName) {
     int defaultLimit = healthCheckName == null ? LIMIT_DEFAULT : getLimit(null);
     return config.getInt(HEALTHCHECK, healthCheckName, "limit", defaultLimit);
+  }
+
+  public Set<Project.NameKey> getJGITRepositories(String healthCheckName) {
+    String[] repositories = config.getStringList(HEALTHCHECK, healthCheckName, "repository");
+    return repositories.length == 0
+        ? defaultJgGITProjects()
+        : Stream.of(repositories).map(Project.NameKey::new).collect(Collectors.toSet());
+  }
+
+  private Set<Project.NameKey> defaultJgGITProjects() {
+    return ImmutableSet.of(allProjectsName, allUsersName);
   }
 }

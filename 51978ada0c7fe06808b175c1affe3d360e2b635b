@@ -46,6 +46,30 @@
       "revId": "51978ada0c7fe06808b175c1affe3d360e2b635b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e04c7685_9a9cb712",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/JGitHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-02-08T11:20:58Z",
+      "side": 0,
+      "message": "Oh I see, that\u0027s a point worth discussing I think.\n\n- the abstract signature of doCheck states that exceptions could be thown, so not catching this is consistent with that signature.\n- doCheck() is always called by the AbstractHealthcheck.run() method, which already encloses doCheck() in a try/catch block. Isn\u0027t this enough to prevent that leaking you guys are talking about?",
+      "parentUuid": "09777728_2647f60e",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "51978ada0c7fe06808b175c1affe3d360e2b635b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

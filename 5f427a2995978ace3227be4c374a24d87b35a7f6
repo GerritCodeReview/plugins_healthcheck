@@ -22,6 +22,30 @@
       "revId": "5f427a2995978ace3227be4c374a24d87b35a7f6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a38674b_1a3fe5d2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/JGitHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-02-08T11:20:58Z",
+      "side": 1,
+      "message": "See my previous comment.\nDoesn\u0027t the try/catch in the caller (AbstractHealthcheck.run) prevents this from happening?",
+      "parentUuid": "48c4276a_fb7135d7",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 72
+      },
+      "revId": "5f427a2995978ace3227be4c374a24d87b35a7f6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

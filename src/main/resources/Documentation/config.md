@@ -64,3 +64,8 @@ The follwing parameters are available:
   the the check results.
 
   Default: 10
+
+- `healthcheck.jgit.repository` : A repository name to open JGit ref for.
+   Multiple occurrences are allowed to configure more repositories.
+
+  Default: All-Projects, All-Users

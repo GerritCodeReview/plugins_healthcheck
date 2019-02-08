@@ -16,11 +16,13 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
+import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.gerrit.server.git.RepositoryCaseMismatchException;
 import com.google.gerrit.testutil.InMemoryRepositoryManager;
@@ -44,6 +46,7 @@ import org.junit.Test;
 
 public class JGitHealthCheckTest {
   private AllProjectsName allProjectsName = new AllProjectsName("All-Projects");
+  private AllUsersName allUsersName = new AllUsersName("All-Users");
   private InMemoryRepositoryManager inMemoryRepositoryManager = new InMemoryRepositoryManager();
   private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
 
@@ -53,24 +56,40 @@ public class JGitHealthCheckTest {
   public void setupAllProjects() throws Exception {
     Guice.createInjector(new HealthCheckModule()).injectMembers(this);
 
-    InMemoryRepositoryManager.Repo repo =
+    InMemoryRepositoryManager.Repo allProjects =
         inMemoryRepositoryManager.createRepository(allProjectsName);
-    createCommit(repo, "refs/meta/config");
+    createCommit(allProjects, "refs/meta/config");
+
+    InMemoryRepositoryManager.Repo allUsers =
+        inMemoryRepositoryManager.createRepository(allUsersName);
+    createCommit(allUsers, "refs/meta/config");
   }
 
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck reviewDbCheck =
-        new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(executor, DEFAULT_CONFIG, getWorkingRepositoryManager());
     assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
-  public void shouldBeUnhealthyWhenJGitIsFailing() {
+  public void shouldBeUnhealthyWhenJGitIsFailingForAllRepos() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), allProjectsName);
+        new JGitHealthCheck(executor, DEFAULT_CONFIG, getFailingGitRepositoryManager());
+    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
+  }
+
+  @Test
+  public void shouldBeUnhealthyWhenJGitIsFailingSomeRepos() {
+    HealthCheckConfig config =
+        new HealthCheckConfig(
+            "[healthcheck \""
+                + JGIT
+                + "\"]\n"
+                + "  repository = All-Users\n"
+                + "  repository = Not-Existing-Repo");
+    JGitHealthCheck jGitHealthCheck =
+        new JGitHealthCheck(executor, config, getWorkingRepositoryManager());
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

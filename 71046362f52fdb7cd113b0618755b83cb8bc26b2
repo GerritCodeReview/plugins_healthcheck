@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d101ceb9_9616f1f1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-09T21:22:14Z",
+      "side": 1,
+      "message": "Best to use an ImmutableSet because this is a constant.\n\nE.g. (see https://google.github.io/guava/releases/19.0/api/docs/com/google/common/collect/ImmutableSet.html)\n\n  ImmutableSet.of(a,b)",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 92
+      },
+      "revId": "71046362f52fdb7cd113b0618755b83cb8bc26b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ffb12a7_d4d4b21d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-09T21:22:14Z",
+      "side": 1,
+      "message": "Not sure this is correct: in Gerrit the \u0027All-Projects\u0027 repository is a concept that can be mapped to any repo with any name. We should instead inject the AllProjectName and use it in the default list.\n\nSame applies for All-Users.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 59
+      },
+      "revId": "71046362f52fdb7cd113b0618755b83cb8bc26b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcebf12f_10027f6b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-09T21:22:14Z",
+      "side": 1,
+      "message": "I believe the check is wrong, we should *always* include our defaults and, if some extra repo is configured, then add those ones also.\n\nAt the end of the day, if All-Projects and All-Users aren\u0027t accessible, Gerrit can\u0027t function properly anyway.",
+      "range": {
+        "startLine": 90,
+        "startChar": 10,
+        "endLine": 90,
+        "endChar": 31
+      },
+      "revId": "71046362f52fdb7cd113b0618755b83cb8bc26b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1c7f458_7dcd33c6",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-09T21:22:14Z",
+      "side": 1,
+      "message": "Specify that any extra repository specified will be added to the default list.",
+      "revId": "71046362f52fdb7cd113b0618755b83cb8bc26b2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

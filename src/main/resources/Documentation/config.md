@@ -64,3 +64,9 @@ The follwing parameters are available:
   the the check results.
 
   Default: 10
+
+- `healthcheck.jgit.project` : A project name to check for accessibility of its refs/meta/config.
+   Multiple occurrences are allowed to configure more projects, in addition
+   to the default ones that are always included.
+
+  Default: All-Projects, All-Users

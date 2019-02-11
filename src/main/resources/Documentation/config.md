@@ -19,11 +19,6 @@ GET /config/server/healthcheck~status
     "elapsed": 20,
     "result": "passed"
   },
-  "reviewdb": {
-    "ts": 139402910202,
-    "elapsed": 50,
-    "result": "passed"
-  },
   "projectslist": {
     "ts": 139402910202,
     "elapsed": 100,
@@ -50,7 +45,6 @@ defines the global defaults valid for all checks.
 The following check names are available:
 
 - `querychanges`: check the ability to query changes
-- `reviewdb` : check connectivity and ability to query ReviewDb
 - `jgit` : check connectivity to the filesystem and ability to open a JGit ref and object
 - `projectslist` : check the ability to list projects with their descriptions
 

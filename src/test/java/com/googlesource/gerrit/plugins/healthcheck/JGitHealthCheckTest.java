@@ -67,9 +67,9 @@ public class JGitHealthCheckTest {
 
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
-    JGitHealthCheck reviewDbCheck =
+    JGitHealthCheck check =
         new JGitHealthCheck(executor, DEFAULT_CONFIG, getWorkingRepositoryManager());
-    assertThat(reviewDbCheck.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test

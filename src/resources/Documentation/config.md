@@ -48,9 +48,6 @@ plugins_healthcheck_jgit_latest_measured_latency 4.0
 # TYPE plugins_healthcheck_projectslist_latest_measured_latency gauge
 plugins_healthcheck_projectslist_latest_measured_latency 5.0
 
-# HELP plugins_healthcheck_reviewdb_latest_measured_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
-# TYPE plugins_healthcheck_reviewdb_latest_measured_latency gauge
-plugins_healthcheck_reviewdb_latest_measured_latency 3.0
 
 # HELP plugins_healthcheck_jgit_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_jgit_failure_total counter
@@ -59,10 +56,6 @@ plugins_healthcheck_jgit_failure_total 3.0
 # HELP plugins_healthcheck_projectslist_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_projectslist_failure_total counter
 plugins_healthcheck_projectslist_failure_total 0.0
-
-# HELP plugins_healthcheck_reviewdb_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/reviewdb/failure, type=com.codahale.metrics.Meter)
-# TYPE plugins_healthcheck_reviewdb_failure_total counter
-plugins_healthcheck_reviewdb_failure_total 0.0
 ```
 
 Metrics will be exposed to prometheus by the [metrics-reporter-prometheus](https://gerrit.googlesource.com/plugins/metrics-reporter-prometheus/) plugin.

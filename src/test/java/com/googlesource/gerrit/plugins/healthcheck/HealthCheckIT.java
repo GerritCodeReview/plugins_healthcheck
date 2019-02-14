@@ -59,6 +59,7 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     for (int i = 0; i < numChanges; i++) {
       createChange("refs/for/master");
     }
+    accounts.create(config.getUsername(HealthCheckNames.AUTH));
   }
 
   @Test

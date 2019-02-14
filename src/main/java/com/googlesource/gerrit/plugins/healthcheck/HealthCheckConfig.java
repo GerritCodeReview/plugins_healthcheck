@@ -38,6 +38,8 @@ public class HealthCheckConfig {
   private static final long HEALTHCHECK_TIMEOUT_DEFAULT = 500L;
   private static final String QUERY_DEFAULT = "status:open";
   private static final int LIMIT_DEFAULT = 10;
+  private static final String USERNAME_DEFAULT = "healthcheck";
+  private static final String PASSWORD_DEFAULT = "";
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -79,9 +81,7 @@ public class HealthCheckConfig {
   }
 
   public String getQuery(String healthCheckName) {
-    String defaultQuery = healthCheckName == null ? QUERY_DEFAULT : getQuery(null);
-    return MoreObjects.firstNonNull(
-        config.getString(HEALTHCHECK, healthCheckName, "query"), defaultQuery);
+    return getStringWithFallback("query", healthCheckName, QUERY_DEFAULT);
   }
 
   public int getLimit(String healthCheckName) {
@@ -97,5 +97,23 @@ public class HealthCheckConfig {
     repos.add(allProjectsName);
     repos.add(allUsersName);
     return repos;
+  }
+
+  public String getUsername(String healthCheckName) {
+    return getStringWithFallback("userame", healthCheckName, USERNAME_DEFAULT);
+  }
+
+  public String getPassword(String healthCheckName) {
+    return getStringWithFallback("password", healthCheckName, PASSWORD_DEFAULT);
+  }
+
+  private String getStringWithFallback(
+      String parameter, String healthCheckName, String defaultValue) {
+    String fallbackDefault =
+        healthCheckName == null
+            ? defaultValue
+            : getStringWithFallback(parameter, null, defaultValue);
+    return MoreObjects.firstNonNull(
+        config.getString(HEALTHCHECK, healthCheckName, parameter), fallbackDefault);
   }
 }

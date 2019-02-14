@@ -19,4 +19,5 @@ public interface HealthCheckNames {
   String JGIT = "jgit";
   String PROJECTSLIST = "projectslist";
   String QUERYCHANGES = "querychanges";
+  String AUTH = "auth";
 }

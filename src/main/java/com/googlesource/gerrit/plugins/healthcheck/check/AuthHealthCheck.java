@@ -55,6 +55,7 @@ public class AuthHealthCheck extends AbstractHealthCheck {
     authRequest.setPassword(password);
     realm.authenticate(authRequest);
 
+    byIdCache.evictByUsername(username);
     AccountState accountState = byIdCache.getByUsername(username);
     if (accountState == null) {
       log.error("Cannot load account state for username " + username);

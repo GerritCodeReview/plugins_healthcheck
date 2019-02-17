@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edb27eab_7ce94d1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-17T22:47:53Z",
+      "side": 1,
+      "message": "It isn\u0027t actually \"one day\" but it depends on how much is configured on the cache maxAge.",
+      "range": {
+        "startLine": 14,
+        "startChar": 37,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "1e8c979138dae39637f018dc3bbaad3236cbc690",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

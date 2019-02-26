@@ -100,7 +100,7 @@ public class HealthCheckConfig {
   }
 
   public String getUsername(String healthCheckName) {
-    return getStringWithFallback("userame", healthCheckName, USERNAME_DEFAULT);
+    return getStringWithFallback("username", healthCheckName, USERNAME_DEFAULT);
   }
 
   public String getPassword(String healthCheckName) {

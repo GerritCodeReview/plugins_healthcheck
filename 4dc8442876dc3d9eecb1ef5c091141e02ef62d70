@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b14cada7_94aa116c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-02-26T10:44:50Z",
+      "side": 1,
+      "message": "Please add a blank line between the subject and the body.",
+      "revId": "4dc8442876dc3d9eecb1ef5c091141e02ef62d70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

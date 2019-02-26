@@ -37,6 +37,21 @@ public class HealthCheckConfigTest {
   }
 
   @Test
+  public void shouldHaveAuthUsername() {
+    String usernameConfigKey = "username";
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"auth\"]\n" + usernameConfigKey +"=test_user");
+
+    assertThat(config.getUsername("auth")).isEqualTo("test_user");
+  }
+  @Test
+  public void shouldHaveAuthPassword() {
+    String passwordConfigKey = "password";
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"auth\"]\n" + passwordConfigKey  +"=secret");
+
+    assertThat(config.getPassword("auth")).isEqualTo("secret");
+  }
+
+  @Test
   public void shouldHaveCheckOverriddenTimeout() {
     HealthCheckConfig config =
         new HealthCheckConfig(

@@ -37,6 +37,22 @@ public class HealthCheckConfigTest {
   }
 
   @Test
+  public void shouldHaveAuthUsername() {
+    HealthCheckConfig config =
+        new HealthCheckConfig("[healthcheck \"auth\"]\n" + "username=test_user");
+
+    assertThat(config.getUsername("auth")).isEqualTo("test_user");
+  }
+
+  @Test
+  public void shouldHaveAuthPassword() {
+    HealthCheckConfig config =
+        new HealthCheckConfig("[healthcheck \"auth\"]\n" + "password=secret");
+
+    assertThat(config.getPassword("auth")).isEqualTo("secret");
+  }
+
+  @Test
   public void shouldHaveCheckOverriddenTimeout() {
     HealthCheckConfig config =
         new HealthCheckConfig(
@@ -44,5 +60,13 @@ public class HealthCheckConfigTest {
 
     assertThat(config.getTimeout("fooCheck")).isEqualTo(1000);
     assertThat(config.getTimeout("barCheck")).isEqualTo(2000);
+  }
+
+  @Test
+  public void shouldHaveAnEnabledValue() {
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"foo\"]\n" + "enabled=false");
+
+    assertThat(config.healthCheckEnabled(null)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled("foo")).isEqualTo(false);
   }
 }

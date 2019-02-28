@@ -29,12 +29,14 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   private final String name;
   private final ListeningExecutorService executor;
   protected StatusSummary latestStatus;
+  protected boolean isEnabled;
 
   protected AbstractHealthCheck(
       ListeningExecutorService executor, HealthCheckConfig config, String name) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
+    this.isEnabled = config.healthCheckEnabled(name);
     this.latestStatus = StatusSummary.INITIAL_STATUS;
   }
 
@@ -51,7 +53,11 @@ public abstract class AbstractHealthCheck implements HealthCheck {
             () -> {
               Result healthy;
               try {
-                healthy = doCheck();
+                if (isEnabled) {
+                  healthy = doCheck();
+                } else {
+                  healthy = Result.DISABLED;
+                }
               } catch (Exception e) {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;

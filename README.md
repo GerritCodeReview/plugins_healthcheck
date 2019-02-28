@@ -46,8 +46,9 @@ Each check returns a JSON payload with the following information:
 - ts: epoch timestamp in millis of the individual check
 - elapsed: elapsed time in millis to complete the check
 - result: result of the health check
-  
+
   - passed: the check passed successfully
+  - disabled: the check was disabled
   - failed: the check failed with an error
   - timeout: the check took too long and timed out
 

@@ -61,4 +61,11 @@ public class HealthCheckConfigTest {
     assertThat(config.getTimeout("fooCheck")).isEqualTo(1000);
     assertThat(config.getTimeout("barCheck")).isEqualTo(2000);
   }
+
+  @Test
+  public void shouldHaveAnEnabledValue() {
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"foo\"]\n" + "enabled=false");
+
+    assertThat(config.healthCheckEnabled("foo")).isEqualTo(false);
+  }
 }

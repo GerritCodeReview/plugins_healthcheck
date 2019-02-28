@@ -28,6 +28,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.sun.istack.internal.NotNull;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.eclipse.jgit.lib.Config;
 
@@ -40,6 +42,7 @@ public class HealthCheckConfig {
   private static final int LIMIT_DEFAULT = 10;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
+  private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -105,6 +108,10 @@ public class HealthCheckConfig {
 
   public String getPassword(String healthCheckName) {
     return getStringWithFallback("password", healthCheckName, PASSWORD_DEFAULT);
+  }
+
+  public boolean healthCheckEnabled(@NotNull String healthCheckName) {
+    return config.getBoolean(HEALTHCHECK, healthCheckName, "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
   }
 
   private String getStringWithFallback(

@@ -49,7 +49,10 @@ The following check names are available:
 - `projectslist` : check the ability to list projects with their descriptions
 - `auth`: check the ability to authenticate with username and password
 
-The follwing parameters are available:
+Each check name can be disabled by setting the `enabled` parameter to **false**,
+by default this parameter is set to **true**
+
+The following parameters are available:
 
 - `healthcheck.<checkName>.timeout` : Specific timeout (msec) for the
   healthcheck to complete. Zero means that there is no timeout.

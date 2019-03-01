@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b25bf47_076a7f5e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-03-01T10:48:25Z",
+      "side": 1,
+      "message": "This is part of another change, isn\u0027t it ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 34,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "da99f149e10fac11b40ae6668e710c97dfb350a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d9212d6_e386d2b5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfigTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-03-01T10:48:25Z",
+      "side": 1,
+      "message": "Same as above...this is part of another change, isn\u0027t it?",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 3
+      },
+      "revId": "da99f149e10fac11b40ae6668e710c97dfb350a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "revId": "6cc6a73b09fd00161a54acba9c927f9f4030ea66",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8fdc92f_93bae988",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AuthHealthCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-01T15:07:24Z",
+      "side": 1,
+      "message": "Nevermind, an issue on my side",
+      "parentUuid": "ea6c9bcb_253e6c7b",
+      "revId": "6cc6a73b09fd00161a54acba9c927f9f4030ea66",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

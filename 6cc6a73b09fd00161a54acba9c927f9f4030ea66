@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea6c9bcb_253e6c7b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AuthHealthCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-01T14:59:03Z",
+      "side": 1,
+      "message": "Cannot find a method called evictByUsername. Has this been tested?",
+      "revId": "6cc6a73b09fd00161a54acba9c927f9f4030ea66",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

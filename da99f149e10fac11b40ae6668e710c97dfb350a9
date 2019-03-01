@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8887ee02_5d00641e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-01T11:23:09Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve just noticed the other change has not yet been merged into 2.16",
+      "parentUuid": "2b25bf47_076a7f5e",
+      "range": {
+        "startLine": 104,
+        "startChar": 34,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "da99f149e10fac11b40ae6668e710c97dfb350a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ed9ba81_e5d94e9d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
         "patchSetId": 1

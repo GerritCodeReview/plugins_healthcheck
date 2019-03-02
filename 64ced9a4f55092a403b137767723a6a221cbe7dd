@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d61634fe_b4f94722",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-02T09:34:41Z",
+      "side": 1,
+      "message": "Ok I will remove the @NotNull annotation, but as a curiosity, if in Gerrit you flag only @Nullable how do you enforce the contract of this method to not be null?",
+      "parentUuid": "1defc1e7_5dc6760c",
+      "range": {
+        "startLine": 113,
+        "startChar": 36,
+        "endLine": 113,
+        "endChar": 44
+      },
+      "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cdcf20d_7954d1d5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 7
@@ -68,6 +92,30 @@
       "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a60076_fc59ed76",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-02T09:34:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2cdcf20d_7954d1d5",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "397aae10_33e5e278",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-02T09:34:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1eee02a_889ad3ec",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 17
+      },
+      "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c99d267e_6049a30d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
         "patchSetId": 7
@@ -105,6 +177,30 @@
       "writtenOn": "2019-03-01T23:19:30Z",
       "side": 1,
       "message": "This can be a public static final Set\u003cResult\u003e, instead of being created all the times as a list.",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 57
+      },
+      "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "895d17d6_5af15e12",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-02T09:34:41Z",
+      "side": 1,
+      "message": "Makes sense",
+      "parentUuid": "c99d267e_6049a30d",
       "range": {
         "startLine": 48,
         "startChar": 13,

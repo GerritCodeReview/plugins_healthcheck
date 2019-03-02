@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "eb825921_05040e8e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-03-02T11:30:24Z",
+      "side": 1,
+      "message": "We typically use checkNotNull from com.google.common.base.Preconditions (guava).  It should be noted, however, that checkNotNull is a runtime check rather than an annotation so its semantics are different.",
+      "parentUuid": "d61634fe_b4f94722",
+      "range": {
+        "startLine": 113,
+        "startChar": 36,
+        "endLine": 113,
+        "endChar": 44
+      },
+      "revId": "64ced9a4f55092a403b137767723a6a221cbe7dd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2cdcf20d_7954d1d5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 7

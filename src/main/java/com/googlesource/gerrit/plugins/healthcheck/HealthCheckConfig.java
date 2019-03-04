@@ -14,6 +14,8 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
@@ -40,6 +42,7 @@ public class HealthCheckConfig {
   private static final int LIMIT_DEFAULT = 10;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
+  private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -105,6 +108,11 @@ public class HealthCheckConfig {
 
   public String getPassword(String healthCheckName) {
     return getStringWithFallback("password", healthCheckName, PASSWORD_DEFAULT);
+  }
+
+  public boolean healthCheckEnabled(String healthCheckName) {
+    return config.getBoolean(
+        HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
   }
 
   private String getStringWithFallback(

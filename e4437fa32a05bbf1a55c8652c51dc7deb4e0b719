@@ -22,6 +22,30 @@
       "revId": "e4437fa32a05bbf1a55c8652c51dc7deb4e0b719",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f316820_fa5a49bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-03-08T07:57:02Z",
+      "side": 1,
+      "message": "\u003e Why this initialization was moved from ctor to run()?\n\nOtherwise, it is very difficult to test.\nWhat I would like to do, however, is to resolve the configuration at Guice Module configuration level, and that would allow to completely skip the code execution.\n\nFollow-up change?",
+      "parentUuid": "719a18a1_1d9aae48",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e4437fa32a05bbf1a55c8652c51dc7deb4e0b719",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

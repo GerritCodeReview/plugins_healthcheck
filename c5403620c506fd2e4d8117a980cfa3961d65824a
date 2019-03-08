@@ -22,6 +22,30 @@
       "revId": "c5403620c506fd2e4d8117a980cfa3961d65824a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a198e2d_5504cb76",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-03-08T07:57:02Z",
+      "side": 0,
+      "message": "\u003e This condition was the actual problem, because of disabled state, this condition evaluated to true.\n\nYes. Ideally, I should break this change in two parts, one that adds the test and the other that fixes the problem.\n\nThe fix is only 1/2 line change, the test is a lot more changes ;-)\n\nWDYT?",
+      "parentUuid": "0caf2f27_8fa353e8",
+      "range": {
+        "startLine": 54,
+        "startChar": 57,
+        "endLine": 54,
+        "endChar": 92
+      },
+      "revId": "c5403620c506fd2e4d8117a980cfa3961d65824a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

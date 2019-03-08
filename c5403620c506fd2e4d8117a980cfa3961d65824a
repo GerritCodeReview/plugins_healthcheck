@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0caf2f27_8fa353e8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-03-08T05:13:33Z",
+      "side": 0,
+      "message": "This condition was the actual problem, because of disabled state, this condition evaluated to true.",
+      "range": {
+        "startLine": 54,
+        "startChar": 57,
+        "endLine": 54,
+        "endChar": 92
+      },
+      "revId": "c5403620c506fd2e4d8117a980cfa3961d65824a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

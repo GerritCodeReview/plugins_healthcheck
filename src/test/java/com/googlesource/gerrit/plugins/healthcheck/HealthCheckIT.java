@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.REVIEWDB;
@@ -24,12 +25,11 @@ import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
-import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
+import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,17 +44,7 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   public void setUp() throws Exception {
     super.setUp();
 
-    config =
-        server
-            .getTestInjector()
-            .createChildInjector(
-                new AbstractModule() {
-                  @Override
-                  protected void configure() {
-                    bind(String.class).annotatedWith(PluginName.class).toInstance("healthcheck");
-                  }
-                })
-            .getInstance(HealthCheckConfig.class);
+    config = plugin.getSysInjector().getInstance(HealthCheckConfig.class);
     int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
     for (int i = 0; i < numChanges; i++) {
       createChange("refs/for/master");
@@ -75,21 +65,52 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   @Test
   public void shouldReturnReviewDbCheck() throws Exception {
     RestResponse resp = getHealthCheckStatus();
+
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), REVIEWDB, "passed");
+  }
 
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+  @Test
+  public void shouldReturnReviewDbCheckAsDisabled() throws Exception {
+    disableCheck(REVIEWDB);
+    RestResponse resp = getHealthCheckStatus();
 
-    assertCheckResult(respPayload, REVIEWDB, "passed");
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), REVIEWDB, "disabled");
   }
 
   @Test
   public void shouldReturnJGitCheck() throws Exception {
     RestResponse resp = getHealthCheckStatus();
+
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
+  }
 
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+  @Test
+  public void shouldReturnJGitCheckAsDisabled() throws Exception {
+    disableCheck(JGIT);
+    RestResponse resp = getHealthCheckStatus();
 
-    assertCheckResult(respPayload, JGIT, "passed");
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "disabled");
+  }
+
+  @Test
+  public void shouldReturnAuthCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), AUTH, "passed");
+  }
+
+  @Test
+  public void shouldReturnAuthCheckAsDisabled() throws Exception {
+    disableCheck(AUTH);
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), AUTH, "disabled");
   }
 
   @Test
@@ -98,9 +119,16 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     RestResponse resp = getHealthCheckStatus();
     resp.assertOK();
 
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "passed");
+  }
 
-    assertCheckResult(respPayload, QUERYCHANGES, "passed");
+  @Test
+  public void shouldReturnQueryChangesCheckAsDisabled() throws Exception {
+    disableCheck(QUERYCHANGES);
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
   }
 
   @Test
@@ -110,9 +138,7 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     RestResponse resp = getHealthCheckStatus();
     resp.assertOK();
 
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
-
-    assertCheckResult(respPayload, QUERYCHANGES, "passed");
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {
@@ -124,5 +150,14 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     JsonObject reviewDbStatus = respPayload.get(checkName).getAsJsonObject();
     assertThat(reviewDbStatus.has("result")).isTrue();
     assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo(result);
+  }
+
+  private void disableCheck(String check) throws ConfigInvalidException {
+    config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
+  }
+
+  private JsonObject getResponseJson(RestResponse resp) throws IOException {
+    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
+    return respPayload;
   }
 }

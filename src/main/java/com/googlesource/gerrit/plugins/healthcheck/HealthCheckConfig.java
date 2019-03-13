@@ -60,7 +60,7 @@ public class HealthCheckConfig {
   }
 
   @VisibleForTesting
-  public HealthCheckConfig(String configText) {
+  HealthCheckConfig(String configText) {
     config = new Config();
     if (!Strings.isNullOrEmpty(configText)) {
       try {
@@ -71,6 +71,11 @@ public class HealthCheckConfig {
     }
     allProjectsName = new AllProjectsName("All-Projects");
     allUsersName = new AllUsersName("All-Users");
+  }
+
+  @VisibleForTesting
+  void fromText(String configText) throws ConfigInvalidException {
+    config.fromText(configText);
   }
 
   public long getTimeout() {

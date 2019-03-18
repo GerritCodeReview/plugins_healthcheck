@@ -39,7 +39,7 @@ public interface HealthCheck {
     public final long ts;
     public final long elapsed;
     public static final Set<Result> failingResults =
-        new HashSet(Arrays.asList(Result.FAILED, Result.TIMEOUT));
+        new HashSet<>(Arrays.asList(Result.FAILED, Result.TIMEOUT));
 
     public StatusSummary(Result result, long ts, long elapsed) {
       this.result = result;

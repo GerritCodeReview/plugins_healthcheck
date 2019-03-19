@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8e26090_bd800e93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1065251
+      },
+      "writtenOn": "2019-03-19T07:44:23Z",
+      "side": 1,
+      "message": "The fix to this typo is already in stable-2.16\n\u003e HealthCheckConfig.java:103",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "15a4cc6f8ef20ea0fc1545b3b9929b97ea096718",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

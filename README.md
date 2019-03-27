@@ -49,6 +49,7 @@ Each check returns a JSON payload with the following information:
 - result: result of the health check
 
   - passed: the check passed successfully
+  - disabled: the check was disabled
   - failed: the check failed with an error
   - timeout: the check took too long and timed out
 

@@ -14,6 +14,8 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
@@ -40,6 +42,7 @@ public class HealthCheckConfig {
   private static final int LIMIT_DEFAULT = 10;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
+  private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -57,7 +60,7 @@ public class HealthCheckConfig {
   }
 
   @VisibleForTesting
-  public HealthCheckConfig(String configText) {
+  HealthCheckConfig(String configText) {
     config = new Config();
     if (!Strings.isNullOrEmpty(configText)) {
       try {
@@ -68,6 +71,11 @@ public class HealthCheckConfig {
     }
     allProjectsName = new AllProjectsName("All-Projects");
     allUsersName = new AllUsersName("All-Users");
+  }
+
+  @VisibleForTesting
+  void fromText(String configText) throws ConfigInvalidException {
+    config.fromText(configText);
   }
 
   public long getTimeout() {
@@ -92,7 +100,7 @@ public class HealthCheckConfig {
   public Set<Project.NameKey> getJGITRepositories(String healthCheckName) {
     Set<Project.NameKey> repos =
         Stream.of(config.getStringList(HEALTHCHECK, healthCheckName, "project"))
-            .map(Project.NameKey::new)
+            .map(Project::nameKey)
             .collect(Collectors.toSet());
     repos.add(allProjectsName);
     repos.add(allUsersName);
@@ -100,11 +108,16 @@ public class HealthCheckConfig {
   }
 
   public String getUsername(String healthCheckName) {
-    return getStringWithFallback("userame", healthCheckName, USERNAME_DEFAULT);
+    return getStringWithFallback("username", healthCheckName, USERNAME_DEFAULT);
   }
 
   public String getPassword(String healthCheckName) {
     return getStringWithFallback("password", healthCheckName, PASSWORD_DEFAULT);
+  }
+
+  public boolean healthCheckEnabled(String healthCheckName) {
+    return config.getBoolean(
+        HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
   }
 
   private String getStringWithFallback(

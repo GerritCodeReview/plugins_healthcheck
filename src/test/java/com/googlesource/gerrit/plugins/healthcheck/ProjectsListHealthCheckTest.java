@@ -27,11 +27,14 @@ import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ProjectsListHealthCheckTest {
   @Inject private ListeningExecutorService executor;
+
+  private Config gerritConfig = new Config();
 
   @Before
   public void setUp() throws Exception {
@@ -61,7 +64,7 @@ public class ProjectsListHealthCheckTest {
   }
 
   private ListProjects getFailingProjectList() {
-    return new ListProjects(null, null, null, null, null, null, null, null, null) {
+    return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         throw new IllegalArgumentException("Unable to return project list");
@@ -70,7 +73,7 @@ public class ProjectsListHealthCheckTest {
   }
 
   private ListProjects getWorkingProjectList(long execTime) {
-    return new ListProjects(null, null, null, null, null, null, null, null, null) {
+    return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         SortedMap<String, ProjectInfo> projects = new TreeMap<>();

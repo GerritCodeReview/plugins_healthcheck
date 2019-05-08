@@ -15,6 +15,9 @@
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public interface HealthCheck {
 
@@ -24,7 +27,9 @@ public interface HealthCheck {
     @SerializedName("failed")
     FAILED,
     @SerializedName("timeout")
-    TIMEOUT;
+    TIMEOUT,
+    @SerializedName("disabled")
+    DISABLED;
   }
 
   public class StatusSummary {
@@ -33,6 +38,8 @@ public interface HealthCheck {
     public final Result result;
     public final long ts;
     public final long elapsed;
+    public static final Set<Result> failingResults =
+        new HashSet<>(Arrays.asList(Result.FAILED, Result.TIMEOUT));
 
     public StatusSummary(Result result, long ts, long elapsed) {
       this.result = result;
@@ -41,7 +48,7 @@ public interface HealthCheck {
     }
 
     public Boolean isFailure() {
-      return this.result != Result.PASSED;
+      return failingResults.contains(this.result);
     }
   }
 

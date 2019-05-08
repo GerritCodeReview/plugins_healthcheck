@@ -65,6 +65,7 @@ public class ProjectsListHealthCheckTest {
 
   private ListProjects getFailingProjectList() {
     return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
+
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         throw new IllegalArgumentException("Unable to return project list");
@@ -74,6 +75,7 @@ public class ProjectsListHealthCheckTest {
 
   private ListProjects getWorkingProjectList(long execTime) {
     return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
+
       @Override
       public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
         SortedMap<String, ProjectInfo> projects = new TreeMap<>();

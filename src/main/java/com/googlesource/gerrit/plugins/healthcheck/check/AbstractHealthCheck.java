@@ -29,12 +29,14 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   private final String name;
   private final ListeningExecutorService executor;
   protected StatusSummary latestStatus;
+  protected HealthCheckConfig config;
 
   protected AbstractHealthCheck(
       ListeningExecutorService executor, HealthCheckConfig config, String name) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
+    this.config = config;
     this.latestStatus = StatusSummary.INITIAL_STATUS;
   }
 
@@ -45,13 +47,14 @@ public abstract class AbstractHealthCheck implements HealthCheck {
 
   @Override
   public StatusSummary run() {
+    boolean enabled = config.healthCheckEnabled(name);
     final long ts = System.currentTimeMillis();
     ListenableFuture<StatusSummary> resultFuture =
         executor.submit(
             () -> {
               Result healthy;
               try {
-                healthy = doCheck();
+                healthy = enabled ? doCheck() : Result.DISABLED;
               } catch (Exception e) {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;

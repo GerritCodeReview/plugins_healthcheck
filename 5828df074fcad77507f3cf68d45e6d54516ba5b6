@@ -52,6 +52,24 @@
       "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b5a748_a892b008",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-06-18T10:07:40Z",
+      "side": 1,
+      "message": "I\u0027d suggest to not pollute this change with generic comments and instead:\n- look at when the line of code has been introduced and locate that change\n- put the comment on that change\n\nWhat do you think?",
+      "parentUuid": "54d94f50_577f5132",
+      "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

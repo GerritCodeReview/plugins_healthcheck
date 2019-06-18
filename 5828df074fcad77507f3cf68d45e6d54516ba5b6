@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14c7c9d5_93ded02f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-06-18T09:50:27Z",
+      "side": 1,
+      "message": "do we still need that? If this is just for multi-site plugin we can use limit \u003d 0?",
+      "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -92,7 +92,7 @@ public class HealthCheckConfig {
   public Set<Project.NameKey> getJGITRepositories(String healthCheckName) {
     Set<Project.NameKey> repos =
         Stream.of(config.getStringList(HEALTHCHECK, healthCheckName, "project"))
-            .map(Project.NameKey::new)
+            .map(Project::nameKey)
             .collect(Collectors.toSet());
     repos.add(allProjectsName);
     repos.add(allUsersName);

@@ -34,6 +34,24 @@
       "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54d94f50_577f5132",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-06-18T10:05:41Z",
+      "side": 1,
+      "message": "This is just a generic comment. This functionality was implemented to avoid issue with healthcheck on empty repo but we could have the same result with setting limit \u003d 0 so no code changes",
+      "parentUuid": "7ac7d2d5_323cd035",
+      "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

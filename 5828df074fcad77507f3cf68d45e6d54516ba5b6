@@ -16,6 +16,24 @@
       "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac7d2d5_323cd035",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-06-18T09:58:21Z",
+      "side": 1,
+      "message": "I am not following: this file hasn\u0027t changed, why would you like to make any modification in a merge commit?",
+      "parentUuid": "14c7c9d5_93ded02f",
+      "revId": "5828df074fcad77507f3cf68d45e6d54516ba5b6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

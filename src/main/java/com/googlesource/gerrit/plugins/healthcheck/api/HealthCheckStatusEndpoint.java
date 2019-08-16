@@ -34,7 +34,7 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   }
 
   @Override
-  public Object apply(ConfigResource resource)
+  public Response<Map<String, Object>> apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
     long ts = System.currentTimeMillis();
     Map<String, Object> result = healthChecks.run();
@@ -45,9 +45,7 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   }
 
   private int getResultStatus(Map<String, Object> result) {
-    if (result
-        .values()
-        .stream()
+    if (result.values().stream()
         .filter(
             res ->
                 res instanceof HealthCheck.StatusSummary

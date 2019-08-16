@@ -59,7 +59,7 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
       queryChanges.addQuery(config.getQuery(QUERYCHANGES));
       queryChanges.setStart(0);
 
-      List<?> changes = queryChanges.apply(null);
+      List<?> changes = queryChanges.apply(null).value();
       if (changes == null) {
         log.warn("Cannot query changes: received a null list of results");
         return Result.FAILED;

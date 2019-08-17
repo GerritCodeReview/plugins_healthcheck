@@ -16,6 +16,24 @@
       "revId": "fd8c96ca17e78f99f7b981309333aaef270c91a0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80c33f9e_7eb2a982",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-08-17T08:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3c08f6d_50d0595c",
+      "revId": "fd8c96ca17e78f99f7b981309333aaef270c91a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

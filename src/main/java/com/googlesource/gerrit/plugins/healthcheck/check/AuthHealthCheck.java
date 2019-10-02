@@ -61,7 +61,7 @@ public class AuthHealthCheck extends AbstractHealthCheck {
       log.error("Cannot load account state for username " + username);
       return Result.FAILED;
     }
-    if (!accountState.get().getAccount().isActive()) {
+    if (!accountState.get().account().isActive()) {
       log.error("Authentication error, account " + username + " is inactive");
       return Result.FAILED;
     }

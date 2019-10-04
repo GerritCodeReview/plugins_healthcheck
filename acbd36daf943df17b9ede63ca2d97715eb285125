@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c9d125_d39841cc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HttpModule.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-10-04T12:48:29Z",
+      "side": 1,
+      "message": "This is really looking overkill: it is only used in a single class as a single instance.",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 86
+      },
+      "revId": "acbd36daf943df17b9ede63ca2d97715eb285125",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

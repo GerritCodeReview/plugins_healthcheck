@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d67227af_92397ea8",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-10-04T15:15:33Z",
+      "side": 1,
+      "message": "I understand, thanks.\nShould we remind the user that those healthchecks can be disabled?\nhttps://gerrit.googlesource.com/plugins/healthcheck/+/34958def9989b75be3c01ba37cf644a7d3de4ef6/src/main/resources/Documentation/config.md#settings",
+      "parentUuid": "1c4687f0_2e857123",
+      "range": {
+        "startLine": 29,
+        "startChar": 85,
+        "endLine": 30,
+        "endChar": 4
+      },
+      "revId": "dc94bd403eb4eb058ac3d8a32b728e2bc5f95c99",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c3acfdba_419e546a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
         "patchSetId": 4
@@ -93,6 +117,30 @@
       "revId": "dc94bd403eb4eb058ac3d8a32b728e2bc5f95c99",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0acb71ec_bc616599",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2019-10-04T15:15:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1cd5daa4_0de92594",
+      "range": {
+        "startLine": 64,
+        "startChar": 53,
+        "endLine": 64,
+        "endChar": 88
+      },
+      "revId": "dc94bd403eb4eb058ac3d8a32b728e2bc5f95c99",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

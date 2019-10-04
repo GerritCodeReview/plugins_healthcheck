@@ -73,6 +73,29 @@
     },
     {
       "key": {
+        "uuid": "c18728ea_174edb46",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-04T19:06:26Z",
+      "side": 1,
+      "message": "Optional: Annotate with @Singleton, even though it\u0027s bound in singleton scope already.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 63
+      },
+      "revId": "dc94bd403eb4eb058ac3d8a32b728e2bc5f95c99",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3acfdba_419e546a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
         "patchSetId": 4

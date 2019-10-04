@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "060ca072_bada3412",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-10-04T11:50:15Z",
+      "side": 1,
+      "message": "License header missing.",
+      "revId": "387d3ac61f02e57c0e126bf583dd2d4a32e8555c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ca017a61_df286bb7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-10-04T19:43:31Z",
+      "side": 1,
+      "message": "Interesting, I saw that pattern already, but I\u0027m not sure what is the use-case.\n\nHaving only the @Singleton is clear to me in terms of the risk: it creates a JIT binding and may actually result in multiple instances with parent-child injectors.\n\nBut I always thought that the Singleton at module level was enough.",
+      "parentUuid": "c18728ea_174edb46",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 63
+      },
+      "revId": "dc94bd403eb4eb058ac3d8a32b728e2bc5f95c99",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3acfdba_419e546a",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
         "patchSetId": 4

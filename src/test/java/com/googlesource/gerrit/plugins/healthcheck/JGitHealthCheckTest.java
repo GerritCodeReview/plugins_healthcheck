@@ -20,7 +20,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;

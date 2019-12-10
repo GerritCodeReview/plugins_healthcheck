@@ -20,4 +20,5 @@ public interface HealthCheckNames {
   String PROJECTSLIST = "projectslist";
   String QUERYCHANGES = "querychanges";
   String AUTH = "auth";
+  String ACTIVEWORKERS = "activeworkers";
 }

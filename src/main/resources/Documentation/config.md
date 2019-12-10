@@ -48,6 +48,7 @@ The following check names are available:
 - `jgit` : check connectivity to the filesystem and ability to open a JGit ref and object
 - `projectslist` : check the ability to list projects with their descriptions
 - `auth`: check the ability to authenticate with username and password
+- `activeworkers`: check the number of active worker threads and the ability to create a new one
 
 Each check name can be disabled by setting the `enabled` parameter to **false**,
 by default this parameter is set to **true**
@@ -82,3 +83,8 @@ The following parameters are available:
  - `healthcheck.auth.password` : Password to use for authentication
 
    Default: no password
+
+ - `healthcheck.activeworkers.threshold` : Percent of queue occupancy above which queue is consider 
+    as full.
+
+   Default: 80

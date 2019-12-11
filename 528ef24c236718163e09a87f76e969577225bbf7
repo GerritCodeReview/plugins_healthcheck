@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0edb2832_127af0d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T10:57:07Z",
+      "side": 1,
+      "message": "My point was if \"threshold\" can be used in any context, what is a reasonable default vale?\n\nIMO the LIMIT_DEFAULT as well should be more specific. I think a default has to be meaningful, hence if it doesn\u0027t have a context it is difficult to set a useful default value, that\u0027s why I was suggesting to be more specific.",
+      "parentUuid": "c5f8bba3_ed92cf29",
+      "range": {
+        "startLine": 43,
+        "startChar": 27,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "597bdab5_6abe9882",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
         "patchSetId": 2
@@ -281,6 +305,30 @@
       "revId": "528ef24c236718163e09a87f76e969577225bbf7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "788a3955_f054a221",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T10:57:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e73bf29_99d2e7d9",
+      "range": {
+        "startLine": 164,
+        "startChar": 14,
+        "endLine": 164,
+        "endChar": 57
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

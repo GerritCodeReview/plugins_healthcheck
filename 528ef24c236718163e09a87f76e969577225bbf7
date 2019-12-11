@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2eb44c00_d0a4ce20",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "I was wondering if it makes sense to have a global threshold default.\n\nI think if we want a default here these are the option that come in my mind are:\n- if we want a global default for queue length, we should maybe call it QUEUE_THRESHOLD_DEFAULT\n- if we want an active worker queue length default maybe we should be more specific (ACTIVE_WORKER_THRESHOLD_DEFAULT)\n- if we don\u0027t need a global default, just have it in the active workers context",
+      "range": {
+        "startLine": 43,
+        "startChar": 27,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "597bdab5_6abe9882",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "Maybe \"currentInteractiveThredPercentage\" if we decide to rename the method at line 69",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd1e8eff_15278baf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "Apparently in \"com.google.gerrit.sshd.CommandExecutorQueueProvider\" the result of this method would be the number of interactive threads.\n\nWDYT if we rename the method to something like \"getInteractiveThreadsCount\" to be consistent? (P.S.: as a side node I don\u0027t fully understand the logic, but that\u0027s due to my lack of knowledge 😞 )",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 3
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc76928f_b2b2d6e9",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "nit: \"a new one\" ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 89,
+        "endLine": 51,
+        "endChar": 99
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a392218_f21f38f4",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ActiveWorkersCheckTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "Would it makes sense to add a comment saying the default value is 80, hence the failure of the test? Otherwise you would have to look into the code to understand why the test is failing.",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11ade025_a1f2420e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2019-12-11T09:25:36Z",
+      "side": 1,
+      "message": "I have seen we do it for other checks as well...what is the point of a test running multiple checks?",
+      "range": {
+        "startLine": 164,
+        "startChar": 14,
+        "endLine": 164,
+        "endChar": 57
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

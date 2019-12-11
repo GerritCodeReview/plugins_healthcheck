@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "25a9c779_2db4ed06",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T11:44:11Z",
+      "side": 1,
+      "message": "Ok I will move it into active workers context",
+      "parentUuid": "0edb2832_127af0d7",
+      "range": {
+        "startLine": 43,
+        "startChar": 27,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "597bdab5_6abe9882",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
         "patchSetId": 2

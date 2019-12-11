@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5f8bba3_ed92cf29",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "Maybe I understood HealthCheckConfig in a wrong way but my idea was that \u0027threshold\u0027 is similar to the \u0027limit\u0027 property. So every check can use it in his own way. That\u0027s why it\u0027s generic threshold not queue threshold just in the context of the active workers check is a queue threshold.",
+      "parentUuid": "2eb44c00_d0a4ce20",
+      "range": {
+        "startLine": 43,
+        "startChar": 27,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "597bdab5_6abe9882",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "528ef24c236718163e09a87f76e969577225bbf7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81979421_9ddd586f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "597bdab5_6abe9882",
+      "range": {
+        "startLine": 55,
+        "startChar": 20,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "22216a25_74d1001c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "yes it\u0027s max pool size for interactive threads. I will rename it to getInteractiveThreadsMaxPoolSize.",
+      "parentUuid": "bd1e8eff_15278baf",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 3
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc76928f_b2b2d6e9",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "528ef24c236718163e09a87f76e969577225bbf7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "546ab476_44a8ee8e",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc76928f_b2b2d6e9",
+      "range": {
+        "startLine": 51,
+        "startChar": 89,
+        "endLine": 51,
+        "endChar": 99
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c791ccbd_ebe9c129",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ActiveWorkersCheckTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a392218_f21f38f4",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11ade025_a1f2420e",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-12-11T09:25:36Z",
       "side": 1,
       "message": "I have seen we do it for other checks as well...what is the point of a test running multiple checks?",
+      "range": {
+        "startLine": 164,
+        "startChar": 14,
+        "endLine": 164,
+        "endChar": 57
+      },
+      "revId": "528ef24c236718163e09a87f76e969577225bbf7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e73bf29_99d2e7d9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2019-12-11T10:40:39Z",
+      "side": 1,
+      "message": "I believe to make sure that we are getting consistent response. As you mentioned we have this test for almost all checks",
+      "parentUuid": "11ade025_a1f2420e",
       "range": {
         "startLine": 164,
         "startChar": 14,

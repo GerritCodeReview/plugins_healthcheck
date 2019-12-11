@@ -40,6 +40,7 @@ public class HealthCheckConfig {
   private static final long HEALTHCHECK_TIMEOUT_DEFAULT = 500L;
   private static final String QUERY_DEFAULT = "status:open";
   private static final int LIMIT_DEFAULT = 10;
+  private static final int ACTIVE_WORKERS_THRESHOLD_DEFAULT = 80;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
   private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
@@ -95,6 +96,14 @@ public class HealthCheckConfig {
   public int getLimit(String healthCheckName) {
     int defaultLimit = healthCheckName == null ? LIMIT_DEFAULT : getLimit(null);
     return config.getInt(HEALTHCHECK, healthCheckName, "limit", defaultLimit);
+  }
+
+  public int getActiveWorkersThreshold(String healthCheckName) {
+    int defaultThreshold =
+        healthCheckName == null
+            ? ACTIVE_WORKERS_THRESHOLD_DEFAULT
+            : getActiveWorkersThreshold(null);
+    return config.getInt(HEALTHCHECK, healthCheckName, "threshold", defaultThreshold);
   }
 
   public Set<Project.NameKey> getJGITRepositories(String healthCheckName) {

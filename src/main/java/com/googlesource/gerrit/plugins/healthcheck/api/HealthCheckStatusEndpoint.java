@@ -45,9 +45,7 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   }
 
   private int getResultStatus(Map<String, Object> result) {
-    if (result
-        .values()
-        .stream()
+    if (result.values().stream()
         .filter(
             res ->
                 res instanceof HealthCheck.StatusSummary

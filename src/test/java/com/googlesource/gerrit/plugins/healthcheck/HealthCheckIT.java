@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
@@ -121,6 +122,34 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     resp.assertOK();
 
     assertCheckResult(getResponseJson(resp), QUERYCHANGES, "passed");
+  }
+
+  @Test
+  public void shouldReturnActiveWorkersCheck() throws Exception {
+    createChange("refs/for/master");
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), ACTIVEWORKERS, "passed");
+  }
+
+  @Test
+  public void shouldReturnActiveWorkersCheckAsDisabled() throws Exception {
+    disableCheck(ACTIVEWORKERS);
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), ACTIVEWORKERS, "disabled");
+  }
+
+  @Test
+  public void shouldReturnActiveWorkersMultipleTimesCheck() throws Exception {
+    createChange("refs/for/master");
+    getHealthCheckStatus();
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), ACTIVEWORKERS, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {

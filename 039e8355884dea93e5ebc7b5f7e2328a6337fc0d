@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c53a709b_e684ff5c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-05-22T10:42:34Z",
+      "side": 1,
+      "message": "private final?",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6da0981_41863cb2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-05-22T10:42:34Z",
+      "side": 1,
+      "message": "Do we want to make this configurable, with default \u003d 0?",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

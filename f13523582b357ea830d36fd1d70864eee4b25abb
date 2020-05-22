@@ -46,6 +46,30 @@
       "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f428e07c_d0378bc7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1017568
+      },
+      "writtenOn": "2020-05-22T16:07:26Z",
+      "side": 1,
+      "message": "Works fine indeed.",
+      "parentUuid": "1e882c00_4cc1cf6f",
+      "range": {
+        "startLine": 43,
+        "startChar": 31,
+        "endLine": 43,
+        "endChar": 93
+      },
+      "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

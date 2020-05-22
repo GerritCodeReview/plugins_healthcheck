@@ -45,6 +45,53 @@
       "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "934c833a_7fffa9fb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-05-22T11:04:21Z",
+      "side": 1,
+      "message": "Why would we consider any other value but zero as PASSED? There are no good deadlocks?",
+      "parentUuid": "f6da0981_41863cb2",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec8e21ce_de4a8d6a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/DeadlockCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2020-05-22T11:04:21Z",
+      "side": 1,
+      "message": "inline local variable, it is only used here\n\nSame for a few more cases below.",
+      "range": {
+        "startLine": 50,
+        "startChar": 66,
+        "endLine": 50,
+        "endChar": 80
+      },
+      "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

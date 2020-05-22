@@ -22,6 +22,30 @@
       "revId": "991a1c334f8dee07760173dd1d102e261508bc38",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b22a32c_4eef4bb4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1017568
+      },
+      "writtenOn": "2020-05-22T07:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd9e1761_bd329013",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "991a1c334f8dee07760173dd1d102e261508bc38",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

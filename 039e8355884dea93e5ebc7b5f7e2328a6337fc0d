@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ea230daf_aaf3db69",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-05-22T11:13:59Z",
+      "side": 1,
+      "message": "\u003e Why would we consider any other value but zero as PASSED? There are no good deadlocks?\n\nThat\u0027s a good answer :-)",
+      "parentUuid": "934c833a_7fffa9fb",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "039e8355884dea93e5ebc7b5f7e2328a6337fc0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec8e21ce_de4a8d6a",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/DeadlockCheckTest.java",
         "patchSetId": 4

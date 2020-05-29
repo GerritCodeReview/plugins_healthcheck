@@ -20,4 +20,5 @@ public interface HealthCheckNames {
   String QUERYCHANGES = "querychanges";
   String AUTH = "auth";
   String ACTIVEWORKERS = "activeworkers";
+  String DEADLOCK = "deadlock";
 }

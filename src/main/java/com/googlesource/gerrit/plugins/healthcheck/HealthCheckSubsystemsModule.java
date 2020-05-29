@@ -19,6 +19,7 @@ import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
@@ -33,6 +34,7 @@ public class HealthCheckSubsystemsModule extends AbstractModule {
     bindChecker(QueryChangesHealthCheck.class);
     bindChecker(AuthHealthCheck.class);
     bindChecker(ActiveWorkersCheck.class);
+    bindChecker(DeadlockCheck.class);
     bind(LifecycleListener.class).to(HealthCheckMetrics.class);
   }
 

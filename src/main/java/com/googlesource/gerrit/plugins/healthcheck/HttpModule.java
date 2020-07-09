@@ -16,19 +16,18 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.httpd.AllRequestFilter;
-import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.GerritIsReplica;
 import com.google.inject.Inject;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
 import com.googlesource.gerrit.plugins.healthcheck.filter.HealthCheckStatusFilter;
-import org.eclipse.jgit.lib.Config;
 
 public class HttpModule extends ServletModule {
   private boolean isSlave;
 
   @Inject
-  public HttpModule(@GerritServerConfig Config gerritConfig) {
-    isSlave = gerritConfig.getBoolean("container", "slave", false);
+  public HttpModule(@GerritIsReplica boolean isReplica) {
+    isSlave = isReplica;
   }
 
   @Override

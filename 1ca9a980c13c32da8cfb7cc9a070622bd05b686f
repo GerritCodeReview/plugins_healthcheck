@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffbe0b49_d3cfad53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-07-09T13:13:26Z",
+      "side": 1,
+      "message": "I believe this is wrong place: Gerrit should expose the replica mode with an annotation and we should just use it for injection.\n\nIt doesn\u0027t make sense to have this logic hardcoded on all plugins. WDYT?",
+      "revId": "1ca9a980c13c32da8cfb7cc9a070622bd05b686f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

@@ -28,7 +28,9 @@ public class HttpModule extends ServletModule {
 
   @Inject
   public HttpModule(@GerritServerConfig Config gerritConfig) {
-    isSlave = gerritConfig.getBoolean("container", "slave", false);
+    isSlave =
+        gerritConfig.getBoolean("container", "slave", false)
+            || gerritConfig.getBoolean("container", "replica", false);
   }
 
   @Override

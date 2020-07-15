@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eea7298a_83d89199",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HttpModule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-07-15T23:11:24Z",
+      "side": 1,
+      "message": "nit: to be renamed to isReplica",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 11
+      },
+      "revId": "014a777a0606c9f77f274615a38e9569e3380428",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

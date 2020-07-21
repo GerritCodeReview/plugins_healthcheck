@@ -16,7 +16,6 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
-import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.DEADLOCK;
 
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
@@ -70,7 +69,6 @@ public class DeadlockCheckTest {
     DeadlockCheck check = createCheck(injector);
     assertThat(check.run().result).isEqualTo(Result.FAILED);
   }
-
 
   private Injector testInjector(AbstractModule testModule) {
     return Guice.createInjector(new HealthCheckModule(), testModule);

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44cb3ee8_fd6c311b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-21T07:58:51Z",
+      "side": 1,
+      "message": "I was thinking of doing this change on earlier branches, but this would then still include the container.slave option anyway, so I guess 3.1 should be good enough.",
+      "revId": "08cf334ecd1d9a8b78765126de796693898f16fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

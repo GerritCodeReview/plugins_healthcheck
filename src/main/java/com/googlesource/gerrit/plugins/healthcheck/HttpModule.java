@@ -23,16 +23,16 @@ import com.google.inject.servlet.ServletModule;
 import com.googlesource.gerrit.plugins.healthcheck.filter.HealthCheckStatusFilter;
 
 public class HttpModule extends ServletModule {
-  private boolean isSlave;
+  private boolean isReplica;
 
   @Inject
   public HttpModule(@GerritIsReplica boolean isReplica) {
-    isSlave = isReplica;
+    this.isReplica = isReplica;
   }
 
   @Override
   protected void configureServlets() {
-    if (isSlave) {
+    if (isReplica) {
       DynamicSet.bind(binder(), AllRequestFilter.class)
           .to(HealthCheckStatusFilter.class)
           .in(Scopes.SINGLETON);

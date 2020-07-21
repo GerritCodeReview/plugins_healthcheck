@@ -25,9 +25,9 @@ bazel-genfiles/plugins/healthcheck/healthcheck.jar
 ## How to install
 
 Copy the healthcheck.jar into the Gerrit's /plugins directory and wait for the plugin to be automatically loaded.
-The healthcheck plugin is compatible with both Gerrit master and slave setups. The only difference to bear in mind
-is that some checks may not be successful on slaves (e.g. query changes) because the associated subsystem is switched
-off.
+The healthcheck plugin is compatible with both primary Gerrit setups and Gerrit replicas. The only difference to bear
+in mind is that some checks may not be successful on replicas (e.g. query changes) because the associated subsystem is
+switched off.
 
 ## How to use
 

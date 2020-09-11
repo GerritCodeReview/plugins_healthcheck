@@ -22,17 +22,15 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 
-public class ActiveWorkersCheck extends AbstractHealthCheck {
+public class ActiveWorkersCheck extends AbstractWorkersCheck {
 
   public static final String ACTIVE_WORKERS_METRIC_NAME =
       "queue/ssh_interactive_worker/active_threads";
 
   private Integer threshold;
   private Integer interactiveThreadsMaxPoolSize;
-  private MetricRegistry metricRegistry;
 
   @Inject
   public ActiveWorkersCheck(
@@ -41,25 +39,10 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
       HealthCheckConfig healthCheckConfig,
       ThreadSettingsConfig threadSettingsConfig,
       MetricRegistry metricRegistry) {
-    super(executor, healthCheckConfig, ACTIVEWORKERS);
+    super(executor, healthCheckConfig, metricRegistry, ACTIVEWORKERS);
     this.threshold = healthCheckConfig.getActiveWorkersThreshold(ACTIVEWORKERS);
-    this.metricRegistry = metricRegistry;
     this.interactiveThreadsMaxPoolSize =
         getInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig);
-  }
-
-  @Override
-  protected Result doCheck() throws Exception {
-    return Optional.ofNullable(metricRegistry.getGauges().get(ACTIVE_WORKERS_METRIC_NAME))
-        .map(
-            metric -> {
-              float currentInteractiveThreadsPercentage =
-                  ((long) metric.getValue() * 100) / interactiveThreadsMaxPoolSize;
-              return (currentInteractiveThreadsPercentage <= threshold)
-                  ? Result.PASSED
-                  : Result.FAILED;
-            })
-        .orElse(Result.PASSED);
   }
 
   /**
@@ -79,5 +62,20 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
       poolSize += batchThreads;
     }
     return Math.max(1, poolSize - batchThreads);
+  }
+
+  @Override
+  public String getMetricName() {
+    return ACTIVE_WORKERS_METRIC_NAME;
+  }
+
+  @Override
+  public Integer getMaxPoolSize() {
+    return interactiveThreadsMaxPoolSize;
+  }
+
+  @Override
+  public Integer getThreshold() {
+    return threshold;
   }
 }

@@ -20,6 +20,7 @@ import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.HttpActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.QueryChangesHealthCheck;
@@ -35,6 +36,7 @@ public class HealthCheckSubsystemsModule extends AbstractModule {
     bindChecker(QueryChangesHealthCheck.class);
     bindChecker(AuthHealthCheck.class);
     bindChecker(ActiveWorkersCheck.class);
+    bindChecker(HttpActiveWorkersCheck.class);
     bind(LifecycleListener.class).to(HealthCheckMetrics.class);
   }
 

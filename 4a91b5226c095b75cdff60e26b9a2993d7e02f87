@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91abb85a_2b366d73",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-11T22:43:56Z",
+      "side": 1,
+      "message": "This should be a separate check. The aggregation of separate checks into a unique healthcheck result is already implemented and we do not need to do all the combined check work done in here.\n\nBear in mind also that you may want to define different thresholds for the workers, based on the associated severity.\n\nExample: running out of SSH threads really kills the entire Gerrit instance, because the thread pool is used for the internal Gerrit workers and not only for SSH connections. Running of HTTP threads may not be so bad, as Jetty allows also to accept connections and keep them alive until the pool is free to serve them.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

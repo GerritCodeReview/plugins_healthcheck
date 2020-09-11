@@ -23,15 +23,23 @@ import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.eclipse.jgit.lib.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ActiveWorkersCheck extends AbstractHealthCheck {
+  private static final Logger log = LoggerFactory.getLogger(ActiveWorkersCheck.class);
 
-  public static final String ACTIVE_WORKERS_METRIC_NAME =
+  public static final String SSH_WORKERS_METRIC_NAME =
       "queue/ssh_interactive_worker/active_threads";
 
+  public static final String HTTP_WORKERS_METRIC_NAME =
+      "http/server/jetty/threadpool/active_threads";
+
   private Integer threshold;
-  private Integer interactiveThreadsMaxPoolSize;
+  private Integer sshInteractiveThreadsMaxPoolSize;
+  private Integer httpThreadsMaxPoolSize;
   private MetricRegistry metricRegistry;
 
   @Inject
@@ -44,22 +52,46 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
     super(executor, healthCheckConfig, ACTIVEWORKERS);
     this.threshold = healthCheckConfig.getActiveWorkersThreshold(ACTIVEWORKERS);
     this.metricRegistry = metricRegistry;
-    this.interactiveThreadsMaxPoolSize =
-        getInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig);
+    this.sshInteractiveThreadsMaxPoolSize =
+        getSshInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig);
+    this.httpThreadsMaxPoolSize = getHttpThreadsMaxPoolSize(threadSettingsConfig);
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    return Optional.ofNullable(metricRegistry.getGauges().get(ACTIVE_WORKERS_METRIC_NAME))
+
+    return Stream.of(
+                checkActiveThreadsPercentage(
+                    SSH_WORKERS_METRIC_NAME, sshInteractiveThreadsMaxPoolSize),
+                checkActiveThreadsPercentage(HTTP_WORKERS_METRIC_NAME, httpThreadsMaxPoolSize))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .allMatch(result -> result)
+        ? Result.PASSED
+        : Result.FAILED;
+  }
+
+  private Optional<Boolean> checkActiveThreadsPercentage(String metricName, Integer maxPoolSize) {
+    return Optional.ofNullable(metricRegistry.getGauges().get(metricName))
         .map(
             metric -> {
-              float currentInteractiveThreadsPercentage =
-                  ((long) metric.getValue() * 100) / interactiveThreadsMaxPoolSize;
-              return (currentInteractiveThreadsPercentage <= threshold)
-                  ? Result.PASSED
-                  : Result.FAILED;
-            })
-        .orElse(Result.PASSED);
+              Long value = 0L;
+              if (metric.getValue() instanceof Long) {
+                value = (Long) metric.getValue();
+              }
+              if (metric.getValue() instanceof Integer) {
+                value = Long.valueOf((int) metric.getValue());
+              }
+              float currentThreadsPercentage = (value * 100) / maxPoolSize;
+              if (currentThreadsPercentage > threshold) {
+                log.warn(
+                    "Current active theads count for {} exceeded threshold of {} percent",
+                    metricName,
+                    threshold);
+                return false;
+              }
+              return true;
+            });
   }
 
   /**
@@ -70,7 +102,7 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
    *
    * @return max number of allowed threads in interactive work queue
    */
-  private Integer getInteractiveThreadsMaxPoolSize(
+  private Integer getSshInteractiveThreadsMaxPoolSize(
       ThreadSettingsConfig threadSettingsConfig, Config gerritConfig) {
     int poolSize = threadSettingsConfig.getSshdThreads();
     int batchThreads =
@@ -79,5 +111,9 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
       poolSize += batchThreads;
     }
     return Math.max(1, poolSize - batchThreads);
+  }
+
+  private Integer getHttpThreadsMaxPoolSize(ThreadSettingsConfig threadSettingsConfig) {
+    return threadSettingsConfig.getHttpdMaxThreads();
   }
 }

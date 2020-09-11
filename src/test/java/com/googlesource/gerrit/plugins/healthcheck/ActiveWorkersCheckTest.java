@@ -43,9 +43,9 @@ public class ActiveWorkersCheckTest {
   }
 
   @Test
-  public void shouldPassCheckWhenNoActiveWorkers() {
+  public void shouldPassCheckWhenNoActiveSshWorkers() {
 
-    MetricRegistry metricRegistry = createMetricRegistry(0L);
+    MetricRegistry metricRegistry = createSshMetricRegistry(0L);
 
     Injector injector = testInjector(new TestModule(new Config(), metricRegistry));
 
@@ -54,9 +54,9 @@ public class ActiveWorkersCheckTest {
   }
 
   @Test
-  public void shouldPassCheckWhenActiveWorkersLessThanDefaultThreshold() {
+  public void shouldPassCheckWhenActiveSshWorkersLessThanDefaultThreshold() {
 
-    MetricRegistry metricRegistry = createMetricRegistry(79L);
+    MetricRegistry metricRegistry = createSshMetricRegistry(79L);
     // By default threshold is 80%
     Config gerritConfig = new Config();
     gerritConfig.setInt("sshd", null, "threads", 100);
@@ -67,9 +67,9 @@ public class ActiveWorkersCheckTest {
   }
 
   @Test
-  public void shouldFailCheckWhenActiveWorkersMoreThanDefaultThreshold() {
+  public void shouldFailCheckWhenActiveSshWorkersMoreThanDefaultThreshold() {
 
-    MetricRegistry metricRegistry = createMetricRegistry(90L);
+    MetricRegistry metricRegistry = createSshMetricRegistry(90L);
     // By default threshold is 80%
     Config gerritConfig = new Config();
     gerritConfig.setInt("sshd", null, "threads", 100);
@@ -81,9 +81,9 @@ public class ActiveWorkersCheckTest {
   }
 
   @Test
-  public void shouldFailCheckWhenActiveWorkersMoreThanThreshold() {
+  public void shouldFailCheckWhenActiveSshWorkersMoreThanThreshold() {
 
-    MetricRegistry metricRegistry = createMetricRegistry(6L);
+    MetricRegistry metricRegistry = createSshMetricRegistry(6L);
 
     Config gerritConfig = new Config();
     gerritConfig.setInt("sshd", null, "threads", 12);
@@ -97,9 +97,9 @@ public class ActiveWorkersCheckTest {
   }
 
   @Test
-  public void shouldPassCheckWhenActiveWorkersLessThanThreshold() {
+  public void shouldPassCheckWhenActiveSshWorkersLessThanThreshold() {
 
-    MetricRegistry metricRegistry = createMetricRegistry(5L);
+    MetricRegistry metricRegistry = createSshMetricRegistry(5L);
 
     Config gerritConfig = new Config();
     gerritConfig.setInt("sshd", null, "threads", 12);
@@ -110,20 +110,140 @@ public class ActiveWorkersCheckTest {
         new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
     ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
     assertThat(check.run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
+  public void shouldPassCheckWhenNoActiveHttpWorkers() {
+
+    MetricRegistry metricRegistry = createHttpMetricRegistry(0L);
+
+    Injector injector = testInjector(new TestModule(new Config(), metricRegistry));
+
+    ActiveWorkersCheck check = createCheck(injector);
+    assertThat(check.run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
+  public void shouldPassCheckWhenActiveHttpWorkersLessThanDefaultThreshold() {
+
+    MetricRegistry metricRegistry = createHttpMetricRegistry(79L);
+    // By default threshold is 80%
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 100);
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    ActiveWorkersCheck check = createCheck(injector);
+    assertThat(check.run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
+  public void shouldFailCheckWhenActiveHttpWorkersMoreThanDefaultThreshold() {
+
+    MetricRegistry metricRegistry = createHttpMetricRegistry(90L);
+    // By default threshold is 80%
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 100);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    ActiveWorkersCheck check = createCheck(injector);
+    assertThat(check.run().result).isEqualTo(Result.FAILED);
+  }
+
+  @Test
+  public void shouldFailCheckWhenActiveHttpWorkersMoreThanThreshold() {
+
+    MetricRegistry metricRegistry = createHttpMetricRegistry(6L);
+
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 10);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    HealthCheckConfig healthCheckConfig =
+        new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
+    ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
+    assertThat(check.run().result).isEqualTo(Result.FAILED);
+  }
+
+  @Test
+  public void shouldPassCheckWhenActiveHttpWorkersLessThanThreshold() {
+
+    MetricRegistry metricRegistry = createHttpMetricRegistry(5L);
+
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 12);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    HealthCheckConfig healthCheckConfig =
+        new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
+    ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
+    assertThat(check.run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
+  public void shouldPassCheckWhenBothActiveWorkersLessThanThreshold() {
+
+    MetricRegistry metricRegistry = createMetricRegistry(5L, 5L);
+
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 10);
+    gerritConfig.setInt("sshd", null, "threads", 12);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    HealthCheckConfig healthCheckConfig =
+        new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
+    ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
+    assertThat(check.run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
+  public void shouldFailCheckWhenBothActiveWorkersMoreThanThreshold() {
+
+    MetricRegistry metricRegistry = createMetricRegistry(6L, 6L);
+
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("httpd", null, "maxThreads", 10);
+    gerritConfig.setInt("sshd", null, "threads", 12);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    HealthCheckConfig healthCheckConfig =
+        new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
+    ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
+    assertThat(check.run().result).isEqualTo(Result.FAILED);
   }
 
   private Injector testInjector(AbstractModule testModule) {
     return Guice.createInjector(new HealthCheckModule(), testModule);
   }
 
-  private MetricRegistry createMetricRegistry(Long value) {
+  private MetricRegistry createSshMetricRegistry(Long value) {
+    return createMetricRegistry(value, 0L);
+  }
+
+  private MetricRegistry createHttpMetricRegistry(Long value) {
+    return createMetricRegistry(0L, value);
+  }
+
+  private MetricRegistry createMetricRegistry(Long sshValue, Long httpValue) {
     MetricRegistry metricRegistry = new MetricRegistry();
     metricRegistry.register(
-        ActiveWorkersCheck.ACTIVE_WORKERS_METRIC_NAME,
+        ActiveWorkersCheck.SSH_WORKERS_METRIC_NAME,
         new Gauge<Long>() {
           @Override
           public Long getValue() {
-            return value;
+            return sshValue;
+          }
+        });
+    metricRegistry.register(
+        ActiveWorkersCheck.HTTP_WORKERS_METRIC_NAME,
+        new Gauge<Long>() {
+          @Override
+          public Long getValue() {
+            return httpValue;
           }
         });
     return metricRegistry;

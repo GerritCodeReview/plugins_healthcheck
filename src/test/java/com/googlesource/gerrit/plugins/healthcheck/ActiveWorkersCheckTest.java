@@ -112,6 +112,27 @@ public class ActiveWorkersCheckTest {
     assertThat(check.run().result).isEqualTo(Result.PASSED);
   }
 
+  @Test
+  public void shouldFailCheckWhenMetricValueIsNotLongOrInteger() {
+
+    MetricRegistry metricRegistry = new MetricRegistry();
+    metricRegistry.register(
+        ActiveWorkersCheck.ACTIVE_WORKERS_METRIC_NAME,
+        new Gauge<String>() {
+          @Override
+          public String getValue() {
+            return "55";
+          }
+        });
+    Config gerritConfig = new Config();
+    gerritConfig.setInt("sshd", null, "threads", 12);
+
+    Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
+
+    ActiveWorkersCheck check = createCheck(injector);
+    assertThat(check.run().result).isEqualTo(Result.FAILED);
+  }
+
   private Injector testInjector(AbstractModule testModule) {
     return Guice.createInjector(new HealthCheckModule(), testModule);
   }

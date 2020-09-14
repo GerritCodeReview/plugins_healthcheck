@@ -22,6 +22,30 @@
       "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85a9a04b_129210f1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2020-09-14T08:27:01Z",
+      "side": 1,
+      "message": "Yes I agree this should be separate healthcheck but as I mentioned doing it in a proper way introduce incompatible change so I was planning to split them on stable-3.2. If we split check on stable-2.16 we end up with something like this:\n   \"activeworkers\": {\n    \"result\": \"passed\",\n    \"ts\": 1599812817348,\n    \"elapsed\": 3\n  },\n   \"httpactiveworkers\": {\n    \"result\": \"passed\",\n    \"ts\": 1599812817348,\n    \"elapsed\": 3\n  }\nand configuration:\nhealthcheck.activeworkers.threshold\nhealthcheck.httpactiveworkers.threshold\n\nWhich I found a bit confusing.\nOn stable-3.2 I was planning to refactor it to:\n   \"sshactiveworkers\": {\n    \"result\": \"passed\",\n    \"ts\": 1599812817348,\n    \"elapsed\": 3\n  },\n   \"httpactiveworkers\": {\n    \"result\": \"passed\",\n    \"ts\": 1599812817348,\n    \"elapsed\": 3\n  }\nand:\nhealthcheck.sshactiveworkers.threshold\nhealthcheck.httpactiveworkers.threshold\n\nWDYT? Do you prefer to keep it like this and change in stable-3.2 or should I spli them and leave the old one as it is?",
+      "parentUuid": "91abb85a_2b366d73",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

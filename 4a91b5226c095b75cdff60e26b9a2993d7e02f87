@@ -46,6 +46,30 @@
       "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba488932_32de85b7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-14T12:53:59Z",
+      "side": 1,
+      "message": "\u003e Yes I agree this should be separate healthcheck but as I mentioned doing it in a proper way introduce incompatible change so I was planning to split them on stable-3.2. If we split check on stable-2.16 we end up with something like this:\n\u003e    \"activeworkers\": {\n\u003e     \"result\": \"passed\",\n\u003e     \"ts\": 1599812817348,\n\u003e     \"elapsed\": 3\n\u003e   },\n\u003e    \"httpactiveworkers\": {\n\u003e     \"result\": \"passed\",\n\u003e     \"ts\": 1599812817348,\n\u003e     \"elapsed\": 3\n\u003e   }\n\u003e and configuration:\n\u003e healthcheck.activeworkers.threshold\n\u003e healthcheck.httpactiveworkers.threshold\n\nYep.\n\n\u003e Which I found a bit confusing.\n\nWhy? The active workers is really an overall allowance.\nI know they are under the SSH section, but Gerrit uses that pool *ALSO* to run the Git commands over HTTP in an async way.\n\nSo, they are *really* \u0027activeworkers\u0027.\n\nIf the activewoerks \n\u003e On stable-3.2 I was planning to refactor it to:\n\u003e    \"sshactiveworkers\": {\n\u003e     \"result\": \"passed\",\n\u003e     \"ts\": 1599812817348,\n\u003e     \"elapsed\": 3\n\u003e   },\n\u003e    \"httpactiveworkers\": {\n\u003e     \"result\": \"passed\",\n\u003e     \"ts\": 1599812817348,\n\u003e     \"elapsed\": 3\n\u003e   }\n\u003e and:\n\u003e healthcheck.sshactiveworkers.threshold\n\nNope, that isn\u0027t accurate. The active workers aren\u0027t impacting only SSH but the overall Gerrit instance.\n\n\u003e healthcheck.httpactiveworkers.threshold\n\nThis is a new setting, so it isn\u0027t incompatible right?",
+      "parentUuid": "85a9a04b_129210f1",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }

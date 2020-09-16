@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "36050bc7_86e1d80d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd331ee2_c04610d7",
+      "range": {
+        "startLine": 23,
+        "startChar": 22,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7aa30fc1_2b658058",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57423066_39c416d5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa30fc1_2b658058",
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "fbd08cfe_f9fd89df",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e528add9_71c8778f",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d61caa23_99e0c3dc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
         "patchSetId": 4
@@ -85,6 +151,30 @@
       "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab649bd5_1e05a793",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d61caa23_99e0c3dc",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "747809e1_6a1a2ab8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7887d851_e996a3de",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7636f7f9_97ed60d8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
         "patchSetId": 4
@@ -131,6 +245,30 @@
       "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d900e522_fd701b6a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7636f7f9_97ed60d8",
+      "range": {
+        "startLine": 61,
+        "startChar": 26,
+        "endLine": 61,
+        "endChar": 49
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "5d3e279c_404b035b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99b02174_93a52c8c",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82f2430d_edef2316",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
         "patchSetId": 4
@@ -177,6 +339,30 @@
       "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25bfcbe6_e28ce8b0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f2430d_edef2316",
+      "range": {
+        "startLine": 39,
+        "startChar": 61,
+        "endLine": 39,
+        "endChar": 62
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "c262642e_cfa7b1a3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fba61d6_94ed2c6b",
+      "range": {
+        "startLine": 55,
+        "startChar": 61,
+        "endLine": 55,
+        "endChar": 62
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "026160e8_c3eaadaa",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
         "patchSetId": 4
@@ -223,6 +433,30 @@
       "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843e6d14_c8af2eec",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-09-16T12:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "026160e8_c3eaadaa",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 3
+      },
+      "revId": "c1bd7661191e3d86e2327244ef78915dfc7371a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

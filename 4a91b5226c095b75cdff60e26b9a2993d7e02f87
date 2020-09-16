@@ -70,6 +70,30 @@
       "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c40591d9_529d5979",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2020-09-16T10:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba488932_32de85b7",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "4a91b5226c095b75cdff60e26b9a2993d7e02f87",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

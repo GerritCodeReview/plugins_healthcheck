@@ -61,14 +61,14 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
   }
 
   private boolean isStatusCheck(HttpServletRequest httpServletRequest) {
-    return httpServletRequest.getRequestURI().equals("/config/server/healthcheck~status");
+    return httpServletRequest.getRequestURI().matches("(?:/a)?/config/server/healthcheck~status");
   }
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {
     try {
       Response<Map<String, Object>> healthStatus =
           (Response<Map<String, Object>>) statusEndpoint.apply(new ConfigResource());
-      String healthStatusJson = gson.toJson(healthStatus);
+      String healthStatusJson = gson.toJson(healthStatus.value());
       if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
         PrintWriter writer = httpResponse.getWriter();
         writer.print(new String(RestApiServlet.JSON_MAGIC));

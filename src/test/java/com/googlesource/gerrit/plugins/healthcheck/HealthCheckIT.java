@@ -25,6 +25,7 @@ import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
@@ -33,7 +34,7 @@ import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
-@TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
+@TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module", httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
@@ -111,6 +112,15 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     RestResponse resp = getHealthCheckStatus();
 
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
+  }
+
+  @Test
+  @GerritConfig(name = "container.slave", value = "true")
+  public void shouldReturnQueryChangesAsDisabledForSlave() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
     assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
   }
 

@@ -85,16 +85,18 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
 
   @Test
   @GerritConfig(name = "container.slave", value = "true")
-  public void shouldHitHealthCheckStatusForReplicaWhenAuthenticated() throws Exception {
+  public void shouldReturnJGitCheckForReplicaWhenAuthenticated() throws Exception {
     RestResponse resp = getHealthCheckStatus();
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
   }
 
   @Test
   @GerritConfig(name = "container.slave", value = "true")
-  public void shouldHitHealthCheckStatusForReplicaAnonymously() throws Exception {
+  public void shouldReturnJGitCheckForReplicaAnonymously() throws Exception {
     RestResponse resp = getHealthCheckStatusAnonymously();
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
   }
 
   @Test

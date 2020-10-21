@@ -68,7 +68,7 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
     try {
       Response<Map<String, Object>> healthStatus =
           (Response<Map<String, Object>>) statusEndpoint.apply(new ConfigResource());
-      String healthStatusJson = gson.toJson(healthStatus);
+      String healthStatusJson = gson.toJson(healthStatus.value());
       if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
         PrintWriter writer = httpResponse.getWriter();
         writer.print(new String(RestApiServlet.JSON_MAGIC));

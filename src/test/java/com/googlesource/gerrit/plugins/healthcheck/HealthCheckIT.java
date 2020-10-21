@@ -128,6 +128,15 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
+  @GerritConfig(name = "container.slave", value = "true")
+  public void shouldReturnQueryChangesAsDisabledForSlave() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
+  }
+
+  @Test
   public void shouldReturnQueryChangesMultipleTimesCheck() throws Exception {
     createChange("refs/for/master");
     getHealthCheckStatus();

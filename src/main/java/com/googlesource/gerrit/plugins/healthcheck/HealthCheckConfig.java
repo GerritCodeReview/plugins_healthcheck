@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
@@ -23,9 +24,11 @@ import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
+import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -48,16 +51,22 @@ public class HealthCheckConfig {
   private final AllUsersName allUsersName;
 
   private final Config config;
+  private final boolean isReplica;
+
+  private static final Set<String> HEALTH_CHECK_DISABLED_FOR_REPLICAS =
+      Collections.singleton(QUERYCHANGES);
 
   @Inject
   public HealthCheckConfig(
       PluginConfigFactory configFactory,
       @PluginName String pluginName,
       AllProjectsName allProjectsName,
-      AllUsersName allUsersName) {
+      AllUsersName allUsersName,
+      @GerritServerConfig Config gerritConfig) {
     config = configFactory.getGlobalPluginConfig(pluginName);
     this.allProjectsName = allProjectsName;
     this.allUsersName = allUsersName;
+    isReplica = gerritConfig.getBoolean("container", "slave", false);
   }
 
   @VisibleForTesting
@@ -72,6 +81,7 @@ public class HealthCheckConfig {
     }
     allProjectsName = new AllProjectsName("All-Projects");
     allUsersName = new AllUsersName("All-Users");
+    isReplica = false;
   }
 
   @VisibleForTesting
@@ -125,6 +135,9 @@ public class HealthCheckConfig {
   }
 
   public boolean healthCheckEnabled(String healthCheckName) {
+    if (isReplica && HEALTH_CHECK_DISABLED_FOR_REPLICAS.contains(healthCheckName)) {
+      return false;
+    }
     return config.getBoolean(
         HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
   }

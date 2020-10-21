@@ -21,6 +21,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
+import com.google.gerrit.acceptance.GerritConfig;
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
@@ -33,7 +34,10 @@ import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
-@TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
+@TestPlugin(
+    name = "healthcheck",
+    sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
+    httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
@@ -77,6 +81,15 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
 
     resp.assertOK();
     assertCheckResult(getResponseJson(resp), JGIT, "disabled");
+  }
+
+  @Test
+  @GerritConfig(name = "container.slave", value = "true")
+  public void shouldReturnJGitCheckForSlave() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
   }
 
   @Test

@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62274fa7_8308607a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2020-10-21T16:01:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afef9a50_de72889d",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3697775_2f246012",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd12e3c_5a6d8a80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2020-10-21T16:01:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f3697775_2f246012",
+      "range": {
+        "startLine": 41,
+        "startChar": 54,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02c64a2f_2953a1eb",
@@ -60,6 +108,30 @@
       "writtenOn": "2020-10-21T13:03:24Z",
       "side": 1,
       "message": "Is this a fix for a different problem?",
+      "range": {
+        "startLine": 64,
+        "startChar": 46,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90a62113_38e896ab",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2020-10-21T16:01:01Z",
+      "side": 1,
+      "message": "Integration tests are hitting the healthcheck endpoint via the adminRestSession (which makes authenticated requests).\nChanging this is required to write any IT test for replicas.\n\nI am happy to cut it out as a separate change if you think it should be.",
+      "parentUuid": "02c64a2f_2953a1eb",
       "range": {
         "startLine": 64,
         "startChar": 46,

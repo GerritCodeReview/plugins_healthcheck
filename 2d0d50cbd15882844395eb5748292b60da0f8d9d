@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afef9a50_de72889d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-10-21T13:03:24Z",
+      "side": 1,
+      "message": "This term is not used anymore in Gerrit: it should be called \u0027replica\u0027 as at L7",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 44
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3697775_2f246012",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-10-21T13:03:24Z",
+      "side": 1,
+      "message": "non-replicas?",
+      "range": {
+        "startLine": 41,
+        "startChar": 54,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c64a2f_2953a1eb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-10-21T13:03:24Z",
+      "side": 1,
+      "message": "Is this a fix for a different problem?",
+      "range": {
+        "startLine": 64,
+        "startChar": 46,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

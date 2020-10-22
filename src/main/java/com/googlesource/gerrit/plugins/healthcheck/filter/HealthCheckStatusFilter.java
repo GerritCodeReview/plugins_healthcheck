@@ -61,7 +61,7 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
   }
 
   private boolean isStatusCheck(HttpServletRequest httpServletRequest) {
-    return httpServletRequest.getRequestURI().equals("/config/server/healthcheck~status");
+    return httpServletRequest.getRequestURI().matches("(?:/a)?/config/server/healthcheck~status");
   }
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {

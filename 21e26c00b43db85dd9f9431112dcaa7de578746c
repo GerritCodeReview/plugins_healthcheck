@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cd89a1f_52df3484",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-10-22T23:11:19Z",
+      "side": 1,
+      "message": "This is fine for stable-3.0. However, from stable-3.1 there is an annotation called IsReplica that would do that automatically, without having to put \"slave\" in the code.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 67
+      },
+      "revId": "21e26c00b43db85dd9f9431112dcaa7de578746c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cbd2ba27_0e29a6c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2020-10-22T13:21:12Z",
+      "side": 1,
+      "message": "Thanks luca,\n\nyes I did:\n\nremote: Processing changes: refs: 1, updated: 1, done\nremote: commit f987271: warning: subject \u003e65 characters; use shorter first paragraph\n\n\nI just didn\u0027t notice 😊",
+      "parentUuid": "6142022c_734df44a",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 77
+      },
+      "revId": "f987271f63216338aba32542224d3b4b39fc8b70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "31b48b54_43208513",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2

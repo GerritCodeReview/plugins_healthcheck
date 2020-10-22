@@ -164,6 +164,30 @@
       },
       "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d2af60d_7f7d24c4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2020-10-22T13:09:15Z",
+      "side": 1,
+      "message": "Done, I have now stripped this into a separate change.",
+      "parentUuid": "c3eb65fd_b9a9cb91",
+      "range": {
+        "startLine": 64,
+        "startChar": 46,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "2d0d50cbd15882844395eb5748292b60da0f8d9d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

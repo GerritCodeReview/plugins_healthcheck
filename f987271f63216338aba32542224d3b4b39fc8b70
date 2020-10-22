@@ -48,6 +48,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "07f567cd_04499294",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-10-22T22:57:26Z",
+      "side": 1,
+      "message": "I believe it is still 72 chars, instead of 65",
+      "parentUuid": "cbd2ba27_0e29a6c1",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 77
+      },
+      "revId": "f987271f63216338aba32542224d3b4b39fc8b70",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "31b48b54_43208513",

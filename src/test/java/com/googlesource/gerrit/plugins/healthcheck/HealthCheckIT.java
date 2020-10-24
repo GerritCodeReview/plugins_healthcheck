@@ -25,6 +25,7 @@ import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
@@ -33,7 +34,10 @@ import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
-@TestPlugin(name = "healthcheck", sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module")
+@TestPlugin(
+    name = "healthcheck",
+    sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
+    httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
@@ -80,6 +84,22 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
+  @GerritConfig(name = "container.replica", value = "true")
+  public void shouldReturnJGitCheckForReplicaWhenAuthenticated() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
+  }
+
+  @Test
+  @GerritConfig(name = "container.replica", value = "true")
+  public void shouldReturnJGitCheckForReplicaAnonymously() throws Exception {
+    RestResponse resp = getHealthCheckStatusAnonymously();
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), JGIT, "passed");
+  }
+
+  @Test
   public void shouldReturnAuthCheck() throws Exception {
     RestResponse resp = getHealthCheckStatus();
 
@@ -111,6 +131,15 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     RestResponse resp = getHealthCheckStatus();
 
     resp.assertOK();
+    assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
+  }
+
+  @Test
+  @GerritConfig(name = "container.replica", value = "true")
+  public void shouldReturnQueryChangesAsDisabledForReplica() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
     assertCheckResult(getResponseJson(resp), QUERYCHANGES, "disabled");
   }
 
@@ -154,6 +183,10 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
 
   private RestResponse getHealthCheckStatus() throws IOException {
     return adminRestSession.get("/config/server/healthcheck~status");
+  }
+
+  private RestResponse getHealthCheckStatusAnonymously() throws IOException {
+    return anonymousRestSession.get("/config/server/healthcheck~status");
   }
 
   private void assertCheckResult(JsonObject respPayload, String checkName, String result) {

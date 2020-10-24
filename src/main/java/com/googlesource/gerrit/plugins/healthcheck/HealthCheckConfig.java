@@ -24,7 +24,7 @@ import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
-import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.GerritIsReplica;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -62,11 +62,11 @@ public class HealthCheckConfig {
       @PluginName String pluginName,
       AllProjectsName allProjectsName,
       AllUsersName allUsersName,
-      @GerritServerConfig Config gerritConfig) {
+      @GerritIsReplica boolean isReplica) {
     config = configFactory.getGlobalPluginConfig(pluginName);
     this.allProjectsName = allProjectsName;
     this.allUsersName = allUsersName;
-    isReplica = gerritConfig.getBoolean("container", "slave", false);
+    this.isReplica = isReplica;
   }
 
   @VisibleForTesting

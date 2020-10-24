@@ -84,7 +84,7 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
-  @GerritConfig(name = "container.slave", value = "true")
+  @GerritConfig(name = "container.replica", value = "true")
   public void shouldReturnJGitCheckForReplicaWhenAuthenticated() throws Exception {
     RestResponse resp = getHealthCheckStatus();
     resp.assertOK();
@@ -92,7 +92,7 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
-  @GerritConfig(name = "container.slave", value = "true")
+  @GerritConfig(name = "container.replica", value = "true")
   public void shouldReturnJGitCheckForReplicaAnonymously() throws Exception {
     RestResponse resp = getHealthCheckStatusAnonymously();
     resp.assertOK();
@@ -135,8 +135,8 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
-  @GerritConfig(name = "container.slave", value = "true")
-  public void shouldReturnQueryChangesAsDisabledForSlave() throws Exception {
+  @GerritConfig(name = "container.replica", value = "true")
+  public void shouldReturnQueryChangesAsDisabledForReplica() throws Exception {
     RestResponse resp = getHealthCheckStatus();
     resp.assertOK();
 

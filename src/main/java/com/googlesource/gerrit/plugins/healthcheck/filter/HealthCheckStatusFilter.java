@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.filter;
 
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.restapi.Response;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.restapi.RestApiServlet;
@@ -35,11 +36,14 @@ import javax.servlet.http.HttpServletResponse;
 public class HealthCheckStatusFilter extends AllRequestFilter {
   private final HealthCheckStatusEndpoint statusEndpoint;
   private final Gson gson;
+  private final String pluginName;
 
   @Inject
-  public HealthCheckStatusFilter(HealthCheckStatusEndpoint statusEndpoint) {
+  public HealthCheckStatusFilter(
+      HealthCheckStatusEndpoint statusEndpoint, @PluginName String pluginName) {
     this.statusEndpoint = statusEndpoint;
     this.gson = OutputFormat.JSON.newGsonBuilder().create();
+    this.pluginName = pluginName;
   }
 
   @Override
@@ -61,7 +65,9 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
   }
 
   private boolean isStatusCheck(HttpServletRequest httpServletRequest) {
-    return httpServletRequest.getRequestURI().matches("(?:/a)?/config/server/healthcheck~status");
+    return httpServletRequest
+        .getRequestURI()
+        .matches("(?:/a)?/config/server/" + pluginName + "~status");
   }
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {

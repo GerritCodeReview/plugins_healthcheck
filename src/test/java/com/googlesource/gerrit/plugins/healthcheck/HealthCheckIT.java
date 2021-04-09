@@ -26,8 +26,10 @@ import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.inject.Key;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
 import org.eclipse.jgit.errors.ConfigInvalidException;
@@ -35,13 +37,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 @TestPlugin(
-    name = "healthcheck",
+    name = "healthcheck-test",
     sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
     httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
   HealthCheckConfig config;
+  String healthCheckUriPath;
 
   @Override
   @Before
@@ -54,6 +57,11 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
       createChange("refs/for/master");
     }
     accountCreator.create(config.getUsername(HealthCheckNames.AUTH));
+
+    healthCheckUriPath =
+        String.format(
+            "/config/server/%s~status",
+            plugin.getSysInjector().getInstance(Key.get(String.class, PluginName.class)));
   }
 
   @Test
@@ -182,11 +190,11 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {
-    return adminRestSession.get("/config/server/healthcheck~status");
+    return adminRestSession.get(healthCheckUriPath);
   }
 
   private RestResponse getHealthCheckStatusAnonymously() throws IOException {
-    return anonymousRestSession.get("/config/server/healthcheck~status");
+    return anonymousRestSession.get(healthCheckUriPath);
   }
 
   private void assertCheckResult(JsonObject respPayload, String checkName, String result) {

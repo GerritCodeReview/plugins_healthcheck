@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f2c759_4c449b62",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-09T19:08:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86a78e30_b98a4d5f",
+      "revId": "093eeac6433d32869d45fedd85e95e268997d589",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96184837_bc7e8652",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-04-09T19:08:08Z",
       "side": 1,
       "message": "This can be inlined.",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 62,
+        "endChar": 21
+      },
+      "revId": "093eeac6433d32869d45fedd85e95e268997d589",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39844c10_dd0a7f47",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-09T19:08:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96184837_bc7e8652",
       "range": {
         "startLine": 62,
         "startChar": 11,

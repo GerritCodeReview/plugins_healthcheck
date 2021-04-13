@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "227c6536_0fb98e9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T16:44:39Z",
+      "side": 1,
+      "message": "I am trying to figure out how to unit test the presence of the global metric.However, the fact I didn\u0027t break any test is good since we the coverage of the plugin seems ok.\n\nIf you want to start giving feedbacks go ahead.",
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.StatusSummary;
+import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -69,7 +70,7 @@ public class HealthCheckMetricsTest {
   @Test
   public void shouldSendCounterWhenStatusSummaryFailed() {
     Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.FAILED, 1L, elapsed));
+    setWithStatusSummary(new StatusSummary(Result.FAILED, 1L, elapsed, Collections.emptyMap()));
 
     assertThat(testMetrics.getFailures()).isEqualTo(1);
     assertThat(testMetrics.getLatency()).isEqualTo(elapsed);
@@ -78,7 +79,7 @@ public class HealthCheckMetricsTest {
   @Test
   public void shouldSendCounterWhenStatusSummaryTimeout() {
     Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.TIMEOUT, 1L, elapsed));
+    setWithStatusSummary(new StatusSummary(Result.TIMEOUT, 1L, elapsed, Collections.emptyMap()));
 
     assertThat(testMetrics.getFailures()).isEqualTo(1);
     assertThat(testMetrics.getLatency()).isEqualTo(elapsed);
@@ -87,7 +88,7 @@ public class HealthCheckMetricsTest {
   @Test
   public void shouldNOTSendCounterWhenStatusSummarySuccess() {
     Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.PASSED, 1L, elapsed));
+    setWithStatusSummary(new StatusSummary(Result.PASSED, 1L, elapsed, Collections.emptyMap()));
 
     assertThat(testMetrics.failures).isEqualTo(0L);
     assertThat(testMetrics.getLatency()).isEqualTo(elapsed);

@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Sets;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.registration.RegistrationHandle;
@@ -54,7 +55,10 @@ public class HealthCheckMetrics implements LifecycleListener {
   @Override
   public void start() {
 
-    for (HealthCheck healthCheck : healthChecks) {
+    Set<HealthCheck> allChecks = Sets.newHashSet(healthChecks);
+    allChecks.add(globalHealthCheck);
+
+    for (HealthCheck healthCheck : allChecks) {
       String name = healthCheck.name();
 
       Counter0 failureMetric = getFailureMetric(name);
@@ -65,21 +69,6 @@ public class HealthCheckMetrics implements LifecycleListener {
       registeredMetrics.add(metricMaker.newTrigger(latencyMetric, metricCallBack));
       triggers.add(metricCallBack);
     }
-
-    Counter0 globalFailureMetric = getFailureMetric("global");
-    CallbackMetric0<Long> globalLatencyMetric = getLatencyMetric("global");
-    Runnable globalMetricCallBack =
-        () -> {
-          HealthCheck.StatusSummary status = globalHealthCheck.getGlobalStatusSummary();
-          globalLatencyMetric.set(status.elapsed);
-          if (status.isFailure()) {
-            globalFailureMetric.increment();
-          }
-        };
-
-    registeredMetrics.add(globalFailureMetric);
-    registeredMetrics.add(metricMaker.newTrigger(globalLatencyMetric, globalMetricCallBack));
-    triggers.add(globalMetricCallBack);
   }
 
   private Runnable getCallbackMetric(

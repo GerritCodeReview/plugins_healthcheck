@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -28,7 +29,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   private final long timeout;
   private final String name;
   private final ListeningExecutorService executor;
-  protected StatusSummary latestStatus;
+  protected volatile StatusSummary latestStatus;
   protected HealthCheckConfig config;
 
   protected AbstractHealthCheck(
@@ -47,6 +48,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
 
   @Override
   public StatusSummary run() {
+    StatusSummary checkStatusSummary;
     boolean enabled = config.healthCheckEnabled(name);
     final long ts = System.currentTimeMillis();
     ListenableFuture<StatusSummary> resultFuture =
@@ -59,18 +61,24 @@ public abstract class AbstractHealthCheck implements HealthCheck {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;
               }
-              return new StatusSummary(healthy, ts, System.currentTimeMillis() - ts);
+              return new StatusSummary(
+                  healthy, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
             });
     try {
-      latestStatus = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
+      checkStatusSummary = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
-      latestStatus = new StatusSummary(Result.TIMEOUT, ts, System.currentTimeMillis() - ts);
+      checkStatusSummary =
+          new StatusSummary(
+              Result.TIMEOUT, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
-      latestStatus = new StatusSummary(Result.FAILED, ts, System.currentTimeMillis() - ts);
+      checkStatusSummary =
+          new StatusSummary(
+              Result.FAILED, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
     }
-    return latestStatus;
+    latestStatus = checkStatusSummary.shallowCopy();
+    return checkStatusSummary;
   }
 
   protected abstract Result doCheck() throws Exception;

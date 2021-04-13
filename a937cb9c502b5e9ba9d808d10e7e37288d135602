@@ -148,6 +148,29 @@
       },
       "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4bb4da3_9db6f036",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:31:06Z",
+      "side": 1,
+      "message": "Where do we test the global metric instaed?",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

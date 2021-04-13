@@ -58,6 +58,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e3350d_2caa422d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "unfortunately no, it is used both at line 64 and 62",
+      "parentUuid": "3344e16d_9ad727c2",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 28
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70909993_b6623b02",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-04-13T18:30:26Z",
       "side": 1,
       "message": "Can be inlined at L64",
+      "range": {
+        "startLine": 61,
+        "startChar": 28,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf327ab8_9e6a1555",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "unfortunately no, it is used both at line 64 and 62",
+      "parentUuid": "70909993_b6623b02",
       "range": {
         "startLine": 61,
         "startChar": 28,
@@ -104,6 +152,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef08105_6834d61b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "unfortunately no, it is used both at line 65 and 66",
+      "parentUuid": "948779f0_86ea9f8e",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03b4397b_11a31d0a",
@@ -117,6 +189,30 @@
       "writtenOn": "2021-04-13T18:30:26Z",
       "side": 1,
       "message": "This is a nice refactoring, however, it should be also mentioned in the commit message on why we need it.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 36
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d04784_74019ee0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03b4397b_11a31d0a",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -150,6 +246,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80e87164_978474db",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "it is used externally from the HealthCheckStatusEndpoint",
+      "parentUuid": "1969064b_68fe3d4d",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 8
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4bb4da3_9db6f036",
@@ -163,6 +283,30 @@
       "writtenOn": "2021-04-13T18:31:06Z",
       "side": 1,
       "message": "Where do we test the global metric instaed?",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ee1e5b5_3fa2a9a6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-13T19:10:29Z",
+      "side": 1,
+      "message": "I have added a class to test it in a follow up change.",
+      "parentUuid": "f4bb4da3_9db6f036",
       "range": {
         "startLine": 123,
         "startChar": 15,

@@ -16,6 +16,138 @@
       "message": "I am trying to figure out how to unit test the presence of the global metric.However, the fact I didn\u0027t break any test is good since we the coverage of the plugin seems ok.\n\nIf you want to start giving feedbacks go ahead.",
       "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d5d13f_f0810d87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "Some nits, but the -1 is more for the missing documentation update.\nThanks @Ponch for the fix.",
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3344e16d_9ad727c2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "Can be inlined at L64",
+      "range": {
+        "startLine": 60,
+        "startChar": 15,
+        "endLine": 60,
+        "endChar": 28
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70909993_b6623b02",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "Can be inlined at L64",
+      "range": {
+        "startLine": 61,
+        "startChar": 28,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948779f0_86ea9f8e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "Can be inlined at L66",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b4397b_11a31d0a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "This is a nice refactoring, however, it should be also mentioned in the commit message on why we need it.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 36
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1969064b_68fe3d4d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T18:30:26Z",
+      "side": 1,
+      "message": "private?",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 8
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

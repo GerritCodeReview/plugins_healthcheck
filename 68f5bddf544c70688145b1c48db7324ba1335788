@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de35297d_a1b2fd5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T19:15:52Z",
+      "side": 1,
+      "message": "Tested locally and it works file. Zuul must have some issues?",
+      "revId": "68f5bddf544c70688145b1c48db7324ba1335788",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

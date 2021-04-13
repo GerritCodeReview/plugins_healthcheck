@@ -270,6 +270,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe1172e_ec329c2d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-13T20:15:43Z",
+      "side": 1,
+      "message": "OK, let me address this in a follow-up change, because I don\u0027t believe this method uses anything of the instance, which tells me it is in the wrong place.\n\nHowever, it isn\u0027t a serious problem, it can be fixed later on.",
+      "parentUuid": "80e87164_978474db",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 8
+      },
+      "revId": "a937cb9c502b5e9ba9d808d10e7e37288d135602",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4bb4da3_9db6f036",

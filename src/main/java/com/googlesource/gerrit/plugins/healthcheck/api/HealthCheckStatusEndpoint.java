@@ -20,6 +20,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,15 +37,16 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   @Override
   public Response<Map<String, Object>> apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
-    Map<String, Object> result = healthChecks.run();
+    HealthCheck.StatusSummary globalHealthCheckStatus = healthChecks.run();
 
-    result.put("ts", healthChecks.getGlobalStatusSummary().ts);
-    result.put("elapsed", healthChecks.getGlobalStatusSummary().elapsed);
-    return Response.withStatusCode(getHTTPResultCode(result), result);
+    Map<String, Object> result = globalHealthCheckStatus.subChecks;
+    result.put("ts", globalHealthCheckStatus.ts);
+    result.put("elapsed", globalHealthCheckStatus.elapsed);
+    return Response.withStatusCode(getHTTPResultCode(globalHealthCheckStatus), result);
   }
 
-  private int getHTTPResultCode(Map<String, Object> result) {
-    return healthChecks.getResultStatus(result) == HealthCheck.Result.FAILED
+  private int getHTTPResultCode(HealthCheck.StatusSummary checkStatus) {
+    return checkStatus.result == Result.FAILED
         ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR
         : HttpServletResponse.SC_OK;
   }

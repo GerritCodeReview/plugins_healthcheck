@@ -20,6 +20,7 @@ import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;

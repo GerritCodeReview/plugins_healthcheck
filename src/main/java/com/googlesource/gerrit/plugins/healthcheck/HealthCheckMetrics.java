@@ -24,6 +24,7 @@ import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import java.util.Collections;
 import java.util.HashSet;
@@ -36,13 +37,15 @@ public class HealthCheckMetrics implements LifecycleListener {
   private final MetricMaker metricMaker;
   private final Set<RegistrationHandle> registeredMetrics;
   private final Set<Runnable> triggers;
+  private final GlobalHealthCheck globalHealthCheck;
 
   @Inject
-  public HealthCheckMetrics(DynamicSet<HealthCheck> healthChecks, MetricMaker metricMaker) {
+  public HealthCheckMetrics(DynamicSet<HealthCheck> healthChecks, GlobalHealthCheck globalHealthCheck, MetricMaker metricMaker) {
     this.healthChecks = healthChecks;
     this.metricMaker = metricMaker;
     this.registeredMetrics = Collections.synchronizedSet(new HashSet<>());
     this.triggers = Collections.synchronizedSet(new HashSet<>());
+    this.globalHealthCheck = globalHealthCheck;
   }
 
   @Override
@@ -80,6 +83,36 @@ public class HealthCheckMetrics implements LifecycleListener {
       registeredMetrics.add(metricMaker.newTrigger(latencyMetric, metricCallBack));
       triggers.add(metricCallBack);
     }
+
+    Counter0 failureMetric =
+            metricMaker.newCounter(
+                    String.format("%s/failure", "global"),
+                    new Description(String.format("%s healthcheck failures count", "global"))
+                            .setCumulative()
+                            .setRate()
+                            .setUnit("failures"));
+
+    CallbackMetric0<Long> latencyMetric =
+            metricMaker.newCallbackMetric(
+                    String.format("%s/latest_latency", "global"),
+                    Long.class,
+                    new Description(String.format("%s health check latency execution (ms)", "global"))
+                            .setGauge()
+                            .setUnit(Description.Units.MILLISECONDS));
+
+    Runnable metricCallBack =
+            () -> {
+              HealthCheck.StatusSummary status = globalHealthCheck.getGlobalStatusSummary();
+              latencyMetric.set(status.elapsed);
+              if (status.isFailure()) {
+                failureMetric.increment();
+              }
+            };
+
+    registeredMetrics.add(failureMetric);
+    registeredMetrics.add(metricMaker.newTrigger(latencyMetric, metricCallBack));
+    triggers.add(metricCallBack);
+
   }
 
   @Override

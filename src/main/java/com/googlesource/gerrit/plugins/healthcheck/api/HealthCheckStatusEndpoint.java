@@ -36,24 +36,15 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   @Override
   public Response<Map<String, Object>> apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
-    long ts = System.currentTimeMillis();
     Map<String, Object> result = healthChecks.run();
-    long elapsed = System.currentTimeMillis() - ts;
-    result.put("ts", new Long(ts));
-    result.put("elapsed", new Long(elapsed));
-    return Response.withStatusCode(getResultStatus(result), result);
+
+    result.put("ts", healthChecks.getGlobalStatusSummary().ts);
+    result.put("elapsed", healthChecks.getGlobalStatusSummary().elapsed);
+    return Response.withStatusCode(getHTTPResultCode(result), result);
   }
 
-  private int getResultStatus(Map<String, Object> result) {
-    if (result.values().stream()
-        .filter(
-            res ->
-                res instanceof HealthCheck.StatusSummary
-                    && ((HealthCheck.StatusSummary) res).isFailure())
-        .findFirst()
-        .isPresent()) {
-      return HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-    }
-    return HttpServletResponse.SC_OK;
+  private int getHTTPResultCode(Map<String, Object> result) {
+    return healthChecks.getResultStatus(result) == HealthCheck.Result.FAILED ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR : HttpServletResponse.SC_OK;
   }
+
 }

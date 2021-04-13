@@ -16,7 +16,9 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public interface HealthCheck {
@@ -34,21 +36,32 @@ public interface HealthCheck {
 
   public class StatusSummary {
     public static final StatusSummary INITIAL_STATUS =
-        new StatusSummary(Result.PASSED, System.currentTimeMillis(), 0L);
+        new StatusSummary(Result.PASSED, System.currentTimeMillis(), 0L, Collections.emptyMap());
     public final Result result;
     public final long ts;
     public final long elapsed;
+    public final transient Map<String, Object> subChecks;
+
     public static final Set<Result> failingResults =
         new HashSet<>(Arrays.asList(Result.FAILED, Result.TIMEOUT));
 
-    public StatusSummary(Result result, long ts, long elapsed) {
+    public StatusSummary(Result result, long ts, long elapsed, Map<String, Object> subChecks) {
       this.result = result;
       this.ts = ts;
       this.elapsed = elapsed;
+      this.subChecks = subChecks;
     }
 
     public Boolean isFailure() {
       return failingResults.contains(this.result);
+    }
+
+    public StatusSummary copy() {
+      return null;
+    }
+
+    public StatusSummary shallowCopy() {
+      return new StatusSummary(result, ts, elapsed, Collections.emptyMap());
     }
   }
 

@@ -23,18 +23,18 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Singleton
-public class GlobalHealthCheck {
+public class GlobalHealthCheck implements HealthCheck {
 
   private final DynamicSet<HealthCheck> healthChecks;
-  private HealthCheck.StatusSummary globalStatusSummary;
+  private volatile StatusSummary latestStatus = StatusSummary.INITIAL_STATUS;
 
   @Inject
   public GlobalHealthCheck(DynamicSet<HealthCheck> healthChecks) {
     this.healthChecks = healthChecks;
-    this.globalStatusSummary = HealthCheck.StatusSummary.INITIAL_STATUS;
   }
 
-  public Map<String, Object> run() {
+  @Override
+  public HealthCheck.StatusSummary run() {
     Iterable<HealthCheck> iterable = () -> healthChecks.iterator();
     long ts = System.currentTimeMillis();
     Map<String, Object> checkToResults =
@@ -42,25 +42,33 @@ public class GlobalHealthCheck {
             .map(check -> Arrays.asList(check.name(), check.run()))
             .collect(Collectors.toMap(k -> (String) k.get(0), v -> v.get(1)));
     long elapsed = System.currentTimeMillis() - ts;
-    globalStatusSummary =
-        new HealthCheck.StatusSummary(getResultStatus(checkToResults), ts, elapsed);
-    return checkToResults;
+    StatusSummary globalStatus =
+        new HealthCheck.StatusSummary(
+            hasAnyFailureOnResults(checkToResults) ? Result.FAILED : Result.PASSED,
+            ts,
+            elapsed,
+            checkToResults);
+    latestStatus = globalStatus.shallowCopy();
+    return globalStatus;
   }
 
-  public HealthCheck.StatusSummary getGlobalStatusSummary() {
-    return this.globalStatusSummary;
-  }
-
-  public HealthCheck.Result getResultStatus(Map<String, Object> result) {
-    if (result.values().stream()
+  public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
+    return results.values().stream()
         .filter(
             res ->
                 res instanceof HealthCheck.StatusSummary
                     && ((HealthCheck.StatusSummary) res).isFailure())
-        .findFirst()
-        .isPresent()) {
-      return HealthCheck.Result.FAILED;
-    }
-    return HealthCheck.Result.PASSED;
+        .findAny()
+        .isPresent();
+  }
+
+  @Override
+  public String name() {
+    return "global";
+  }
+
+  @Override
+  public StatusSummary getLatestStatus() {
+    return latestStatus;
   }
 }

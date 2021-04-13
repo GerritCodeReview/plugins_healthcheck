@@ -120,7 +120,9 @@ public class HealthCheckMetricsTest {
       return new Counter0() {
         @Override
         public void incrementBy(long value) {
-          failures += value;
+          if (!name.startsWith("global/")) {
+            failures += value;
+          }
         }
 
         @Override
@@ -134,7 +136,9 @@ public class HealthCheckMetricsTest {
       return new CallbackMetric0<V>() {
         @Override
         public void set(V value) {
-          latency = (Long) value;
+          if (!name.startsWith("global/")) {
+            latency = (Long) value;
+          }
         }
 
         @Override

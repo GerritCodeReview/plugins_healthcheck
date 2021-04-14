@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a73532_bc979e1b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-14T00:23:39Z",
+      "side": 1,
+      "message": "Oh, I haven\u0027t noticed that before: this is bad !\nThis is used concurrently by multiple checks and isn\u0027t thread safe as it is now.",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "c51d7ab7ba137b9a663b4b0dfdb033f533224063",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a5e9614_1ee4cada",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-14T00:23:39Z",
+      "side": 1,
+      "message": "GlobalStatusSummary should be returned as a result of the run.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 3
+      },
+      "revId": "c51d7ab7ba137b9a663b4b0dfdb033f533224063",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

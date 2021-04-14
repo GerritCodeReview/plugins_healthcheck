@@ -21,6 +21,10 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.Description;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.AbstractModule;
@@ -134,12 +138,13 @@ public class ActiveWorkersCheckTest {
   }
 
   private ActiveWorkersCheck createCheck(Injector injector, HealthCheckConfig healtchCheckConfig) {
+    MetricMaker metricMaker = new DisabledMetricMaker();
     return new ActiveWorkersCheck(
         new Config(),
         injector.getInstance(ListeningExecutorService.class),
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class), metricMaker);
   }
 
   private class TestModule extends AbstractModule {

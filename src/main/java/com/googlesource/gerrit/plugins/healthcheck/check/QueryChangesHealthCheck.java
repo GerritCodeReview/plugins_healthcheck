@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.change.QueryChanges;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
@@ -36,17 +37,20 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
   private final int limit;
   private final OneOffRequestContext oneOffCtx;
 
+  private final MetricMaker metricMaker;
+
   @Inject
   public QueryChangesHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
       Provider<QueryChanges> queryChangesProvider,
-      OneOffRequestContext oneOffCtx) {
-    super(executor, config, QUERYCHANGES);
+      OneOffRequestContext oneOffCtx, MetricMaker metricMaker) {
+    super(executor, config, QUERYCHANGES, metricMaker);
     this.queryChangesProvider = queryChangesProvider;
     this.config = config;
     this.limit = config.getLimit(QUERYCHANGES);
 
+    this.metricMaker = metricMaker;
     this.oneOffCtx = oneOffCtx;
   }
 

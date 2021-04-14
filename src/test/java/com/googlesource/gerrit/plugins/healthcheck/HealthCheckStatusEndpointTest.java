@@ -40,7 +40,7 @@ public class HealthCheckStatusEndpointTest {
 
     public TestHealthCheck(
         HealthCheckConfig config, String checkName, HealthCheck.Result result, long sleep) {
-      super(MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)), config, checkName);
+      super(MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)), config, checkName, new DisabledMetricMaker());
       this.checkResult = result;
       this.sleep = sleep;
     }

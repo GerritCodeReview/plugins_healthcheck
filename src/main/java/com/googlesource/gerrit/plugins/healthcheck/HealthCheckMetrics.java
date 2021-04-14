@@ -32,10 +32,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Singleton
-public class HealthCheckMetrics implements LifecycleListener {
+public class HealthCheckMetrics {
 
   private final DynamicSet<HealthCheck> healthChecks;
-  private final MetricMaker metricMaker;
   private final Set<RegistrationHandle> registeredMetrics;
   private final Set<Runnable> triggers;
   private final GlobalHealthCheck globalHealthCheck;
@@ -43,68 +42,11 @@ public class HealthCheckMetrics implements LifecycleListener {
   @Inject
   public HealthCheckMetrics(
       DynamicSet<HealthCheck> healthChecks,
-      GlobalHealthCheck globalHealthCheck,
-      MetricMaker metricMaker) {
+      GlobalHealthCheck globalHealthCheck) {
     this.healthChecks = healthChecks;
-    this.metricMaker = metricMaker;
     this.registeredMetrics = Collections.synchronizedSet(new HashSet<>());
     this.triggers = Collections.synchronizedSet(new HashSet<>());
     this.globalHealthCheck = globalHealthCheck;
-  }
-
-  @Override
-  public void start() {
-
-    Set<HealthCheck> allChecks = Sets.newHashSet(healthChecks);
-    allChecks.add(globalHealthCheck);
-
-    for (HealthCheck healthCheck : allChecks) {
-      String name = healthCheck.name();
-
-      Counter0 failureMetric = getFailureMetric(name);
-      CallbackMetric0<Long> latencyMetric = getLatencyMetric(name);
-      Runnable metricCallBack = getCallbackMetric(healthCheck, failureMetric, latencyMetric);
-
-      registeredMetrics.add(failureMetric);
-      registeredMetrics.add(metricMaker.newTrigger(latencyMetric, metricCallBack));
-      triggers.add(metricCallBack);
-    }
-  }
-
-  private Runnable getCallbackMetric(
-      HealthCheck healthCheck, Counter0 failureMetric, CallbackMetric0<Long> latencyMetric) {
-    return () -> {
-      HealthCheck.StatusSummary status = healthCheck.getLatestStatus();
-      latencyMetric.set(healthCheck.getLatestStatus().elapsed);
-      if (status.isFailure()) {
-        failureMetric.increment();
-      }
-    };
-  }
-
-  private CallbackMetric0<Long> getLatencyMetric(String name) {
-    return metricMaker.newCallbackMetric(
-        String.format("%s/latest_latency", name),
-        Long.class,
-        new Description(String.format("%s health check latency execution (ms)", name))
-            .setGauge()
-            .setUnit(Description.Units.MILLISECONDS));
-  }
-
-  private Counter0 getFailureMetric(String name) {
-    return metricMaker.newCounter(
-        String.format("%s/failure", name),
-        new Description(String.format("%s healthcheck failures count", name))
-            .setCumulative()
-            .setRate()
-            .setUnit("failures"));
-  }
-
-  @Override
-  public void stop() {
-    for (RegistrationHandle handle : registeredMetrics) {
-      handle.remove();
-    }
   }
 
   @VisibleForTesting

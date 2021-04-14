@@ -55,15 +55,9 @@ public interface HealthCheck {
     public Boolean isFailure() {
       return failingResults.contains(this.result);
     }
-
-    public StatusSummary shallowCopy() {
-      return new StatusSummary(result, ts, elapsed, Collections.emptyMap());
-    }
   }
 
   StatusSummary run();
 
   String name();
-
-  StatusSummary getLatestStatus();
 }

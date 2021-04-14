@@ -34,6 +34,8 @@ import org.junit.Test;
 public class ProjectsListHealthCheckTest {
   @Inject private ListeningExecutorService executor;
 
+  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+
   private Config gerritConfig = new Config();
 
   @Before
@@ -44,14 +46,16 @@ public class ProjectsListHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenListProjectsWorks() {
     ProjectsListHealthCheck jGitHealthCheck =
-        new ProjectsListHealthCheck(executor, DEFAULT_CONFIG, getWorkingProjectList(0));
+        new ProjectsListHealthCheck(
+            executor, DEFAULT_CONFIG, getWorkingProjectList(0), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenListProjectsIsFailing() {
     ProjectsListHealthCheck jGitHealthCheck =
-        new ProjectsListHealthCheck(executor, DEFAULT_CONFIG, getFailingProjectList());
+        new ProjectsListHealthCheck(
+            executor, DEFAULT_CONFIG, getFailingProjectList(), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -59,7 +63,10 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeUnhealthyWhenListProjectsIsTimingOut() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2));
+            executor,
+            DEFAULT_CONFIG,
+            getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2),
+            healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
   }
 

@@ -14,156 +14,74 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.gerrit.extensions.events.LifecycleListener;
-import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.gerrit.metrics.CallbackMetric0;
 import com.google.gerrit.metrics.Counter0;
 import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.DisabledMetricMaker;
-import com.google.gerrit.metrics.MetricMaker;
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.google.inject.Singleton;
-import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.StatusSummary;
-import java.util.Collections;
-import org.junit.Before;
+import com.google.gerrit.metrics.Timer0;
 import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class HealthCheckMetricsTest {
 
-  @Inject private ListeningExecutorService executor;
-  private TestMetrics testMetrics = new TestMetrics();
-
-  @Before
-  public void setUp() throws Exception {
-    testMetrics.reset();
-  }
-
-  private void setWithStatusSummary(StatusSummary StatusSummary) {
-    TestHealthCheck testHealthCheck = new TestHealthCheck(executor, "test", StatusSummary);
-
-    Injector injector =
-        testInjector(
-            new AbstractModule() {
-              @Override
-              protected void configure() {
-                DynamicSet.bind(binder(), HealthCheck.class).toInstance(testHealthCheck);
-                bind(MetricMaker.class).toInstance(testMetrics);
-                bind(LifecycleListener.class).to(HealthCheckMetrics.class);
-              }
-            });
-    HealthCheckMetrics healthCheckMetrics = injector.getInstance(HealthCheckMetrics.class);
-
-    healthCheckMetrics.start();
-    testHealthCheck.run();
-    healthCheckMetrics.triggerAll();
+  @Test
+  public void shouldReturnACounterWithCorrectValues() {
+    String testMetricName = "testMetric";
+    TestMetrics testMetrics = new TestMetrics();
+    HealthCheckMetrics healthCheckMetrics = new HealthCheckMetrics(testMetrics, testMetricName);
+    healthCheckMetrics.getFailureCounterMetric();
+    assertThat(testMetrics.metricName).isEqualTo(testMetricName + "/failure");
+    assertThat(testMetrics.metricDescription.toString()).isEqualTo(new Description(String.format("%s healthcheck failures count", testMetricName)).setCumulative()
+            .setRate()
+            .setUnit("failures").toString());
   }
 
   @Test
-  public void shouldSendCounterWhenStatusSummaryFailed() {
-    Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.FAILED, 1L, elapsed, Collections.emptyMap()));
-
-    assertThat(testMetrics.getFailures()).isEqualTo(1);
-    assertThat(testMetrics.getLatency()).isEqualTo(elapsed);
+  public void shouldReturnATimerWithCorrectValues() {
+    String testMetricName = "testMetric";
+    TestMetrics testMetrics = new TestMetrics();
+    HealthCheckMetrics healthCheckMetrics = new HealthCheckMetrics(testMetrics, testMetricName);
+    healthCheckMetrics.getLatencyMetric();
+    assertThat(testMetrics.metricName).isEqualTo(testMetricName + "/latest_latency");
+    assertThat(testMetrics.metricDescription.toString()).isEqualTo(new Description(String.format("%s health check latency execution (ms)", testMetricName))
+            .setCumulative()
+            .setUnit(Description.Units.MILLISECONDS).toString());
   }
 
-  @Test
-  public void shouldSendCounterWhenStatusSummaryTimeout() {
-    Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.TIMEOUT, 1L, elapsed, Collections.emptyMap()));
 
-    assertThat(testMetrics.getFailures()).isEqualTo(1);
-    assertThat(testMetrics.getLatency()).isEqualTo(elapsed);
-  }
-
-  @Test
-  public void shouldNOTSendCounterWhenStatusSummarySuccess() {
-    Long elapsed = 100L;
-    setWithStatusSummary(new StatusSummary(Result.PASSED, 1L, elapsed, Collections.emptyMap()));
-
-    assertThat(testMetrics.failures).isEqualTo(0L);
-    assertThat(testMetrics.getLatency()).isEqualTo(elapsed);
-  }
-
-  private Injector testInjector(AbstractModule testModule) {
-    return Guice.createInjector(new HealthCheckModule(), testModule);
-  }
-
-  @Singleton
   private static class TestMetrics extends DisabledMetricMaker {
-    private Long failures = 0L;
-    private Long latency = 0L;
-
-    public Long getFailures() {
-      return failures;
-    }
-
-    public Long getLatency() {
-      return latency;
-    }
-
-    public void reset() {
-      failures = 0L;
-      latency = 0L;
-    }
+    String metricName;
+    Description metricDescription;
 
     @Override
     public Counter0 newCounter(String name, Description desc) {
+      metricName = name;
+      metricDescription = desc;
       return new Counter0() {
+
         @Override
         public void incrementBy(long value) {
-          if (!name.startsWith("global/")) {
-            failures += value;
-          }
         }
+        @Override
+        public void remove() {}
+
+      };
+    }
+
+    @Override
+    public Timer0 newTimer(String name, Description desc) {
+      metricName = name;
+      metricDescription = desc;
+      return new Timer0(name) {
+        @Override
+        protected void doRecord(long value, TimeUnit unit) {}
 
         @Override
         public void remove() {}
       };
     }
 
-    @Override
-    public <V> CallbackMetric0<V> newCallbackMetric(
-        String name, Class<V> valueClass, Description desc) {
-      return new CallbackMetric0<V>() {
-        @Override
-        public void set(V value) {
-          if (!name.startsWith("global/")) {
-            latency = (Long) value;
-          }
-        }
-
-        @Override
-        public void remove() {}
-      };
-    }
-  }
-
-  private static class TestHealthCheck extends AbstractHealthCheck {
-
-    protected TestHealthCheck(
-        ListeningExecutorService executor, String name, StatusSummary returnStatusSummary) {
-      super(executor, HealthCheckConfig.DEFAULT_CONFIG, name);
-      this.latestStatus = returnStatusSummary;
-    }
-
-    @Override
-    protected Result doCheck() {
-      return latestStatus.result;
-    }
-
-    @Override
-    public StatusSummary run() {
-      return latestStatus;
-    }
   }
 }

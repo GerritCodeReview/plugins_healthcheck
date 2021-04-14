@@ -1,4 +1,4 @@
-// Copyright (C) 2019 The Android Open Source Project
+// Copyright (C) 2021 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.googlesource.gerrit.plugins.healthcheck.check;
+package com.googlesource.gerrit.plugins.healthcheck;
 
-public interface HealthCheckNames {
-  String JGIT = "jgit";
-  String PROJECTSLIST = "projectslist";
-  String QUERYCHANGES = "querychanges";
-  String AUTH = "auth";
-  String ACTIVEWORKERS = "activeworkers";
-  String DEADLOCK = "deadlock";
-  String GLOBAL = "global";
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
+import org.junit.Ignore;
+
+@Ignore
+public class HealthCheckMetricsFactoryMock implements HealthCheckMetricsFactory {
+  @Override
+  public HealthCheckMetrics create(String name) {
+    MetricMaker metricMaker = new DisabledMetricMaker();
+    return new HealthCheckMetrics(metricMaker, name);
+  }
 }

@@ -32,6 +32,7 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class ActiveWorkersCheckTest {
+  HealthCheckMetricsFactory healthCheckMetricsFactory = new HealthCheckMetricsFactoryMock();
 
   @Test
   public void shouldPassCheckWhenNoMetric() {
@@ -139,7 +140,8 @@ public class ActiveWorkersCheckTest {
         injector.getInstance(ListeningExecutorService.class),
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class),
+        healthCheckMetricsFactory);
   }
 
   private class TestModule extends AbstractModule {

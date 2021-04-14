@@ -25,6 +25,7 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
@@ -32,6 +33,7 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class ActiveWorkersCheckTest {
+  @Inject HealthCheckMetricsFactory healthCheckMetricsFactory;
 
   @Test
   public void shouldPassCheckWhenNoMetric() {
@@ -139,7 +141,8 @@ public class ActiveWorkersCheckTest {
         injector.getInstance(ListeningExecutorService.class),
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class),
+        healthCheckMetricsFactory);
   }
 
   private class TestModule extends AbstractModule {

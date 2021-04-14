@@ -24,6 +24,7 @@ import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
@@ -34,13 +35,23 @@ import org.junit.Test;
 
 public class HealthCheckStatusEndpointTest {
 
+  @Inject HealthCheckMetricsFactory healthCheckMetricsFactory;
+
   public static class TestHealthCheck extends AbstractHealthCheck {
     private final HealthCheck.Result checkResult;
     private final long sleep;
 
     public TestHealthCheck(
-        HealthCheckConfig config, String checkName, HealthCheck.Result result, long sleep) {
-      super(MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)), config, checkName);
+        HealthCheckConfig config,
+        String checkName,
+        HealthCheck.Result result,
+        long sleep,
+        HealthCheckMetricsFactory healthCheckMetricsFactory) {
+      super(
+          MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)),
+          config,
+          checkName,
+          healthCheckMetricsFactory);
       this.checkResult = result;
       this.sleep = sleep;
     }
@@ -70,7 +81,11 @@ public class HealthCheckStatusEndpointTest {
                 DynamicSet.bind(binder(), HealthCheck.class)
                     .toInstance(
                         new TestHealthCheck(
-                            DEFAULT_CONFIG, "checkOk", HealthCheck.Result.PASSED, 0));
+                            DEFAULT_CONFIG,
+                            "checkOk",
+                            HealthCheck.Result.PASSED,
+                            0,
+                            healthCheckMetricsFactory));
                 bind(HealthCheckConfig.class).toInstance(DEFAULT_CONFIG);
                 DynamicSet.bind(binder(), MetricMaker.class).toInstance(new DisabledMetricMaker());
               }
@@ -94,7 +109,12 @@ public class HealthCheckStatusEndpointTest {
                     new HealthCheckConfig("[healthcheck]\n" + "timeout = 20");
                 DynamicSet.bind(binder(), HealthCheck.class)
                     .toInstance(
-                        new TestHealthCheck(config, "checkOk", HealthCheck.Result.PASSED, 30));
+                        new TestHealthCheck(
+                            config,
+                            "checkOk",
+                            HealthCheck.Result.PASSED,
+                            30,
+                            healthCheckMetricsFactory));
                 bind(HealthCheckConfig.class).toInstance(config);
               }
             });
@@ -116,11 +136,19 @@ public class HealthCheckStatusEndpointTest {
                 DynamicSet.bind(binder(), HealthCheck.class)
                     .toInstance(
                         new TestHealthCheck(
-                            DEFAULT_CONFIG, "checkOk", HealthCheck.Result.PASSED, 0));
+                            DEFAULT_CONFIG,
+                            "checkOk",
+                            HealthCheck.Result.PASSED,
+                            0,
+                            healthCheckMetricsFactory));
                 DynamicSet.bind(binder(), HealthCheck.class)
                     .toInstance(
                         new TestHealthCheck(
-                            DEFAULT_CONFIG, "checkKo", HealthCheck.Result.FAILED, 0));
+                            DEFAULT_CONFIG,
+                            "checkKo",
+                            HealthCheck.Result.FAILED,
+                            0,
+                            healthCheckMetricsFactory));
               }
             });
 

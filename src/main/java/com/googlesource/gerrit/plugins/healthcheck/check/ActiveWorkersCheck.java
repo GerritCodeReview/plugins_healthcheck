@@ -18,6 +18,8 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
@@ -33,19 +35,22 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
   private Integer threshold;
   private Integer interactiveThreadsMaxPoolSize;
   private MetricRegistry metricRegistry;
+  private final MetricMaker metricMaker;
 
   @Inject
   public ActiveWorkersCheck(
-      @GerritServerConfig Config gerritConfig,
-      ListeningExecutorService executor,
-      HealthCheckConfig healthCheckConfig,
-      ThreadSettingsConfig threadSettingsConfig,
-      MetricRegistry metricRegistry) {
-    super(executor, healthCheckConfig, ACTIVEWORKERS);
+          @GerritServerConfig Config gerritConfig,
+          ListeningExecutorService executor,
+          HealthCheckConfig healthCheckConfig,
+          ThreadSettingsConfig threadSettingsConfig,
+          MetricRegistry metricRegistry,
+          MetricMaker metricMaker) {
+    super(executor, healthCheckConfig, ACTIVEWORKERS, metricMaker);
     this.threshold = healthCheckConfig.getActiveWorkersThreshold(ACTIVEWORKERS);
     this.metricRegistry = metricRegistry;
     this.interactiveThreadsMaxPoolSize =
         getInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig);
+    this.metricMaker = metricMaker;
   }
 
   @Override

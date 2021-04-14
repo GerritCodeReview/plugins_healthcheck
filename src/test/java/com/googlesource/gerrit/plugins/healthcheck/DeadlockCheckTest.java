@@ -28,9 +28,17 @@ import com.google.inject.Injector;
 import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import org.eclipse.jgit.lib.Config;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DeadlockCheckTest {
+
+  HealthCheckMetricsFactory healthCheckMetricsFactory;
+
+  @Before
+  public void setUp() throws Exception {
+    healthCheckMetricsFactory = new HealthCheckMetricsFactoryMock();
+  }
 
   @Test
   public void shouldPassCheckWhenNoMetric() {
@@ -91,7 +99,8 @@ public class DeadlockCheckTest {
     return new DeadlockCheck(
         injector.getInstance(ListeningExecutorService.class),
         DEFAULT_CONFIG,
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class),
+        healthCheckMetricsFactory);
   }
 
   private class TestModule extends AbstractModule {

@@ -16,7 +16,11 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.Timer0;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetricsFactory;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -32,13 +36,26 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   protected volatile StatusSummary latestStatus;
   protected HealthCheckConfig config;
 
+  private final HealthCheckMetricsFactory healthCheckMetricsFactory;
+
+  private final Counter0 failureCounterMetric;
+  private final Timer0 latencyMetric;
+
   protected AbstractHealthCheck(
-      ListeningExecutorService executor, HealthCheckConfig config, String name) {
+      ListeningExecutorService executor,
+      HealthCheckConfig config,
+      String name,
+      HealthCheckMetricsFactory healthCheckMetricsFactory) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
     this.config = config;
     this.latestStatus = StatusSummary.INITIAL_STATUS;
+
+    this.healthCheckMetricsFactory = healthCheckMetricsFactory;
+    HealthCheckMetrics healthCheckMetrics = healthCheckMetricsFactory.create(name);
+    this.failureCounterMetric = healthCheckMetrics.getFailureCounterMetric();
+    this.latencyMetric = healthCheckMetrics.getLatencyMetric();
   }
 
   @Override
@@ -77,8 +94,17 @@ public abstract class AbstractHealthCheck implements HealthCheck {
           new StatusSummary(
               Result.FAILED, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
     }
+    publishMetrics();
     latestStatus = checkStatusSummary.shallowCopy();
     return checkStatusSummary;
+  }
+
+  protected void publishMetrics() {
+    if (!latestStatus.result.equals(Result.PASSED)
+        && !latestStatus.result.equals(Result.DISABLED)) {
+      failureCounterMetric.increment();
+    }
+    latencyMetric.record(latestStatus.elapsed, TimeUnit.MILLISECONDS);
   }
 
   protected abstract Result doCheck() throws Exception;

@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetricsFactory;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,13 +37,16 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
   private final int limit;
   private final OneOffRequestContext oneOffCtx;
 
+  private HealthCheckMetricsFactory healthCheckMetricsFactory;
+
   @Inject
   public QueryChangesHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
       Provider<QueryChanges> queryChangesProvider,
-      OneOffRequestContext oneOffCtx) {
-    super(executor, config, QUERYCHANGES);
+      OneOffRequestContext oneOffCtx,
+      HealthCheckMetricsFactory healthCheckMetricsFactory) {
+    super(executor, config, QUERYCHANGES, healthCheckMetricsFactory);
     this.queryChangesProvider = queryChangesProvider;
     this.config = config;
     this.limit = config.getLimit(QUERYCHANGES);

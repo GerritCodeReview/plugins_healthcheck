@@ -15,7 +15,9 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
+import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.events.LifecycleListener;
 import com.google.gerrit.extensions.registration.DynamicSet;
@@ -24,23 +26,30 @@ import com.google.gerrit.metrics.Counter0;
 import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.metrics.MetricMaker;
+import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.StatusSummary;
 import java.util.Collections;
+
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 
 public class HealthCheckMetricsTest {
 
   @Inject private ListeningExecutorService executor;
+  @Inject private MetricRegistry metricRegistry;
   private TestMetrics testMetrics = new TestMetrics();
+
 
   @Before
   public void setUp() throws Exception {
@@ -48,7 +57,13 @@ public class HealthCheckMetricsTest {
   }
 
   private void setWithStatusSummary(StatusSummary StatusSummary) {
-    TestHealthCheck testHealthCheck = new TestHealthCheck(executor, "test", StatusSummary);
+    TestHealthCheck testHealthCheck = new TestHealthCheck(executor, "test", StatusSummary, testMetrics);
+
+    GlobalHealthCheck globalHealthCheck = new GlobalHealthCheck(
+            null,
+            executor,
+            DEFAULT_CONFIG,
+            metricRegistry, testMetrics);
 
     Injector injector =
         testInjector(
@@ -57,6 +72,7 @@ public class HealthCheckMetricsTest {
               protected void configure() {
                 DynamicSet.bind(binder(), HealthCheck.class).toInstance(testHealthCheck);
                 bind(MetricMaker.class).toInstance(testMetrics);
+                bind(GlobalHealthCheck.class).toInstance(globalHealthCheck);
                 bind(LifecycleListener.class).to(HealthCheckMetrics.class);
               }
             });
@@ -151,8 +167,8 @@ public class HealthCheckMetricsTest {
   private static class TestHealthCheck extends AbstractHealthCheck {
 
     protected TestHealthCheck(
-        ListeningExecutorService executor, String name, StatusSummary returnStatusSummary) {
-      super(executor, HealthCheckConfig.DEFAULT_CONFIG, name);
+        ListeningExecutorService executor, String name, StatusSummary returnStatusSummary, MetricMaker metricMaker) {
+      super(executor, HealthCheckConfig.DEFAULT_CONFIG, name, metricMaker);
       this.latestStatus = returnStatusSummary;
     }
 
@@ -166,4 +182,18 @@ public class HealthCheckMetricsTest {
       return latestStatus;
     }
   }
+
+  private GlobalHealthCheck createCheck(Injector injector) {
+    return createCheck(injector, DEFAULT_CONFIG);
+  }
+
+  private GlobalHealthCheck createCheck(Injector injector, HealthCheckConfig healtchCheckConfig) {
+    MetricMaker metricMaker = new DisabledMetricMaker();
+    return new GlobalHealthCheck(
+            null,
+            injector.getInstance(ListeningExecutorService.class),
+            healtchCheckConfig,
+            injector.getInstance(MetricRegistry.class), metricMaker);
+  }
+
 }

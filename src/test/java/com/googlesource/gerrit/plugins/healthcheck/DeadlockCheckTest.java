@@ -20,6 +20,8 @@ import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFA
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.AbstractModule;
@@ -88,10 +90,11 @@ public class DeadlockCheckTest {
   }
 
   private DeadlockCheck createCheck(Injector injector) {
+    MetricMaker metricMaker = new DisabledMetricMaker();
     return new DeadlockCheck(
         injector.getInstance(ListeningExecutorService.class),
         DEFAULT_CONFIG,
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class), metricMaker);
   }
 
   private class TestModule extends AbstractModule {

@@ -14,23 +14,39 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
+import com.codahale.metrics.MetricRegistry;
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.GLOBAL;
+
 @Singleton
-public class GlobalHealthCheck implements HealthCheck {
+public class GlobalHealthCheck extends AbstractHealthCheck {
 
   private final DynamicSet<HealthCheck> healthChecks;
   private volatile StatusSummary latestStatus = StatusSummary.INITIAL_STATUS;
 
+  private final MetricRegistry metricRegistry;
+  private final MetricMaker metricMaker;
+
   @Inject
-  public GlobalHealthCheck(DynamicSet<HealthCheck> healthChecks) {
+  public GlobalHealthCheck(DynamicSet<HealthCheck> healthChecks, ListeningExecutorService executor,
+                           HealthCheckConfig healthCheckConfig,
+                           MetricRegistry metricRegistry,
+                           MetricMaker metricMaker) {
+    super(executor, healthCheckConfig, GLOBAL, metricMaker);
     this.healthChecks = healthChecks;
+    this.metricRegistry = metricRegistry;
+    this.metricMaker = metricMaker;
   }
 
   @Override
@@ -52,6 +68,12 @@ public class GlobalHealthCheck implements HealthCheck {
     return globalStatus;
   }
 
+  //XXX This need to be implemented...how?? What is it supposed to do?
+  @Override
+  protected Result doCheck() throws Exception {
+    return null;
+  }
+
   public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
     return results.values().stream()
         .filter(
@@ -71,4 +93,6 @@ public class GlobalHealthCheck implements HealthCheck {
   public StatusSummary getLatestStatus() {
     return latestStatus;
   }
+
+
 }

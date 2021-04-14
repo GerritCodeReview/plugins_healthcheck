@@ -16,8 +16,10 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 
+import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -30,13 +32,15 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   private final GitRepositoryManager repositoryManager;
   private final Set<Project.NameKey> repositoryNameKeys;
 
+  private final MetricMaker metricMaker;
+
   @Inject
   public JGitHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
-      GitRepositoryManager repositoryManager) {
-    super(executor, config, JGIT);
-
+      GitRepositoryManager repositoryManager, MetricMaker metricMaker) {
+    super(executor, config, JGIT, metricMaker);
+    this.metricMaker = metricMaker;
     this.repositoryManager = repositoryManager;
     this.repositoryNameKeys = config.getJGITRepositories(JGIT);
   }

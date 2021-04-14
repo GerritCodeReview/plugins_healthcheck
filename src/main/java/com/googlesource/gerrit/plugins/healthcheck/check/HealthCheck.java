@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
+import com.google.gerrit.extensions.registration.RegistrationHandle;
+import com.google.gerrit.metrics.CallbackMetric0;
+import com.google.gerrit.metrics.Counter0;
 import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,4 +69,12 @@ public interface HealthCheck {
   String name();
 
   StatusSummary getLatestStatus();
+
+  Counter0 getFailureCounterMetric();
+
+  CallbackMetric0 <Long> getLatencyMetric();
+
+  Runnable getCallbackMetric(Counter0 failureMetric, CallbackMetric0<Long> latencyMetric);
+
+  RegistrationHandle getNewTrigger(Counter0 failureMetric, CallbackMetric0<Long> latencyMetric);
 }

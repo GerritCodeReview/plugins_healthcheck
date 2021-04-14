@@ -16,6 +16,11 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.extensions.registration.RegistrationHandle;
+import com.google.gerrit.metrics.CallbackMetric0;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.Description;
+import com.google.gerrit.metrics.MetricMaker;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
@@ -31,14 +36,32 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   private final ListeningExecutorService executor;
   protected volatile StatusSummary latestStatus;
   protected HealthCheckConfig config;
+  private final MetricMaker metricMaker;
+
+  private final Counter0 failureCounterMetric;
+  private final CallbackMetric0<Long> latencyMetric;
 
   protected AbstractHealthCheck(
-      ListeningExecutorService executor, HealthCheckConfig config, String name) {
+      ListeningExecutorService executor, HealthCheckConfig config, String name, MetricMaker metricMaker) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
     this.config = config;
     this.latestStatus = StatusSummary.INITIAL_STATUS;
+    this.metricMaker = metricMaker;
+
+    this.failureCounterMetric = metricMaker.newCounter(
+            String.format("%s/failure", name),
+            new Description(String.format("%s healthcheck failures count", name))
+                    .setCumulative()
+                    .setRate()
+                    .setUnit("failures"));
+    this.latencyMetric = metricMaker.newCallbackMetric(
+            String.format("%s/latest_latency", name),
+            Long.class,
+            new Description(String.format("%s health check latency execution (ms)", name))
+                    .setGauge()
+                    .setUnit(Description.Units.MILLISECONDS));
   }
 
   @Override
@@ -71,11 +94,13 @@ public abstract class AbstractHealthCheck implements HealthCheck {
       checkStatusSummary =
           new StatusSummary(
               Result.TIMEOUT, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
+      this.getFailureCounterMetric().increment();
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
       checkStatusSummary =
           new StatusSummary(
               Result.FAILED, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
+      this.getFailureCounterMetric().increment();
     }
     latestStatus = checkStatusSummary.shallowCopy();
     return checkStatusSummary;
@@ -86,5 +111,25 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   @Override
   public StatusSummary getLatestStatus() {
     return latestStatus;
+  }
+
+  @Override
+  public Counter0 getFailureCounterMetric() { return this.failureCounterMetric; }
+
+  @Override
+  public CallbackMetric0<Long> getLatencyMetric() { return this.latencyMetric; }
+
+  @Override
+  public Runnable getCallbackMetric(Counter0 failureMetric, CallbackMetric0<Long> latencyMetric) {
+    return () -> {
+      HealthCheck.StatusSummary status = this.getLatestStatus();
+      latencyMetric.set(this.getLatestStatus().elapsed);
+
+    };
+  }
+
+  @Override
+  public RegistrationHandle getNewTrigger(Counter0 failureMetric, CallbackMetric0<Long> latencyMetric) {
+    return metricMaker.newTrigger(latencyMetric, getCallbackMetric(failureMetric, latencyMetric));
   }
 }

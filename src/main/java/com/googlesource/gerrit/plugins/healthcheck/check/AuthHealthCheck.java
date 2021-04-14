@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.account.AccountCache;
 import com.google.gerrit.server.account.AccountState;
 import com.google.gerrit.server.account.AuthRequest;
@@ -35,19 +36,22 @@ public class AuthHealthCheck extends AbstractHealthCheck {
   private final AccountCache byIdCache;
   private final String username;
   private final String password;
+  private final MetricMaker metricMaker;
 
   @Inject
   public AuthHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
       Realm realm,
-      AccountCache byIdCache) {
-    super(executor, config, AUTH);
+      AccountCache byIdCache,
+      MetricMaker metricMaker) {
+    super(executor, config, AUTH, metricMaker);
 
     this.realm = realm;
     this.byIdCache = byIdCache;
     this.username = config.getUsername(AUTH);
     this.password = config.getPassword(AUTH);
+    this.metricMaker = metricMaker;
   }
 
   @Override

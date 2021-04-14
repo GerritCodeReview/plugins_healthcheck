@@ -21,4 +21,5 @@ public interface HealthCheckNames {
   String AUTH = "auth";
   String ACTIVEWORKERS = "activeworkers";
   String DEADLOCK = "deadlock";
+  String GLOBAL = "global";
 }

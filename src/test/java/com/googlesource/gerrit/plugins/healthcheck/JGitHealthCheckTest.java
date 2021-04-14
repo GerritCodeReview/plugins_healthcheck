@@ -21,6 +21,7 @@ import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;
@@ -51,6 +52,7 @@ public class JGitHealthCheckTest {
   private PersonIdent personIdent = new PersonIdent("Gerrit Rietveld", "gerrit@rietveld.nl");
 
   @Inject private ListeningExecutorService executor;
+  @Inject HealthCheckMetricsFactory healthCheckMetricsFactory;
 
   @Before
   public void setupAllProjects() throws Exception {
@@ -68,14 +70,14 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck check =
-        new JGitHealthCheck(executor, DEFAULT_CONFIG, getWorkingRepositoryManager());
+        new JGitHealthCheck(executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), healthCheckMetricsFactory);
     assertThat(check.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailingForAllRepos() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, DEFAULT_CONFIG, getFailingGitRepositoryManager());
+        new JGitHealthCheck(executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -89,7 +91,7 @@ public class JGitHealthCheckTest {
                 + "  project = All-Users\n"
                 + "  project = Not-Existing-Repo");
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, config, getWorkingRepositoryManager());
+        new JGitHealthCheck(executor, config, getWorkingRepositoryManager(), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

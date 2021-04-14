@@ -14,101 +14,39 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Sets;
-import com.google.gerrit.extensions.events.LifecycleListener;
-import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.gerrit.extensions.registration.RegistrationHandle;
-import com.google.gerrit.metrics.CallbackMetric0;
 import com.google.gerrit.metrics.Counter0;
 import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.MetricMaker;
+import com.google.gerrit.metrics.Timer0;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.inject.assistedinject.Assisted;
 
-@Singleton
-public class HealthCheckMetrics implements LifecycleListener {
+public class HealthCheckMetrics {
 
-  private final DynamicSet<HealthCheck> healthChecks;
   private final MetricMaker metricMaker;
-  private final Set<RegistrationHandle> registeredMetrics;
-  private final Set<Runnable> triggers;
-  private final GlobalHealthCheck globalHealthCheck;
+  private final String name;
 
   @Inject
-  public HealthCheckMetrics(
-      DynamicSet<HealthCheck> healthChecks,
-      GlobalHealthCheck globalHealthCheck,
-      MetricMaker metricMaker) {
-    this.healthChecks = healthChecks;
+  public HealthCheckMetrics(MetricMaker metricMaker, @Assisted String name) {
     this.metricMaker = metricMaker;
-    this.registeredMetrics = Collections.synchronizedSet(new HashSet<>());
-    this.triggers = Collections.synchronizedSet(new HashSet<>());
-    this.globalHealthCheck = globalHealthCheck;
+    this.name = name;
   }
 
-  @Override
-  public void start() {
+  public Counter0 getFailureCounterMetric() {
+    Counter0 failureCounter =  metricMaker.newCounter(
+            String.format("%s/failure", name),
+            new Description(String.format("%s healthcheck failures count", name))
+                    .setCumulative()
+                    .setRate()
+                    .setUnit("failures"));
 
-    Set<HealthCheck> allChecks = Sets.newHashSet(healthChecks);
-    allChecks.add(globalHealthCheck);
 
-    for (HealthCheck healthCheck : allChecks) {
-      String name = healthCheck.name();
+    return failureCounter;
 
-      Counter0 failureMetric = getFailureMetric(name);
-      CallbackMetric0<Long> latencyMetric = getLatencyMetric(name);
-      Runnable metricCallBack = getCallbackMetric(healthCheck, failureMetric, latencyMetric);
-
-      registeredMetrics.add(failureMetric);
-      registeredMetrics.add(metricMaker.newTrigger(latencyMetric, metricCallBack));
-      triggers.add(metricCallBack);
-    }
   }
 
-  private Runnable getCallbackMetric(
-      HealthCheck healthCheck, Counter0 failureMetric, CallbackMetric0<Long> latencyMetric) {
-    return () -> {
-      HealthCheck.StatusSummary status = healthCheck.getLatestStatus();
-      latencyMetric.set(healthCheck.getLatestStatus().elapsed);
-      if (status.isFailure()) {
-        failureMetric.increment();
-      }
-    };
+  public Timer0 getLatencyMetric() {
+    return metricMaker.newTimer(String.format("%s/latest_latency", name), new Description(String.format("%s health check latency execution (ms)", name)).setCumulative().setUnit(Description.Units.MILLISECONDS));
   }
 
-  private CallbackMetric0<Long> getLatencyMetric(String name) {
-    return metricMaker.newCallbackMetric(
-        String.format("%s/latest_latency", name),
-        Long.class,
-        new Description(String.format("%s health check latency execution (ms)", name))
-            .setGauge()
-            .setUnit(Description.Units.MILLISECONDS));
-  }
-
-  private Counter0 getFailureMetric(String name) {
-    return metricMaker.newCounter(
-        String.format("%s/failure", name),
-        new Description(String.format("%s healthcheck failures count", name))
-            .setCumulative()
-            .setRate()
-            .setUnit("failures"));
-  }
-
-  @Override
-  public void stop() {
-    for (RegistrationHandle handle : registeredMetrics) {
-      handle.remove();
-    }
-  }
-
-  @VisibleForTesting
-  public void triggerAll() {
-    triggers.forEach(Runnable::run);
-  }
 }

@@ -14,6 +14,10 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
+import com.google.gerrit.extensions.registration.RegistrationHandle;
+import com.google.gerrit.metrics.CallbackMetric0;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.Timer0;
 import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
 import java.util.Collections;

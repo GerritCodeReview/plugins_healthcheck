@@ -14,22 +14,31 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.GLOBAL;
+
+import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetricsFactory;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Singleton
-public class GlobalHealthCheck implements HealthCheck {
+public class GlobalHealthCheck extends AbstractHealthCheck {
 
   private final DynamicSet<HealthCheck> healthChecks;
-  private volatile StatusSummary latestStatus = StatusSummary.INITIAL_STATUS;
 
   @Inject
-  public GlobalHealthCheck(DynamicSet<HealthCheck> healthChecks) {
+  public GlobalHealthCheck(
+      DynamicSet<HealthCheck> healthChecks,
+      ListeningExecutorService executor,
+      HealthCheckConfig healthCheckConfig,
+      HealthCheckMetricsFactory healthCheckMetricsFactory) {
+    super(executor, healthCheckConfig, GLOBAL, healthCheckMetricsFactory);
     this.healthChecks = healthChecks;
   }
 
@@ -48,8 +57,15 @@ public class GlobalHealthCheck implements HealthCheck {
             ts,
             elapsed,
             checkToResults);
+
     latestStatus = globalStatus.shallowCopy();
+    publishMetrics();
     return globalStatus;
+  }
+
+  @Override
+  protected Result doCheck() {
+    return run().result;
   }
 
   public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
@@ -60,15 +76,5 @@ public class GlobalHealthCheck implements HealthCheck {
                     && ((HealthCheck.StatusSummary) res).isFailure())
         .findAny()
         .isPresent();
-  }
-
-  @Override
-  public String name() {
-    return "global";
-  }
-
-  @Override
-  public StatusSummary getLatestStatus() {
-    return latestStatus;
   }
 }

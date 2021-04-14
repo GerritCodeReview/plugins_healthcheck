@@ -52,6 +52,8 @@ public class JGitHealthCheckTest {
 
   @Inject private ListeningExecutorService executor;
 
+  HealthCheckMetricsFactory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+
   @Before
   public void setupAllProjects() throws Exception {
     Guice.createInjector(new HealthCheckModule()).injectMembers(this);
@@ -68,14 +70,16 @@ public class JGitHealthCheckTest {
   @Test
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck check =
-        new JGitHealthCheck(executor, DEFAULT_CONFIG, getWorkingRepositoryManager());
+        new JGitHealthCheck(
+            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), healthCheckMetricsFactory);
     assertThat(check.run().result).isEqualTo(Result.PASSED);
   }
 
   @Test
   public void shouldBeUnhealthyWhenJGitIsFailingForAllRepos() {
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, DEFAULT_CONFIG, getFailingGitRepositoryManager());
+        new JGitHealthCheck(
+            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -89,7 +93,8 @@ public class JGitHealthCheckTest {
                 + "  project = All-Users\n"
                 + "  project = Not-Existing-Repo");
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(executor, config, getWorkingRepositoryManager());
+        new JGitHealthCheck(
+            executor, config, getWorkingRepositoryManager(), healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

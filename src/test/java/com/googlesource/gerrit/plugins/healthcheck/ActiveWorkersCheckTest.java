@@ -32,15 +32,7 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class ActiveWorkersCheckTest {
-
-  @Test
-  public void shouldPassCheckWhenNoMetric() {
-
-    Injector injector = testInjector(new TestModule(new Config(), new MetricRegistry()));
-
-    ActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
-  }
+  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
 
   @Test
   public void shouldPassCheckWhenNoActiveWorkers() {
@@ -139,7 +131,8 @@ public class ActiveWorkersCheckTest {
         injector.getInstance(ListeningExecutorService.class),
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class),
+        healthCheckMetricsFactory);
   }
 
   private class TestModule extends AbstractModule {

@@ -22,6 +22,7 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 
@@ -33,6 +34,7 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
   private Integer threshold;
   private Integer interactiveThreadsMaxPoolSize;
   private MetricRegistry metricRegistry;
+  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
 
   @Inject
   public ActiveWorkersCheck(
@@ -40,8 +42,9 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
       ThreadSettingsConfig threadSettingsConfig,
-      MetricRegistry metricRegistry) {
-    super(executor, healthCheckConfig, ACTIVEWORKERS);
+      MetricRegistry metricRegistry,
+      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
+    super(executor, healthCheckConfig, ACTIVEWORKERS, healthCheckMetricsFactory);
     this.threshold = healthCheckConfig.getActiveWorkersThreshold(ACTIVEWORKERS);
     this.metricRegistry = metricRegistry;
     this.interactiveThreadsMaxPoolSize =

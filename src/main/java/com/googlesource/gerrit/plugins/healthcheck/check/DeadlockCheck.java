@@ -20,6 +20,7 @@ import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetricsFactory;
 import java.util.Optional;
 
 public class DeadlockCheck extends AbstractHealthCheck {
@@ -28,13 +29,15 @@ public class DeadlockCheck extends AbstractHealthCheck {
       "proc/jvm/thread/num_deadlocked_threads";
 
   private final MetricRegistry metricRegistry;
+  private HealthCheckMetricsFactory healthCheckMetricsFactory;
 
   @Inject
   public DeadlockCheck(
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
-      MetricRegistry metricRegistry) {
-    super(executor, healthCheckConfig, DEADLOCK);
+      MetricRegistry metricRegistry,
+      HealthCheckMetricsFactory healthCheckMetricsFactory) {
+    super(executor, healthCheckConfig, DEADLOCK, healthCheckMetricsFactory);
     this.metricRegistry = metricRegistry;
   }
 

@@ -45,6 +45,29 @@
       },
       "revId": "3eead130a984c96dd9190c09a50cb64820bced7e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "393c8d34_6c1850df",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsFactoryMock.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T08:46:16Z",
+      "side": 1,
+      "message": "@Ignore",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "3eead130a984c96dd9190c09a50cb64820bced7e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

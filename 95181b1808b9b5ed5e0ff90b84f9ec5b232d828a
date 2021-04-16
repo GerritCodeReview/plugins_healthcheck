@@ -16,6 +16,126 @@
       "message": "Verified on both primary and replica.",
       "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c4f9245_cee7560e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: usually factories are defined within the classes they construct.\n\nYou could consider moving this within HealthCheckMetrics.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3ee8ec5_c458f44b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckSubsystemsModule.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: you could extends FactoryModule and use the factory() method here.",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c66a3eb_471b41db",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: empty line",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5008ef6c_7f29210f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: empty line",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a853dc1f_0e062d99",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: it\u0027s not obvious where this comes from. Perhaps you can encapsulate it in a static variable in TestMetricMaker?",
+      "range": {
+        "startLine": 53,
+        "startChar": 55,
+        "endLine": 53,
+        "endChar": 59
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d07608c_42e65443",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T13:18:51Z",
+      "side": 1,
+      "message": "nit: you don\u0027t need this @Inject right? you are always instantiating TestCheck explicitly",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

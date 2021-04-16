@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df16041f_2dd094fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "I am a bit confused by what you mean by \"check\".\ndo you mean that the metrics are published after the execution of the healthcheck?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "452bfc77_c4d4e9e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "prometheus is just one of the ways of polling the metrics registry.\nPerhaps we should be more generic here?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb76159_1d101c60",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "I am thinking that, as a follow up change, we could not remove the latestStatus: metrics are published immediately upon execution, so we do not need to remember the latest status of the execution right?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5958bf_8c6fca9f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "Any reason why we don\u0027t check Result.FAILED directly?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 58
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "015e09e4_d5f73cb5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "How is this change related to the inversion of metrics publishing?",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5258703a_5b532ac3",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsFactoryMock.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "Perhaps mock implies that it uses mockito?\nHow about DisabledHealthCheckMetricsFactory or TestHealthCheckMetricsFactory or DummyHealthCheckMetricsFactory?",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e120a2_a0e1b446",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-04-16T10:08:42Z",
+      "side": 1,
+      "message": "as above, is the introduction of global healthcheck part of this change?",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 76
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

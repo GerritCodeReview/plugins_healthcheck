@@ -41,6 +41,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1877e5bb_69e917cc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsFactory.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c4f9245_cee7560e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3ee8ec5_c458f44b",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-16T13:18:51Z",
       "side": 1,
       "message": "nit: you could extends FactoryModule and use the factory() method here.",
+      "range": {
+        "startLine": 39,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91153789_a9047314",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckSubsystemsModule.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "you mean extending `HealthCheckModule` with `FactoryModule` ?",
+      "parentUuid": "d3ee8ec5_c458f44b",
       "range": {
         "startLine": 39,
         "startChar": 1,
@@ -81,6 +129,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe72673d_ced6a2c5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c66a3eb_471b41db",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5008ef6c_7f29210f",
@@ -94,6 +160,24 @@
       "writtenOn": "2021-04-16T13:18:51Z",
       "side": 1,
       "message": "nit: empty line",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8992bf1f_c45d0229",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5008ef6c_7f29210f",
       "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -121,6 +205,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ff186e_8b581932",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "mmm..good point",
+      "parentUuid": "a853dc1f_0e062d99",
+      "range": {
+        "startLine": 53,
+        "startChar": 55,
+        "endLine": 53,
+        "endChar": 59
+      },
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d07608c_42e65443",
@@ -134,6 +242,24 @@
       "writtenOn": "2021-04-16T13:18:51Z",
       "side": 1,
       "message": "nit: you don\u0027t need this @Inject right? you are always instantiating TestCheck explicitly",
+      "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95bdf0c5_af7f7bb7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T17:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d07608c_42e65443",
       "revId": "95181b1808b9b5ed5e0ff90b84f9ec5b232d828a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

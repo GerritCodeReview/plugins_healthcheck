@@ -48,6 +48,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c09c3260_ebe9ac48",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T13:02:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00258c4f_f4191838",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 39
+      },
+      "revId": "3eead130a984c96dd9190c09a50cb64820bced7e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "437c3245_e0856268",

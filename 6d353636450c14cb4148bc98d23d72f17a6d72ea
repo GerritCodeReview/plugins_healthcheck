@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c9af28a_3ae3c45a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df16041f_2dd094fb",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "452bfc77_c4d4e9e4",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa4735d_f0e18dd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "452bfc77_c4d4e9e4",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bb76159_1d101c60",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-04-16T10:08:42Z",
       "side": 1,
       "message": "I am thinking that, as a follow up change, we could not remove the latestStatus: metrics are published immediately upon execution, so we do not need to remember the latest status of the execution right?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8a38d6_17440e4c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "Correct, I was thinking it as well. It will definitively simplify the flow.",
+      "parentUuid": "7bb76159_1d101c60",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd4af2ab_395fbff0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "Because we have Result.FAILED and Result.TIMEOUT. I initially thought of checking this way:\n\n   if (Result.FAILED || Result.TIMEOUT)\n\nBut we might add more failing Result statuses (?), hence I wanted to avoid adding code in that case. TBH I think mine it is not a really strong point.\n\nShall I change to avoid the negation? I can even add a private method `isFailed` to encapsulate it even more. WDYT?",
+      "parentUuid": "2e5958bf_8c6fca9f",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 58
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "015e09e4_d5f73cb5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
         "patchSetId": 14
@@ -106,6 +202,30 @@
       "writtenOn": "2021-04-16T10:08:42Z",
       "side": 1,
       "message": "How is this change related to the inversion of metrics publishing?",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd858c8b_2754b47a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "`GlobalHealthcheck` is now implementing AbstractHealtcheck, no more the `HealthcCheck` interface, hence I made it consistent with the other checks.",
+      "parentUuid": "015e09e4_d5f73cb5",
       "range": {
         "startLine": 24,
         "startChar": 2,
@@ -139,6 +259,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20de106d_386929d1",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckMetricsFactoryMock.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "good point",
+      "parentUuid": "5258703a_5b532ac3",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67e120a2_a0e1b446",
@@ -152,6 +296,30 @@
       "writtenOn": "2021-04-16T10:08:42Z",
       "side": 1,
       "message": "as above, is the introduction of global healthcheck part of this change?",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 76
+      },
+      "revId": "6d353636450c14cb4148bc98d23d72f17a6d72ea",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fcb5d15_f8fd152e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckStatusEndpointTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-16T12:26:21Z",
+      "side": 1,
+      "message": "nope, GlobalHealthCheck hasn\u0027t been introduced in this change but it is now implementing an abstract class.",
+      "parentUuid": "67e120a2_a0e1b446",
       "range": {
         "startLine": 93,
         "startChar": 16,

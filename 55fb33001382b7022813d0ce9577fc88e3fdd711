@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "734a70bc_7a92ca8b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2845d351_15cf4c30",
+      "range": {
+        "startLine": 38,
+        "startChar": 43,
+        "endLine": 38,
+        "endChar": 68
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcbe6ecd_9be7cbdb",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-17T02:23:24Z",
       "side": 1,
       "message": "This is now unused and can be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "519bf296_e03f9dd9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "It is currently used in the `publishMetrics` method to set the latency metric.",
+      "parentUuid": "fcbe6ecd_9be7cbdb",
       "range": {
         "startLine": 41,
         "startChar": 23,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ab11669_07099871",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "I thought about that, but I preferred to have a dedicated method for it for 2 reasons:\n* all the metric logic is concentrate in one place\n* the same method can be reused by classes extending the AbstractHealthCheck one (i.e. GlobalHealthCheck)\n\nUnless you think the extra check is a big problem I would prefer to leave it there.\nWDYT?",
+      "parentUuid": "4e55f2da_aa98301a",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46a18843_491434bf",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 18
@@ -83,6 +155,30 @@
       "writtenOn": "2021-04-17T02:23:24Z",
       "side": 1,
       "message": "This can be inlined at L97",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 70
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "417f7800_7968c1d8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "Same a previous comment",
+      "parentUuid": "46a18843_491434bf",
       "range": {
         "startLine": 105,
         "startChar": 4,
@@ -116,6 +212,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98bbd454_23823661",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b5418be_881201ec",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 3
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8314c99_633c7f11",
@@ -129,6 +249,30 @@
       "writtenOn": "2021-04-17T02:23:24Z",
       "side": 1,
       "message": "This is now redundant: just publish the metrics based on the globalStatus.",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 46
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b19512_57ec341e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-19T08:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8314c99_633c7f11",
       "range": {
         "startLine": 60,
         "startChar": 4,

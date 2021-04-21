@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f833d3d8_bd9afbb0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-21T09:18:20Z",
+      "side": 1,
+      "message": "The problem is the use of \u0027latestStatus\u0027 which isn\u0027t good as it makes the method non-reentrant. The reuse benefit is by far less than the reentrancy risk.",
+      "parentUuid": "2ab11669_07099871",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46a18843_491434bf",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
         "patchSetId": 18

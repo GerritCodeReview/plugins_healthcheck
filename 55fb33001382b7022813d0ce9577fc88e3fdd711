@@ -190,6 +190,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17020bb5_20f8e973",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-22T23:49:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c956feb1_672b0a76",
+      "range": {
+        "startLine": 103,
+        "startChar": 6,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46a18843_491434bf",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "Same a previous comment",
       "parentUuid": "46a18843_491434bf",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 70
+      },
+      "revId": "55fb33001382b7022813d0ce9577fc88e3fdd711",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feb80d31_42785648",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-22T23:49:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "417f7800_7968c1d8",
       "range": {
         "startLine": 105,
         "startChar": 4,

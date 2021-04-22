@@ -16,7 +16,10 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.Timer0;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -32,13 +35,23 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   protected volatile StatusSummary latestStatus;
   protected HealthCheckConfig config;
 
+  protected final Counter0 failureCounterMetric;
+  protected final Timer0 latencyMetric;
+
   protected AbstractHealthCheck(
-      ListeningExecutorService executor, HealthCheckConfig config, String name) {
+      ListeningExecutorService executor,
+      HealthCheckConfig config,
+      String name,
+      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
     this.config = config;
     this.latestStatus = StatusSummary.INITIAL_STATUS;
+
+    HealthCheckMetrics healthCheckMetrics = healthCheckMetricsFactory.create(name);
+    this.failureCounterMetric = healthCheckMetrics.getFailureCounterMetric();
+    this.latencyMetric = healthCheckMetrics.getLatencyMetric();
   }
 
   @Override
@@ -61,30 +74,32 @@ public abstract class AbstractHealthCheck implements HealthCheck {
                 log.warn("Check {} failed", name, e);
                 healthy = Result.FAILED;
               }
-              return new StatusSummary(
-                  healthy, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
+              Long elapsed = System.currentTimeMillis() - ts;
+              StatusSummary statusSummary =
+                  new StatusSummary(healthy, ts, elapsed, Collections.emptyMap());
+              if (statusSummary.isFailure()) {
+                failureCounterMetric.increment();
+              }
+              latencyMetric.record(elapsed, TimeUnit.MILLISECONDS);
+              return statusSummary;
             });
     try {
       checkStatusSummary = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
       log.warn("Check {} timed out", name, e);
-      checkStatusSummary =
-          new StatusSummary(
-              Result.TIMEOUT, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
+      Long elapsed = System.currentTimeMillis() - ts;
+      checkStatusSummary = new StatusSummary(Result.TIMEOUT, ts, elapsed, Collections.emptyMap());
+      failureCounterMetric.increment();
+      latencyMetric.record(elapsed, TimeUnit.MILLISECONDS);
     } catch (InterruptedException | ExecutionException e) {
       log.warn("Check {} failed while waiting for its future result", name, e);
-      checkStatusSummary =
-          new StatusSummary(
-              Result.FAILED, ts, System.currentTimeMillis() - ts, Collections.emptyMap());
+      Long elapsed = System.currentTimeMillis() - ts;
+      checkStatusSummary = new StatusSummary(Result.FAILED, ts, elapsed, Collections.emptyMap());
+      failureCounterMetric.increment();
+      latencyMetric.record(elapsed, TimeUnit.MILLISECONDS);
     }
-    latestStatus = checkStatusSummary.shallowCopy();
     return checkStatusSummary;
   }
 
   protected abstract Result doCheck() throws Exception;
-
-  @Override
-  public StatusSummary getLatestStatus() {
-    return latestStatus;
-  }
 }

@@ -14,9 +14,8 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import com.google.gerrit.extensions.events.LifecycleListener;
+import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.gerrit.extensions.registration.DynamicSet;
-import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
@@ -25,7 +24,7 @@ import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.QueryChangesHealthCheck;
 
-public class HealthCheckSubsystemsModule extends AbstractModule {
+public class HealthCheckSubsystemsModule extends FactoryModule {
 
   @Override
   protected void configure() {
@@ -35,7 +34,8 @@ public class HealthCheckSubsystemsModule extends AbstractModule {
     bindChecker(AuthHealthCheck.class);
     bindChecker(ActiveWorkersCheck.class);
     bindChecker(DeadlockCheck.class);
-    bind(LifecycleListener.class).to(HealthCheckMetrics.class);
+
+    factory(HealthCheckMetrics.Factory.class);
   }
 
   private void bindChecker(Class<? extends HealthCheck> healthCheckClass) {

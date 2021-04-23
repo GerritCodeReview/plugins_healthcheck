@@ -32,6 +32,8 @@ import org.junit.Test;
 
 public class DeadlockCheckTest {
 
+  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+
   @Test
   public void shouldPassCheckWhenNoMetric() {
 
@@ -91,7 +93,8 @@ public class DeadlockCheckTest {
     return new DeadlockCheck(
         injector.getInstance(ListeningExecutorService.class),
         DEFAULT_CONFIG,
-        injector.getInstance(MetricRegistry.class));
+        injector.getInstance(MetricRegistry.class),
+        healthCheckMetricsFactory);
   }
 
   private class TestModule extends AbstractModule {

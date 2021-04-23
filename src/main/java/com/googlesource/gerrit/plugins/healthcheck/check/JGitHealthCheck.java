@@ -22,6 +22,7 @@ import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Set;
 import org.eclipse.jgit.lib.Repository;
 
@@ -30,13 +31,15 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   private final GitRepositoryManager repositoryManager;
   private final Set<Project.NameKey> repositoryNameKeys;
 
+  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
+
   @Inject
   public JGitHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
-      GitRepositoryManager repositoryManager) {
-    super(executor, config, JGIT);
-
+      GitRepositoryManager repositoryManager,
+      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
+    super(executor, config, JGIT, healthCheckMetricsFactory);
     this.repositoryManager = repositoryManager;
     this.repositoryNameKeys = config.getJGITRepositories(JGIT);
   }

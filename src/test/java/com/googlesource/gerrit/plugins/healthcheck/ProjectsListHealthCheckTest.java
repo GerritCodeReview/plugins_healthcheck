@@ -21,8 +21,11 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.BadRequestException;
 import com.google.gerrit.server.restapi.project.ListProjects;
+import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.google.inject.util.Providers;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
 import java.util.SortedMap;
@@ -30,13 +33,19 @@ import java.util.TreeMap;
 import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ProjectsListHealthCheckTest {
   @Inject private ListeningExecutorService executor;
 
   HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
 
   private Config gerritConfig = new Config();
+
+  @Mock private OneOffRequestContext mockOneOffCtx;
 
   @Before
   public void setUp() throws Exception {
@@ -47,7 +56,11 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeHealthyWhenListProjectsWorks() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingProjectList(0), healthCheckMetricsFactory);
+            executor,
+            DEFAULT_CONFIG,
+            getWorkingProjectList(0),
+            mockOneOffCtx,
+            healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
   }
 
@@ -55,7 +68,11 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeUnhealthyWhenListProjectsIsFailing() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingProjectList(), healthCheckMetricsFactory);
+            executor,
+            DEFAULT_CONFIG,
+            getFailingProjectList(),
+            mockOneOffCtx,
+            healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -66,34 +83,37 @@ public class ProjectsListHealthCheckTest {
             executor,
             DEFAULT_CONFIG,
             getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2),
+            mockOneOffCtx,
             healthCheckMetricsFactory);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
   }
 
-  private ListProjects getFailingProjectList() {
-    return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
+  private Provider<ListProjects> getFailingProjectList() {
+    return Providers.of(
+        new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
 
-      @Override
-      public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
-        throw new IllegalArgumentException("Unable to return project list");
-      }
-    };
+          @Override
+          public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
+            throw new IllegalArgumentException("Unable to return project list");
+          }
+        });
   }
 
-  private ListProjects getWorkingProjectList(long execTime) {
-    return new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
+  private Provider<ListProjects> getWorkingProjectList(long execTime) {
+    return Providers.of(
+        new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
 
-      @Override
-      public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
-        SortedMap<String, ProjectInfo> projects = new TreeMap<>();
-        projects.put("testproject", new ProjectInfo());
-        try {
-          Thread.sleep(execTime);
-        } catch (InterruptedException e) {
-          throw new IllegalStateException(e);
-        }
-        return projects;
-      }
-    };
+          @Override
+          public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
+            SortedMap<String, ProjectInfo> projects = new TreeMap<>();
+            projects.put("testproject", new ProjectInfo());
+            try {
+              Thread.sleep(execTime);
+            } catch (InterruptedException e) {
+              throw new IllegalStateException(e);
+            }
+            return projects;
+          }
+        });
   }
 }

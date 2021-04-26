@@ -16,14 +16,12 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gerrit.metrics.Counter0;
 import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.metrics.Timer0;
-import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import java.util.concurrent.Executors;
@@ -33,7 +31,6 @@ import org.junit.Test;
 
 public class AbstractHealthCheckTest {
 
-  private ListeningExecutorService executor;
   MetricMaker testMetricMaker;
   DummyHealthCheckMetricsFactory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
 
@@ -104,17 +101,13 @@ public class AbstractHealthCheckTest {
 
   private TestCheck createTestCheckWithStatus(HealthCheck.Result result) {
     return new TestCheck(
-        executor, HealthCheckConfig.DEFAULT_CONFIG, "testCheck", healthCheckMetricsFactory, result);
+        HealthCheckConfig.DEFAULT_CONFIG, "testCheck", healthCheckMetricsFactory, result);
   }
 
   private static class TestCheck extends AbstractHealthCheck {
-    @Inject private ListeningExecutorService executor;
     private final Result finalResult;
-    private DummyHealthCheckMetricsFactory healthCheckMetricsFactory =
-        new DummyHealthCheckMetricsFactory();
 
     public TestCheck(
-        ListeningExecutorService executor,
         HealthCheckConfig config,
         String name,
         HealthCheckMetrics.Factory healthCheckMetricsFactory,

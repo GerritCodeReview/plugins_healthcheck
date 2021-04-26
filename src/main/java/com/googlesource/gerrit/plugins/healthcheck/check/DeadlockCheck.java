@@ -29,7 +29,6 @@ public class DeadlockCheck extends AbstractHealthCheck {
       "proc/jvm/thread/num_deadlocked_threads";
 
   private final MetricRegistry metricRegistry;
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
 
   @Inject
   public DeadlockCheck(

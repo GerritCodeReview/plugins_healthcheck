@@ -45,9 +45,6 @@ public class DeadlockCheckTest {
 
   @Test
   public void shouldPassCheckWhenNoDeadlock() {
-
-    MetricRegistry metricRegistry = createMetricRegistry(0);
-
     Injector injector = testInjector(new TestModule(createMetricRegistry(0)));
 
     DeadlockCheck check = createCheck(injector);

@@ -31,8 +31,6 @@ public class JGitHealthCheck extends AbstractHealthCheck {
   private final GitRepositoryManager repositoryManager;
   private final Set<Project.NameKey> repositoryNameKeys;
 
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
-
   @Inject
   public JGitHealthCheck(
       ListeningExecutorService executor,

@@ -33,11 +33,8 @@ import org.slf4j.LoggerFactory;
 public class QueryChangesHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(QueryChangesHealthCheck.class);
   private final Provider<QueryChanges> queryChangesProvider;
-  private final HealthCheckConfig config;
   private final int limit;
   private final OneOffRequestContext oneOffCtx;
-
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
 
   @Inject
   public QueryChangesHealthCheck(

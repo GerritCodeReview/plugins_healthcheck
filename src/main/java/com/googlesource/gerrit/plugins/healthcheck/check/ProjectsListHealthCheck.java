@@ -33,8 +33,6 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private static final int PROJECTS_LIST_LIMIT = 100;
   private final ListProjects listProjects;
 
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
-
   @Inject
   public ProjectsListHealthCheck(
       ListeningExecutorService executor,

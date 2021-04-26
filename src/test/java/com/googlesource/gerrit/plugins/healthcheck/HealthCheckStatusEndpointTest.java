@@ -95,7 +95,7 @@ public class HealthCheckStatusEndpointTest {
 
     HealthCheckStatusEndpoint healthCheckApi =
         injector.getInstance(HealthCheckStatusEndpoint.class);
-    Response<?> resp = (Response<?>) healthCheckApi.apply(null);
+    Response<?> resp = healthCheckApi.apply(null);
 
     assertThat(resp.statusCode()).isEqualTo(HttpServletResponse.SC_OK);
   }
@@ -128,7 +128,7 @@ public class HealthCheckStatusEndpointTest {
 
     HealthCheckStatusEndpoint healthCheckApi =
         injector.getInstance(HealthCheckStatusEndpoint.class);
-    Response<?> resp = (Response<?>) healthCheckApi.apply(null);
+    Response<?> resp = healthCheckApi.apply(null);
 
     assertThat(resp.statusCode()).isEqualTo(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
   }
@@ -171,7 +171,7 @@ public class HealthCheckStatusEndpointTest {
 
     HealthCheckStatusEndpoint healthCheckApi =
         injector.getInstance(HealthCheckStatusEndpoint.class);
-    Response<?> resp = (Response<?>) healthCheckApi.apply(null);
+    Response<?> resp = healthCheckApi.apply(null);
 
     assertThat(resp.statusCode()).isEqualTo(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
   }

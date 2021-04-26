@@ -34,7 +34,6 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
   private Integer threshold;
   private Integer interactiveThreadsMaxPoolSize;
   private MetricRegistry metricRegistry;
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
 
   @Inject
   public ActiveWorkersCheck(

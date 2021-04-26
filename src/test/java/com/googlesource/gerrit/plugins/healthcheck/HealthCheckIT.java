@@ -70,6 +70,12 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   @Test
+  public void shouldReturnOkWhenHealthyAndAnynousReadIsBlocked() throws Exception {
+    blockAnonymousRead();
+    getHealthCheckStatus().assertOK();
+  }
+
+  @Test
   public void shouldReturnAJsonPayload() throws Exception {
     assertThat(getHealthCheckStatus().getHeader(CONTENT_TYPE)).contains("application/json");
   }

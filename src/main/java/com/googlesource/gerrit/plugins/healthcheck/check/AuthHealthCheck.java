@@ -36,7 +36,6 @@ public class AuthHealthCheck extends AbstractHealthCheck {
   private final AccountCache byIdCache;
   private final String username;
   private final String password;
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
 
   @Inject
   public AuthHealthCheck(

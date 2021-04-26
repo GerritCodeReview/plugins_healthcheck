@@ -19,7 +19,10 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.server.restapi.project.ListProjects;
+import com.google.gerrit.server.util.ManualRequestContext;
+import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
@@ -31,36 +34,40 @@ import org.slf4j.LoggerFactory;
 public class ProjectsListHealthCheck extends AbstractHealthCheck {
   private static final Logger log = LoggerFactory.getLogger(ProjectsListHealthCheck.class);
   private static final int PROJECTS_LIST_LIMIT = 100;
-  private final ListProjects listProjects;
-
-  private HealthCheckMetrics.Factory healthCheckMetricsFactory;
+  private final Provider<ListProjects> listProjectsProvider;
+  private final OneOffRequestContext oneOffCtx;
 
   @Inject
   public ProjectsListHealthCheck(
       ListeningExecutorService executor,
       HealthCheckConfig config,
-      ListProjects listProjects,
+      Provider<ListProjects> listProjectsProvider,
+      OneOffRequestContext oneOffCtx,
       HealthCheckMetrics.Factory healthCheckMetricsFactory) {
     super(executor, config, PROJECTSLIST, healthCheckMetricsFactory);
 
-    this.listProjects = listProjects;
+    this.listProjectsProvider = listProjectsProvider;
+    this.oneOffCtx = oneOffCtx;
   }
 
   @Override
   protected Result doCheck() {
-    listProjects.setStart(0);
-    listProjects.setLimit(PROJECTS_LIST_LIMIT);
-    listProjects.setShowDescription(true);
-    listProjects.setMatchPrefix("All-");
-    try {
-      SortedMap<String, ProjectInfo> projects = listProjects.apply();
-      if (projects != null && projects.size() > 0) {
-        return Result.PASSED;
+    try (ManualRequestContext ctx = oneOffCtx.open()) {
+      ListProjects listProjects = listProjectsProvider.get();
+      listProjects.setStart(0);
+      listProjects.setLimit(PROJECTS_LIST_LIMIT);
+      listProjects.setShowDescription(true);
+      listProjects.setMatchPrefix("All-");
+      try {
+        SortedMap<String, ProjectInfo> projects = listProjects.apply();
+        if (projects != null && projects.size() > 0) {
+          return Result.PASSED;
+        }
+        log.warn("Empty or null projects list: Gerrit should always have at least 1 project");
+      } catch (Exception e) {
+        log.warn("Unable to list projects", e);
       }
-      log.warn("Empty or null projects list: Gerrit should always have at least 1 project");
-    } catch (Exception e) {
-      log.warn("Unable to list projects", e);
+      return Result.FAILED;
     }
-    return Result.FAILED;
   }
 }

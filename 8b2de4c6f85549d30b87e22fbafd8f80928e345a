@@ -46,6 +46,30 @@
       },
       "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "383d7d4e_e10dbecc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-04-28T21:00:19Z",
+      "side": 1,
+      "message": "\u003e ok so we would have the first candidate :D\n\u003e Thinking out loud I can imagine that one could specify either one or more prefixes (or better patterns/regexps?) with the corresponding threshold (or single threshold for all). Would that make sense or it would be a bit overengineered?\n\nI believe you are right and it will make sense to have multiple definitions.\nThe prefix is enough to identify the thread pool and is quicker to evaluate than regex.",
+      "parentUuid": "d703ba43_797b5182",
+      "range": {
+        "startLine": 11,
+        "startChar": 28,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

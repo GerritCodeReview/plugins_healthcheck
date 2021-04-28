@@ -62,7 +62,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   @Override
   public StatusSummary run() {
     StatusSummary checkStatusSummary;
-    boolean enabled = config.healthCheckEnabled(name);
+    boolean enabled = isCheckEnabled(name);
     final long ts = System.currentTimeMillis();
     ListenableFuture<StatusSummary> resultFuture =
         executor.submit(
@@ -99,6 +99,10 @@ public abstract class AbstractHealthCheck implements HealthCheck {
       latencyMetric.record(elapsed, TimeUnit.MILLISECONDS);
     }
     return checkStatusSummary;
+  }
+
+  protected boolean isCheckEnabled(String name) {
+    return config.healthCheckEnabled(name);
   }
 
   protected abstract Result doCheck() throws Exception;

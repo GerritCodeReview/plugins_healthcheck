@@ -113,6 +113,10 @@ public class HealthCheckConfig {
         healthCheckName == null
             ? ACTIVE_WORKERS_THRESHOLD_DEFAULT
             : getActiveWorkersThreshold(null);
+    return getHealthcheckThreshold(healthCheckName, defaultThreshold);
+  }
+
+  public int getHealthcheckThreshold(String healthCheckName, int defaultThreshold) {
     return config.getInt(HEALTHCHECK, healthCheckName, "threshold", defaultThreshold);
   }
 

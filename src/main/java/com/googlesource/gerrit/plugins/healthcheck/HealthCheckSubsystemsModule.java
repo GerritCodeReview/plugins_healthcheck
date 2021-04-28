@@ -18,6 +18,7 @@ import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
@@ -34,8 +35,10 @@ public class HealthCheckSubsystemsModule extends FactoryModule {
     bindChecker(AuthHealthCheck.class);
     bindChecker(ActiveWorkersCheck.class);
     bindChecker(DeadlockCheck.class);
+    bindChecker(BlockedThreadsCheck.class);
 
     factory(HealthCheckMetrics.Factory.class);
+    install(BlockedThreadsCheck.SUB_CHECKS);
   }
 
   private void bindChecker(Class<? extends HealthCheck> healthCheckClass) {

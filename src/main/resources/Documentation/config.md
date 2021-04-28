@@ -13,7 +13,12 @@ GET /config/server/healthcheck~status
 )]}'
 {
   "ts": 139402910202,
-  "elapsed": 100,
+  "elapsed": 120,
+  "blockedthreads": {
+    "ts": 139402910202,
+    "elapsed": 30,
+    "result": "passed"
+  },
   "querychanges": {
     "ts": 139402910202,
     "elapsed": 20,
@@ -21,12 +26,12 @@ GET /config/server/healthcheck~status
   },
   "projectslist": {
     "ts": 139402910202,
-    "elapsed": 100,
+    "elapsed": 40,
     "result": "passed"
   },
   "auth": {
     "ts": 139402910202,
-    "elapsed": 80,
+    "elapsed": 30,
     "result": "passed"
   }
 }
@@ -50,6 +55,7 @@ The following check names are available:
 - `auth`: check the ability to authenticate with username and password
 - `activeworkers`: check the number of active worker threads and the ability to create a new one
 - `deadlock` : check if Java deadlocks are reported by the JVM
+- `blockedthreads` : check the number of blocked threads
 
 Each check name can be disabled by setting the `enabled` parameter to **false**,
 by default this parameter is set to **true**
@@ -89,3 +95,45 @@ The following parameters are available:
     as full.
 
    Default: 80
+
+ - `healthcheck.blockedthreads.threshold` : Percent of all threads that are blocked above which instance
+   is considered as unhealthy.
+
+   Default: 50
+
+By default `healthcheck.blockedthreads` is calculated as ratio of BLOCKED threads against the all
+Gerrit threads. It might be not sufficient for instance in case of `SSH-Interactive-Worker` threads
+that could be all blocked making effectively a Gerrit instance unhealthy (neither fetch nor push
+would succeed) but the threshold could be still not reached. Therefore one can fine tune the check
+by putting detailed configuration for one or more thread groups (all threads that have the name
+starting with a given prefix) to be checked according to the following template:
+
+```
+[healthcheck "blockedthreads"]
+    threshold = [prefix]=[XX]
+```
+
+Note that in case when specific thread groups are configured all threads are no longer checked.
+
+* **Example 1:** _check if BLOCKED threads are above the limit of 70_
+
+   ```
+   [healthcheck "blockedthreads"]
+       threshold = 70
+   ```
+
+* **Example 2:** _check if BLOCKED `foo` threads are above the 33 limit_
+
+   ```
+   [healthcheck "blockedthreads"]
+       threshold = foo=45
+   ```
+
+* **Example 3:** _check if BLOCKED `foo` threads are above the 33 limit and if BLOCKED `bar`_
+  _threads are above the the 60 limit_
+
+   ```
+   [healthcheck "blockedthreads"]
+      threshold = foo=33
+      threshold = bar=60
+   ```

@@ -50,6 +50,7 @@ The following check names are available:
 - `auth`: check the ability to authenticate with username and password
 - `activeworkers`: check the number of active worker threads and the ability to create a new one
 - `deadlock` : check if Java deadlocks are reported by the JVM
+- `blocked` : check the number of blocked threads
 
 Each check name can be disabled by setting the `enabled` parameter to **false**,
 by default this parameter is set to **true**
@@ -89,3 +90,8 @@ The following parameters are available:
     as full.
 
    Default: 80
+
+ - `healthcheck.blocked.threshold` : Percent of all threads that are blocked above which instance is
+    considered as unhealthy.
+
+   Default: 50

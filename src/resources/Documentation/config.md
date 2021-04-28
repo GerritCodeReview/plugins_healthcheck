@@ -48,6 +48,9 @@ plugins_healthcheck_jgit_latest_measured_latency 4.0
 # TYPE plugins_healthcheck_projectslist_latest_measured_latency gauge
 plugins_healthcheck_projectslist_latest_measured_latency 5.0
 
+# HELP plugins_healthcheck_blockedthreads_latest_measured_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/blockedthreads/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
+# TYPE plugins_healthcheck_blockedthreads_latest_measured_latency gauge
+plugins_healthcheck_blockedthreads_latest_measured_latency 6.0
 
 # HELP plugins_healthcheck_jgit_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_jgit_failure_total counter
@@ -56,6 +59,29 @@ plugins_healthcheck_jgit_failure_total 3.0
 # HELP plugins_healthcheck_projectslist_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/projectslist/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_projectslist_failure_total counter
 plugins_healthcheck_projectslist_failure_total 0.0
+
+# HELP plugins_healthcheck_blockedthreads_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/blockedthreads/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_blockedthreads_failure_total counter
+plugins_healthcheck_blockedthreads_failure_total 1.0
 ```
+
+Note that additionally to the default `blockedthreads` metrics pair failures counter will reported for
+each configured prefix. For given config:
+
+```
+  [ healthcheck "blockedthreads" ]
+       threshold = Foo=33
+```
+
+the following additional metric will be exposed and populated:
+
+```
+# HELP plugins_healthcheck_blockedthreads_foo_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/blockedthreads-foo/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_blockedthreads_foo_failure_total counter
+plugins_healthcheck_blockedthreads_foo_failure_total 2.0
+```
+
+Note that prefix is used as postfix for a metric name but it is lower-cased and sanitized as only
+`a-zA-Z0-9_-/` chars are allowed to be a metric name (chars outside this set are turned to `_`).
 
 Metrics will be exposed to prometheus by the [metrics-reporter-prometheus](https://gerrit.googlesource.com/plugins/metrics-reporter-prometheus/) plugin.

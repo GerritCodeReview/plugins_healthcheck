@@ -142,6 +142,10 @@ public class HealthCheckConfig {
         HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
   }
 
+  public String[] getThresholds(String healthCheckName) {
+    return config.getStringList(HEALTHCHECK, healthCheckName, "threshold");
+  }
+
   private String getStringWithFallback(
       String parameter, String healthCheckName, String defaultValue) {
     String fallbackDefault =

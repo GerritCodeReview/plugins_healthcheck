@@ -101,5 +101,9 @@ public abstract class AbstractHealthCheck implements HealthCheck {
     return checkStatusSummary;
   }
 
+  protected boolean isCheckEnabled(String name) {
+    return config.healthCheckEnabled(name);
+  }
+
   protected abstract Result doCheck() throws Exception;
 }

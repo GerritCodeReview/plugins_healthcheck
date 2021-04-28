@@ -22,6 +22,30 @@
       },
       "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d703ba43_797b5182",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-04-28T20:58:38Z",
+      "side": 1,
+      "message": "ok so we would have the first candidate :D\nThinking out loud I can imagine that one could specify either one or more prefixes (or better patterns/regexps?) with the corresponding threshold (or single threshold for all). Would that make sense or it would be a bit overengineered?",
+      "parentUuid": "12e31993_4c3acd8a",
+      "range": {
+        "startLine": 11,
+        "startChar": 28,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

@@ -70,6 +70,109 @@
       },
       "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df947ad_4ce9bb01",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-29T12:08:32Z",
+      "side": 1,
+      "message": "Is this part of this change?",
+      "range": {
+        "startLine": 116,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 84
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6bdb54_d52bf6b1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-29T12:08:32Z",
+      "side": 1,
+      "message": "What about a more explicit \"BlockedThreadsCheck\" ?",
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e093b0_17ddcabc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-29T12:08:32Z",
+      "side": 1,
+      "message": "Similarly to my previous comment, maybe a more explicit naming: DEFAULT_BLOCKED_THREADS_THRESHOLD",
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0697d4e_5dffbc23",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/BlockedCheckTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-29T12:08:32Z",
+      "side": 1,
+      "message": "Do we also need to cover the other cases?\n\n    beanMock.isSynchronizerUsageSupported()  \u003d\u003e true\n    beanMock.isObjectMonitorUsageSupported() \u003d\u003e true\n\n    beanMock.isSynchronizerUsageSupported()  \u003d\u003e false\n    beanMock.isObjectMonitorUsageSupported() \u003d\u003e true\n\n    beanMock.isSynchronizerUsageSupported()  \u003d\u003e true\n    beanMock.isObjectMonitorUsageSupported() \u003d\u003e false",
+      "range": {
+        "startLine": 55,
+        "startChar": 1,
+        "endLine": 56,
+        "endChar": 68
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e520fd76_7eb519a0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/BlockedCheckTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-04-29T12:08:32Z",
+      "side": 1,
+      "message": "It might be more readable extracting those in constants, otherwise you will have to read the signature of the helper function every time. WDYT?\n\n    int runningThreads \u003d 1;\n    int blockedThreads \u003d 0;\n    mockThreadsAndCheckResult(runningThreads, blockedThreads, Result.PASSED);",
+      "range": {
+        "startLine": 68,
+        "startChar": 30,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

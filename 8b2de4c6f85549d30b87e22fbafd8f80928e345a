@@ -114,6 +114,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ce00a29_b43274ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "2e6bdb54_d52bf6b1",
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817fd609_e086e4d7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "Should this be a @Singleton?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52e093b0_17ddcabc",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
         "patchSetId": 2
@@ -125,6 +166,98 @@
       "writtenOn": "2021-04-29T12:08:32Z",
       "side": 1,
       "message": "Similarly to my previous comment, maybe a more explicit naming: DEFAULT_BLOCKED_THREADS_THRESHOLD",
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "186e00f9_9c21b5c5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "In what case can dumpAllThreads return null?\nIs it not guaranteed to always return ThreadInfo[]?",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 31
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e4fb86_9a82fc8c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "threadInfos?",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec11eeca_487e89ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "I am not sure I understand this: can we get information about BLOCKED threads, but only if _at least_ one of SynchronizerUsage or ObjectMonitorUsage is supported, regardless of which one.\n\nIs this correct?",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 94
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd41960f_1e141a44",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/BlockedCheckTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-02T20:12:55Z",
+      "side": 1,
+      "message": "Consider also adding some IT tests in HealthCheckIT",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 31
+      },
       "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },

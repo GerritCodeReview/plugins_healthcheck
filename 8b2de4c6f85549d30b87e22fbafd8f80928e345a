@@ -390,6 +390,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a2bdba5_026ba6ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-05T18:35:16Z",
+      "side": 1,
+      "message": "I have searched a bit more, but couldn\u0027t actually find anything conclusive hence I have checked what happens when both values are set to \u0027false\u0027. It turned out that thread\u0027s state is still returned as \u0027BLOCKED\u0027 when thread is waiting for \u0027synchronized\u0027 block. I have also checked how is javamelody reporting \u0027BLOCKED\u0027 threads (see [1]) and it is not relying on \u0027dumpAllThreads\u0027 at all (it uses method that gets all stacktraces and matches it against each single thread info). Not using theads\u0027 dump (but `getThreadInfo(getAllThreadIds(), 0)` inspired by what javamelody does) is even more performant ;)\n\n[1] https://github.com/javamelody/javamelody/blob/b2a139d9febe6ba8e3460da94408a3501caab4eb/javamelody-core/src/main/java/net/bull/javamelody/internal/model/JavaInformations.java#L360",
+      "parentUuid": "eda9f95e_1a30b9e2",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 94
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd41960f_1e141a44",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/BlockedCheckTest.java",
         "patchSetId": 2

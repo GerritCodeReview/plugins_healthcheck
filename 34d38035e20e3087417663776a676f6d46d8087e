@@ -93,6 +93,29 @@
       },
       "revId": "34d38035e20e3087417663776a676f6d46d8087e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6114466_3b7b27d2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-14T06:10:06Z",
+      "side": 1,
+      "message": "I have just noticed that this is badly formatted",
+      "range": {
+        "startLine": 136,
+        "startChar": 6,
+        "endLine": 138,
+        "endChar": 53
+      },
+      "revId": "34d38035e20e3087417663776a676f6d46d8087e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

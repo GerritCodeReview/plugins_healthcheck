@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28c10c4_ed45c98a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-14T06:07:13Z",
+      "side": 1,
+      "message": "it actually allowed me to find that one of my unit tests was a subject of rounding and was passing whereas it should have failed :D",
+      "parentUuid": "089e50d9_86a459ae",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 51
+      },
+      "revId": "34d38035e20e3087417663776a676f6d46d8087e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28890568_a8f6101a",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-05-14T00:34:36Z",
       "side": 1,
       "message": "This block looks a bit too nested: could you break it down for enhanced readability?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 7
+      },
+      "revId": "34d38035e20e3087417663776a676f6d46d8087e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c5aacb_69e74d70",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-14T06:07:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28890568_a8f6101a",
       "range": {
         "startLine": 100,
         "startChar": 0,

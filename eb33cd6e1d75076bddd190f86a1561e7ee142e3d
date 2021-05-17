@@ -112,6 +112,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc866226_f6f20509",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2021-05-17T21:26:10Z",
+      "side": 1,
+      "message": "What you explained rather looks like linear in the number of threads or did I miss something ?\nOur servers run around 1k threads, so individual checks should be fast otherwise this might take long.",
+      "parentUuid": "e87e68e2_1f1c39ab",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 79
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73ddd82a_dffe82c4",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
         "patchSetId": 6

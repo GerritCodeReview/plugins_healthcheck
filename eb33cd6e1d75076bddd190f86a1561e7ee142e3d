@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "211747bd_d08123bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "blockedthreads",
+      "range": {
+        "startLine": 15,
+        "startChar": 48,
+        "endLine": 15,
+        "endChar": 55
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7c7fd191_3bb21ca8",
@@ -14,6 +37,190 @@
       "writtenOn": "2021-05-17T08:44:37Z",
       "side": 1,
       "message": "I have also added performance comparison between previous thread dump and the current one (again in [1]) - it looks really comparable to `deadlocks` now hence IMHO footprint should be minimal ;)\n\n[1] https://gist.github.com/geminicaprograms/a8b8e0bfe954782866396ee11c7c3967",
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "593ad1c7_e62958a8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "might be worth renaming to blockedThreadsThreasholds to avoid ambiguity. For example there is already a getActiveWorkersThreshold.",
+      "range": {
+        "startLine": 145,
+        "startChar": 18,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a1abe6_7b89c507",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "Is this supposed to be a @Singleton ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e87e68e2_1f1c39ab",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "If I am understanding this right, here we are:\n* getting all the threads\n* foreach thread check in all the \"collectors\" to understand which check to run\n* run BlockedThreadsSubCheck::check\n\nThis has a quadratic complexity. Do you think there might be any issue with the numbers we have or it is not going to be a big deal? If it is not big deal just drop my comment.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 79
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73ddd82a_dffe82c4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "See previous comment. Do we need it to be optional?",
+      "range": {
+        "startLine": 38,
+        "startChar": 78,
+        "endLine": 38,
+        "endChar": 80
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6145fd6_d8034961",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "what about `subcheckFactory` ?",
+      "range": {
+        "startLine": 55,
+        "startChar": 37,
+        "endLine": 55,
+        "endChar": 46
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7cc36db_331eff3c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "This should be 30%, right?",
+      "range": {
+        "startLine": 85,
+        "startChar": 43,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b733b4_086665b3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "If we make the \u0027%\u0027 mandatory at the end of the threshold configuration I think it might be handy adding a warning in the logs when the user add an entry like:\n\n    threshold \u003d SSH-Interactive-Worker\u003d30\n\nI see myself forgetting the \u0027%\u0027 and start debugging the plugin 😄\nThe alternative is just removing the \u0027%\u0027, and maybe rename \"threshold\" to \"thresholdPct\" or something similar. WDYT?",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca512e39_861c1f15",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-17T20:41:19Z",
+      "side": 1,
+      "message": "Can we just remove it? What is the benefit of having it? If it is just to express the unit of the threshold we could rename the parameter to \"thresholdPct\" or something similar. WDYT?",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 112,
+        "endChar": 11
+      },
       "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

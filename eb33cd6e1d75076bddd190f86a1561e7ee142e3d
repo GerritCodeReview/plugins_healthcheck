@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7fd191_3bb21ca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-17T08:44:37Z",
+      "side": 1,
+      "message": "I have also added performance comparison between previous thread dump and the current one (again in [1]) - it looks really comparable to `deadlocks` now hence IMHO footprint should be minimal ;)\n\n[1] https://gist.github.com/geminicaprograms/a8b8e0bfe954782866396ee11c7c3967",
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

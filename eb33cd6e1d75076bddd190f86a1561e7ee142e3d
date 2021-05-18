@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9336af76_e204202e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "211747bd_d08123bf",
+      "range": {
+        "startLine": 15,
+        "startChar": 48,
+        "endLine": 15,
+        "endChar": 55
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7c7fd191_3bb21ca8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -37,6 +61,23 @@
       "writtenOn": "2021-05-17T08:44:37Z",
       "side": 1,
       "message": "I have also added performance comparison between previous thread dump and the current one (again in [1]) - it looks really comparable to `deadlocks` now hence IMHO footprint should be minimal ;)\n\n[1] https://gist.github.com/geminicaprograms/a8b8e0bfe954782866396ee11c7c3967",
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88bc1e2_6623346b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Thanks for the review guys :) Please take a moment to give your feedback to not \u0027resolved\u0027 responses (in case they require additional input).",
       "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58b3f457_4e662964",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "It probably makes sense to rename it to \u0027getListOfThresholds\u0027 or turn it into more general method\n\n  public String[] getStringList(String healthCheckName, String name) {\n    return config.getStringList(HEALTHCHECK, healthCheckName, name);\n  }\n\nWDYT?",
+      "parentUuid": "593ad1c7_e62958a8",
+      "range": {
+        "startLine": 145,
+        "startChar": 18,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60a1abe6_7b89c507",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
         "patchSetId": 6
@@ -77,6 +142,30 @@
       "writtenOn": "2021-05-17T20:41:19Z",
       "side": 1,
       "message": "Is this supposed to be a @Singleton ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7770af_48b1fc45",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Yeah we discussed that already - I have to go and check :) none of the others are singletons so my gut feeling is it doesn\u0027t but I\u0027m not sure yet ;)",
+      "parentUuid": "60a1abe6_7b89c507",
       "range": {
         "startLine": 37,
         "startChar": 0,
@@ -136,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a212613_8b377ccb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "It is linear and check is like that:\n* if thread name starts with \"prefix\" add 1 to number of this \"prefix\" threads\n* if it is BLOCKED add 1 to blocked threads with this \"prefix\"\n\nI have put an effort to walk all threads only once for all prefixes that are configured. Obviously its performance is proportional to the number of prefixes that one configures (startsWith + 1-2 x add operations for each) but again it walks over all threads only once. When all threads are walked over all collectors are walked over to get summary and decide if the instance is healthy...\nI can crank some performance stats out of it ;)",
+      "parentUuid": "dc866226_f6f20509",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 79
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73ddd82a_dffe82c4",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
         "patchSetId": 6
@@ -147,6 +260,30 @@
       "writtenOn": "2021-05-17T20:41:19Z",
       "side": 1,
       "message": "See previous comment. Do we need it to be optional?",
+      "range": {
+        "startLine": 38,
+        "startChar": 78,
+        "endLine": 38,
+        "endChar": 80
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e12ef179_353e6101",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "AFAICT \u0027activeworkers\u0027 metric operates on percent too and doesn\u0027t allow to specify \u0027%\u0027 - I haven\u0027t noticed that earlier - I will remove the \u0027%\u0027 flexibility so that it is consistent.",
+      "parentUuid": "73ddd82a_dffe82c4",
       "range": {
         "startLine": 38,
         "startChar": 78,
@@ -180,6 +317,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4739ac09_5027c2ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6145fd6_d8034961",
+      "range": {
+        "startLine": 55,
+        "startChar": 37,
+        "endLine": 55,
+        "endChar": 46
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7cc36db_331eff3c",
@@ -193,6 +354,30 @@
       "writtenOn": "2021-05-17T20:41:19Z",
       "side": 1,
       "message": "This should be 30%, right?",
+      "range": {
+        "startLine": 85,
+        "startChar": 43,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2659b2ae_fbe6b3bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "As in #38 - it will be without \u0027%\u0027",
+      "parentUuid": "e7cc36db_331eff3c",
       "range": {
         "startLine": 85,
         "startChar": 43,
@@ -226,6 +411,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f242cea_85f84b1f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Will follow the \u0027activeworkers\u0027 and remove the \u0027%\u0027 altogether. In addition I will consider adding some warning in case when threshold is misconfigured.",
+      "parentUuid": "73b733b4_086665b3",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca512e39_861c1f15",
@@ -239,6 +448,30 @@
       "writtenOn": "2021-05-17T20:41:19Z",
       "side": 1,
       "message": "Can we just remove it? What is the benefit of having it? If it is just to express the unit of the threshold we could rename the parameter to \"thresholdPct\" or something similar. WDYT?",
+      "range": {
+        "startLine": 112,
+        "startChar": 10,
+        "endLine": 112,
+        "endChar": 11
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c80a797_df7c174c",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-18T05:10:46Z",
+      "side": 1,
+      "message": "Will be removed.",
+      "parentUuid": "ca512e39_861c1f15",
       "range": {
         "startLine": 112,
         "startChar": 10,

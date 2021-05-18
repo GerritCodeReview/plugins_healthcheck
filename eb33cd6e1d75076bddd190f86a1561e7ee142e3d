@@ -131,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2c050b8_393abdc0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-18T17:26:45Z",
+      "side": 1,
+      "message": "IMO as long as it doesn\u0027t create ambiguity with `getActiveWorkersThreshold` is ok.\nEither we turn it into a general method and we also rework `getActiveWorkersThreshold` or we just keep it specific for the new check and we make it explicit in the method name.",
+      "parentUuid": "58b3f457_4e662964",
+      "range": {
+        "startLine": 145,
+        "startChar": 18,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60a1abe6_7b89c507",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
         "patchSetId": 6
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "Yeah we discussed that already - I have to go and check :) none of the others are singletons so my gut feeling is it doesn\u0027t but I\u0027m not sure yet ;)",
       "parentUuid": "60a1abe6_7b89c507",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b0b6b86_06823103",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2021-05-18T17:26:45Z",
+      "side": 1,
+      "message": "ops, sorry I missed the previous discussion. Anyway it looks like QueryChangesHealthCheck, ProjectsListHealthCheck , JGitHealthCheck and AuthHealthCheck are all singleton, but you are right, not all the checks are Singleton. Need to understand why 😕",
+      "parentUuid": "ac7770af_48b1fc45",
       "range": {
         "startLine": 37,
         "startChar": 0,

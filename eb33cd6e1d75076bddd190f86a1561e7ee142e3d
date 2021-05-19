@@ -153,6 +153,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "671d831a_3c96ac25",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Right, renaming it to getListOfBlockedThreadsThresholds. No ambiguity ;) And we can generalise it when there is another use case.",
+      "parentUuid": "e2c050b8_393abdc0",
+      "range": {
+        "startLine": 145,
+        "startChar": 18,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60a1abe6_7b89c507",
@@ -506,6 +530,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f37acd_885c2a80",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "952f9703_49e62396",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 15
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "426ecdea_606e03cc",
@@ -529,6 +577,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "722f3847_3d95f731",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "426ecdea_606e03cc",
+      "range": {
+        "startLine": 99,
+        "startChar": 66,
+        "endLine": 99,
+        "endChar": 77
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b9efd7c_01de60a1",
@@ -542,6 +614,30 @@
       "writtenOn": "2021-05-19T00:16:05Z",
       "side": 1,
       "message": "With or without the \u0027%\u0027 ?",
+      "range": {
+        "startLine": 108,
+        "startChar": 29,
+        "endLine": 108,
+        "endChar": 30
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929dc286_e9e60a4d",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Without ;)",
+      "parentUuid": "0b9efd7c_01de60a1",
       "range": {
         "startLine": 108,
         "startChar": 29,
@@ -646,6 +742,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5132cb66_4a72da30",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Modified the first example to be about change of the default limit only.",
+      "parentUuid": "dffd03ae_693af562",
+      "range": {
+        "startLine": 114,
+        "startChar": 40,
+        "endLine": 114,
+        "endChar": 43
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c59cfbfb_89acd573",
@@ -669,6 +789,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43942c36_121ceba9",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c59cfbfb_89acd573",
+      "range": {
+        "startLine": 125,
+        "startChar": 25,
+        "endLine": 125,
+        "endChar": 26
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00044f1a_47481568",
@@ -682,6 +826,30 @@
       "writtenOn": "2021-05-19T00:16:05Z",
       "side": 1,
       "message": "I would avoid these forms: either a global percentage or a thread-pool specific one is enough. Too many features becomes confusing.",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea395fc9_f11fe5be",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-19T05:26:12Z",
+      "side": 1,
+      "message": "So you mean that either global threshold is used e.g.\n\n[ healthcheck \"blockedthreads\" ]\n  threshold \u003d 66\n\nor prefixes are used, but they contain also the value\n\n[ healthcheck \"blockedthreads\" ]\n  threshold \u003d foo\u003d30\n  threshold \u003d bar\u003d55\n\nbut no combination of them, right?\nThat will simplify the implementation ;)",
+      "parentUuid": "00044f1a_47481568",
       "range": {
         "startLine": 134,
         "startChar": 0,

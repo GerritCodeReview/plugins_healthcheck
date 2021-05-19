@@ -48,6 +48,52 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "291f119a_6ab9e2ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-05-19T15:13:03Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 15,
+        "startChar": 68,
+        "endLine": 15,
+        "endChar": 69
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82223ad8_ba021513",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-05-19T15:13:03Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 24,
+        "startChar": 42,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7c7fd191_3bb21ca8",
@@ -850,6 +896,30 @@
       "side": 1,
       "message": "So you mean that either global threshold is used e.g.\n\n[ healthcheck \"blockedthreads\" ]\n  threshold \u003d 66\n\nor prefixes are used, but they contain also the value\n\n[ healthcheck \"blockedthreads\" ]\n  threshold \u003d foo\u003d30\n  threshold \u003d bar\u003d55\n\nbut no combination of them, right?\nThat will simplify the implementation ;)",
       "parentUuid": "00044f1a_47481568",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f6e1c6_f2817de0",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-05-19T15:13:03Z",
+      "side": 1,
+      "message": "Yes, I think so.\n\nEither you define a global check threshold or a specific one, but a specific one with a global default doesn\u0027t make so much sense to me.",
+      "parentUuid": "ea395fc9_f11fe5be",
       "range": {
         "startLine": 134,
         "startChar": 0,

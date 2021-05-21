@@ -71,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04e1ac11_88cc4e2d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "291f119a_6ab9e2ff",
+      "range": {
+        "startLine": 15,
+        "startChar": 68,
+        "endLine": 15,
+        "endChar": 69
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82223ad8_ba021513",
@@ -94,6 +118,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23cab9e_b462faa0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82223ad8_ba021513",
+      "range": {
+        "startLine": 24,
+        "startChar": 42,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d3e9a34_52fe361b",
@@ -107,6 +155,30 @@
       "writtenOn": "2021-05-20T01:06:43Z",
       "side": 1,
       "message": "The \u0027Feature\u0027 keyword isn\u0027t indexed and therefore isn\u0027t useful here for searching.\nIf you use \u0027Bug\u0027 it will work.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 7
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d92cad9_34031293",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d3e9a34_52fe361b",
       "range": {
         "startLine": 29,
         "startChar": 0,
@@ -307,6 +379,30 @@
       "side": 1,
       "message": "ops, sorry I missed the previous discussion. Anyway it looks like QueryChangesHealthCheck, ProjectsListHealthCheck , JGitHealthCheck and AuthHealthCheck are all singleton, but you are right, not all the checks are Singleton. Need to understand why 😕",
       "parentUuid": "ac7770af_48b1fc45",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14a7aa7_4dd56368",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "I have confirmed that if check is not marked as `Singleton\u0027 it will be re-created each time when endpoint is called (AFAIR it is a part of DynamicSet contract - implementation decides if it wants to be a Singleton or not).",
+      "parentUuid": "4b0b6b86_06823103",
       "range": {
         "startLine": 37,
         "startChar": 0,
@@ -943,6 +1039,30 @@
       "side": 1,
       "message": "Yes, I think so.\n\nEither you define a global check threshold or a specific one, but a specific one with a global default doesn\u0027t make so much sense to me.",
       "parentUuid": "ea395fc9_f11fe5be",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "eb33cd6e1d75076bddd190f86a1561e7ee142e3d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6b1d8a_fc3c7403",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90f6e1c6_f2817de0",
       "range": {
         "startLine": 134,
         "startChar": 0,

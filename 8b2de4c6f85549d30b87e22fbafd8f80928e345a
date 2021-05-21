@@ -295,6 +295,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d1ae1d_12eceb5e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-21T05:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d40f05_eb230999",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "8b2de4c6f85549d30b87e22fbafd8f80928e345a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52e093b0_17ddcabc",

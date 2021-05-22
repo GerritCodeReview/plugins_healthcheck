@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9cb6190_8cbe41fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-05-22T01:02:23Z",
+      "side": 1,
+      "message": "Waiting for some numbers for @Matthias use-case, then I\u0027m ready to +2 this change.\n@Jacek thanks for your patience, this looks really useful.",
+      "revId": "c0ef9d577838cd6434ba58c84f1af6886f085502",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

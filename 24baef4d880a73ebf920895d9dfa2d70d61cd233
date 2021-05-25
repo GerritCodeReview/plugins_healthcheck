@@ -125,6 +125,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "328b12fd_f17e3886",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T15:26:18Z",
+      "side": 1,
+      "message": "I had a chat with @Jacek and the reason why these two classes cannot be easily mergeable is related to metrics: even though we want a new instance of *Collector for each \"doCheck()\" operation (i.e. we want to be stateless), we still want their metrics to be registered only once.\n\nThis would involve the creation of some extra classes or some extra checks that would supersede the value of removing the extra collector class, as I was suggesting.\n\nFor this reason I am resolving this.",
+      "parentUuid": "3fa261bf_462d7b43",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 72
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "871b29b5_31e10375",

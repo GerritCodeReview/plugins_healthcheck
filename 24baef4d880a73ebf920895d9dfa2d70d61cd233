@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68df76d7_7b7b884f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T10:25:53Z",
+      "side": 1,
+      "message": "It looks like when no prefix is used in configuration (and thus, this collector is used rather than the SubcheckCollector), metrics are not published?\n\nAm I reading this wrong?\n\nI tried to find a test that would cover this case but I couldn\u0027t find any, should we have one?",
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376704f7_56682ece",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T10:25:53Z",
+      "side": 1,
+      "message": "I am wondering why we need to have these two subclasses.\n\nWe could merge the two collect() logics to deal with the presence (or absence) of a prefix and increment total and block accordingly.\n\nCould we model collector as one class only?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 72
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "871b29b5_31e10375",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T10:25:53Z",
+      "side": 1,
+      "message": "I was expecting each doCheck() execution to start from a fresh point in which no previous state is taken into consideration.\n\nIf we keep increasing `total` and `blocked` wouldn\u0027t we eventually end up in inconsistencies.\n\nOne example:\n\n\nTotal threads available: 10\n\n*Day1:*\nblocked: 0\ntotal: 10\n% blocked: 0 \u003d\u003e SUCCESS\n\n*Day 2:*\nblocked: 0\ntotal: 20\n% blocked: 0 \u003d\u003e SUCCESS\n\n...\n*Day 10:*\nblocked: 10\ntotal: 100\n% blocked: 10 \u003d\u003e SUCCESS (but it should be FAIL because really the number of blocked threads is 100% [since we have 10 threads available])\n\n\nWhat do you think?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 23
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

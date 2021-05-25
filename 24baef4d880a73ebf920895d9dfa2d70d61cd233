@@ -54,6 +54,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a7357dc_04ca3a6c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-25T17:20:47Z",
+      "side": 1,
+      "message": "As we discussed I have mentioned it in the `src/resources/Documentation/config.md` where all other metrics were added.",
+      "parentUuid": "d505fc58_c24b925c",
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "376704f7_56682ece",
@@ -215,6 +233,52 @@
         "startChar": 0,
         "endLine": 50,
         "endChar": 23
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1a9bbc6_8e3ac8eb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-25T17:20:47Z",
+      "side": 1,
+      "message": "make sure that it is compatible with com.google.gerrit.metrics.dropwizard.DropWizardMetricMaker.METRIC_NAME_PATTERN so that there are no surprises for whatever is used as a prefix ;)",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ccd8976_d3e4ba11",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-25T17:20:47Z",
+      "side": 1,
+      "message": "Add example for \u0027blockedthreads\u0027 output.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
       },
       "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"

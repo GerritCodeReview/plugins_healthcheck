@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d505fc58_c24b925c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T13:46:55Z",
+      "side": 1,
+      "message": "ok, that makes sense, thanks @Jacek 😊\nI think it would be useful to document somewhere that these \"extra\" metrics will be exposed, *as well as* the default one.",
+      "parentUuid": "b81f64bf_2b7c9243",
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "376704f7_56682ece",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
         "patchSetId": 9
@@ -85,6 +103,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fa261bf_462d7b43",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T13:46:55Z",
+      "side": 1,
+      "message": "I guess it\u0027s arguable, for two reasons:\n- It\u0027s much less code (you will remove one class completely)\n- you could default \u0027prefix\u0027 to empty string, so that you don\u0027t need any extra check: threadName.startsWith(prefix) will always match.",
+      "parentUuid": "2f0fd540_59fa26c5",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 72
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "871b29b5_31e10375",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
         "patchSetId": 9
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "nope, each time when `BlockedThreadsCheck.doCheck` is called (IOW when healthcheck endpoint is reached) fresh list of collectors is received (see [1]). Configuration of subchecks is created once but each one of them is a CollectorProvider and each time the `get()` is called (see [2] and [3]) new Collector implementation is returned.\n\n\n[1] https://gerrit-review.googlesource.com/c/plugins/healthcheck/+/304528/9/src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java#65\n\n[2] https://gerrit-review.googlesource.com/c/plugins/healthcheck/+/304528/9/src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsConfigurator.java#64\n\n[3] https://gerrit-review.googlesource.com/c/plugins/healthcheck/+/304528/9/src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java#79",
       "parentUuid": "871b29b5_31e10375",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 23
+      },
+      "revId": "24baef4d880a73ebf920895d9dfa2d70d61cd233",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a878dba_7a984ad7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsSubCheck.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2021-05-25T13:46:55Z",
+      "side": 1,
+      "message": "ok, makes sense.\nI thought that because the BlockedThreadsCheck is a Singleton, that list was computed only once.\n\nBut I understand a new set of collectors is supplied every time.\n\nThanks",
+      "parentUuid": "1f2b1c8d_8e311051",
       "range": {
         "startLine": 48,
         "startChar": 0,

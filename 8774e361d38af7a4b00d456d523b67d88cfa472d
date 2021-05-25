@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d15e10_379f5e42",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-25T17:22:14Z",
+      "side": 1,
+      "message": "I have used my imagination to obtain these values so it would be really helpful if one would check it or pointed me out to the steps on how to quickly set this up with docker ;)",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 56
+      },
+      "revId": "8774e361d38af7a4b00d456d523b67d88cfa472d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

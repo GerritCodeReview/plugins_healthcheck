@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28a23889_e63d390b",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-28T14:32:30Z",
+      "side": 1,
+      "message": "fix section name to be\n\n  [healthcheck \"blockedthreads\"]\n\nas otherwise it is not readable by Gerrit",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 35
+      },
+      "revId": "8774e361d38af7a4b00d456d523b67d88cfa472d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f28a3d38_da2c9dac",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-28T14:32:30Z",
+      "side": 1,
+      "message": "fix section name to be\n\n  [healthcheck \"blockedthreads\"]\n\nas otherwise it is not readable by Gerrit",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 34
+      },
+      "revId": "8774e361d38af7a4b00d456d523b67d88cfa472d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88d15e10_379f5e42",
@@ -14,6 +60,30 @@
       "writtenOn": "2021-05-25T17:22:14Z",
       "side": 1,
       "message": "I have used my imagination to obtain these values so it would be really helpful if one would check it or pointed me out to the steps on how to quickly set this up with docker ;)",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 56
+      },
+      "revId": "8774e361d38af7a4b00d456d523b67d88cfa472d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d7e05a_f517d1ce",
+        "filename": "src/resources/Documentation/config.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-28T14:32:30Z",
+      "side": 1,
+      "message": "Guessing was right :D",
+      "parentUuid": "88d15e10_379f5e42",
       "range": {
         "startLine": 79,
         "startChar": 0,

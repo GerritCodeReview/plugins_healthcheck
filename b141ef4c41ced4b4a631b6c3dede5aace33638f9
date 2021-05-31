@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "064c1b23_c7b746a8",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-31T11:56:13Z",
+      "side": 1,
+      "message": "was a bit thorn apart with this and the following change ;) I was about to add blockedthreads part and noticed that total elapsed is lower than sum of latency of individual checks which is obviously not possible ;). I could either fixed along adding my entry or increase the discrepancy and fix it in the follow-up. The latter is in IMHO not worth the effort hence I did the former ;)",
+      "parentUuid": "5a4c38f6_92bf0ceb",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "b141ef4c41ced4b4a631b6c3dede5aace33638f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0670536_8937f8da",
         "filename": "src/main/resources/Documentation/config.md",
         "patchSetId": 11
@@ -54,6 +78,30 @@
       "writtenOn": "2021-05-31T11:37:32Z",
       "side": 1,
       "message": "nit: not part of this change",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 17
+      },
+      "revId": "b141ef4c41ced4b4a631b6c3dede5aace33638f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b253fd_351a7c95",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-05-31T11:56:13Z",
+      "side": 1,
+      "message": "response as above",
+      "parentUuid": "a0670536_8937f8da",
       "range": {
         "startLine": 34,
         "startChar": 15,

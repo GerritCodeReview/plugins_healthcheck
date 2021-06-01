@@ -18,6 +18,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4a3e768_98cf53b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-06-01T08:18:46Z",
+      "side": 1,
+      "message": "Called both:\n* bazel test //plugins/healthcheck/...\n* git ls-files | grep \".java$\" | xargs google-java-format -r\n\nand no issues were reported",
+      "revId": "b141ef4c41ced4b4a631b6c3dede5aace33638f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a4c38f6_92bf0ceb",

@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.annotations.VisibleForTesting;
@@ -140,6 +141,10 @@ public class HealthCheckConfig {
     }
     return config.getBoolean(
         HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
+  }
+
+  public String[] getListOfBlockedThreadsThresholds() {
+    return config.getStringList(HEALTHCHECK, BLOCKEDTHREADS, "threshold");
   }
 
   private String getStringWithFallback(

@@ -93,6 +93,27 @@ public class BlockedThreadsCheckTest {
   }
 
   @Test
+  public void shouldFailThenPassCheck() {
+    String prefix = "some-prefix";
+
+    List<ThreadInfo> failingThreadInfo = new ArrayList<>();
+    failingThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.RUNNABLE, prefix)));
+    failingThreadInfo.addAll(nCopies(3, mockInfo(Thread.State.BLOCKED, prefix)));
+
+    List<ThreadInfo> successThreadInfo = new ArrayList<>();
+    successThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.RUNNABLE, prefix)));
+    successThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.BLOCKED, prefix)));
+
+    when(beanMock.getThreadInfo(null, 0))
+        .thenReturn(
+            failingThreadInfo.toArray(new ThreadInfo[0]),
+            successThreadInfo.toArray(new ThreadInfo[0]));
+
+    assertThat(createCheck().run().result).isEqualTo(Result.FAILED);
+    assertThat(createCheck().run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
   public void shouldPassCheckWhenBlockedThreadsAreLessThenThreshold() {
     int running = 3;
     int blocked = 1;

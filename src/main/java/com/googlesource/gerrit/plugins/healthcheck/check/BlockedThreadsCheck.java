@@ -23,7 +23,6 @@ import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.lang.management.ManagementFactory;
@@ -35,7 +34,6 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-@Singleton
 public class BlockedThreadsCheck extends AbstractHealthCheck {
   public static Module SUB_CHECKS =
       new FactoryModule() {

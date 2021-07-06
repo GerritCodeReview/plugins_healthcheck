@@ -20,13 +20,11 @@ import static java.util.Collections.nCopies;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.util.Providers;
 import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck;
-import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsConfigurator;
+import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck.ThreadBeanProvider;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
@@ -40,18 +38,28 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlockedThreadsCheckTest {
+  private static final String HEALTHCHECK_CONFIG_BODY_THRESHOLD =
+      "[healthcheck \"" + BLOCKEDTHREADS + "\"]\n" + "  threshold = ";
+  private static final HealthCheckConfig CONFIG_THRESHOLD_25 =
+      new HealthCheckConfig(HEALTHCHECK_CONFIG_BODY_THRESHOLD + "25");
+  private static final HealthCheckConfig CONFIG_THRESHOLD_33 =
+      new HealthCheckConfig(HEALTHCHECK_CONFIG_BODY_THRESHOLD + "33");
+
   @Mock BlockedThreadsCheck.ThreadBeanProvider threadBeanProviderMock;
 
   @Mock ThreadMXBean beanMock;
 
+  private Injector testInjector;
+
   @Before
   public void setUp() {
     when(threadBeanProviderMock.get()).thenReturn(beanMock);
+    testInjector = createTestInjector(HealthCheckConfig.DEFAULT_CONFIG);
   }
 
   @Test
   public void shouldPassCheckWhenNoThreadsAreReturned() {
-    BlockedThreadsCheck objectUnderTest = createCheck(HealthCheckConfig.DEFAULT_CONFIG);
+    BlockedThreadsCheck objectUnderTest = createCheck();
     when(beanMock.getThreadInfo(null, 0)).thenReturn(new ThreadInfo[0]);
     assertThat(objectUnderTest.run().result).isEqualTo(Result.PASSED);
   }
@@ -85,21 +93,42 @@ public class BlockedThreadsCheckTest {
   }
 
   @Test
+  public void shouldFailThenPassCheck() {
+    String prefix = "some-prefix";
+
+    List<ThreadInfo> failingThreadInfo = new ArrayList<>();
+    failingThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.RUNNABLE, prefix)));
+    failingThreadInfo.addAll(nCopies(3, mockInfo(Thread.State.BLOCKED, prefix)));
+
+    List<ThreadInfo> successThreadInfo = new ArrayList<>();
+    successThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.RUNNABLE, prefix)));
+    successThreadInfo.addAll(nCopies(1, mockInfo(Thread.State.BLOCKED, prefix)));
+
+    when(beanMock.getThreadInfo(null, 0))
+        .thenReturn(
+            failingThreadInfo.toArray(new ThreadInfo[0]),
+            successThreadInfo.toArray(new ThreadInfo[0]));
+
+    assertThat(createCheck().run().result).isEqualTo(Result.FAILED);
+    assertThat(createCheck().run().result).isEqualTo(Result.PASSED);
+  }
+
+  @Test
   public void shouldPassCheckWhenBlockedThreadsAreLessThenThreshold() {
     int running = 3;
     int blocked = 1;
-    HealthCheckConfig config =
-        new HealthCheckConfig("[healthcheck \"" + BLOCKEDTHREADS + "\"]\n" + "  threshold = 25");
-    mockThreadsAndCheckResult(running, blocked, Result.PASSED, config);
+    testInjector = createTestInjector(CONFIG_THRESHOLD_25);
+
+    mockThreadsAndCheckResult(running, blocked, Result.PASSED);
   }
 
   @Test
   public void shouldFailCheckWhenBlockedThreadsAreAboveTheThreshold() {
     int running = 1;
     int blocked = 1;
-    HealthCheckConfig config =
-        new HealthCheckConfig("[healthcheck \"" + BLOCKEDTHREADS + "\"]\n" + "  threshold = 33");
-    mockThreadsAndCheckResult(running, blocked, Result.FAILED, config);
+    testInjector = createTestInjector(CONFIG_THRESHOLD_33);
+
+    mockThreadsAndCheckResult(running, blocked, Result.FAILED);
   }
 
   @Test
@@ -107,10 +136,9 @@ public class BlockedThreadsCheckTest {
     int running = 3;
     int blocked = 1;
     String prefix = "blocked-threads-prefix";
-    HealthCheckConfig config =
-        new HealthCheckConfig(
-            "[healthcheck \"" + BLOCKEDTHREADS + "\"]\n" + "  threshold = " + prefix + " = 25");
-    mockThreadsAndCheckResult(running, blocked, Result.PASSED, prefix, config);
+    testInjector = createTestInjector(CONFIG_THRESHOLD_25);
+
+    mockThreadsAndCheckResult(running, blocked, Result.PASSED, prefix);
   }
 
   @Test
@@ -118,10 +146,9 @@ public class BlockedThreadsCheckTest {
     int running = 1;
     int blocked = 1;
     String prefix = "blocked-threads-prefix";
-    HealthCheckConfig config =
-        new HealthCheckConfig(
-            "[healthcheck \"" + BLOCKEDTHREADS + "\"]\n" + "  threshold = " + prefix + " = 33");
-    mockThreadsAndCheckResult(running, blocked, Result.FAILED, prefix, config);
+    testInjector = createTestInjector(CONFIG_THRESHOLD_33);
+
+    mockThreadsAndCheckResult(running, blocked, Result.FAILED, prefix);
   }
 
   @Test
@@ -141,31 +168,27 @@ public class BlockedThreadsCheckTest {
                 + "\nthreshold = "
                 + notBlockedPrefix
                 + "=33");
+    testInjector = createTestInjector(config);
+
     List<ThreadInfo> infos = new ArrayList<>(running + blocked + running);
     infos.addAll(nCopies(running, mockInfo(Thread.State.RUNNABLE, blockedPrefix)));
     infos.addAll(nCopies(blocked, mockInfo(Thread.State.BLOCKED, blockedPrefix)));
     infos.addAll(nCopies(running, mockInfo(Thread.State.RUNNABLE, notBlockedPrefix)));
     when(beanMock.getThreadInfo(null, 0)).thenReturn(infos.toArray(new ThreadInfo[infos.size()]));
-    checkResult(Result.FAILED, config);
+    checkResult(Result.FAILED);
   }
 
   private void mockThreadsAndCheckResult(int running, int blocked, Result expected) {
-    mockThreadsAndCheckResult(running, blocked, expected, HealthCheckConfig.DEFAULT_CONFIG);
+    mockThreadsAndCheckResult(running, blocked, expected, "some-prefix");
   }
 
-  private void mockThreadsAndCheckResult(
-      int running, int blocked, Result expected, HealthCheckConfig config) {
-    mockThreadsAndCheckResult(running, blocked, expected, "some-prefix", config);
-  }
-
-  private void mockThreadsAndCheckResult(
-      int running, int blocked, Result expected, String prefix, HealthCheckConfig config) {
+  private void mockThreadsAndCheckResult(int running, int blocked, Result expected, String prefix) {
     mockThreads(running, blocked, prefix);
-    checkResult(expected, config);
+    checkResult(expected);
   }
 
-  private void checkResult(Result expected, HealthCheckConfig config) {
-    BlockedThreadsCheck objectUnderTest = createCheck(config);
+  private void checkResult(Result expected) {
+    BlockedThreadsCheck objectUnderTest = createCheck();
     assertThat(objectUnderTest.run().result).isEqualTo(expected);
   }
 
@@ -183,8 +206,11 @@ public class BlockedThreadsCheckTest {
     return infoMock;
   }
 
-  private BlockedThreadsCheck createCheck(HealthCheckConfig config) {
-    DummyHealthCheckMetricsFactory checkMetricsFactory = new DummyHealthCheckMetricsFactory();
+  private BlockedThreadsCheck createCheck() {
+    return testInjector.getInstance(BlockedThreadsCheck.class);
+  }
+
+  private Injector createTestInjector(HealthCheckConfig config) {
     Injector injector =
         Guice.createInjector(
             new HealthCheckModule(),
@@ -192,15 +218,11 @@ public class BlockedThreadsCheckTest {
               @Override
               protected void configure() {
                 bind(HealthCheckConfig.class).toInstance(config);
-                bind(HealthCheckMetrics.Factory.class).toInstance(checkMetricsFactory);
+                bind(HealthCheckMetrics.Factory.class).to(DummyHealthCheckMetricsFactory.class);
+                bind(ThreadBeanProvider.class).toInstance(threadBeanProviderMock);
               }
             },
             BlockedThreadsCheck.SUB_CHECKS);
-    return new BlockedThreadsCheck(
-        injector.getInstance(ListeningExecutorService.class),
-        config,
-        checkMetricsFactory,
-        threadBeanProviderMock,
-        Providers.of(injector.getInstance(BlockedThreadsConfigurator.class)));
+    return injector;
   }
 }

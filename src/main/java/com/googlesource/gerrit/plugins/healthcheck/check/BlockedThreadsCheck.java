@@ -23,6 +23,7 @@ import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.lang.management.ManagementFactory;
@@ -34,6 +35,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+@Singleton
 public class BlockedThreadsCheck extends AbstractHealthCheck {
   public static Module SUB_CHECKS =
       new FactoryModule() {
@@ -44,7 +46,7 @@ public class BlockedThreadsCheck extends AbstractHealthCheck {
       };
 
   private final ThreadMXBean threads;
-  private final Supplier<List<Collector>> collectorsSupplier;
+  private final Supplier<BlockedThreadsConfigurator> collectorsSupplier;
 
   @Inject
   public BlockedThreadsCheck(
@@ -55,12 +57,12 @@ public class BlockedThreadsCheck extends AbstractHealthCheck {
       Provider<BlockedThreadsConfigurator> checksConfig) {
     super(executor, healthCheckConfig, BLOCKEDTHREADS, healthCheckMetricsFactory);
     this.threads = threadBeanProvider.get();
-    this.collectorsSupplier = Suppliers.memoize(() -> checksConfig.get().collectors());
+    this.collectorsSupplier = Suppliers.memoize(checksConfig::get);
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    List<Collector> collectors = collectorsSupplier.get();
+    List<Collector> collectors = collectorsSupplier.get().collectors();
     dumpAllThreads().forEach(info -> collectors.forEach(c -> c.collect(info)));
 
     // call check on all sub-checks so that metrics are populated

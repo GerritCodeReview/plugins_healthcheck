@@ -22,6 +22,30 @@
       },
       "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d51f8f_2002ead1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-07-15T08:21:14Z",
+      "side": 1,
+      "message": "That would work too (and it would be simpler) - just wanted to postpone the config walk through for the first call to the healthcheck endpoint so that it doesn\u0027t occupy the memory when the endpoint is not called. Obviously if you believe that it is over-engineered I can change it to direct injection ;)",
+      "parentUuid": "74067714_0bb6b998",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 55
+      },
+      "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

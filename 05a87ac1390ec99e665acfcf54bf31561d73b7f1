@@ -46,6 +46,76 @@
       },
       "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "208efa90_88ed4d9e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-07-17T01:53:58Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s overkill IMHO.",
+      "parentUuid": "08d51f8f_2002ead1",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 55
+      },
+      "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c05f9f92_1bb97a02",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-07-17T01:53:58Z",
+      "side": 1,
+      "message": "Just \u0027checksConfig",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 67
+      },
+      "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d0e9dc2_2af407d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/BlockedThreadsCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2021-07-17T01:53:58Z",
+      "side": 1,
+      "message": "createCollectors? newCollectors? This method is effectively creating a new set of collectors per call. That\u0027s why the @Singleton can be put back into the class annotation.",
+      "range": {
+        "startLine": 65,
+        "startChar": 58,
+        "endLine": 65,
+        "endChar": 70
+      },
+      "revId": "05a87ac1390ec99e665acfcf54bf31561d73b7f1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

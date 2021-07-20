@@ -50,7 +50,7 @@ public class BlockedThreadsConfigurator {
     this.providers = getProviders(subchecks, healthCheckConfig);
   }
 
-  List<Collector> collectors() {
+  List<Collector> createCollectors() {
     return providers.stream().map(CollectorProvider::get).collect(toList());
   }
 

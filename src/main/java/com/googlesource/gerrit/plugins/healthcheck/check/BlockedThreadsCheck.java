@@ -17,12 +17,12 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Suppliers;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.lang.management.ManagementFactory;
@@ -31,9 +31,9 @@ import java.lang.management.ThreadMXBean;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+@Singleton
 public class BlockedThreadsCheck extends AbstractHealthCheck {
   public static Module SUB_CHECKS =
       new FactoryModule() {
@@ -44,7 +44,7 @@ public class BlockedThreadsCheck extends AbstractHealthCheck {
       };
 
   private final ThreadMXBean threads;
-  private final Supplier<List<Collector>> collectorsSupplier;
+  private final BlockedThreadsConfigurator collectorsSupplier;
 
   @Inject
   public BlockedThreadsCheck(
@@ -52,15 +52,15 @@ public class BlockedThreadsCheck extends AbstractHealthCheck {
       HealthCheckConfig healthCheckConfig,
       HealthCheckMetrics.Factory healthCheckMetricsFactory,
       ThreadBeanProvider threadBeanProvider,
-      Provider<BlockedThreadsConfigurator> checksConfig) {
+      BlockedThreadsConfigurator checksConfig) {
     super(executor, healthCheckConfig, BLOCKEDTHREADS, healthCheckMetricsFactory);
     this.threads = threadBeanProvider.get();
-    this.collectorsSupplier = Suppliers.memoize(() -> checksConfig.get().collectors());
+    this.collectorsSupplier = checksConfig;
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    List<Collector> collectors = collectorsSupplier.get();
+    List<Collector> collectors = collectorsSupplier.createCollectors();
     dumpAllThreads().forEach(info -> collectors.forEach(c -> c.collect(info)));
 
     // call check on all sub-checks so that metrics are populated

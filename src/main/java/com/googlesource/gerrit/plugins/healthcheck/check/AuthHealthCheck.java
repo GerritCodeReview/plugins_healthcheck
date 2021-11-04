@@ -36,6 +36,7 @@ public class AuthHealthCheck extends AbstractHealthCheck {
   private final AccountCache byIdCache;
   private final String username;
   private final String password;
+  private final AuthRequest.Factory authRequestFactory;
 
   @Inject
   public AuthHealthCheck(
@@ -43,6 +44,7 @@ public class AuthHealthCheck extends AbstractHealthCheck {
       HealthCheckConfig config,
       Realm realm,
       AccountCache byIdCache,
+      AuthRequest.Factory authRequestFactory,
       HealthCheckMetrics.Factory healthCheckMetricsFactory) {
     super(executor, config, AUTH, healthCheckMetricsFactory);
 
@@ -50,11 +52,12 @@ public class AuthHealthCheck extends AbstractHealthCheck {
     this.byIdCache = byIdCache;
     this.username = config.getUsername(AUTH);
     this.password = config.getPassword(AUTH);
+    this.authRequestFactory = authRequestFactory;
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    AuthRequest authRequest = AuthRequest.forUser(username);
+    AuthRequest authRequest = authRequestFactory.createForUser(username);
     authRequest.setPassword(password);
     realm.authenticate(authRequest);
 

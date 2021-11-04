@@ -102,6 +102,11 @@ public class JGitHealthCheckTest {
     return new GitRepositoryManager() {
 
       @Override
+      public Status getRepositoryStatus(Project.NameKey name) {
+        return Status.ACTIVE;
+      }
+
+      @Override
       public Repository openRepository(Project.NameKey name)
           throws RepositoryNotFoundException, IOException {
         throw new RepositoryNotFoundException("Can't find repository " + name);

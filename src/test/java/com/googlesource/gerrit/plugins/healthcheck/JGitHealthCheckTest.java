@@ -32,7 +32,7 @@ import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.SortedSet;
+import java.util.NavigableSet;
 import org.eclipse.jgit.errors.RepositoryNotFoundException;
 import org.eclipse.jgit.lib.CommitBuilder;
 import org.eclipse.jgit.lib.Constants;
@@ -119,8 +119,8 @@ public class JGitHealthCheckTest {
       }
 
       @Override
-      public SortedSet<Project.NameKey> list() {
-        return Collections.emptySortedSet();
+      public NavigableSet<Project.NameKey> list() {
+        return Collections.emptyNavigableSet();
       }
     };
   }

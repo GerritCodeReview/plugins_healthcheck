@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.gerrit.testing.TestActionRefUpdateContext.testRefAction;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
@@ -130,17 +131,20 @@ public class JGitHealthCheckTest {
   }
 
   private void createCommit(InMemoryRepositoryManager.Repo repo, String ref) throws IOException {
-    try (ObjectInserter oi = repo.newObjectInserter()) {
-      CommitBuilder cb = new CommitBuilder();
-      cb.setTreeId(oi.insert(Constants.OBJ_TREE, new byte[] {}));
-      cb.setAuthor(personIdent);
-      cb.setCommitter(personIdent);
-      cb.setMessage("Test commit\n");
-      ObjectId id = oi.insert(cb);
-      oi.flush();
-      RefUpdate ru = repo.updateRef(ref);
-      ru.setNewObjectId(id);
-      assertThat(ru.update()).isEqualTo(NEW);
-    }
+    testRefAction(
+        () -> {
+          try (ObjectInserter oi = repo.newObjectInserter()) {
+            CommitBuilder cb = new CommitBuilder();
+            cb.setTreeId(oi.insert(Constants.OBJ_TREE, new byte[] {}));
+            cb.setAuthor(personIdent);
+            cb.setCommitter(personIdent);
+            cb.setMessage("Test commit\n");
+            ObjectId id = oi.insert(cb);
+            oi.flush();
+            RefUpdate ru = repo.updateRef(ref);
+            ru.setNewObjectId(id);
+            assertThat(ru.update()).isEqualTo(NEW);
+          }
+        });
   }
 }

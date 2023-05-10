@@ -24,7 +24,17 @@ bazel-genfiles/plugins/healthcheck/healthcheck.jar
 
 ## How to install
 
-Copy the healthcheck.jar into the Gerrit's /plugins directory and wait for the plugin to be automatically loaded.
+Copy the `healthcheck.jar` into the Gerrit's `/plugins` directory and the `/lib` directory.
+Edit the `/etc/gerrit.config` and ensure to add the following section:
+
+```
+[gerrit]
+   installModule = com.googlesource.gerrit.plugins.healthcheck.ExtensionHealthCheckModule
+```
+
+This allows other plugins to register their own healthcheck.
+Please refer to the [extension](./src/main/resources/Documentation/extensions.md)
+
 The healthcheck plugin is compatible with both primary Gerrit setups and Gerrit replicas. The only difference to bear
 in mind is that some checks will be automatically disabled on replicas (e.g. query changes) because the associated
 subsystem is switched off.

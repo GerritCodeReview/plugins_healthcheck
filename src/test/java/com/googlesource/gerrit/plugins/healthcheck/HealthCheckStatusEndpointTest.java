@@ -21,6 +21,8 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gerrit.extensions.registration.DynamicSet;
 import com.google.gerrit.extensions.restapi.Response;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -36,7 +38,7 @@ import org.junit.Test;
 public class HealthCheckStatusEndpointTest {
 
   @Inject private ListeningExecutorService executor;
-  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+  MetricMaker disabledMetricMaker = new DisabledMetricMaker();
 
   public static class TestHealthCheck extends AbstractHealthCheck {
     private final HealthCheck.Result checkResult;
@@ -47,12 +49,12 @@ public class HealthCheckStatusEndpointTest {
         String checkName,
         HealthCheck.Result result,
         long sleep,
-        HealthCheckMetrics.Factory healthCheckMetricsFactory) {
+        MetricMaker metricMaker) {
       super(
           MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)),
           config,
           checkName,
-          healthCheckMetricsFactory);
+          metricMaker);
       this.checkResult = result;
       this.sleep = sleep;
     }
@@ -82,12 +84,11 @@ public class HealthCheckStatusEndpointTest {
                         "checkOk",
                         HealthCheck.Result.PASSED,
                         0,
-                        healthCheckMetricsFactory);
+                        disabledMetricMaker);
                 DynamicSet<HealthCheck> healthChecks = new DynamicSet<>();
                 healthChecks.add("passingHealthCheck", passingHealthCheck);
                 GlobalHealthCheck globalHealthCheck =
-                    new GlobalHealthCheck(
-                        healthChecks, executor, config, healthCheckMetricsFactory);
+                    new GlobalHealthCheck(healthChecks, executor, config, disabledMetricMaker);
                 bind(GlobalHealthCheck.class).toInstance(globalHealthCheck);
                 bind(HealthCheckConfig.class).toInstance(config);
               }
@@ -111,16 +112,11 @@ public class HealthCheckStatusEndpointTest {
                     new HealthCheckConfig("[healthcheck]\n" + "timeout = 20");
                 TestHealthCheck testHealthCheck =
                     new TestHealthCheck(
-                        config,
-                        "checkOk",
-                        HealthCheck.Result.PASSED,
-                        30,
-                        healthCheckMetricsFactory);
+                        config, "checkOk", HealthCheck.Result.PASSED, 30, disabledMetricMaker);
                 DynamicSet<HealthCheck> healthChecks = new DynamicSet<>();
                 healthChecks.add("testHealthCheck", testHealthCheck);
                 GlobalHealthCheck globalHealthCheck =
-                    new GlobalHealthCheck(
-                        healthChecks, executor, config, healthCheckMetricsFactory);
+                    new GlobalHealthCheck(healthChecks, executor, config, disabledMetricMaker);
                 bind(GlobalHealthCheck.class).toInstance(globalHealthCheck);
                 bind(HealthCheckConfig.class).toInstance(config);
               }
@@ -148,7 +144,7 @@ public class HealthCheckStatusEndpointTest {
                         "checkOk",
                         HealthCheck.Result.PASSED,
                         0,
-                        healthCheckMetricsFactory);
+                        disabledMetricMaker);
 
                 TestHealthCheck failingHealthCheck =
                     new TestHealthCheck(
@@ -156,14 +152,13 @@ public class HealthCheckStatusEndpointTest {
                         "checkKo",
                         HealthCheck.Result.FAILED,
                         0,
-                        healthCheckMetricsFactory);
+                        disabledMetricMaker);
 
                 DynamicSet<HealthCheck> healthChecks = new DynamicSet<>();
                 healthChecks.add("passingHealthCheck", passingHealthCheck);
                 healthChecks.add("failingHealthCheck", failingHealthCheck);
                 GlobalHealthCheck globalHealthCheck =
-                    new GlobalHealthCheck(
-                        healthChecks, executor, config, healthCheckMetricsFactory);
+                    new GlobalHealthCheck(healthChecks, executor, config, disabledMetricMaker);
                 bind(GlobalHealthCheck.class).toInstance(globalHealthCheck);
                 bind(HealthCheckConfig.class).toInstance(config);
               }
@@ -177,6 +172,7 @@ public class HealthCheckStatusEndpointTest {
   }
 
   private Injector testInjector(AbstractModule testModule) {
-    return Guice.createInjector(new HealthCheckModule(), new HealthCheckApiModule(), testModule);
+    return Guice.createInjector(
+        new HealthCheckExtensionApiModule(), new HealthCheckApiModule(), testModule);
   }
 }

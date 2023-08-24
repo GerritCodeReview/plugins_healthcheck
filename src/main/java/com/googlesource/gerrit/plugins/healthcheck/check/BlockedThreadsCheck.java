@@ -19,12 +19,12 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.config.FactoryModule;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
@@ -50,10 +50,10 @@ public class BlockedThreadsCheck extends AbstractHealthCheck {
   public BlockedThreadsCheck(
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory,
+      MetricMaker metricMaker,
       ThreadBeanProvider threadBeanProvider,
       BlockedThreadsConfigurator checksConfig) {
-    super(executor, healthCheckConfig, BLOCKEDTHREADS, healthCheckMetricsFactory);
+    super(executor, healthCheckConfig, BLOCKEDTHREADS, metricMaker);
     this.threads = threadBeanProvider.get();
     this.collectorsSupplier = checksConfig;
   }

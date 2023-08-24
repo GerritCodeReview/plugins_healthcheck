@@ -29,6 +29,7 @@ import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
@@ -38,13 +39,22 @@ import org.junit.Test;
 
 @TestPlugin(
     name = "healthcheck-test",
-    sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
+    sysModule = "com.googlesource.gerrit.plugins.healthcheck.HealthCheckIT$TestModule",
     httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
   HealthCheckConfig config;
   String healthCheckUriPath;
+
+  public static class TestModule extends AbstractModule {
+
+    @Override
+    protected void configure() {
+      install(new HealthCheckExtensionApiModule());
+      install(new Module());
+    }
+  }
 
   @Override
   @Before

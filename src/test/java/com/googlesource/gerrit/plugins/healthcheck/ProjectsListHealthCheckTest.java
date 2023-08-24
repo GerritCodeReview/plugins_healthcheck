@@ -20,6 +20,8 @@ import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFA
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.extensions.restapi.BadRequestException;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Guice;
@@ -41,7 +43,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class ProjectsListHealthCheckTest {
   @Inject private ListeningExecutorService executor;
 
-  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+  MetricMaker disabledMetricMaker = new DisabledMetricMaker();
 
   private Config gerritConfig = new Config();
 
@@ -49,18 +51,14 @@ public class ProjectsListHealthCheckTest {
 
   @Before
   public void setUp() throws Exception {
-    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+    Guice.createInjector(new HealthCheckExtensionApiModule()).injectMembers(this);
   }
 
   @Test
   public void shouldBeHealthyWhenListProjectsWorks() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor,
-            DEFAULT_CONFIG,
-            getWorkingProjectList(0),
-            mockOneOffCtx,
-            healthCheckMetricsFactory);
+            executor, DEFAULT_CONFIG, getWorkingProjectList(0), mockOneOffCtx, disabledMetricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
   }
 
@@ -68,11 +66,7 @@ public class ProjectsListHealthCheckTest {
   public void shouldBeUnhealthyWhenListProjectsIsFailing() {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
-            executor,
-            DEFAULT_CONFIG,
-            getFailingProjectList(),
-            mockOneOffCtx,
-            healthCheckMetricsFactory);
+            executor, DEFAULT_CONFIG, getFailingProjectList(), mockOneOffCtx, disabledMetricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -84,7 +78,7 @@ public class ProjectsListHealthCheckTest {
             DEFAULT_CONFIG,
             getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2),
             mockOneOffCtx,
-            healthCheckMetricsFactory);
+            disabledMetricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
   }
 

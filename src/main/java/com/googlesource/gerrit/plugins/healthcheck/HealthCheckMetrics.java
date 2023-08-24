@@ -18,20 +18,13 @@ import com.google.gerrit.metrics.Counter0;
 import com.google.gerrit.metrics.Description;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.metrics.Timer0;
-import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
 
 public class HealthCheckMetrics {
-
-  public interface Factory {
-    HealthCheckMetrics create(String name);
-  }
 
   private final MetricMaker metricMaker;
   private final String name;
 
-  @Inject
-  public HealthCheckMetrics(MetricMaker metricMaker, @Assisted String name) {
+  public HealthCheckMetrics(MetricMaker metricMaker, String name) {
     this.metricMaker = metricMaker;
     this.name = name;
   }

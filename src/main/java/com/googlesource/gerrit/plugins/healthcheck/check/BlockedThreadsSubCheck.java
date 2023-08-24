@@ -18,6 +18,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.common.base.Strings;
 import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
@@ -65,11 +66,10 @@ class BlockedThreadsSubCheck
 
   @Inject
   BlockedThreadsSubCheck(
-      HealthCheckMetrics.Factory healthCheckMetricsFactory,
-      @Assisted String prefix,
-      @Assisted Integer threshold) {
+      MetricMaker metricMaker, @Assisted String prefix, @Assisted Integer threshold) {
     HealthCheckMetrics healthCheckMetrics =
-        healthCheckMetricsFactory.create(
+        new HealthCheckMetrics(
+            metricMaker,
             String.format(
                 "%s-%s", BLOCKEDTHREADS, prefix.toLowerCase().replaceAll("[^\\w-/]", "_")));
     Counter0 failureCounterMetric = healthCheckMetrics.getFailureCounterMetric();

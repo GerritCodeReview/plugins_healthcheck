@@ -20,7 +20,6 @@ public class Module extends AbstractModule {
 
   @Override
   protected void configure() {
-    install(new HealthCheckModule());
     install(new HealthCheckSubsystemsModule());
     install(new HealthCheckApiModule());
   }

@@ -18,10 +18,10 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -38,8 +38,8 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
       DynamicSet<HealthCheck> healthChecks,
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, healthCheckConfig, GLOBAL, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, healthCheckConfig, GLOBAL, metricMaker);
     this.healthChecks = healthChecks;
   }
 

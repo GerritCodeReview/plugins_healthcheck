@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.Counter0;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.metrics.Timer0;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
@@ -42,14 +43,14 @@ public abstract class AbstractHealthCheck implements HealthCheck {
       ListeningExecutorService executor,
       HealthCheckConfig config,
       String name,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
+      MetricMaker metricMaker) {
     this.executor = executor;
     this.name = name;
     this.timeout = config.getTimeout(name);
     this.config = config;
     this.latestStatus = StatusSummary.INITIAL_STATUS;
 
-    HealthCheckMetrics healthCheckMetrics = healthCheckMetricsFactory.create(name);
+    HealthCheckMetrics healthCheckMetrics = new HealthCheckMetrics(metricMaker, name);
     this.failureCounterMetric = healthCheckMetrics.getFailureCounterMetric();
     this.latencyMetric = healthCheckMetrics.getLatencyMetric();
   }

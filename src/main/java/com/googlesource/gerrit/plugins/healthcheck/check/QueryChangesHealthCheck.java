@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.change.QueryChanges;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
@@ -24,7 +25,6 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +42,8 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
       HealthCheckConfig config,
       Provider<QueryChanges> queryChangesProvider,
       OneOffRequestContext oneOffCtx,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, config, QUERYCHANGES, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, config, QUERYCHANGES, metricMaker);
     this.queryChangesProvider = queryChangesProvider;
     this.config = config;
     this.limit = config.getLimit(QUERYCHANGES);

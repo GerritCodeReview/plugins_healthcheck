@@ -18,11 +18,11 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.git.GitRepositoryManager;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Set;
 import org.eclipse.jgit.lib.Repository;
 
@@ -36,8 +36,8 @@ public class JGitHealthCheck extends AbstractHealthCheck {
       ListeningExecutorService executor,
       HealthCheckConfig config,
       GitRepositoryManager repositoryManager,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, config, JGIT, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, config, JGIT, metricMaker);
     this.repositoryManager = repositoryManager;
     this.repositoryNameKeys = config.getJGITRepositories(JGIT);
   }

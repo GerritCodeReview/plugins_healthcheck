@@ -17,6 +17,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.account.AccountCache;
 import com.google.gerrit.server.account.AccountState;
 import com.google.gerrit.server.account.AuthRequest;
@@ -24,7 +25,6 @@ import com.google.gerrit.server.account.Realm;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +45,8 @@ public class AuthHealthCheck extends AbstractHealthCheck {
       Realm realm,
       AccountCache byIdCache,
       AuthRequest.Factory authRequestFactory,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, config, AUTH, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, config, AUTH, metricMaker);
 
     this.realm = realm;
     this.byIdCache = byIdCache;

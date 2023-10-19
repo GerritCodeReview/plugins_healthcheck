@@ -150,6 +150,24 @@
       "parentUuid": "8829bca3_650b3d8a",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21300a90_3033d50d",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-19T23:04:45Z",
+      "side": 1,
+      "message": "\u003e IMO would be better if we could \"version\" that information and link to a specific  (or latest) version from the plugin docs and keep that information plugin agnostic in the main Gerrit docs.\n\nSure, in a stable branch. This is master so isn\u0027t versioned yet.\n\n\u003e AFAIR, there\u0027s nothing in the Gerrit docs how to start a plugin project on gerrit-reiew.googlesource.com, and how to configure it with CI. \n\nWell, which CI? We have three so far:\n- LUCI\n- Jenkins\n- Zuul\n\n\u003e Maybe that\u0027s something for the main website, not the Gerrit itself.\nNot sure, but possibly the discussion is outside the scope of this change.",
+      "parentUuid": "c765c843_04aa157b",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

@@ -16,6 +16,86 @@
       "message": "nit: wrap te line",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59770dd8_cb989fbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-19T22:18:06Z",
+      "side": 1,
+      "message": "This is soo 😎, well done @syntonyze@gmail.com !",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26acdc3c_fb83ee70",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-19T22:18:06Z",
+      "side": 1,
+      "message": "What about `Custom checks extensions` ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3ff0abc_384b4447",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-19T22:18:06Z",
+      "side": 1,
+      "message": "```suggestion\nThe @PLUGIN@ plugin allows other plugins to provide their own custom check that\n```",
+      "range": {
+        "startLine": 3,
+        "startChar": 62,
+        "endLine": 3,
+        "endChar": 68
+      },
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e06fc84_150c70aa",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-19T22:18:06Z",
+      "side": 1,
+      "message": "Can you also suggest how to build it on the CI?\n\n```yaml\n- project:\n    name: plugin-foo\n    jobs:\n      - \u0027plugin-{name}-bazel-{branch}\u0027:\n          extra-plugins: \u0027healthcheck\u0027\n          branch:\n            - master\n```\n\nThat may not be obvious to many :-)\n\nAlso mention that as a rule of thumb, the branches of the `plugin-off` must be aligned with the ones of the `healthcheck` plugin.",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

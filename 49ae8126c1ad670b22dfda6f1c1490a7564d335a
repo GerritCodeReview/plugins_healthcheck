@@ -35,6 +35,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb4f572_624eae2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-10-20T09:09:05Z",
+      "side": 1,
+      "message": "awesome man 👍",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26acdc3c_fb83ee70",
@@ -77,6 +94,23 @@
         "endLine": 3,
         "endChar": 68
       },
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd03e68_2832f77f",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-10-20T09:09:05Z",
+      "side": 1,
+      "message": "iirc adding the plugin extension module into the gerrit.config and dropping the jar into the lib directory won\u0027t be necessary because of this change https://gerrit-review.googlesource.com/c/gerrit/+/299472 ?",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -184,6 +218,24 @@
       "side": 1,
       "message": "\u003e Well, which CI? We have three so far:\n\nwe can discuss that on the docs change. IMO, it should be the _recommended one_ or all of them 😄",
       "parentUuid": "21300a90_3033d50d",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecf1b3b5_c945b11e",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-10-20T09:09:05Z",
+      "side": 1,
+      "message": "+1 on explaining how to build it on the CI as it wasnt obvious to me 😊 - I agree that ideally this information should be in one place only, and we can link to it from the plugin docs.",
+      "parentUuid": "8c2e683a_1aac7e7e",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

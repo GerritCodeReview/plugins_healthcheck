@@ -115,6 +115,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f367ba24_2e103f28",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:20:43Z",
+      "side": 1,
+      "message": "exactly, you\u0027re right, we don\u0027t drop the jar into the `lib` directory anymore thanks to @luca.milanesio@gmail.com\u0027s change.\n\nWe still need the healthcheck library dependency at *build* time however, because the IDE needs to have those classes available at compile time.\n\nI will add all of this to the docs at [1], but hopefully makes sense.\n\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/389862",
+      "parentUuid": "8fd03e68_2832f77f",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e06fc84_150c70aa",
@@ -236,6 +254,24 @@
       "side": 1,
       "message": "+1 on explaining how to build it on the CI as it wasnt obvious to me 😊 - I agree that ideally this information should be in one place only, and we can link to it from the plugin docs.",
       "parentUuid": "8c2e683a_1aac7e7e",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "becb8e77_f5898fbc",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:20:43Z",
+      "side": 1,
+      "message": "Yes agreed.\nI also added to [1] that the dependency needs to be added to the `Jenksinfile`\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/389862/6",
+      "parentUuid": "ecf1b3b5_c945b11e",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

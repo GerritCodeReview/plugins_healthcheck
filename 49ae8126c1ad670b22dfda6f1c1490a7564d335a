@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e574f86a_3e1ed30e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa137db8_5e1efb60",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59770dd8_cb989fbf",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -75,6 +93,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "758f0222_368b6127",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26acdc3c_fb83ee70",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3ff0abc_384b4447",
@@ -88,6 +130,30 @@
       "writtenOn": "2023-10-19T22:18:06Z",
       "side": 1,
       "message": "```suggestion\nThe @PLUGIN@ plugin allows other plugins to provide their own custom check that\n```",
+      "range": {
+        "startLine": 3,
+        "startChar": 62,
+        "endLine": 3,
+        "endChar": 68
+      },
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7cd45d_04d1d717",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3ff0abc_384b4447",
       "range": {
         "startLine": 3,
         "startChar": 62,
@@ -272,6 +338,24 @@
       "side": 1,
       "message": "Yes agreed.\nI also added to [1] that the dependency needs to be added to the `Jenksinfile`\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/389862/6",
       "parentUuid": "ecf1b3b5_c945b11e",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84403da1_a7fa1a64",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-20T15:32:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "becb8e77_f5898fbc",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

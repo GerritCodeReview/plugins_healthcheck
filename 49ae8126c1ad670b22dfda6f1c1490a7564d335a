@@ -168,6 +168,24 @@
       "parentUuid": "c765c843_04aa157b",
       "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c2e683a_1aac7e7e",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1010134
+      },
+      "writtenOn": "2023-10-20T08:16:34Z",
+      "side": 1,
+      "message": "\u003e Well, which CI? We have three so far:\n\nwe can discuss that on the docs change. IMO, it should be the _recommended one_ or all of them 😄",
+      "parentUuid": "21300a90_3033d50d",
+      "revId": "49ae8126c1ad670b22dfda6f1c1490a7564d335a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

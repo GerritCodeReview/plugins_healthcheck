@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e2ea6c7_3b804c53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-23T11:50:05Z",
+      "side": 1,
+      "message": "Yep, ListProjectsImpl was introduced by Ibf963cf3db, which is included from 3.9 onwards.",
+      "revId": "daa7429154ebc081ed1c62ae38670b2ba08c503f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -16,6 +16,23 @@
       "message": "Now that the documentation for cross-plugins has been merged [1], can you guys have another round of reviews for this?\n\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/389862",
       "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e45d63ea_9ff78f73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-10-24T09:58:39Z",
+      "side": 1,
+      "message": "Good job.",
+      "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

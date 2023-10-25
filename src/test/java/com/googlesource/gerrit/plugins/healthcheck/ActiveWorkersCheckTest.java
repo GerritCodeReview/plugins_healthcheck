@@ -21,6 +21,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.AbstractModule;
@@ -32,7 +33,6 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class ActiveWorkersCheckTest {
-  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
 
   @Test
   public void shouldPassCheckWhenNoActiveWorkers() {
@@ -105,7 +105,7 @@ public class ActiveWorkersCheckTest {
   }
 
   private Injector testInjector(AbstractModule testModule) {
-    return Guice.createInjector(new HealthCheckModule(), testModule);
+    return Guice.createInjector(new HealthCheckExtensionApiModule(), testModule);
   }
 
   private MetricRegistry createMetricRegistry(Long value) {
@@ -132,7 +132,7 @@ public class ActiveWorkersCheckTest {
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
         injector.getInstance(MetricRegistry.class),
-        healthCheckMetricsFactory);
+        new DisabledMetricMaker());
   }
 
   private class TestModule extends AbstractModule {

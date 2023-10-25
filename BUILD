@@ -13,6 +13,7 @@ gerrit_plugin(
         "Gerrit-PluginName: healthcheck",
         "Gerrit-Module: com.googlesource.gerrit.plugins.healthcheck.Module",
         "Gerrit-HttpModule: com.googlesource.gerrit.plugins.healthcheck.HttpModule",
+        "Gerrit-ApiModule: com.googlesource.gerrit.plugins.healthcheck.HealthCheckExtensionApiModule",
     ],
     resources = glob(["src/main/resources/**/*"]),
 )

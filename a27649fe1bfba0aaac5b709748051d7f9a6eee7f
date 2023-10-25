@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0a086e68_d675a78c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-25T13:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "980a6878_7b8309ae",
+      "range": {
+        "startLine": 14,
+        "startChar": 28,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "533a81af_6af2b64b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -116,6 +140,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e9fa14_50363a71",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-25T13:46:22Z",
+      "side": 1,
+      "message": "I think `extensions` reads better, since it implies that any number of extensions can be defined.",
+      "parentUuid": "9ef5a35c_beea527f",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 26
+      },
+      "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac93ec9d_b7d46326",
@@ -139,6 +187,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a88a1ed4_8f063d8b",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-25T13:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac93ec9d_b7d46326",
+      "range": {
+        "startLine": 71,
+        "startChar": 81,
+        "endLine": 71,
+        "endChar": 95
+      },
+      "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad0a7253_58a3cae2",
@@ -152,6 +224,30 @@
       "writtenOn": "2023-10-25T07:53:23Z",
       "side": 1,
       "message": "Might be worth clarify this is the `Gerrit-PluginName` in the manifest and not the `name` of the bazel module.",
+      "range": {
+        "startLine": 80,
+        "startChar": 61,
+        "endLine": 80,
+        "endChar": 64
+      },
+      "revId": "a27649fe1bfba0aaac5b709748051d7f9a6eee7f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "645f6517_717a46a5",
+        "filename": "src/main/resources/Documentation/extensions.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-25T13:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad0a7253_58a3cae2",
       "range": {
         "startLine": 80,
         "startChar": 61,

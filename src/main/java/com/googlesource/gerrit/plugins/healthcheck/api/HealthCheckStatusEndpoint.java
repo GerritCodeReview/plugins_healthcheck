@@ -18,9 +18,12 @@ import com.google.gerrit.extensions.restapi.*;
 import com.google.gerrit.server.config.ConfigResource;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
+
+import java.io.*;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,14 +32,20 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
 
   private final GlobalHealthCheck healthChecks;
 
+  private final String failedFileFlagPath;
+
   @Inject
-  public HealthCheckStatusEndpoint(GlobalHealthCheck healthChecks) {
+  public HealthCheckStatusEndpoint(GlobalHealthCheck healthChecks, HealthCheckConfig config) {
     this.healthChecks = healthChecks;
+    this.failedFileFlagPath = config.getFailFileFlagPath();
   }
 
   @Override
   public Response<Map<String, Object>> apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
+    if(failFlagFileExists()) {
+      return Response.withStatusCode(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Map.of("reason", "Fail Flag File exists"));
+    }
     HealthCheck.StatusSummary globalHealthCheckStatus = healthChecks.run();
 
     Map<String, Object> result = globalHealthCheckStatus.subChecks;
@@ -49,5 +58,14 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
     return checkStatus.result == Result.FAILED
         ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR
         : HttpServletResponse.SC_OK;
+  }
+
+  private boolean failFlagFileExists() throws IOException {
+    File file = new File(failedFileFlagPath);
+    try (InputStream targetStream = new FileInputStream(file)) {
+      return true;
+    } catch (FileNotFoundException e) {
+      return false;
+    }
   }
 }

@@ -47,6 +47,7 @@ public class HealthCheckConfig {
   private static final int ACTIVE_WORKERS_THRESHOLD_DEFAULT = 80;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
+  private static final String FAIL_FILE_FLAG_DEFAULT = "data/healthcheck/fail";
   private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
@@ -133,6 +134,10 @@ public class HealthCheckConfig {
 
   public String getPassword(String healthCheckName) {
     return getStringWithFallback("password", healthCheckName, PASSWORD_DEFAULT);
+  }
+
+  public String getFailFileFlagPath() {
+    return getStringWithFallback("failFileFlagPath", null, FAIL_FILE_FLAG_DEFAULT);
   }
 
   public boolean healthCheckEnabled(String healthCheckName) {

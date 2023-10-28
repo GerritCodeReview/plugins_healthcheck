@@ -126,6 +126,25 @@ Content-Type: application/json
 }
 ```
 
+It's also possible to artificially make the healthcheck fail by placing a file
+at a configurable path specified like:
+
+```
+[healtcheck]
+  failFileFlaPath="data/healthcheck/fail"
+```
+
+This will make the healthcheck endpoint return 500 even if the node is otherwise
+healthy. This is useful when a node needs to be removed from the pool of
+available Gerrit instance while it undergoes maintenance.
+
+**NOTE**: If the path starts with `/` then even paths outside of Gerrit's home
+will be checked. If the path starts WITHOUT `/` then the path is relative to
+Gerrit's home.
+
+**NOTE**: The file needs to be a real file rather than a symlink.
+
+
 ## Metrics
 
 As for all other endpoints in Gerrit, some metrics are automatically emitted when the  `/config/server/healthcheck~status`

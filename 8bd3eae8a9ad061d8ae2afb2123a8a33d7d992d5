@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de189213_71be9c52",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-10-30T15:27:57Z",
+      "side": 1,
+      "message": "If the file existed, all tests would fail, and now that we have in the body of the response why the healthcheck failed, I don\u0027t think we need to check at the start that the file doesn\u0027t exists?",
+      "parentUuid": "e1cd3b11_506e4c8e",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 38
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16a7b751_06764ab6",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 2

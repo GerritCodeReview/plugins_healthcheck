@@ -39,6 +39,30 @@
       },
       "revId": "c7ffc43318fc78555f13aedfa53190d6db0f7551",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38e337d9_495f2c1c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T13:08:47Z",
+      "side": 1,
+      "message": "No, that is enough.",
+      "parentUuid": "e4d8a605_8235d82f",
+      "range": {
+        "startLine": 50,
+        "startChar": 57,
+        "endLine": 50,
+        "endChar": 80
+      },
+      "revId": "c7ffc43318fc78555f13aedfa53190d6db0f7551",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

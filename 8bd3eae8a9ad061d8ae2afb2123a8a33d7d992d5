@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e14afee_ad7fcf24",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "Yeah, that would also work.",
+      "parentUuid": "4b67794b_df9ddc02",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1cd3b11_506e4c8e",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 2
@@ -191,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb5515c2_de7e7f0c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "Or just remove it in the setup() isn\u0027t it?",
+      "parentUuid": "de189213_71be9c52",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 38
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16a7b751_06764ab6",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 2
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "Yes I saw that, but couldn\u0027t get it to work. I then noticed that the other tests use this `disableCheck`, which is the same thing I\u0027m doing for `setFailedFlagFilePath`, but I needed it globally for the plugin rather than for specific checks.",
       "parentUuid": "16a7b751_06764ab6",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3872358b_da85bea6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "Interesting, let me check why.",
+      "parentUuid": "80e55deb_a8b809bf",
       "range": {
         "startLine": 207,
         "startChar": 4,

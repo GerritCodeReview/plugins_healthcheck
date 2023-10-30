@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3f5676_92686bbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "nit: wrap long line",
+      "range": {
+        "startLine": 9,
+        "startChar": 67,
+        "endLine": 9,
+        "endChar": 73
+      },
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a96d2b8_ef17a4c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "nit: wrap long line",
+      "range": {
+        "startLine": 11,
+        "startChar": 65,
+        "endLine": 11,
+        "endChar": 74
+      },
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52406cf4_d136e559",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "Can you also specify why this is better than enabling / disabling the plugin?\nExample: _\"Using the fail flag is a better approach than just disabling the plugin because it is immediate\"_",
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "434f7f0f_8c792891",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-30T19:10:23Z",
+      "side": 1,
+      "message": "I Know that also the rest of the document has the wrong word wrapping, however, you should wrap long lines.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 94
+      },
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

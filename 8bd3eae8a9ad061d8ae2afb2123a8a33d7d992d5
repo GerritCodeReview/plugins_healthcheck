@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a5c469_b7b4fe04",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2023-10-30T15:44:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3d7a0e4_59f3b819",
+      "range": {
+        "startLine": 140,
+        "startChar": 34,
+        "endLine": 140,
+        "endChar": 52
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c3390ee_611c1c4e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-30T13:08:47Z",
       "side": 1,
       "message": "Can we say something in the body? Maybe just a text like _\"Failed because of file-system flag\"_",
+      "range": {
+        "startLine": 47,
+        "startChar": 83,
+        "endLine": 47,
+        "endChar": 91
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35bbe3bf_fa0443ef",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2023-10-30T15:44:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c3390ee_611c1c4e",
       "range": {
         "startLine": 47,
         "startChar": 83,
@@ -201,6 +249,24 @@
       "writtenOn": "2023-10-30T13:08:47Z",
       "side": 1,
       "message": "You should also check the body for the reason of the failure.",
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c01c066_8d3c7b3a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2023-10-30T15:44:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f3968b_85a5257e",
       "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

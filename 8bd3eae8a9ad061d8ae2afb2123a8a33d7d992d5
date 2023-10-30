@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b67794b_df9ddc02",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-10-30T15:23:15Z",
+      "side": 1,
+      "message": "Not sure why we should worry about this case? What\u0027s the point of creating a symbolic link for this? \nI believe `isFile` should resolve it(but it\u0027s not explicitly mentioned in the docs); I can add a test if we think it\u0027s a valid use case.\n\nI think adding add a note in the docs that it needs to be a file rather than a symlink should be enough, and we can re-evaluate if anyone ever has a use case for this?",
+      "parentUuid": "d6a022ad_a628f95f",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1cd3b11_506e4c8e",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 2
@@ -106,6 +130,30 @@
       "writtenOn": "2023-10-30T13:08:47Z",
       "side": 1,
       "message": "There is an annotation for setting a plugin configs.",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e55deb_a8b809bf",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-10-30T15:23:15Z",
+      "side": 1,
+      "message": "Yes I saw that, but couldn\u0027t get it to work. I then noticed that the other tests use this `disableCheck`, which is the same thing I\u0027m doing for `setFailedFlagFilePath`, but I needed it globally for the plugin rather than for specific checks.",
+      "parentUuid": "16a7b751_06764ab6",
       "range": {
         "startLine": 207,
         "startChar": 4,

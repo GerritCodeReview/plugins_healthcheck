@@ -153,4 +153,4 @@ endpoint is hit (thanks to the [Dropwizard](https://metrics.dropwizard.io/3.1.0/
 Some additional metrics are also produced to give extra insights on their result about results and latency of healthcheck
 sub component, such as jgit, reviewdb, etc.
 
-More information can be found in the [config.md](resources/Documentation/config.md) file.
+More information can be found in the [metrics.md](resources/Documentation/metrics.md) file.

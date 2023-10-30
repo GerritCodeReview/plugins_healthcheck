@@ -66,6 +66,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea2114b6_8663ae2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-30T21:02:37Z",
+      "side": 1,
+      "message": "Isn\u0027t disabling the plugin also causing an immediate failure with a 404?\nHow is the `fail` flag causing the plugin to behave differently?",
+      "parentUuid": "52406cf4_d136e559",
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c8de60_201ed836",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-30T21:02:37Z",
+      "side": 1,
+      "message": "This looks like an absolute path rather than a relative one.\n\nIs it actually possible to configure a file outside the gerrit dir, or this is always chroot-ed to gerrit?\n\nIf this is always relative to gerrit, what would be the difference between\n\n```\n/data/healthcheck/fail\n```\naand\n\n```\ndata/healthcheck/fail\n```\n\nMind clarifying this in the config?",
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "434f7f0f_8c792891",
         "filename": "README.md",
         "patchSetId": 5
@@ -82,6 +117,29 @@
         "startChar": 0,
         "endLine": 137,
         "endChar": 94
+      },
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca8b51a_6b944191",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-30T21:02:37Z",
+      "side": 1,
+      "message": "nit: the initial slash is inconsistent with the documentation example",
+      "range": {
+        "startLine": 50,
+        "startChar": 55,
+        "endLine": 50,
+        "endChar": 79
       },
       "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"

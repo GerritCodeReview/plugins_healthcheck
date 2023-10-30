@@ -84,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fc5ed3f_9c7c1f37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2023-10-30T23:56:10Z",
+      "side": 1,
+      "message": "Gerrit will need to wait for the plugin to be disabled, which happens once every minute, while the presence of the file would immediately make the next HTTP call to the healthcheck endpoint fail, the same is true for when we want to re-enable the plugin.\n\nAlso, another minor point is that if Gerrit starts up when the plugin is disabled, it\u0027s not possible to enable it via SSH command.\n\nTo add, some of our customers have some automation built around this feature, so not supporting will require a lot of work for them.",
+      "parentUuid": "ea2114b6_8663ae2b",
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43c8de60_201ed836",
         "filename": "README.md",
         "patchSetId": 5

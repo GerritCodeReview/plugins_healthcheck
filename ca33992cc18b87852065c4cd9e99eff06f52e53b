@@ -16,6 +16,40 @@
       "message": "Code-Style failed on:\nsrc/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java\nsrc/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java\n\nCan you run a reformat with google-java-format v1.7?\n\nP.S. Why isn\u0027t the CI picking up these problems? 😞",
       "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e06deec5_033fc622",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-10-31T08:53:40Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be better to create a healthcheck that tracks a specific metric (sort of a 0/1 value)? You could populate that metric via an ssh command.",
+      "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8e3a9f_c171dfe0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-10-31T08:53:40Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be much easier to create a healthcheck, just for this? Something",
+      "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

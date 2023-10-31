@@ -356,6 +356,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e9d9d4_69c14e01",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-31T08:19:50Z",
+      "side": 1,
+      "message": "We can leave it as-is for now and moving to annotation as a follow-up change.",
+      "parentUuid": "3872358b_da85bea6",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f3968b_85a5257e",

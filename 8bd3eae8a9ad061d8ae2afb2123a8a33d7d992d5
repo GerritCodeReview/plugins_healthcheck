@@ -166,6 +166,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4a1700c_573b1e2f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-10-31T00:22:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e14afee_ad7fcf24",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1cd3b11_506e4c8e",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "Or just remove it in the setup() isn\u0027t it?",
       "parentUuid": "de189213_71be9c52",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 38
+      },
+      "revId": "8bd3eae8a9ad061d8ae2afb2123a8a33d7d992d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c6406f2_3d2a35f7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-10-31T00:22:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb5515c2_de7e7f0c",
       "range": {
         "startLine": 206,
         "startChar": 0,

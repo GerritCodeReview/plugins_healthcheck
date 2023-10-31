@@ -184,6 +184,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82b5f8cc_ac56cac3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-31T09:30:18Z",
+      "side": 1,
+      "message": "\u003e \u003e Gerrit will need to wait for the plugin to be disabled, which happens once every minute, while the presence of the file would immediately make the next HTTP call to the healthcheck endpoint fail, the same is true for when we want to re-enable the plugin.\n\u003e \n\u003e Just for clarity, when disabling the plugin, the endpoint is removed immediately. Gerrit does not need to wait for `plugins.frequency`.\n\u003e The same is true when enabling.\n\nWhen enabling/disabling plugin there is nothing immediate out of the box. The lifecycle listener needs to call the start/stop and waiting for them to finish.\nAlso the in-flight calls can stick the unloaded plugin for a few seconds.\n\nHere the purpose is to have a *real immediate* disablement, which would also impact the in-flight calls.\n\n\u003e So this use-case will work exactly as creating/removing the `fail` flag, with the difference that you will get a 404, rather than a 500.\n\nNope, see the above.\n\n\u003e \u003e Also, another minor point is that if Gerrit starts up when the plugin is disabled, it\u0027s not possible to enable it via SSH command.\n\u003e \n\u003e Yes you\u0027re right.\n\u003e This is because gerrit does not automatically load at start up plugins that are flagged as `.disabled`, hence you cannot re-enable it or perform any action.\n\u003e As you said the only thing you could do would be to rename it manually and wait for the plugins loader to scan at `plugins.frequency` time, which obviously it is not ideal.\n\u003e \n\u003e \n\u003e This is actually the only main difference between the two approaches, which imho is the only use-case that validates the usage of the `fail` flag versus the disabling of the plugin.\n\nI disagree, see the above explanation.\n\n\u003e Would you mind highlighting that this is the specific use-case that this fix addresses?\n\nWe have one use-case that still uses the old Groovy script I wrote around 10 years ago because the issues I\u0027ve listed above.\n\nWe do need a way to disable the healthcheck *immediately* which this change addresses perfectly.",
+      "parentUuid": "66911d01_d814a071",
+      "revId": "3cb5b5c36bf6e68b939f2652d461b4a7428eb129",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43c8de60_201ed836",

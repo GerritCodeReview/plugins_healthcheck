@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7057a4cc_cd0de292",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-31T09:30:18Z",
+      "side": 1,
+      "message": "\u003e This is not strictly true, if you explicitly call\n\u003e \n\u003e ```\n\u003e ssh -p 29418 admin@localhost gerrit plugin rm healthcheck\n\u003e ```\n\u003e \n\u003e or\n\u003e \n\u003e ```\n\u003e ssh -p 29418 admin@localhost gerrit plugin enable healthcheck\n\u003e ```\n\u003e \n\u003e The effect would be immediate, if the plugin was already loaded by gerrit.\n\nThat\u0027s incorrect, see my other commend on the lifecycle listener.",
+      "parentUuid": "162ce3fc_54923880",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 55
+      },
+      "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ccf64632_b985a4b9",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9

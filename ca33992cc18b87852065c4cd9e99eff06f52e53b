@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf64632_b985a4b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-31T08:21:39Z",
+      "side": 1,
+      "message": "Code-Style failed on:\nsrc/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java\nsrc/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java\n\nCan you run a reformat with google-java-format v1.7?\n\nP.S. Why isn\u0027t the CI picking up these problems? 😞",
+      "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "162ce3fc_54923880",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-10-31T08:56:14Z",
+      "side": 1,
+      "message": "This is not strictly true, if you explicitly call\n\n```\nssh -p 29418 admin@localhost gerrit plugin rm healthcheck\n```\n\nor\n\n```\nssh -p 29418 admin@localhost gerrit plugin enable healthcheck\n```\n\nThe effect would be immediate, if the plugin was already loaded by gerrit.\nThe only use-case uncovered, is when gerrit is started with the healthcheck as disabled.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 55
+      },
+      "revId": "ca33992cc18b87852065c4cd9e99eff06f52e53b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ccf64632_b985a4b9",

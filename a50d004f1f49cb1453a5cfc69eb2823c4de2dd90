@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c9dfad_c5defb4e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-10-31T16:22:11Z",
+      "side": 1,
+      "message": "This may not get the latest status of the filesystem because of the folderstats being cached. It is better to do something like:\n\n\n```suggestion\n    FileInputStream fis \u003d null;\n    try {\n      fis \u003d new FileInputStream(failedFileFlagPath);\n      return true;\n    } finally {\n      if (fis !\u003d null) {\n         fis.close();\n      }\n    } catch (Exception e) {\n      return false;\n    }\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 49
+      },
+      "revId": "a50d004f1f49cb1453a5cfc69eb2823c4de2dd90",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

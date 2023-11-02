@@ -36,6 +36,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34296ee_cae6b142",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/api/HealthCheckStatusEndpoint.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-11-02T00:39:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a0ef4b_b366f773",
+      "revId": "da80ee47f96a2d66647808c8beecf5f7a2bce71d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac869225_974cce52",
@@ -64,6 +82,24 @@
         "id": 1006192
       },
       "writtenOn": "2023-11-02T00:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac869225_974cce52",
+      "revId": "da80ee47f96a2d66647808c8beecf5f7a2bce71d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f6695a_1e8bac17",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1155610
+      },
+      "writtenOn": "2023-11-02T00:39:48Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "ac869225_974cce52",

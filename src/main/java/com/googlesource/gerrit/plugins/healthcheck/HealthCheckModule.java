@@ -17,7 +17,9 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.server.index.account.AccountIndex;
 import com.google.inject.AbstractModule;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import java.util.concurrent.Executors;
 
@@ -29,6 +31,15 @@ public class HealthCheckModule extends AbstractModule {
     bind(ListeningExecutorService.class)
         .toInstance(
             MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(CHECK_THREADS_DEFAULT)));
+//    bind(AccountIndex.Factory.class)
+//        .toInstance(
+//            s -> {
+//              throw new UnsupportedOperationException();
+//            });
+//    install(
+//        new FactoryModuleBuilder()
+//            .implement(AccountIndex.class, getAccountIndex())
+//            .build(AccountIndex.Factory.class));
     DynamicSet.setOf(binder(), HealthCheck.class);
   }
 }

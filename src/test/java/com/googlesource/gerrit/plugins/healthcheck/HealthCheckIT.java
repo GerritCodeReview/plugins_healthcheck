@@ -19,6 +19,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.LUCENEINDEXWRITABLE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
@@ -52,6 +53,8 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     super.setUpTestPlugin();
 
     config = plugin.getSysInjector().getInstance(HealthCheckConfig.class);
+    disableCheck(LUCENEINDEXWRITABLE);
+
     int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
     for (int i = 0; i < numChanges; i++) {
       createChange("refs/for/master");
@@ -211,7 +214,11 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   }
 
   private void disableCheck(String check) throws ConfigInvalidException {
-    config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
+    config.fromText(disableCheckSection(LUCENEINDEXWRITABLE) + "\n" + disableCheckSection(check));
+  }
+
+  private String disableCheckSection(String check) {
+    return String.format("[healthcheck \"%s\"]\n" + "enabled = false", check);
   }
 
   private JsonObject getResponseJson(RestResponse resp) throws IOException {

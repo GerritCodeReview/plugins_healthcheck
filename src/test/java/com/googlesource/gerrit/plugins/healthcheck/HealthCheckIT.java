@@ -19,12 +19,14 @@ import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.LUCENEINDEXWRITABLE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
+import com.google.gerrit.acceptance.UseLocalDisk;
 import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
@@ -36,6 +38,7 @@ import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
+@UseLocalDisk
 @TestPlugin(
     name = "healthcheck-test",
     sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
@@ -193,6 +196,16 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     resp.assertOK();
 
     assertCheckResult(getResponseJson(resp), ACTIVEWORKERS, "passed");
+  }
+
+  @Test
+  public void shouldReturnLuceneIndexWritableCheckTest() throws Exception {
+    createChange("refs/for/master");
+    RestResponse resp = getHealthCheckStatus();
+    System.out.println(getResponseJson(resp));
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), LUCENEINDEXWRITABLE, "passed");
   }
 
   private RestResponse getHealthCheckStatus() throws IOException {

@@ -16,25 +16,48 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.HEALTHCHECK;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.INDEXWRITABLE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
+import com.google.gerrit.acceptance.PushOneCommit;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.config.GerritConfig;
+import com.google.gerrit.exceptions.StorageException;
 import com.google.gerrit.extensions.annotations.PluginName;
+import com.google.gerrit.index.Schema;
+import com.google.gerrit.index.project.ProjectIndex;
+import com.google.gerrit.index.testing.AbstractFakeIndex;
+import com.google.gerrit.index.testing.FakeIndexVersionManager;
+import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.SitePaths;
+import com.google.gerrit.server.index.AbstractIndexModule;
+import com.google.gerrit.server.index.VersionManager;
+import com.google.gerrit.server.index.account.AccountIndex;
+import com.google.gerrit.server.index.change.ChangeIndex;
+import com.google.gerrit.server.index.group.GroupIndex;
+import com.google.gerrit.server.query.change.ChangeData;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.Key;
+import com.google.inject.assistedinject.Assisted;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jgit.errors.ConfigInvalidException;
+import java.util.Map;
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,6 +73,11 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   String failFilePath;
 
   @Override
+  public com.google.inject.Module createModule() {
+    return CustomIndexModule.latestVersion();
+  }
+
+  @Override
   @Before
   public void setUpTestPlugin() throws Exception {
     super.setUpTestPlugin();
@@ -58,9 +86,17 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     failFilePath = "/tmp/fail";
     new File(failFilePath).delete();
 
+    config.setString(HEALTHCHECK, INDEXWRITABLE, "projectName", project.get());
     int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
     for (int i = 0; i < numChanges; i++) {
-      createChange("refs/for/master");
+      PushOneCommit.Result change = createChange("refs/for/master");
+      if (i == 0) {
+        config.setString(
+            HEALTHCHECK,
+            INDEXWRITABLE,
+            "changeId",
+            String.valueOf(change.getChange().change().getChangeId()));
+      }
     }
     accountCreator.create(config.getUsername(HealthCheckNames.AUTH));
 
@@ -68,6 +104,10 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
         String.format(
             "/config/server/%s~status",
             plugin.getSysInjector().getInstance(Key.get(String.class, PluginName.class)));
+  }
+
+  private Injector testInjector(AbstractModule testModule) {
+    return Guice.createInjector(new HealthCheckModule(), testModule);
   }
 
   @Test
@@ -89,7 +129,6 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   @Test
   public void shouldReturnJGitCheck() throws Exception {
     RestResponse resp = getHealthCheckStatus();
-
     resp.assertOK();
     assertCheckResult(getResponseJson(resp), JGIT, "passed");
   }
@@ -214,6 +253,22 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertThat(respBody.get("reason").getAsString()).isEqualTo("Fail Flag File exists");
   }
 
+  @Test
+  public void shouldReturnIndexWritableCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), INDEXWRITABLE, "passed");
+  }
+
+  @Test
+  public void shouldReturnIndexWritableCheckAsDisabled() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), INDEXWRITABLE, "passed");
+  }
+
   private void createFailFileFlag(String path) throws IOException {
     File file = new File(path);
     file.createNewFile();
@@ -235,8 +290,8 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo(result);
   }
 
-  private void disableCheck(String check) throws ConfigInvalidException {
-    config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
+  private void disableCheck(String check) {
+    config.setString(HEALTHCHECK, check, "enabled", "false");
   }
 
   private void setFailFlagFilePath(String path) throws ConfigInvalidException {
@@ -246,5 +301,62 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   private JsonObject getResponseJson(RestResponse resp) throws IOException {
     JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
     return respPayload;
+  }
+}
+
+class CustomIndexModule extends AbstractIndexModule {
+
+  public static CustomIndexModule latestVersion() {
+    return new CustomIndexModule(null, -1, false);
+  }
+
+  private CustomIndexModule(Map<String, Integer> singleVersions, int threads, boolean secondary) {
+    super(singleVersions, threads, secondary);
+  }
+
+  @Override
+  protected Class<? extends AccountIndex> getAccountIndex() {
+    return AbstractFakeIndex.FakeAccountIndex.class;
+  }
+
+  @Override
+  protected Class<? extends ChangeIndex> getChangeIndex() {
+    return CustomModuleFakeIndexChange.class;
+  }
+
+  @Override
+  protected Class<? extends GroupIndex> getGroupIndex() {
+    return AbstractFakeIndex.FakeGroupIndex.class;
+  }
+
+  @Override
+  protected Class<? extends ProjectIndex> getProjectIndex() {
+    return AbstractFakeIndex.FakeProjectIndex.class;
+  }
+
+  @Override
+  protected Class<? extends VersionManager> getVersionManager() {
+    return FakeIndexVersionManager.class;
+  }
+}
+
+class CustomModuleFakeIndexChange extends AbstractFakeIndex.FakeChangeIndex {
+
+  @Inject
+  CustomModuleFakeIndexChange(
+      SitePaths sitePaths,
+      ChangeData.Factory changeDataFactory,
+      @Assisted Schema<ChangeData> schema,
+      @GerritServerConfig Config cfg) {
+    super(sitePaths, changeDataFactory, schema, cfg);
+  }
+
+  @Override
+  public void replace(ChangeData doc) {
+    if (doc.change().getChangeId() == 100000) {
+      throw new StorageException("sdds");
+    } else {
+      super.replace(doc);
+    }
   }
 }

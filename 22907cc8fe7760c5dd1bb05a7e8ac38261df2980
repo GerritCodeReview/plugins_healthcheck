@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c86951fc_be8cb4dc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/LuceneIndexWritableCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-07T12:16:59Z",
+      "side": 1,
+      "message": "Do we need to disable this test (elsewhere, probably) if lucene isn\u0027t the used index? AIUI we can still have the possibility of using the deprecated Elasticsearch index. But either way this bit is configurable so it should be possible to plug in other implementations too.",
+      "revId": "22907cc8fe7760c5dd1bb05a7e8ac38261df2980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda8a8fb_bc249b11",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/LuceneIndexWritableCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-07T12:16:59Z",
+      "side": 1,
+      "message": "Is it safe to assume the latest schema definition is the one in use? Or do we need to be smarter about this?",
+      "revId": "22907cc8fe7760c5dd1bb05a7e8ac38261df2980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7a19e6_1c05c6a6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/LuceneIndexWritableCheckIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-07T12:16:59Z",
+      "side": 1,
+      "message": "Should we put this under the `check` namespace? That\u0027s where the class it\u0027s testing lives. Granted, this is an IT test, but they don\u0027t have their own namespace in this project.",
+      "revId": "22907cc8fe7760c5dd1bb05a7e8ac38261df2980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d985b25d_24e50cda",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/LuceneIndexWritableCheckIT.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-07T12:16:59Z",
+      "side": 1,
+      "message": "Do we want failing tests for each of the indices (this and not writable)?",
+      "revId": "22907cc8fe7760c5dd1bb05a7e8ac38261df2980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f109a42d_821fd18a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/LuceneIndexWritableCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-07T12:16:59Z",
+      "side": 1,
+      "message": "I think IT gives us enough coverage, so I don\u0027t think we should have unit tests for this. I don\u0027t think it would add much value as we\u0027d be testing our test setup of the index to replicate Gerrit\u0027s, not Gerrit\u0027s own. I\u0027ll delete this.",
+      "revId": "22907cc8fe7760c5dd1bb05a7e8ac38261df2980",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

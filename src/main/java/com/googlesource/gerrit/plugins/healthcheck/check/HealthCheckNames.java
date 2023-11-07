@@ -22,5 +22,7 @@ public interface HealthCheckNames {
   String ACTIVEWORKERS = "activeworkers";
   String DEADLOCK = "deadlock";
   String BLOCKEDTHREADS = "blockedthreads";
+  String INDEXWRITABLE = "indexwritable";
+
   String GLOBAL = "global";
 }

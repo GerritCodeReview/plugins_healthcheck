@@ -31,8 +31,7 @@ import org.junit.Test;
 
 public class AbstractHealthCheckTest {
 
-  MetricMaker testMetricMaker;
-  DummyHealthCheckMetricsFactory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+  TestMetricMaker testMetricMaker;
 
   @Before
   public void setUp() throws Exception {
@@ -45,7 +44,6 @@ public class AbstractHealthCheckTest {
 
     testCheck.run();
 
-    TestMetricMaker testMetricMaker = healthCheckMetricsFactory.getMetricMaker();
     assertThat(testMetricMaker.getFailureCount()).isEqualTo(TestMetricMaker.expectedFailureCount);
     assertThat(testMetricMaker.getLatency()).isEqualTo(TestMetricMaker.expectedLatency);
   }
@@ -56,7 +54,6 @@ public class AbstractHealthCheckTest {
 
     testCheck.run();
 
-    TestMetricMaker testMetricMaker = healthCheckMetricsFactory.getMetricMaker();
     assertThat(testMetricMaker.getFailureCount()).isEqualTo(TestMetricMaker.expectedFailureCount);
     assertThat(testMetricMaker.getLatency()).isEqualTo(TestMetricMaker.expectedLatency);
   }
@@ -67,7 +64,6 @@ public class AbstractHealthCheckTest {
 
     testCheck.run();
 
-    TestMetricMaker testMetricMaker = healthCheckMetricsFactory.getMetricMaker();
     assertThat(testMetricMaker.getFailureCount()).isEqualTo(0L);
     assertThat(testMetricMaker.getLatency()).isEqualTo(TestMetricMaker.expectedLatency);
   }
@@ -78,7 +74,6 @@ public class AbstractHealthCheckTest {
 
     testCheck.run();
 
-    TestMetricMaker testMetricMaker = healthCheckMetricsFactory.getMetricMaker();
     assertThat(testMetricMaker.getFailureCount()).isEqualTo(0L);
     assertThat(testMetricMaker.getLatency()).isEqualTo(TestMetricMaker.expectedLatency);
   }
@@ -100,23 +95,19 @@ public class AbstractHealthCheckTest {
   }
 
   private TestCheck createTestCheckWithStatus(HealthCheck.Result result) {
-    return new TestCheck(
-        HealthCheckConfig.DEFAULT_CONFIG, "testCheck", healthCheckMetricsFactory, result);
+    return new TestCheck(HealthCheckConfig.DEFAULT_CONFIG, "testCheck", testMetricMaker, result);
   }
 
   private static class TestCheck extends AbstractHealthCheck {
     private final Result finalResult;
 
     public TestCheck(
-        HealthCheckConfig config,
-        String name,
-        HealthCheckMetrics.Factory healthCheckMetricsFactory,
-        Result finalResult) {
+        HealthCheckConfig config, String name, MetricMaker metricMaker, Result finalResult) {
       super(
           MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10)),
           config,
           name,
-          healthCheckMetricsFactory);
+          metricMaker);
       this.finalResult = finalResult;
     }
 
@@ -170,19 +161,6 @@ public class AbstractHealthCheckTest {
 
     public Long getFailureCount() {
       return failureCount;
-    }
-  }
-
-  private static class DummyHealthCheckMetricsFactory implements HealthCheckMetrics.Factory {
-    private final TestMetricMaker metricMaker = new TestMetricMaker();
-
-    @Override
-    public HealthCheckMetrics create(String name) {
-      return new HealthCheckMetrics(metricMaker, name);
-    }
-
-    public TestMetricMaker getMetricMaker() {
-      return metricMaker;
     }
   }
 }

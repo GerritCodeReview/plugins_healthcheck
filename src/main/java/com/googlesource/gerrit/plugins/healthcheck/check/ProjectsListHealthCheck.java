@@ -18,6 +18,7 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.project.ListProjects;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
@@ -25,7 +26,6 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.SortedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +43,8 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
       HealthCheckConfig config,
       Provider<ListProjects> listProjectsProvider,
       OneOffRequestContext oneOffCtx,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, config, PROJECTSLIST, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, config, PROJECTSLIST, metricMaker);
 
     this.listProjectsProvider = listProjectsProvider;
     this.oneOffCtx = oneOffCtx;

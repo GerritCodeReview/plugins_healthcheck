@@ -18,9 +18,9 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import com.googlesource.gerrit.plugins.healthcheck.HealthCheckMetrics;
 import java.util.Optional;
 
 public class DeadlockCheck extends AbstractHealthCheck {
@@ -35,8 +35,8 @@ public class DeadlockCheck extends AbstractHealthCheck {
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
       MetricRegistry metricRegistry,
-      HealthCheckMetrics.Factory healthCheckMetricsFactory) {
-    super(executor, healthCheckConfig, DEADLOCK, healthCheckMetricsFactory);
+      MetricMaker metricMaker) {
+    super(executor, healthCheckConfig, DEADLOCK, metricMaker);
     this.metricRegistry = metricRegistry;
   }
 

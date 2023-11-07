@@ -23,7 +23,6 @@ import com.google.gerrit.extensions.restapi.BadRequestException;
 import com.google.gerrit.metrics.DisabledMetricMaker;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.project.ListProjects;
-import com.google.gerrit.server.restapi.project.ListProjectsImpl;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -85,8 +84,7 @@ public class ProjectsListHealthCheckTest {
 
   private Provider<ListProjects> getFailingProjectList() {
     return Providers.of(
-        new ListProjectsImpl(
-            null, null, null, null, null, null, null, null, null, gerritConfig, null) {
+        new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
 
           @Override
           public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
@@ -97,8 +95,7 @@ public class ProjectsListHealthCheckTest {
 
   private Provider<ListProjects> getWorkingProjectList(long execTime) {
     return Providers.of(
-        new ListProjectsImpl(
-            null, null, null, null, null, null, null, null, null, gerritConfig, null) {
+        new ListProjects(null, null, null, null, null, null, null, null, null, gerritConfig) {
 
           @Override
           public SortedMap<String, ProjectInfo> apply() throws BadRequestException {

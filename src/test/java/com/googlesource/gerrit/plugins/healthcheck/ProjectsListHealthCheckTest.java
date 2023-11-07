@@ -85,8 +85,7 @@ public class ProjectsListHealthCheckTest {
 
   private Provider<ListProjects> getFailingProjectList() {
     return Providers.of(
-        new ListProjectsImpl(
-            null, null, null, null, null, null, null, null, null, gerritConfig, null) {
+        new ListProjectsImpl(null, null, null, null, null, null, null, null, null, gerritConfig, null) {
 
           @Override
           public SortedMap<String, ProjectInfo> apply() throws BadRequestException {
@@ -97,8 +96,7 @@ public class ProjectsListHealthCheckTest {
 
   private Provider<ListProjects> getWorkingProjectList(long execTime) {
     return Providers.of(
-        new ListProjectsImpl(
-            null, null, null, null, null, null, null, null, null, gerritConfig, null) {
+        new ListProjectsImpl(null, null, null, null, null, null, null, null, null, gerritConfig, null) {
 
           @Override
           public SortedMap<String, ProjectInfo> apply() throws BadRequestException {

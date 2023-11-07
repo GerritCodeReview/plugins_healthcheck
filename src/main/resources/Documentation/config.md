@@ -56,9 +56,20 @@ The following check names are available:
 - `activeworkers`: check the number of active worker threads and the ability to create a new one
 - `deadlock` : check if Java deadlocks are reported by the JVM
 - `blockedthreads` : check the number of blocked threads
+- `indexwritable` : check if the changes index can be written to. Note that this has mandatory settings,
+  and that in performing the check it will fire a change scheduled for index event and a change indexed
+  event
 
 Each check name can be disabled by setting the `enabled` parameter to **false**,
 by default this parameter is set to **true**
+
+Unless the `indexwritable` check is disabled, the following settings must be configured:
+
+- `healthcheck.indexwritable.projectname` : Project name of the change id that the `indexwritable`
+  check will use to test whether the index is writable.
+
+- `healthcheck.indexwritable.changeid` : Change id that the `indexwritable` check will use to test
+  whether the index is writable. The check will attempt to index this change.
 
 The following parameters are available:
 

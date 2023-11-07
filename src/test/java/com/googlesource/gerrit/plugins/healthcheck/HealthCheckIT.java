@@ -16,12 +16,15 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.HEALTHCHECK;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.INDEXWRITABLE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
+import com.google.gerrit.acceptance.PushOneCommit;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
@@ -68,6 +71,8 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     failFilePath = "/tmp/fail";
     new File(failFilePath).delete();
 
+    setUpIndexWritableCheck();
+
     int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
     for (int i = 0; i < numChanges; i++) {
       createChange("refs/for/master");
@@ -78,6 +83,16 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
         String.format(
             "/config/server/%s~status",
             plugin.getSysInjector().getInstance(Key.get(String.class, PluginName.class)));
+  }
+
+  private void setUpIndexWritableCheck() throws Exception {
+    config.setString(HEALTHCHECK, INDEXWRITABLE, "projectName", project.get());
+    PushOneCommit.Result result = createChange("refs/for/master");
+    config.setString(
+        HEALTHCHECK,
+        INDEXWRITABLE,
+        "changeId",
+        String.valueOf(result.getChange().change().getChangeId()));
   }
 
   @Test
@@ -224,6 +239,33 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertThat(respBody.get("reason").getAsString()).isEqualTo("Fail Flag File exists");
   }
 
+  @Test
+  public void shouldReturnIndexWritableCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), INDEXWRITABLE, "passed");
+  }
+
+  @Test
+  public void shouldReturnIndexWritableCheckAsDisabled() throws Exception {
+    disableCheck(INDEXWRITABLE);
+
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), INDEXWRITABLE, "disabled");
+  }
+
+  @Test
+  public void shouldReturnIndexWritableCheckAsDisabledWhenDisabledAndRequiredConfigIsUnset()
+      throws Exception {
+    config.unsetSection(HEALTHCHECK, INDEXWRITABLE);
+    disableCheck(INDEXWRITABLE);
+
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), INDEXWRITABLE, "disabled");
+  }
+
   private void createFailFileFlag(String path) throws IOException {
     File file = new File(path);
     file.createNewFile();
@@ -245,8 +287,8 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo(result);
   }
 
-  private void disableCheck(String check) throws ConfigInvalidException {
-    config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
+  private void disableCheck(String check) {
+    config.setString(HEALTHCHECK, check, "enabled", "false");
   }
 
   private void setFailFlagFilePath(String path) throws ConfigInvalidException {

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b0a05f_7ee4c321",
+        "filename": "src/resources/Documentation/metrics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2023-11-07T19:16:26Z",
+      "side": 0,
+      "message": "This had already been moved to `src/main/resources/Documentation in 3.5`, hence it\u0027s been deleted from `src/resources/Documentation`, where it was in 3.4",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "6dfc33185190e207f385827ab9407a9860b1fb21",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

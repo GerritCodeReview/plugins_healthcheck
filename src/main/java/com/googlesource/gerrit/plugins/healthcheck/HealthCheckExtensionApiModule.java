@@ -21,7 +21,7 @@ import com.google.inject.AbstractModule;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import java.util.concurrent.Executors;
 
-public class HealthCheckModule extends AbstractModule {
+public class HealthCheckExtensionApiModule extends AbstractModule {
   public static final int CHECK_THREADS_DEFAULT = 10;
 
   @Override

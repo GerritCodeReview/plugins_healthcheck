@@ -20,6 +20,8 @@ import static java.util.Collections.nCopies;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -213,12 +215,12 @@ public class BlockedThreadsCheckTest {
   private Injector createTestInjector(HealthCheckConfig config) {
     Injector injector =
         Guice.createInjector(
-            new HealthCheckModule(),
+            new HealthCheckExtensionApiModule(),
             new AbstractModule() {
               @Override
               protected void configure() {
                 bind(HealthCheckConfig.class).toInstance(config);
-                bind(HealthCheckMetrics.Factory.class).to(DummyHealthCheckMetricsFactory.class);
+                bind(MetricMaker.class).toInstance(new DisabledMetricMaker());
                 bind(ThreadBeanProvider.class).toInstance(threadBeanProviderMock);
               }
             },

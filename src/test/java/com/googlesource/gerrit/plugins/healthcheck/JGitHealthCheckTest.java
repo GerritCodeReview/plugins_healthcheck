@@ -22,6 +22,8 @@ import static org.eclipse.jgit.lib.RefUpdate.Result.NEW;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.entities.Project;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.git.GitRepositoryManager;
@@ -53,11 +55,11 @@ public class JGitHealthCheckTest {
 
   @Inject private ListeningExecutorService executor;
 
-  HealthCheckMetrics.Factory healthCheckMetricsFactory = new DummyHealthCheckMetricsFactory();
+  MetricMaker disabledMetricMaker = new DisabledMetricMaker();
 
   @Before
   public void setupAllProjects() throws Exception {
-    Guice.createInjector(new HealthCheckModule()).injectMembers(this);
+    Guice.createInjector(new HealthCheckExtensionApiModule()).injectMembers(this);
 
     InMemoryRepositoryManager.Repo allProjects =
         inMemoryRepositoryManager.createRepository(allProjectsName);
@@ -72,7 +74,7 @@ public class JGitHealthCheckTest {
   public void shouldBeHealthyWhenJGitIsWorking() {
     JGitHealthCheck check =
         new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), healthCheckMetricsFactory);
+            executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), disabledMetricMaker);
     assertThat(check.run().result).isEqualTo(Result.PASSED);
   }
 
@@ -80,7 +82,7 @@ public class JGitHealthCheckTest {
   public void shouldBeUnhealthyWhenJGitIsFailingForAllRepos() {
     JGitHealthCheck jGitHealthCheck =
         new JGitHealthCheck(
-            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), healthCheckMetricsFactory);
+            executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), disabledMetricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 
@@ -94,8 +96,7 @@ public class JGitHealthCheckTest {
                 + "  project = All-Users\n"
                 + "  project = Not-Existing-Repo");
     JGitHealthCheck jGitHealthCheck =
-        new JGitHealthCheck(
-            executor, config, getWorkingRepositoryManager(), healthCheckMetricsFactory);
+        new JGitHealthCheck(executor, config, getWorkingRepositoryManager(), disabledMetricMaker);
     assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
   }
 

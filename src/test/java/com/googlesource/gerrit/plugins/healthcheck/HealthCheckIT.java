@@ -29,22 +29,38 @@ import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
+
+import java.io.File;
 import java.io.IOException;
+
+import org.apache.http.protocol.HTTP;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.servlet.http.HttpServletResponse;
+
 @TestPlugin(
     name = "healthcheck-test",
-    sysModule = "com.googlesource.gerrit.plugins.healthcheck.Module",
+    sysModule = "com.googlesource.gerrit.plugins.healthcheck.HealthCheckIT$TestModule",
     httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
   HealthCheckConfig config;
   String healthCheckUriPath;
+
+  public static class TestModule extends AbstractModule {
+
+    @Override
+    protected void configure() {
+      install(new HealthCheckExtensionApiModule());
+      install(new Module());
+    }
+  }
 
   @Override
   @Before
@@ -195,6 +211,22 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertCheckResult(getResponseJson(resp), ACTIVEWORKERS, "passed");
   }
 
+  @Test
+  public void shouldReturnFailedIfFailedFlagFileExists() throws Exception {
+    String failFilePath = "/tmp/fail";
+    setFailedFlagFilePath(failFilePath);
+    createFailedFileFlag(failFilePath);
+    getHealthCheckStatus();
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+  }
+
+  private void createFailedFileFlag(String path) throws IOException {
+    File file = new File(path);
+    file.createNewFile();
+    file.deleteOnExit();
+  }
+
   private RestResponse getHealthCheckStatus() throws IOException {
     return adminRestSession.get(healthCheckUriPath);
   }
@@ -212,6 +244,10 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
 
   private void disableCheck(String check) throws ConfigInvalidException {
     config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
+  }
+
+  private void setFailedFlagFilePath(String path) throws ConfigInvalidException {
+    config.fromText(String.format("[healthcheck]\n" + "failedFileFlagPath = %s", path));
   }
 
   private JsonObject getResponseJson(RestResponse resp) throws IOException {

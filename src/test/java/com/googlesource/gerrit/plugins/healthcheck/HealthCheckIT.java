@@ -26,13 +26,30 @@ import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.config.GerritConfig;
+import com.google.gerrit.exceptions.StorageException;
 import com.google.gerrit.extensions.annotations.PluginName;
+import com.google.gerrit.index.Schema;
+import com.google.gerrit.index.project.ProjectIndex;
+import com.google.gerrit.index.testing.AbstractFakeIndex;
+import com.google.gerrit.index.testing.FakeIndexVersionManager;
+import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.SitePaths;
+import com.google.gerrit.server.index.AbstractIndexModule;
+import com.google.gerrit.server.index.VersionManager;
+import com.google.gerrit.server.index.account.AccountIndex;
+import com.google.gerrit.server.index.change.ChangeIndex;
+import com.google.gerrit.server.index.group.GroupIndex;
+import com.google.gerrit.server.query.change.ChangeData;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.inject.Key;
+import com.google.inject.assistedinject.Assisted;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
+import java.util.Map;
+
 import org.eclipse.jgit.errors.ConfigInvalidException;
+import org.eclipse.jgit.lib.Config;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,6 +62,11 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
   Gson gson = new Gson();
   HealthCheckConfig config;
   String healthCheckUriPath;
+
+  @Override
+  public com.google.inject.Module createModule() {
+    return CustomIndexModule.latestVersion(false);
+  }
 
   @Override
   @Before
@@ -219,3 +241,62 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     return respPayload;
   }
 }
+
+class CustomIndexModule extends AbstractIndexModule {
+
+  public static CustomIndexModule latestVersion(boolean secondary) {
+    return new CustomIndexModule(null, -1 /* direct executor */, secondary);
+  }
+
+  private CustomIndexModule(Map <String, Integer> singleVersions, int threads, boolean secondary) {
+    super(singleVersions, threads, secondary);
+  }
+
+  @Override
+  protected Class<? extends AccountIndex> getAccountIndex() {
+    return AbstractFakeIndex.FakeAccountIndex.class;
+  }
+
+  @Override
+  protected Class<? extends ChangeIndex> getChangeIndex() {
+    return CustomModuleFakeIndexChange.class;
+  }
+
+  @Override
+  protected Class<? extends GroupIndex> getGroupIndex() {
+    return AbstractFakeIndex.FakeGroupIndex.class;
+  }
+
+  @Override
+  protected Class<? extends ProjectIndex> getProjectIndex() {
+    return AbstractFakeIndex.FakeProjectIndex.class;
+  }
+
+  @Override
+  protected Class<? extends VersionManager> getVersionManager() {
+    return FakeIndexVersionManager.class;
+  }
+}
+
+class CustomModuleFakeIndexChange extends AbstractFakeIndex.FakeChangeIndex {
+
+  @com.google.inject.Inject
+  CustomModuleFakeIndexChange(
+      SitePaths sitePaths,
+      ChangeData.Factory changeDataFactory,
+      @Assisted Schema <ChangeData> schema,
+      @GerritServerConfig Config cfg) {
+    super(sitePaths, changeDataFactory, schema, cfg);
+  }
+
+  @Override
+  public void replace(ChangeData doc) {
+    if (doc.change().getChangeId() == 100000) {
+      throw new StorageException("sdds");
+    } else {
+      super.replace(doc);
+    }
+  }
+}
+
+

@@ -16,11 +16,13 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.INDEXWRITABLE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.gerrit.entities.Change;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.config.AllProjectsName;
@@ -71,6 +73,10 @@ public class HealthCheckConfig {
     this.isReplica = isReplica;
   }
 
+  public String toText() {
+    return config.toText();
+  }
+
   @VisibleForTesting
   HealthCheckConfig(String configText) {
     config = new Config();
@@ -89,6 +95,12 @@ public class HealthCheckConfig {
   @VisibleForTesting
   void fromText(String configText) throws ConfigInvalidException {
     config.fromText(configText);
+  }
+
+  @VisibleForTesting
+  void setString(
+      final String section, final String subsection, final String name, final String value) {
+    config.setString(section, subsection, name, value);
   }
 
   public long getTimeout() {
@@ -150,6 +162,15 @@ public class HealthCheckConfig {
 
   public String[] getListOfBlockedThreadsThresholds() {
     return config.getStringList(HEALTHCHECK, BLOCKEDTHREADS, "threshold");
+  }
+
+  public Project.NameKey getIndexWritableProjectName() {
+    return Project.NameKey.parse(config.getString(HEALTHCHECK, INDEXWRITABLE, "projectName"));
+  }
+
+  public Change.Id getIndexWritableChangeId() {
+    // TODO: What default do we use?
+    return Change.id(config.getInt(HEALTHCHECK, INDEXWRITABLE, "changeId", 0));
   }
 
   private String getStringWithFallback(

@@ -37,7 +37,6 @@ public class HealthCheckSubsystemsModule extends FactoryModule {
     bindChecker(DeadlockCheck.class);
     bindChecker(BlockedThreadsCheck.class);
 
-    factory(HealthCheckMetrics.Factory.class);
     install(BlockedThreadsCheck.SUB_CHECKS);
   }
 

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa93042_b59b436e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2023-11-10T09:23:01Z",
+      "side": 1,
+      "message": "How come the build is green [1], if the formatting is wrong?\n\nhttps://gerrit-ci.gerritforge.com/view/Plugins-stable-3.9/job/plugin-healthcheck-bazel-stable-3.9/",
+      "revId": "251947d87ca98de0f5da3ddf45719c77566d17e2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -34,6 +34,24 @@
       "parentUuid": "1fa93042_b59b436e",
       "revId": "251947d87ca98de0f5da3ddf45719c77566d17e2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd1a21b_fa0572fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-11-10T10:46:24Z",
+      "side": 1,
+      "message": "This project is missing a `Jenkinsfile` (e.g. [1]). Something we could look at separately.\n\n[1] https://gerrit.googlesource.com/plugins/pull-replication/+/refs/heads/stable-3.6/Jenkinsfile",
+      "parentUuid": "f6e127d1_ec0d3f72",
+      "revId": "251947d87ca98de0f5da3ddf45719c77566d17e2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

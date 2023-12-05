@@ -52,6 +52,10 @@ plugins_healthcheck_projectslist_latest_measured_latency 5.0
 # TYPE plugins_healthcheck_blockedthreads_latest_measured_latency gauge
 plugins_healthcheck_blockedthreads_latest_measured_latency 6.0
 
+# HELP plugins_healthcheck_index_latest_measured_latency Generated from Dropwizard metric import (metric=plugins/healthcheck/index/latency, type=com.google.gerrit.metrics.dropwizard.CallbackMetricImpl0$1)
+# TYPE plugins_healthcheck_index_latest_measured_latency gauge
+plugins_healthcheck_index_latest_measured_latency 3.0
+
 # HELP plugins_healthcheck_jgit_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/jgit/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_jgit_failure_total counter
 plugins_healthcheck_jgit_failure_total 3.0
@@ -63,6 +67,10 @@ plugins_healthcheck_projectslist_failure_total 0.0
 # HELP plugins_healthcheck_blockedthreads_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/blockedthreads/failure, type=com.codahale.metrics.Meter)
 # TYPE plugins_healthcheck_blockedthreads_failure_total counter
 plugins_healthcheck_blockedthreads_failure_total 1.0
+
+# HELP plugins_healthcheck_index_failure_total Generated from Dropwizard metric import (metric=plugins/healthcheck/index/failure, type=com.codahale.metrics.Meter)
+# TYPE plugins_healthcheck_index_failure_total counter
+plugins_healthcheck_index_failure_total 1.0
 ```
 
 Note that additionally to the default `blockedthreads` metrics pair failures counter will reported for

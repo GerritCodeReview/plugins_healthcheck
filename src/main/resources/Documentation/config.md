@@ -56,6 +56,8 @@ The following check names are available:
 - `activeworkers`: check the number of active worker threads and the ability to create a new one
 - `deadlock` : check if Java deadlocks are reported by the JVM
 - `blockedthreads` : check the number of blocked threads
+- `index` : check if the changes index is operable (listens to Change[Indexed|Deleted]
+   events or calls reindex)
 
 Each check name can be disabled by setting the `enabled` parameter to **false**,
 by default this parameter is set to **true**

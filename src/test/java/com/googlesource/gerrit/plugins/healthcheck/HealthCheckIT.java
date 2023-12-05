@@ -18,6 +18,7 @@ import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.INDEX;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
@@ -222,6 +223,23 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     JsonObject respBody = getResponseJson(resp);
     assertThat(respBody.has("reason")).isTrue();
     assertThat(respBody.get("reason").getAsString()).isEqualTo("Fail Flag File exists");
+  }
+
+  @Test
+  public void shouldReturnIndexCheck() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), INDEX, "passed");
+  }
+
+  @Test
+  public void shouldReturnIndexCheckAsDisabled() throws Exception {
+    disableCheck(INDEX);
+    RestResponse resp = getHealthCheckStatus();
+
+    resp.assertOK();
+    assertCheckResult(getResponseJson(resp), INDEX, "disabled");
   }
 
   private void createFailFileFlag(String path) throws IOException {

@@ -24,15 +24,20 @@ import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 
 @Singleton
 public class IndexHealthCheck extends AbstractHealthCheck {
+  private final ChangeIndexHealthCheck changeIndexChecker;
 
   @Inject
   IndexHealthCheck(
-      ListeningExecutorService executor, HealthCheckConfig config, MetricMaker metricMaker) {
+      ListeningExecutorService executor,
+      HealthCheckConfig config,
+      MetricMaker metricMaker,
+      ChangeIndexHealthCheck changeIndexChecker) {
     super(executor, config, INDEX, metricMaker);
+    this.changeIndexChecker = changeIndexChecker;
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    return Result.PASSED;
+    return changeIndexChecker.check();
   }
 }

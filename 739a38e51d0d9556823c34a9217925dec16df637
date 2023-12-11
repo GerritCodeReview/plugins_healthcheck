@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d101db4c_fff4d01d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-11T19:37:22Z",
+      "side": 1,
+      "message": "Healthcheck should be lightweight and not modifying anything on the data: reindexing a change is going against the concept of a healthcheck.\n\nCan we have a discussion on it?\n\nAdding a Code-Review -2 to avoid anyone merging this as it could be harmful.",
+      "revId": "739a38e51d0d9556823c34a9217925dec16df637",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f162574_a0eceffc",

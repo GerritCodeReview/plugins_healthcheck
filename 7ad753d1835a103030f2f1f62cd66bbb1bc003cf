@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1be650_f6f1fef7",
+        "filename": "src/main/resources/Documentation/metrics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-11T18:13:02Z",
+      "side": 1,
+      "message": "this should actually contain the index name as well (ie `plugins_healthcheck_change_index_latest_measured_latency`). I assume if in the future we added a similar check for a different index, we\u0027d want to differentiate in the metrics between the two.",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "7ad753d1835a103030f2f1f62cd66bbb1bc003cf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -46,6 +46,30 @@
       },
       "revId": "7ad753d1835a103030f2f1f62cd66bbb1bc003cf",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "619893d7_2345f55f",
+        "filename": "src/main/resources/Documentation/metrics.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-15T17:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28ed09fb_eeeb9d85",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "7ad753d1835a103030f2f1f62cd66bbb1bc003cf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

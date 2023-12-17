@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f169fd73_b3ba668d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-17T07:42:34Z",
+      "side": 1,
+      "message": "Healthchecks can be enabled or disabled by configuration, why not extending that mechanism instead of creating stubs?",
+      "revId": "5d61407bacb203ab4d1408caf1fe661b8eed9d85",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

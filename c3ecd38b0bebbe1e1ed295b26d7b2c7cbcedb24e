@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7bfefe0_4d1ce4f1",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-17T07:49:18Z",
+      "side": 1,
+      "message": "I know the issue, but a simpler trick to convince Bazel of not running some tests on classes is just to add the @Disabled annotation on the abstract class.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "c3ecd38b0bebbe1e1ed295b26d7b2c7cbcedb24e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73366875_a09bdca7",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-17T07:49:18Z",
+      "side": 1,
+      "message": "This is a test, therefore it should be working with only one version of Gerrit that you are testing. I would just look for any files that has a specific pattern name that has \"changes\" in the name.\n\nHere it looks like a copy\u0026paste of the application logic.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 3
+      },
+      "revId": "c3ecd38b0bebbe1e1ed295b26d7b2c7cbcedb24e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

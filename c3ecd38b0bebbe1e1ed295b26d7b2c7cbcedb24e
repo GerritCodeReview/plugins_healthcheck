@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28d83877_8a428a99",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-18T08:11:43Z",
+      "side": 1,
+      "message": "Another option is to rename `Abstract` class so that it doesn\u0027t end with test ;) - there are multiple ways of achieving it and each one of them has its pros \u0026 cons. When I see `@Disabled` I always want to just remove it as it looks like it is nothing but the maintenance burden 😊",
+      "parentUuid": "a7bfefe0_4d1ce4f1",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "c3ecd38b0bebbe1e1ed295b26d7b2c7cbcedb24e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73366875_a09bdca7",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-17T07:49:18Z",
       "side": 1,
       "message": "This is a test, therefore it should be working with only one version of Gerrit that you are testing. I would just look for any files that has a specific pattern name that has \"changes\" in the name.\n\nHere it looks like a copy\u0026paste of the application logic.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 3
+      },
+      "revId": "c3ecd38b0bebbe1e1ed295b26d7b2c7cbcedb24e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a1d833_d3870062",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-18T08:11:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73366875_a09bdca7",
       "range": {
         "startLine": 113,
         "startChar": 0,

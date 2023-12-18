@@ -16,6 +16,24 @@
       "message": "Healthchecks can be enabled or disabled by configuration, why not extending that mechanism instead of creating stubs?",
       "revId": "5d61407bacb203ab4d1408caf1fe661b8eed9d85",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b922be4_e4243880",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-18T07:20:16Z",
+      "side": 1,
+      "message": "The decision is taken in `AbstractHealthCheck.run` hence not really extendable as one would have to re-write it... but here we go with another version without any stubs. I have created Issue 316743624 to take a closer look to that.",
+      "parentUuid": "f169fd73_b3ba668d",
+      "revId": "5d61407bacb203ab4d1408caf1fe661b8eed9d85",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

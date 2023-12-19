@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0746549d_5dc3d8a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-19T11:22:02Z",
+      "side": 1,
+      "message": "Nope, this is only checking the lock files, not the health of the index.",
+      "parentUuid": "ebe9f800_4cda707e",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dee3fa4d_7a812ff2",
@@ -41,6 +65,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "286b2fdc_e45f4bd1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-19T11:22:02Z",
+      "side": 1,
+      "message": "Happy to explain to you how Lucene works in Gerrit, feel free to reach out to me or Jacek directly.",
+      "parentUuid": "dee3fa4d_7a812ff2",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35c5a8c3_540d08cc",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "If i am not mistaken this will be executed once at startup, if the contents of `gerrit_index.config` change then we won\u0027t know about it. Isn\u0027t it better (albeit more expensive) to execute this logic in the `doCheck`?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4513e8a_e39a6e97",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-19T11:22:02Z",
+      "side": 1,
+      "message": "`gerrit_index.config` is written once upon install or upgrade and never modified again. Happy to explain to you how Gerrit indexes work in a call.",
+      "parentUuid": "35c5a8c3_540d08cc",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -180,6 +240,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "this logic will short-circuit, but what happens if there are two indexes with the same prefix, where one is ready and the other isn\u0027t?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96cd2c4b_dce2651c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-19T11:22:02Z",
+      "side": 1,
+      "message": "There can be only one index flagged as ready, otherwise Gerrit won\u0027t even start.",
+      "parentUuid": "24b9e529_3ffbd2ca",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },

@@ -48,6 +48,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9dbfeca_4d70e089",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T11:53:02Z",
+      "side": 1,
+      "message": "What i mean is that we are determining the health of the index by checking the lock files. But how we implement the health check is an implementation detail which doesn\u0027t need to be in the title, but in the description of the change. Anyway, its a nit.",
+      "parentUuid": "0746549d_5dc3d8a9",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dee3fa4d_7a812ff2",
@@ -258,6 +282,24 @@
       "side": 1,
       "message": "There can be only one index flagged as ready, otherwise Gerrit won\u0027t even start.",
       "parentUuid": "24b9e529_3ffbd2ca",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048afa78_7f3182a2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T11:53:02Z",
+      "side": 1,
+      "message": "Sorry, what do you mean by \"only one index flagged as ready\"? \n\nFor the following config:\n```\n[index \"changescustom_1234\"]\n   ready \u003d true\n[index \"changes_5678\"]\n   ready \u003d false\n```\n\nthe code will return Optional(\"changescustom_1234\"). Unless we are saying such a config is wrong - but then why do need to check the ready flag in the first place, if gerrit won\u0027t even start as you say?",
+      "parentUuid": "96cd2c4b_dce2651c",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },

@@ -96,6 +96,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a738113c_4653f2b2",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-19T06:48:23Z",
+      "side": 1,
+      "message": "It is called `@Ignore` in `Junit4` 😊",
+      "parentUuid": "29537d4f_c9f21e66",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "c3ecd38b0bebbe1e1ed295b26d7b2c7cbcedb24e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73366875_a09bdca7",

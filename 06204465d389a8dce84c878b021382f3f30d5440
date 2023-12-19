@@ -1,0 +1,306 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebe9f800_4cda707e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "nit: `health`\n\nlock files is an implementation detail which is not necessary in the title IMHO.",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee3fa4d_7a812ff2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "Can you provide some background on why this write.lock file is important and therefore the pillar of the check? I personally don\u0027t know much on index write-ability.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c5a8c3_540d08cc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "If i am not mistaken this will be executed once at startup, if the contents of `gerrit_index.config` change then we won\u0027t know about it. Isn\u0027t it better (albeit more expensive) to execute this logic in the `doCheck`?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e5433a_7621d3ec",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "nit\n\n```suggestion\n        ? changes.filter(ChangesIndexLockFiles::valid).map(locks -\u003e Result.PASSED).orElse(Result.FAILED)\n```",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a0e778_aa0431bc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "nit\n\n```suggestion\n  private static Optional\u003cChangesIndexLockFiles\u003e getChangesIndexLockFiles(Path indexDir) {\n```",
+      "range": {
+        "startLine": 75,
+        "startChar": 49,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6eae2c7_920dd96e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "nit: should this be `changes_` to ensure it\u0027s the default changes index that it\u0027s being checked?",
+      "range": {
+        "startLine": 80,
+        "startChar": 41,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9263e4f7_a810d481",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 83,
+        "startChar": 52,
+        "endLine": 83,
+        "endChar": 64
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d171652_69eece7b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "nit: `indexName` or `indexPrefix`",
+      "range": {
+        "startLine": 88,
+        "startChar": 75,
+        "endLine": 88,
+        "endChar": 80
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b9e529_3ffbd2ca",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "this logic will short-circuit, but what happens if there are two indexes with the same prefix, where one is ready and the other isn\u0027t?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "986cf694_cbb73ca9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "this should be a constant.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eab30764_e3a085f6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "I assume that for every index the lock file structure is the same, so this class is probably better not to be defined as a nested class within the change index health check, and also it can use more generic naming.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f79032f_4174bcd0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "can be final",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1233a98_c8fbb6c5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "is this used anywhere? do we need it?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fc746e9_ef0fea50",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "```suggestion\n    return gson.fromJson(resp.getReader(), JsonObject.class);\n```",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef12e923_bfccd03b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "is it possible to add a test where the lock file exists but it\u0027s not writable?",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa48fe8_07577173",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2023-12-19T10:55:07Z",
+      "side": 1,
+      "message": "we should mention that the use of @UseLocalDisk is a heavy operation which slows the tests, it may not be obvious to everyone.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

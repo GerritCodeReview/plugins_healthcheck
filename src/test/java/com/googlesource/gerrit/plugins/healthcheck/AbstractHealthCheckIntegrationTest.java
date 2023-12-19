@@ -26,10 +26,8 @@ import com.google.inject.Key;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.IOException;
 import org.eclipse.jgit.errors.ConfigInvalidException;
-import org.junit.Ignore;
 
-@Ignore
-public class AbstractHealthCheckIntegrationTest extends LightweightPluginDaemonTest {
+class AbstractHealthCheckIntegrationTest extends LightweightPluginDaemonTest {
   public static class TestModule extends AbstractModule {
 
     @Override

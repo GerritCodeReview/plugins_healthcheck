@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f34e89a_de311547",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Agree with @luca here yet that reminded me about one change that I wanted to add - listen to `OnlineUpgradeListener.onSuccess` event to cover the Gerrit upgrade with online reindex case. The change for that will follow.",
+      "parentUuid": "b4513e8a_e39a6e97",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67e5433a_7621d3ec",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
         "patchSetId": 3
@@ -155,6 +173,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "nit\n\n```suggestion\n        ? changes.filter(ChangesIndexLockFiles::valid).map(locks -\u003e Result.PASSED).orElse(Result.FAILED)\n```",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbcab789_36bb9733",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Frankly apart from using method reference (upside) I see map that ignores the value (downside) - IOW they are equally good/bad",
+      "parentUuid": "67e5433a_7621d3ec",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -172,6 +208,30 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "nit\n\n```suggestion\n  private static Optional\u003cChangesIndexLockFiles\u003e getChangesIndexLockFiles(Path indexDir) {\n```",
+      "range": {
+        "startLine": 75,
+        "startChar": 49,
+        "endLine": 75,
+        "endChar": 75
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d8f9e07_d3f7dbea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a0e778_aa0431bc",
       "range": {
         "startLine": 75,
         "startChar": 49,
@@ -205,6 +265,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "709ba03d_7db7a48e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "doesn\u0027t matter there is only one index prefixed `changes` - note that `gerrit_index.config` is a technical file that is fully managed by Gerrit. The only manual intervention could happen during the Gerrit version downgrade but that is not done on a daily basis.",
+      "parentUuid": "b6eae2c7_920dd96e",
+      "range": {
+        "startLine": 80,
+        "startChar": 41,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9263e4f7_a810d481",
@@ -228,6 +312,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e57f7a_6822c1f3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9263e4f7_a810d481",
+      "range": {
+        "startLine": 83,
+        "startChar": 52,
+        "endLine": 83,
+        "endChar": 64
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d171652_69eece7b",
@@ -241,6 +349,30 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "nit: `indexName` or `indexPrefix`",
+      "range": {
+        "startLine": 88,
+        "startChar": 75,
+        "endLine": 88,
+        "endChar": 80
+      },
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e933f303_9b9eae58",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d171652_69eece7b",
       "range": {
         "startLine": 88,
         "startChar": 75,
@@ -304,6 +436,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bbad54a_282bd8b5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Again, this is technical file maintained by `Gerrit` therefore `changescustom_1234` will not happen there as nobody would insert it there. Programming against that is IMHO too defensive.\n\nNow why we detect which is ready? The answer is simple: index version sometimes changes (with Gerrit version upgrade) therefore the following configuration is valid:\n```\n[index \"changes_0082\"]\n  ready \u003d false\n[index \"changes_0084\"]\n  ready \u003d true\n```\nbut as you can see (and @luca.milanesio@gmail.com described above) only one of them can be marked as `ready` - otherwise Gerrit, during the start operation, will select the newer one and mark the older as `ready \u003d false` - just double checked that.\nIOW we are safe.",
+      "parentUuid": "048afa78_7f3182a2",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "986cf694_cbb73ca9",
@@ -317,6 +467,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "this should be a constant.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9091a7d_8cc55080",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "986cf694_cbb73ca9",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -338,6 +506,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b2a3a2_87cf2aa0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "We will cross that bridge when we get there. As of now there is no decision on adding more indices to the picture.",
+      "parentUuid": "eab30764_e3a085f6",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f79032f_4174bcd0",
@@ -351,6 +537,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "can be final",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5979b52c_62a63014",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f79032f_4174bcd0",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -372,6 +576,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73fe303c_aa44a774",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "yeap, check `HealthCheckIT.shouldReturnJGitCheckForReplicaAnonymously`",
+      "parentUuid": "c1233a98_c8fbb6c5",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fc746e9_ef0fea50",
@@ -385,6 +607,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "```suggestion\n    return gson.fromJson(resp.getReader(), JsonObject.class);\n```",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a1398c_8d5ac2bf",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "Note that I have moved those functions from one file to another hence they are what they used to be 😊 but here we go.",
+      "parentUuid": "6fc746e9_ef0fea50",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -408,6 +648,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1cc1e342_edfe24cf",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "AFAIU that would require minimum 3 os users:\n1. `gerrit` user that would initially own the file\n2. `user` that would eventually own the file\n3. `admin` that would transfer the ownership\n\nI can\u0027t really see how that could be realistically performed in integration tests 😞",
+      "parentUuid": "ef12e923_bfccd03b",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baa48fe8_07577173",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
         "patchSetId": 3
@@ -419,6 +677,24 @@
       "writtenOn": "2023-12-19T10:55:07Z",
       "side": 1,
       "message": "we should mention that the use of @UseLocalDisk is a heavy operation which slows the tests, it may not be obvious to everyone.",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b09a100d_2d205329",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:15:18Z",
+      "side": 1,
+      "message": "it is properly explained in the commit message but sure here we go",
+      "parentUuid": "baa48fe8_07577173",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

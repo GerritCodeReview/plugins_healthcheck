@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1acb6801_4d222eac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-20T07:56:32Z",
+      "side": 1,
+      "message": "Good idea @geminica.programs@gmail.com! Agreed, it should be a separate follow-up change.",
+      "parentUuid": "5f34e89a_de311547",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67e5433a_7621d3ec",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
         "patchSetId": 3
@@ -454,6 +472,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe54e6b6_9ede0325",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-20T07:56:32Z",
+      "side": 1,
+      "message": "Correct, with the above setup Gerrit won\u0027t start, therefore the plugin won\u0027t be executed anyway.",
+      "parentUuid": "048afa78_7f3182a2",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "986cf694_cbb73ca9",
@@ -660,6 +696,24 @@
       "side": 1,
       "message": "AFAIU that would require minimum 3 os users:\n1. `gerrit` user that would initially own the file\n2. `user` that would eventually own the file\n3. `admin` that would transfer the ownership\n\nI can\u0027t really see how that could be realistically performed in integration tests 😞",
       "parentUuid": "ef12e923_bfccd03b",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f84de54_2404ef7b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-12-20T07:56:32Z",
+      "side": 1,
+      "message": "Can you test it manually and add the outcome to the commit message?",
+      "parentUuid": "1cc1e342_edfe24cf",
       "revId": "06204465d389a8dce84c878b021382f3f30d5440",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },

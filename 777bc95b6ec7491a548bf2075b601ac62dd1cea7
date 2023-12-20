@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea4714c_06ca29bf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-20T07:19:31Z",
+      "side": 1,
+      "message": "nit: `s/indexindexPrefix/indexPrefix` 😂",
+      "range": {
+        "startLine": 89,
+        "startChar": 75,
+        "endLine": 89,
+        "endChar": 91
+      },
+      "revId": "777bc95b6ec7491a548bf2075b601ac62dd1cea7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

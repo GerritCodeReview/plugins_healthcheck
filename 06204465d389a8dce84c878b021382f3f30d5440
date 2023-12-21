@@ -736,6 +736,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b992b859_8db19ff9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/ChangesIndexHealthCheckIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-21T08:49:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f84de54_2404ef7b",
+      "revId": "06204465d389a8dce84c878b021382f3f30d5440",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baa48fe8_07577173",

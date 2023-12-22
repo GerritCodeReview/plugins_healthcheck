@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d071f350_a4bfd70a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010134
+      },
+      "writtenOn": "2023-12-22T11:45:57Z",
+      "side": 1,
+      "message": "s/versio/version/",
+      "range": {
+        "startLine": 20,
+        "startChar": 22,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "24640753975370ad8102cf3f2c80a72096bb9030",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b172f37_beebdcd6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1010134
+      },
+      "writtenOn": "2023-12-22T11:45:57Z",
+      "side": 1,
+      "message": "nit: how about removing the `static` modifier, instead of passing the lock as an argument and pushing through other static methods?",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 109,
+        "endChar": 16
+      },
+      "revId": "24640753975370ad8102cf3f2c80a72096bb9030",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

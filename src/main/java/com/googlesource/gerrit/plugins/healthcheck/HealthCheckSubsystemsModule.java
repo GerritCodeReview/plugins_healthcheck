@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import com.google.gerrit.extensions.config.FactoryModule;
 import com.google.gerrit.extensions.registration.DynamicSet;
+import com.google.gerrit.server.index.OnlineUpgradeListener;
 import com.googlesource.gerrit.plugins.healthcheck.check.ActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.AuthHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck;
@@ -38,6 +39,8 @@ public class HealthCheckSubsystemsModule extends FactoryModule {
     bindChecker(DeadlockCheck.class);
     bindChecker(BlockedThreadsCheck.class);
     bindChecker(ChangesIndexHealthCheck.class);
+
+    DynamicSet.bind(binder(), OnlineUpgradeListener.class).to(ChangesIndexHealthCheck.class);
 
     install(BlockedThreadsCheck.SUB_CHECKS);
   }

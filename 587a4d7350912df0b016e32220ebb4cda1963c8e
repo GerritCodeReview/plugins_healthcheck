@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a837095e_a4c94761",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-28T19:39:23Z",
+      "side": 1,
+      "message": "Added to issue description.",
+      "parentUuid": "4504f292_405c8761",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 58
+      },
+      "revId": "587a4d7350912df0b016e32220ebb4cda1963c8e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "94cc8dd3_5c5ae588",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -58,6 +82,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfee34ea_cd2b0d22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-28T19:39:23Z",
+      "side": 1,
+      "message": "Used `AtomicReference` as suggested,",
+      "parentUuid": "b1f1b4af_78067f29",
+      "revId": "587a4d7350912df0b016e32220ebb4cda1963c8e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53d086c2_24d638a4",
@@ -75,6 +117,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34490725_da34ef55",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-28T19:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53d086c2_24d638a4",
+      "revId": "587a4d7350912df0b016e32220ebb4cda1963c8e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0acc6bc2_50b9401a",
@@ -88,6 +148,30 @@
       "writtenOn": "2023-12-27T22:07:39Z",
       "side": 1,
       "message": "This should be volatile because it isn\u0027t final and accessed by multiple threads.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "587a4d7350912df0b016e32220ebb4cda1963c8e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7ddf80_d7ac8a2d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2023-12-28T19:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0acc6bc2_50b9401a",
       "range": {
         "startLine": 50,
         "startChar": 2,

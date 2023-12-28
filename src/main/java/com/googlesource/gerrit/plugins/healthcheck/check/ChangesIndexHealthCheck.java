@@ -74,7 +74,7 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
 
   @Override
   public void onSuccess(String name, int oldVersion, int newVersion) {
-    if (!name.equals("changes") || oldVersion == newVersion) {
+    if (!isLuceneIndex || !name.equals("changes") || oldVersion == newVersion) {
       return;
     }
 
@@ -106,6 +106,10 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
   }
 
   private Optional<ChangesIndexLockFiles> getChangesIndexLockFiles(Path indexDir) {
+    if (!isLuceneIndex) {
+      Optional.empty();
+    }
+
     FileBasedConfig cfg =
         new FileBasedConfig(indexDir.resolve("gerrit_index.config").toFile(), FS.detect());
     try {

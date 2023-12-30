@@ -18,20 +18,15 @@ import static com.google.common.net.HttpHeaders.CONTENT_TYPE;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.CHANGES_INDEX;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
-import com.google.gerrit.acceptance.LightweightPluginDaemonTest;
 import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.config.GerritConfig;
-import com.google.gerrit.extensions.annotations.PluginName;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.inject.AbstractModule;
-import com.google.inject.Key;
-import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
@@ -41,43 +36,24 @@ import org.junit.Test;
 
 @TestPlugin(
     name = "healthcheck-test",
-    sysModule = "com.googlesource.gerrit.plugins.healthcheck.HealthCheckIT$TestModule",
+    sysModule =
+        "com.googlesource.gerrit.plugins.healthcheck.AbstractHealthCheckIntegrationTest$TestModule",
     httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
-public class HealthCheckIT extends LightweightPluginDaemonTest {
-  Gson gson = new Gson();
-  HealthCheckConfig config;
-  String healthCheckUriPath;
-  String failFilePath;
-
-  public static class TestModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-      install(new HealthCheckExtensionApiModule());
-      install(new Module());
-    }
-  }
+public class HealthCheckIT extends AbstractHealthCheckIntegrationTest {
+  private String failFilePath = "/tmp/fail";
 
   @Override
   @Before
   public void setUpTestPlugin() throws Exception {
     super.setUpTestPlugin();
 
-    config = plugin.getSysInjector().getInstance(HealthCheckConfig.class);
-    failFilePath = "/tmp/fail";
     new File(failFilePath).delete();
 
-    int numChanges = config.getLimit(HealthCheckNames.QUERYCHANGES);
-    for (int i = 0; i < numChanges; i++) {
-      createChange("refs/for/master");
-    }
-    accountCreator.create(config.getUsername(HealthCheckNames.AUTH));
-
-    healthCheckUriPath =
-        String.format(
-            "/config/server/%s~status",
-            plugin.getSysInjector().getInstance(Key.get(String.class, PluginName.class)));
+    // disable `changesindex` check as it requires @UseLocalDisk annotation (so that all operations
+    // are persisted to local FS) to be applied and that would degrade this IT performance - see
+    // ChangesIndexHealthCheckIT for a changes index dedicated integration tests
+    super.disableCheck(CHANGES_INDEX);
   }
 
   @Test
@@ -224,37 +200,23 @@ public class HealthCheckIT extends LightweightPluginDaemonTest {
     assertThat(respBody.get("reason").getAsString()).isEqualTo("Fail Flag File exists");
   }
 
+  @Override
+  protected void disableCheck(String check) throws ConfigInvalidException {
+    // additionally disable `changesindex` healthcheck as it requires @UseLocalDisk annotation to
+    // run properly
+    config.fromText(
+        String.format(
+            "[healthcheck \"%s\"]\n enabled = false\n[healthcheck \"%s\"]\n enabled = false",
+            check, CHANGES_INDEX));
+  }
+
   private void createFailFileFlag(String path) throws IOException {
     File file = new File(path);
     file.createNewFile();
     file.deleteOnExit();
   }
 
-  private RestResponse getHealthCheckStatus() throws IOException {
-    return adminRestSession.get(healthCheckUriPath);
-  }
-
-  private RestResponse getHealthCheckStatusAnonymously() throws IOException {
-    return anonymousRestSession.get(healthCheckUriPath);
-  }
-
-  private void assertCheckResult(JsonObject respPayload, String checkName, String result) {
-    assertThat(respPayload.has(checkName)).isTrue();
-    JsonObject reviewDbStatus = respPayload.get(checkName).getAsJsonObject();
-    assertThat(reviewDbStatus.has("result")).isTrue();
-    assertThat(reviewDbStatus.get("result").getAsString()).isEqualTo(result);
-  }
-
-  private void disableCheck(String check) throws ConfigInvalidException {
-    config.fromText(String.format("[healthcheck \"%s\"]\n" + "enabled = false", check));
-  }
-
   private void setFailFlagFilePath(String path) throws ConfigInvalidException {
     config.fromText(String.format("[healthcheck]\n" + "failFileFlagPath = %s", path));
-  }
-
-  private JsonObject getResponseJson(RestResponse resp) throws IOException {
-    JsonObject respPayload = gson.fromJson(resp.getReader(), JsonObject.class);
-    return respPayload;
   }
 }

@@ -20,18 +20,37 @@ gerrit_plugin(
 
 junit_tests(
     name = "healthcheck_tests",
-    srcs = glob(["src/test/java/**/*.java"]),
+    srcs = glob(
+        [
+            "src/test/java/**/*Test.java",
+        ],
+        exclude = ["src/test/java/**/Abstract*.java"],
+    ),
     resources = glob(["src/test/resources/**/*"]),
     deps = [
         ":healthcheck__plugin_test_deps",
     ],
 )
 
+[junit_tests(
+    name = f[:f.index(".")].replace("/", "_"),
+    srcs = [f],
+    tags = ["owners"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":healthcheck__plugin_test_deps",
+    ],
+) for f in glob(["src/test/java/**/*IT.java"])]
+
 java_library(
     name = "healthcheck__plugin_test_deps",
     testonly = 1,
+    srcs = glob(["src/test/java/**/Abstract*.java"]),
     visibility = ["//visibility:public"],
     exports = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
+        ":healthcheck__plugin",
+    ],
+    deps = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
         ":healthcheck__plugin",
     ],
 )

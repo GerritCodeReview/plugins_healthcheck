@@ -23,4 +23,5 @@ public interface HealthCheckNames {
   String DEADLOCK = "deadlock";
   String BLOCKEDTHREADS = "blockedthreads";
   String GLOBAL = "global";
+  String CHANGES_INDEX = "changesindex";
 }

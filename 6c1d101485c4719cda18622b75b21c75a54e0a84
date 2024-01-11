@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81438d25_25a913a5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2024-01-11T14:08:16Z",
+      "side": 1,
+      "message": "Aren\u0027t we missing a `return` here?",
+      "revId": "6c1d101485c4719cda18622b75b21c75a54e0a84",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {

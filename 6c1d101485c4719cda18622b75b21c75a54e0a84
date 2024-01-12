@@ -16,6 +16,24 @@
       "message": "Aren\u0027t we missing a `return` here?",
       "revId": "6c1d101485c4719cda18622b75b21c75a54e0a84",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fa1a390_a0765667",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ChangesIndexHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-01-12T09:24:41Z",
+      "side": 1,
+      "message": "We do :facepalm: - fixed in the follow-up. Thanks for finding it 👍",
+      "parentUuid": "81438d25_25a913a5",
+      "revId": "6c1d101485c4719cda18622b75b21c75a54e0a84",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [

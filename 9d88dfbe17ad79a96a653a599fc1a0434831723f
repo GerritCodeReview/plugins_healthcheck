@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c3a6b7_391b9bb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2024-01-12T09:34:02Z",
+      "side": 1,
+      "message": "LGTM, but I don\u0027t have +2 on this project.",
+      "revId": "9d88dfbe17ad79a96a653a599fc1a0434831723f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

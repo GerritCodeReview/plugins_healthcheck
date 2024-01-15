@@ -54,6 +54,11 @@ public class FooHealthCheck extends AbstractHealthCheck {
 }
 ```
 
+Finally, you will need to register your plugin's healthcheck in the plugin's `Module` class:
+```java
+DynamicSet.bind(binder(), HealthCheck.class).to(FooHealthCheck.class);
+```
+
 To build the plugin in the gerrit-CI, as
 [documented](https://gerrit-review.googlesource.com/Documentation/dev-plugins.html#_cross_plugin_communication)
 by gerrit, you should be configuring your build job as follows:

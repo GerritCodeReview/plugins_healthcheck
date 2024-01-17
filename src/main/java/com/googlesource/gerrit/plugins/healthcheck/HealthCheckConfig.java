@@ -22,7 +22,6 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
 import com.google.gerrit.entities.Project;
-import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.config.AllProjectsName;
 import com.google.gerrit.server.config.AllUsersName;
 import com.google.gerrit.server.config.GerritIsReplica;
@@ -39,6 +38,7 @@ import org.eclipse.jgit.lib.Config;
 
 @Singleton
 public class HealthCheckConfig {
+  public static final String HEALTHCHECK_PLUGIN_NAME = "healthcheck";
   public static final String HEALTHCHECK = "healthcheck";
   public static final HealthCheckConfig DEFAULT_CONFIG = new HealthCheckConfig(null);
   private static final long HEALTHCHECK_TIMEOUT_DEFAULT = 500L;
@@ -61,11 +61,10 @@ public class HealthCheckConfig {
   @Inject
   public HealthCheckConfig(
       PluginConfigFactory configFactory,
-      @PluginName String pluginName,
       AllProjectsName allProjectsName,
       AllUsersName allUsersName,
       @GerritIsReplica boolean isReplica) {
-    config = configFactory.getGlobalPluginConfig(pluginName);
+    config = configFactory.getGlobalPluginConfig(HEALTHCHECK_PLUGIN_NAME);
     this.allProjectsName = allProjectsName;
     this.allUsersName = allUsersName;
     this.isReplica = isReplica;

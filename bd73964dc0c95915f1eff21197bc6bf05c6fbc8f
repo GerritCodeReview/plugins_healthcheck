@@ -1,6 +1,144 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "84680841_1ec3386d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "nit: consider starting a new paragraph separated by a new line for readability.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef4d218_894ed0a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 55,
+        "endLine": 15,
+        "endChar": 67
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de97031b_b6e77452",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "`pluginName` is always dynamically injected.\nConsider rephrasing to something like:\n\n```\nin that case, the `pluginName` will differ from the `healthcheck` string.\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 72
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f49c3f6f_0bcf4dde",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "nit: consider removing the exclamation mark",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "058d7548_a11ffad1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "HealthCheckConfig",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ec983a_315d6f4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "Is this the case though?\nI was under the impression that the HealthCheckConfig not being a singleton was related to the way it was bound.\n\nMind double-checking this is the case and/or remove this sentence if not relevant?",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b1e2922d_5c2c8f7c",
@@ -14,6 +152,29 @@
       "writtenOn": "2024-01-17T15:49:26Z",
       "side": 1,
       "message": "With this change I am able to define the following in healthcheck.config:\n```\n[healthcheck \"pull-replication-tasks\"]\n   enabled \u003d false\n```\nAnd the pull-replication-tasks check becomes disabled.\n\nAlso, the same (singleton) HealthCheckConfig object is shared among all checks, both core and external, so the binding in singleton scope is not necessary.",
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94a6d06_1ac9e66d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2024-01-17T16:36:35Z",
+      "side": 1,
+      "message": "nit: could be private",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 8
+      },
       "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

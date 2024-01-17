@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1e2922d_5c2c8f7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-17T15:49:26Z",
+      "side": 1,
+      "message": "With this change I am able to define the following in healthcheck.config:\n```\n[healthcheck \"pull-replication-tasks\"]\n   enabled \u003d false\n```\nAnd the pull-replication-tasks check becomes disabled.\n\nAlso, the same (singleton) HealthCheckConfig object is shared among all checks, both core and external, so the binding in singleton scope is not necessary.",
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad589c0_6c1e5fe2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84680841_1ec3386d",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 7
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ef4d218_894ed0a6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-17T16:36:35Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 55,
+        "endLine": 15,
+        "endChar": 67
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cdb158e_aea42b81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef4d218_894ed0a6",
       "range": {
         "startLine": 15,
         "startChar": 55,
@@ -70,6 +118,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55266b7a_e1c3e70d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de97031b_b6e77452",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 72
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f49c3f6f_0bcf4dde",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-17T16:36:35Z",
       "side": 1,
       "message": "nit: consider removing the exclamation mark",
+      "range": {
+        "startLine": 22,
+        "startChar": 41,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "442f306a_4e9f3f75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f49c3f6f_0bcf4dde",
       "range": {
         "startLine": 22,
         "startChar": 41,
@@ -116,6 +212,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c28dcf_a6c204ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "058d7548_a11ffad1",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72ec983a_315d6f4f",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-01-17T16:36:35Z",
       "side": 1,
       "message": "Is this the case though?\nI was under the impression that the HealthCheckConfig not being a singleton was related to the way it was bound.\n\nMind double-checking this is the case and/or remove this sentence if not relevant?",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0471d29_0fb04833",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "I did check before writing this sentence, and surprisingly, this is the case. I don\u0027t know yet why as I havent spent enough time to look into it, but all the healthchecks, core and external share the same instance of the `HealthCheckConfig` class.",
+      "parentUuid": "72ec983a_315d6f4f",
       "range": {
         "startLine": 39,
         "startChar": 27,
@@ -169,6 +313,30 @@
       "writtenOn": "2024-01-17T16:36:35Z",
       "side": 1,
       "message": "nit: could be private",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 8
+      },
+      "revId": "bd73964dc0c95915f1eff21197bc6bf05c6fbc8f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "994d9557_6619cbe0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1157810
+      },
+      "writtenOn": "2024-01-18T16:08:19Z",
+      "side": 1,
+      "message": "Yes, but this is a constant and it might also be useful to another class, public is fine here.",
+      "parentUuid": "b94a6d06_1ac9e66d",
       "range": {
         "startLine": 41,
         "startChar": 2,

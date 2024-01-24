@@ -107,7 +107,7 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
 
   private Optional<ChangesIndexLockFiles> getChangesIndexLockFiles(Path indexDir) {
     if (!isLuceneIndex) {
-      Optional.empty();
+      return Optional.empty();
     }
 
     FileBasedConfig cfg =

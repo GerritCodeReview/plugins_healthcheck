@@ -72,8 +72,7 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {
     try {
-      Response<Map<String, Object>> healthStatus =
-          (Response<Map<String, Object>>) statusEndpoint.apply(new ConfigResource());
+      Response<Map<String, Object>> healthStatus = statusEndpoint.apply(new ConfigResource());
       String healthStatusJson = gson.toJson(healthStatus.value());
       if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
         PrintWriter writer = httpResponse.getWriter();

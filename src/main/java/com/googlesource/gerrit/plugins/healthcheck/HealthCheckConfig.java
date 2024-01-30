@@ -16,11 +16,13 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.CHANGES_INDEX;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableSet;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.config.AllProjectsName;
@@ -29,7 +31,6 @@ import com.google.gerrit.server.config.GerritIsReplica;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -56,7 +57,7 @@ public class HealthCheckConfig {
   private final boolean isReplica;
 
   private static final Set<String> HEALTH_CHECK_DISABLED_FOR_REPLICAS =
-      Collections.singleton(QUERYCHANGES);
+      ImmutableSet.of(CHANGES_INDEX, QUERYCHANGES);
 
   @Inject
   public HealthCheckConfig(

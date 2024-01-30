@@ -150,6 +150,15 @@ public class HealthCheckIT extends AbstractHealthCheckIntegrationTest {
   }
 
   @Test
+  @GerritConfig(name = "container.replica", value = "true")
+  public void shouldReturnChangesIndexAsDisabledForReplica() throws Exception {
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertOK();
+
+    assertCheckResult(getResponseJson(resp), CHANGES_INDEX, "disabled");
+  }
+
+  @Test
   public void shouldReturnQueryChangesMultipleTimesCheck() throws Exception {
     createChange("refs/for/master");
     getHealthCheckStatus();

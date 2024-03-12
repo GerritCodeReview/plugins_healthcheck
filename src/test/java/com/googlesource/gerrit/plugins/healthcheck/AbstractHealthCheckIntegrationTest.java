@@ -60,11 +60,11 @@ class AbstractHealthCheckIntegrationTest extends LightweightPluginDaemonTest {
             plugin.getSysInjector().getInstance(Key.get(String.class, PluginName.class)));
   }
 
-  protected RestResponse getHealthCheckStatus() throws IOException {
+  protected RestResponse getHealthCheckStatus() throws Exception {
     return adminRestSession.get(healthCheckUriPath);
   }
 
-  protected RestResponse getHealthCheckStatusAnonymously() throws IOException {
+  protected RestResponse getHealthCheckStatusAnonymously() throws Exception {
     return anonymousRestSession.get(healthCheckUriPath);
   }
 

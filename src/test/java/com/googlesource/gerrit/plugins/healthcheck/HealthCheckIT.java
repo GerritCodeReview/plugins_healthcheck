@@ -26,9 +26,15 @@ import com.google.gerrit.acceptance.RestResponse;
 import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.config.GerritConfig;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.junit.Before;
@@ -111,6 +117,25 @@ public class HealthCheckIT extends AbstractHealthCheckIntegrationTest {
 
     resp.assertOK();
     assertCheckResult(getResponseJson(resp), AUTH, "passed");
+  }
+
+  @Test
+  public void shouldNotRunChecksWhenOneFails() throws Exception {
+    FakeHealthCheck fakeHealthCheck = plugin.getSysInjector().getInstance(FakeHealthCheck.class);
+    fakeHealthCheck.setResult(HealthCheck.Result.FAILED);
+
+    RestResponse resp = getHealthCheckStatus();
+    resp.assertStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    JsonObject respJson = getResponseJson(resp);
+    Set<Map.Entry<String, JsonElement>> checkResults = respJson.entrySet();
+    List<String> results =
+        checkResults.stream()
+            .map(Map.Entry::getValue)
+            .filter(JsonElement::isJsonObject)
+            .map(j -> j.getAsJsonObject().get("result"))
+            .map(JsonElement::getAsString)
+            .collect(Collectors.toList());
+    assertThat(results).contains("not_run");
   }
 
   @Test

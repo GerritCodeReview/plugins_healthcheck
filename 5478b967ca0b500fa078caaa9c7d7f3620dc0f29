@@ -22,6 +22,30 @@
       },
       "revId": "5478b967ca0b500fa078caaa9c7d7f3620dc0f29",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bff64db_714fd2ba",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-05-05T20:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59cbbbd8_4e6c5272",
+      "range": {
+        "startLine": 49,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 30
+      },
+      "revId": "5478b967ca0b500fa078caaa9c7d7f3620dc0f29",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

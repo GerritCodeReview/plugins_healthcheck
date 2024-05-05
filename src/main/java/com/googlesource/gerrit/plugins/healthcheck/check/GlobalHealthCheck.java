@@ -22,7 +22,6 @@ import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -49,8 +48,7 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
     long ts = System.currentTimeMillis();
     Map<String, Object> checkToResults =
         StreamSupport.stream(iterable.spliterator(), true)
-            .map(check -> Arrays.asList(check.name(), check.run()))
-            .collect(Collectors.toMap(k -> (String) k.get(0), v -> v.get(1)));
+            .collect(Collectors.toMap(HealthCheck::name, HealthCheck::run));
     long elapsed = System.currentTimeMillis() - ts;
     StatusSummary globalStatus =
         new HealthCheck.StatusSummary(
@@ -72,9 +70,6 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
 
   public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
     return results.values().stream()
-        .anyMatch(
-            res ->
-                res instanceof StatusSummary
-                    && ((StatusSummary) res).isFailure());
+        .anyMatch(res -> res instanceof StatusSummary && ((StatusSummary) res).isFailure());
   }
 }

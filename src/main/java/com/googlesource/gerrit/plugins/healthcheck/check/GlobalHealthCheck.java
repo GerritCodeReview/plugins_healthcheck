@@ -22,8 +22,11 @@ import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -31,6 +34,31 @@ import java.util.stream.StreamSupport;
 public class GlobalHealthCheck extends AbstractHealthCheck {
 
   private final DynamicSet<HealthCheck> healthChecks;
+
+  public static class MemoizedStatusSummary implements Supplier<StatusSummary> {
+    private final AtomicReference<StatusSummary> result = new AtomicReference<>();
+    private final HealthCheck check;
+
+    MemoizedStatusSummary(HealthCheck check) {
+      this.check = check;
+    }
+
+    @Override
+    public StatusSummary get() {
+      if (result.get() == null) {
+        result.set(check.run());
+      }
+      return result.get();
+    }
+
+    public StatusSummary getIfCompleted() {
+      StatusSummary completedResult = result.get();
+      return completedResult == null
+          ? new StatusSummary(
+              Result.NOT_RUN, System.currentTimeMillis(), 0L, Collections.emptyMap())
+          : completedResult;
+    }
+  }
 
   @Inject
   public GlobalHealthCheck(
@@ -46,17 +74,16 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
   public HealthCheck.StatusSummary run() {
     Iterable<HealthCheck> iterable = () -> healthChecks.iterator();
     long ts = System.currentTimeMillis();
-    Map<String, Object> checkToResults =
+    Map<String, MemoizedStatusSummary> checkToResults =
         StreamSupport.stream(iterable.spliterator(), false)
-            .parallel()
-            .collect(Collectors.toMap(HealthCheck::name, HealthCheck::run));
+            .collect(Collectors.toMap(HealthCheck::name, MemoizedStatusSummary::new));
     long elapsed = System.currentTimeMillis() - ts;
+    Result checkResult = hasAnyFailureOnResults(checkToResults) ? Result.FAILED : Result.PASSED;
+    Map<String, Object> reportedResults =
+        checkToResults.entrySet().stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, v -> v.getValue().getIfCompleted()));
     StatusSummary globalStatus =
-        new HealthCheck.StatusSummary(
-            hasAnyFailureOnResults(checkToResults) ? Result.FAILED : Result.PASSED,
-            ts,
-            elapsed,
-            checkToResults);
+        new HealthCheck.StatusSummary(checkResult, ts, elapsed, reportedResults);
     if (globalStatus.isFailure()) {
       failureCounterMetric.increment();
     }
@@ -69,11 +96,7 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
     return run().result;
   }
 
-  public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
-    return results.values().stream()
-        .anyMatch(
-            res ->
-                res instanceof StatusSummary
-                    && ((StatusSummary) res).isFailure());
+  public static boolean hasAnyFailureOnResults(Map<String, MemoizedStatusSummary> results) {
+    return results.values().stream().parallel().anyMatch(res -> res.get().isFailure());
   }
 }

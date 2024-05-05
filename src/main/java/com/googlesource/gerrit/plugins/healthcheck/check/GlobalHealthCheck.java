@@ -73,11 +73,9 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
 
   public static boolean hasAnyFailureOnResults(Map<String, Object> results) {
     return results.values().stream()
-        .filter(
+        .anyMatch(
             res ->
-                res instanceof HealthCheck.StatusSummary
-                    && ((HealthCheck.StatusSummary) res).isFailure())
-        .findAny()
-        .isPresent();
+                res instanceof StatusSummary
+                    && ((StatusSummary) res).isFailure());
   }
 }

@@ -22,7 +22,6 @@ import com.google.gerrit.metrics.MetricMaker;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -48,9 +47,15 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
     Iterable<HealthCheck> iterable = () -> healthChecks.iterator();
     long ts = System.currentTimeMillis();
     Map<String, Object> checkToResults =
+<<<<<<< PATCH SET (a00ee2 Simplify construction of map of check results)
+        StreamSupport.stream(iterable.spliterator(), false)
+            .parallel()
+            .collect(Collectors.toMap(HealthCheck::name, HealthCheck::run));
+=======
         StreamSupport.stream(iterable.spliterator(), true)
             .map(check -> Arrays.asList(check.name(), check.run()))
             .collect(Collectors.toMap(k -> (String) k.get(0), v -> v.get(1)));
+>>>>>>> BASE      (13a5b3 Simplify check for any failures)
     long elapsed = System.currentTimeMillis() - ts;
     StatusSummary globalStatus =
         new HealthCheck.StatusSummary(

@@ -30,6 +30,8 @@ public interface HealthCheck {
     FAILED,
     @SerializedName("timeout")
     TIMEOUT,
+    @SerializedName("not_run")
+    NOT_RUN,
     @SerializedName("disabled")
     DISABLED;
   }

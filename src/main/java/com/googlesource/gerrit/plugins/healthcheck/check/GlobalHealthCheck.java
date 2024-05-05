@@ -48,7 +48,7 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
     Iterable<HealthCheck> iterable = () -> healthChecks.iterator();
     long ts = System.currentTimeMillis();
     Map<String, Object> checkToResults =
-        StreamSupport.stream(iterable.spliterator(), false)
+        StreamSupport.stream(iterable.spliterator(), true)
             .map(check -> Arrays.asList(check.name(), check.run()))
             .collect(Collectors.toMap(k -> (String) k.get(0), v -> v.get(1)));
     long elapsed = System.currentTimeMillis() - ts;

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48639b94_cf78ed25",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/AbstractHealthCheckIntegrationTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-05-06T06:33:33Z",
+      "side": 1,
+      "message": "nit: not used",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "8fce7b27e19ecad6f03f5a6fdce7d394e02961f5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

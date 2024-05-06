@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819204de_9ce15776",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-05-06T06:18:24Z",
+      "side": 1,
+      "message": "nit: parallel stream can be created already by passing `true` here",
+      "range": {
+        "startLine": 51,
+        "startChar": 53,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "ce481c4d87652c8d305fc8f3d02894e2aac6a1ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfb0a3d_c8da9d1d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GlobalHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-05-06T06:18:24Z",
+      "side": 1,
+      "message": "question: underneath it uses `ForkJoinTask` executed on _common_ `ForkJoinPool` and as such (according to [docs](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinTask.html))\n\n\u003e (...) Subdividable tasks should also not perform blocking I/O (...)\n\nI\u0027m not sure if that is the case 😊 but if yes we can always create (and configure) the dedicated pool that is not interfering with the common one.",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 23
+      },
+      "revId": "ce481c4d87652c8d305fc8f3d02894e2aac6a1ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

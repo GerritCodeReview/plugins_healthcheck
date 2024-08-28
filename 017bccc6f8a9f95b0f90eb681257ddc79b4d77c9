@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6540c200_dd0977a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-08-28T22:45:38Z",
+      "side": 1,
+      "message": "Post-merge -1",
+      "revId": "017bccc6f8a9f95b0f90eb681257ddc79b4d77c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80fce9fc_ddff830e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-08-28T22:45:38Z",
+      "side": 1,
+      "message": "Missing `@Singleton`, fixed with I947b46b58",
+      "revId": "017bccc6f8a9f95b0f90eb681257ddc79b4d77c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b327474a_afead2b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2024-08-28T22:42:20Z",
+      "side": 1,
+      "message": "I have double checked the only missing ones where `ActiveWorkers` and `DeadLock`:\n\n```\n\u003e git grep -B1 \"extends AbstractHealthCheck\" src/main/java/com/ | grep -v AbstractHealthCheck | grep -v Singleton | grep -v \"\\-\\-\"\n\nsrc/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java-\nsrc/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java-\n\n```",
+      "revId": "1c93439e98cc4efb3a44880278a9cbbe5628d36b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

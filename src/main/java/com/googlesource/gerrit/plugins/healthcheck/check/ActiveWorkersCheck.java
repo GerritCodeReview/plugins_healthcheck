@@ -22,10 +22,12 @@ import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 
+@Singleton
 public class ActiveWorkersCheck extends AbstractHealthCheck {
 
   public static final String ACTIVE_WORKERS_METRIC_NAME =

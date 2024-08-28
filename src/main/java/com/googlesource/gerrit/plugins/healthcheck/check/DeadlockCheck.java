@@ -19,9 +19,11 @@ import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Optional;
 
+@Singleton
 public class DeadlockCheck extends AbstractHealthCheck {
 
   public static final String DEADLOCKED_THREADS_METRIC_NAME =

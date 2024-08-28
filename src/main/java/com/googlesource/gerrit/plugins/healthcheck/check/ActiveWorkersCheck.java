@@ -21,10 +21,18 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import org.eclipse.jgit.lib.Config;
 
+<<<<<<< HEAD   (7e1ef6 Add active http workers check)
 public class ActiveWorkersCheck extends AbstractWorkersHealthCheck {
+||||||| BASE
+public class ActiveWorkersCheck extends AbstractHealthCheck {
+=======
+@Singleton
+public class ActiveWorkersCheck extends AbstractHealthCheck {
+>>>>>>> CHANGE (1c9343 Add missing Singleton to ActiveWokersCheck and DeadlockCheck)
 
   public static final String ACTIVE_WORKERS_METRIC_NAME =
       "queue/ssh_interactive_worker/active_threads";

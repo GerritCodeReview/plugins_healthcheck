@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9fafbf3_bb5cc150",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-08-28T22:48:12Z",
+      "side": 1,
+      "message": "Missing `@Singleton`, fixed with I947b46b58",
+      "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "59d4a341_2a69ca2b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
@@ -20,10 +38,10 @@
         "endChar": 93
       },
       "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
-      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
-      "unresolved": true
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "1e882c00_4cc1cf6f",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
@@ -44,10 +62,10 @@
         "endChar": 93
       },
       "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
-      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
-      "unresolved": true
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "f428e07c_d0378bc7",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/DeadlockCheck.java",
@@ -68,8 +86,7 @@
         "endChar": 93
       },
       "revId": "f13523582b357ea830d36fd1d70864eee4b25abb",
-      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
-      "unresolved": false
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

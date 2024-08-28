@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c6baa86_7b8816c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-08-28T23:42:53Z",
+      "side": 1,
+      "message": "Zuul failure is unrelated.\n\nTested locally:\n//plugins/healthcheck:healthcheck_tests                                  PASSED in 20.0s",
+      "revId": "a0d397636db00134631f016d2980ccc6b44dcea0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

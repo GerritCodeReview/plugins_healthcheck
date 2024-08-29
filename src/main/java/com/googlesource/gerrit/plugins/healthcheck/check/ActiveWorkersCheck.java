@@ -22,17 +22,12 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.Optional;
 import org.eclipse.jgit.lib.Config;
 
-public class ActiveWorkersCheck extends AbstractHealthCheck {
+public class ActiveWorkersCheck extends AbstractWorkersHealthCheck {
 
   public static final String ACTIVE_WORKERS_METRIC_NAME =
       "queue/ssh_interactive_worker/active_threads";
-
-  private Integer threshold;
-  private Integer interactiveThreadsMaxPoolSize;
-  private MetricRegistry metricRegistry;
 
   @Inject
   public ActiveWorkersCheck(
@@ -41,25 +36,14 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
       HealthCheckConfig healthCheckConfig,
       ThreadSettingsConfig threadSettingsConfig,
       MetricRegistry metricRegistry) {
-    super(executor, healthCheckConfig, ACTIVEWORKERS);
-    this.threshold = healthCheckConfig.getActiveWorkersThreshold(ACTIVEWORKERS);
-    this.metricRegistry = metricRegistry;
-    this.interactiveThreadsMaxPoolSize =
-        getInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig);
-  }
 
-  @Override
-  protected Result doCheck() throws Exception {
-    return Optional.ofNullable(metricRegistry.getGauges().get(ACTIVE_WORKERS_METRIC_NAME))
-        .map(
-            metric -> {
-              float currentInteractiveThreadsPercentage =
-                  ((long) metric.getValue() * 100) / interactiveThreadsMaxPoolSize;
-              return (currentInteractiveThreadsPercentage <= threshold)
-                  ? Result.PASSED
-                  : Result.FAILED;
-            })
-        .orElse(Result.PASSED);
+    super(
+        executor,
+        healthCheckConfig,
+        metricRegistry,
+        ACTIVEWORKERS,
+        ACTIVE_WORKERS_METRIC_NAME,
+        getInteractiveThreadsMaxPoolSize(threadSettingsConfig, gerritConfig));
   }
 
   /**
@@ -70,7 +54,7 @@ public class ActiveWorkersCheck extends AbstractHealthCheck {
    *
    * @return max number of allowed threads in interactive work queue
    */
-  private Integer getInteractiveThreadsMaxPoolSize(
+  private static Integer getInteractiveThreadsMaxPoolSize(
       ThreadSettingsConfig threadSettingsConfig, Config gerritConfig) {
     int poolSize = threadSettingsConfig.getSshdThreads();
     int batchThreads =

@@ -16,6 +16,23 @@
       "message": "Zuul failure is unrelated.\n\nTested locally:\n//plugins/healthcheck:healthcheck_tests                                  PASSED in 20.0s",
       "revId": "a0d397636db00134631f016d2980ccc6b44dcea0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8427c07_fe576bd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3239495
+      },
+      "writtenOn": "2024-08-29T01:23:31Z",
+      "side": 1,
+      "message": "You",
+      "revId": "a0d397636db00134631f016d2980ccc6b44dcea0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

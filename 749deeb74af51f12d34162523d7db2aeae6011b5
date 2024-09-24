@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a89c1b54_d6bb044c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-09-24T20:03:08Z",
+      "side": 1,
+      "message": "```suggestion\n        healthCheckMetricsFactory);\n```",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 26
+      },
+      "revId": "749deeb74af51f12d34162523d7db2aeae6011b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d93649_1a21ad78",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HttpActiveWorkersCheck.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-09-24T20:03:08Z",
+      "side": 1,
+      "message": "```suggestion\n        healthCheckMetricsFactory);\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "749deeb74af51f12d34162523d7db2aeae6011b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdd1d210_aa0d41bf",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HttpActiveWorkersCheckTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-09-24T20:03:08Z",
+      "side": 1,
+      "message": "```suggestion\n        new DummyHealthCheckMetricsFactory());\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 35
+      },
+      "revId": "749deeb74af51f12d34162523d7db2aeae6011b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

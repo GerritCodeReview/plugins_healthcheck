@@ -22,6 +22,30 @@
       },
       "revId": "709c5afff68dcbc1e5d6409a45f3d9c00ff0e8d0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33000642_326a2844",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/ActiveWorkersCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2024-09-25T20:32:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd16352d_37461bce",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "709c5afff68dcbc1e5d6409a45f3d9c00ff0e8d0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

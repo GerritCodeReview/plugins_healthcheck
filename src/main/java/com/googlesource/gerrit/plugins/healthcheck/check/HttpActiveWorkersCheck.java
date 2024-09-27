@@ -14,41 +14,33 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
-import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.DEADLOCK;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.HTTPACTIVEWORKERS;
 
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.MetricMaker;
+import com.google.gerrit.server.config.ThreadSettingsConfig;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
-import java.util.Optional;
 
-@Singleton
-public class DeadlockCheck extends AbstractHealthCheck {
-
-  public static final String DEADLOCKED_THREADS_METRIC_NAME =
-      "proc/jvm/thread/num_deadlocked_threads";
-
-  private final MetricRegistry metricRegistry;
+public class HttpActiveWorkersCheck extends AbstractWorkersHealthCheck {
+  public static final String HTTP_WORKERS_METRIC_NAME =
+      "http/server/jetty/threadpool/active_threads";
 
   @Inject
-  public DeadlockCheck(
+  public HttpActiveWorkersCheck(
       ListeningExecutorService executor,
       HealthCheckConfig healthCheckConfig,
+      ThreadSettingsConfig threadSettingsConfig,
       MetricRegistry metricRegistry,
       MetricMaker metricMaker) {
-    super(executor, healthCheckConfig, DEADLOCK, metricMaker);
-    this.metricRegistry = metricRegistry;
-  }
-
-  @Override
-  protected Result doCheck() throws Exception {
-    return Optional.ofNullable(metricRegistry.getGauges().get(DEADLOCKED_THREADS_METRIC_NAME))
-        .map(
-            metric -> {
-              return (int) metric.getValue() == 0 ? Result.PASSED : Result.FAILED;
-            })
-        .orElse(Result.PASSED);
+    super(
+        executor,
+        healthCheckConfig,
+        metricRegistry,
+        HTTPACTIVEWORKERS,
+        HTTP_WORKERS_METRIC_NAME,
+        threadSettingsConfig.getHttpdMaxThreads(),
+        metricMaker);
   }
 }

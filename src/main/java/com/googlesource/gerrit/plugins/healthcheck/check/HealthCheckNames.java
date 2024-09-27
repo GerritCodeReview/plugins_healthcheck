@@ -20,6 +20,7 @@ public interface HealthCheckNames {
   String QUERYCHANGES = "querychanges";
   String AUTH = "auth";
   String ACTIVEWORKERS = "activeworkers";
+  String HTTPACTIVEWORKERS = "httpactiveworkers";
   String DEADLOCK = "deadlock";
   String BLOCKEDTHREADS = "blockedthreads";
   String GLOBAL = "global";

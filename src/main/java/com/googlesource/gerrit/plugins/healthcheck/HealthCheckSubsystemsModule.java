@@ -23,6 +23,7 @@ import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ChangesIndexHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.DeadlockCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.HttpActiveWorkersCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.ProjectsListHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.QueryChangesHealthCheck;
@@ -36,6 +37,7 @@ public class HealthCheckSubsystemsModule extends FactoryModule {
     bindChecker(QueryChangesHealthCheck.class);
     bindChecker(AuthHealthCheck.class);
     bindChecker(ActiveWorkersCheck.class);
+    bindChecker(HttpActiveWorkersCheck.class);
     bindChecker(DeadlockCheck.class);
     bindChecker(BlockedThreadsCheck.class);
     bindChecker(ChangesIndexHealthCheck.class);

@@ -14,41 +14,59 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
-import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.DEADLOCK;
-
+import com.codahale.metrics.Gauge;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.MetricMaker;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Optional;
 
-@Singleton
-public class DeadlockCheck extends AbstractHealthCheck {
+public abstract class AbstractWorkersHealthCheck extends AbstractHealthCheck {
 
-  public static final String DEADLOCKED_THREADS_METRIC_NAME =
-      "proc/jvm/thread/num_deadlocked_threads";
-
+  private final String metricName;
+  private final Integer maxPoolSize;
+  private final Integer threshold;
   private final MetricRegistry metricRegistry;
 
-  @Inject
-  public DeadlockCheck(
+  protected AbstractWorkersHealthCheck(
       ListeningExecutorService executor,
-      HealthCheckConfig healthCheckConfig,
+      HealthCheckConfig config,
       MetricRegistry metricRegistry,
+      String name,
+      String metricName,
+      Integer maxPoolSize,
       MetricMaker metricMaker) {
-    super(executor, healthCheckConfig, DEADLOCK, metricMaker);
+    super(executor, config, name, metricMaker);
     this.metricRegistry = metricRegistry;
+    this.metricName = metricName;
+    this.maxPoolSize = maxPoolSize;
+    this.threshold = config.getActiveWorkersThreshold(name);
   }
 
   @Override
   protected Result doCheck() throws Exception {
-    return Optional.ofNullable(metricRegistry.getGauges().get(DEADLOCKED_THREADS_METRIC_NAME))
+    return Optional.ofNullable(metricRegistry.getGauges().get(metricName))
         .map(
             metric -> {
-              return (int) metric.getValue() == 0 ? Result.PASSED : Result.FAILED;
+              float currentThreadsPercentage = (getMetricValue(metric) * 100) / maxPoolSize;
+              return (currentThreadsPercentage <= threshold) ? Result.PASSED : Result.FAILED;
             })
         .orElse(Result.PASSED);
+  }
+
+  private Long getMetricValue(Gauge<?> metric) {
+    Object value = metric.getValue();
+    if (value instanceof Long) {
+      return (Long) value;
+    }
+
+    if (value instanceof Integer) {
+      return ((Integer) value).longValue();
+    }
+
+    throw new IllegalArgumentException(
+        String.format(
+            "Workers metric value must be of type java.lang.Long or java.lang.Integer but was %s ",
+            value.getClass().getName()));
   }
 }

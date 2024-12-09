@@ -14,17 +14,21 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.filter;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.restapi.Response;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.restapi.RestApiServlet;
 import com.google.gerrit.json.OutputFormat;
 import com.google.gerrit.server.config.ConfigResource;
+import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -32,18 +36,65 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.jgit.lib.Config;
 
 public class HealthCheckStatusFilter extends AllRequestFilter {
   private final HealthCheckStatusEndpoint statusEndpoint;
   private final Gson gson;
   private final String pluginName;
+  private final Config cfg;
+  private final String uriPattern;
 
   @Inject
   public HealthCheckStatusFilter(
-      HealthCheckStatusEndpoint statusEndpoint, @PluginName String pluginName) {
+      HealthCheckStatusEndpoint statusEndpoint,
+      @PluginName String pluginName,
+      @GerritServerConfig Config cfg) {
     this.statusEndpoint = statusEndpoint;
     this.gson = OutputFormat.JSON.newGsonBuilder().create();
     this.pluginName = pluginName;
+    this.cfg = cfg;
+    this.uriPattern = getUriPattern();
+  }
+
+  private static List<String> extractUriPrefixes(String[] listenUrls) {
+    List<String> prefixes = new ArrayList<>();
+    if (listenUrls.length == 0) {
+      return prefixes;
+    }
+    for (String listenUrl : listenUrls) {
+      String[] parts = listenUrl.split("/", 4);
+      if (parts.length < 4) {
+        continue;
+      }
+      String uriPrefix = parts[3];
+      if (uriPrefix.endsWith("/")) {
+        uriPrefix = uriPrefix.substring(0, uriPrefix.length() - 1);
+      }
+      prefixes.add(uriPrefix);
+    }
+    return prefixes;
+  }
+
+  private String getUriPattern() {
+    List<String> uriPrefixes = extractUriPrefixes(cfg.getStringList("httpd", null, "listenUrl"));
+    String prefixPattern = "";
+    if (uriPrefixes.size() == 1 && !uriPrefixes.get(0).isEmpty()) {
+      prefixPattern = "(?:/" + uriPrefixes.get(0) + ")";
+    } else if (uriPrefixes.size() > 1) {
+      prefixPattern = "(?:/";
+      for (String prefix : uriPrefixes) {
+        if (!prefix.isEmpty()) {
+          prefixPattern += prefix + "|";
+        }
+      }
+      prefixPattern = prefixPattern.substring(0, prefixPattern.length() - 1);
+      prefixPattern += ")";
+      if (uriPrefixes.contains("")) {
+        prefixPattern += "?";
+      }
+    }
+    return prefixPattern + "(?:/a)?/config/server/" + pluginName + "~status";
   }
 
   @Override
@@ -64,10 +115,9 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
     }
   }
 
-  private boolean isStatusCheck(HttpServletRequest httpServletRequest) {
-    return httpServletRequest
-        .getRequestURI()
-        .matches("(?:/a)?/config/server/" + pluginName + "~status");
+  @VisibleForTesting
+  protected boolean isStatusCheck(HttpServletRequest httpServletRequest) {
+    return httpServletRequest.getRequestURI().matches(uriPattern);
   }
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {

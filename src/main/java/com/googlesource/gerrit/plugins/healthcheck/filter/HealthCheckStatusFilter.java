@@ -20,6 +20,7 @@ import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.restapi.RestApiServlet;
 import com.google.gerrit.json.OutputFormat;
 import com.google.gerrit.server.config.ConfigResource;
+import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
@@ -32,18 +33,35 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.jgit.lib.Config;
 
 public class HealthCheckStatusFilter extends AllRequestFilter {
   private final HealthCheckStatusEndpoint statusEndpoint;
   private final Gson gson;
   private final String pluginName;
+  private final String uriPrefix;
 
   @Inject
   public HealthCheckStatusFilter(
-      HealthCheckStatusEndpoint statusEndpoint, @PluginName String pluginName) {
+      HealthCheckStatusEndpoint statusEndpoint,
+      @PluginName String pluginName,
+      @GerritServerConfig Config cfg) {
     this.statusEndpoint = statusEndpoint;
     this.gson = OutputFormat.JSON.newGsonBuilder().create();
     this.pluginName = pluginName;
+    this.uriPrefix = extractUriPrefix(cfg.getString("httpd", null, "listenUrl"));
+  }
+
+  private static String extractUriPrefix(String listenUrl) {
+    String[] parts = listenUrl.split("/", 4);
+    if (parts.length < 4) {
+      return "";
+    }
+    String uriPrefix = parts[3];
+    if (uriPrefix.endsWith("/")) {
+      uriPrefix = uriPrefix.substring(0, uriPrefix.length() - 1);
+    }
+    return uriPrefix;
   }
 
   @Override
@@ -65,9 +83,11 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
   }
 
   private boolean isStatusCheck(HttpServletRequest httpServletRequest) {
-    return httpServletRequest
-        .getRequestURI()
-        .matches("(?:/a)?/config/server/" + pluginName + "~status");
+    String uriPattern = "(?:/a)?/config/server/" + pluginName + "~status";
+    if (uriPrefix != null && !uriPrefix.isBlank()) {
+      uriPattern = "(?:/" + uriPrefix + ")" + uriPattern;
+    }
+    return httpServletRequest.getRequestURI().matches(uriPattern);
   }
 
   private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {

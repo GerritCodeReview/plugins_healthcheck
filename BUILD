@@ -29,6 +29,7 @@ junit_tests(
     resources = glob(["src/test/resources/**/*"]),
     deps = [
         ":healthcheck__plugin_test_deps",
+        "//javatests/com/google/gerrit/util/http/testutil",
     ],
 )
 

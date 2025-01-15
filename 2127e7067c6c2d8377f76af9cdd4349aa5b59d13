@@ -34,6 +34,24 @@
       "parentUuid": "1abcea64_2dc7e1a6",
       "revId": "2127e7067c6c2d8377f76af9cdd4349aa5b59d13",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bef357f_1a5c455e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2025-01-15T09:20:49Z",
+      "side": 1,
+      "message": "Done. However, I was unable to test it against multiple configured listenUrls, since I get errors when configuring that. I tried back until 2.16. I believe that feature is broken for a long time.",
+      "parentUuid": "ba41be5b_77257a15",
+      "revId": "2127e7067c6c2d8377f76af9cdd4349aa5b59d13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f75b5c56_26ed3bc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-01-18T21:04:58Z",
+      "side": 1,
+      "message": "LGTM, just a readability nit.",
+      "revId": "8739ef95c700586a094c27cd7342980e511d8535",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1463b53_1b9736f2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-01-18T21:04:58Z",
+      "side": 1,
+      "message": "Why not simply skipping the empty prefixes in the `extractUriPrefixes`? That would avoid the additional if in the loop and here, making the code more readable.",
+      "range": {
+        "startLine": 82,
+        "startChar": 35,
+        "endLine": 82,
+        "endChar": 64
+      },
+      "revId": "8739ef95c700586a094c27cd7342980e511d8535",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

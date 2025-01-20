@@ -39,6 +39,30 @@
       },
       "revId": "8739ef95c700586a094c27cd7342980e511d8535",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8076dd_bf38d707",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2025-01-20T07:36:15Z",
+      "side": 1,
+      "message": "I originally did that, but there is one edge case where this doesn\u0027t work. WHen a user has multiple listenUrls (currently bugged as far as I can tell, but according to documentation possible) and one of those doesn\u0027t have a prefix, while the other has one, the one without prefix would not match and thus serving the status would not work for that URL.",
+      "parentUuid": "c1463b53_1b9736f2",
+      "range": {
+        "startLine": 82,
+        "startChar": 35,
+        "endLine": 82,
+        "endChar": 64
+      },
+      "revId": "8739ef95c700586a094c27cd7342980e511d8535",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

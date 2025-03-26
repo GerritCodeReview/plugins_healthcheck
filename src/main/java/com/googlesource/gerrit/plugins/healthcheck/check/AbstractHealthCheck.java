@@ -87,15 +87,22 @@ public abstract class AbstractHealthCheck implements HealthCheck {
     try {
       checkStatusSummary = resultFuture.get(timeout, TimeUnit.MILLISECONDS);
     } catch (TimeoutException e) {
-      checkStatusSummary = handleError(ts, e, "Check {} timed out", Result.TIMEOUT);
+      checkStatusSummary = handleError(resultFuture, ts, e, "Check {} timed out", Result.TIMEOUT);
     } catch (InterruptedException | ExecutionException e) {
       checkStatusSummary =
-          handleError(ts, e, "Check {} failed while waiting for its future result", Result.FAILED);
+          handleError(
+              resultFuture,
+              ts,
+              e,
+              "Check {} failed while waiting for its future result",
+              Result.FAILED);
     }
     return checkStatusSummary;
   }
 
-  private StatusSummary handleError(long ts, Exception e, String message, Result result) {
+  private StatusSummary handleError(
+      ListenableFuture<StatusSummary> future, long ts, Exception e, String message, Result result) {
+    future.cancel(true);
     Long elapsed = System.currentTimeMillis() - ts;
     log.warn(message, name, e);
     StatusSummary checkStatusSummary =

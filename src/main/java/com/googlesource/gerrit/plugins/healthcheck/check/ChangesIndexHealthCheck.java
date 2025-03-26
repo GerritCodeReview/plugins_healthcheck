@@ -83,7 +83,8 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
             getChangesLockFiles(sitePaths.index_dir, String.format("changes_%04d", newVersion)));
     if (!changes.compareAndSet(changes.get(), newLockFiles)) {
       log.info(
-          "New version {} of changes index healthcheck lock files was set already by another thread",
+          "New version {} of changes index healthcheck lock files was set already by another"
+              + " thread",
           newVersion);
     } else {
       log.info(
@@ -99,7 +100,8 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
     boolean isLucene = indexType.isLucene();
     if (!isLucene) {
       log.warn(
-          "Configured index type [{}] is not supported for index health check therefore it is disabled.",
+          "Configured index type [{}] is not supported for index health check therefore it is"
+              + " disabled.",
           indexType);
     }
     return isLucene;

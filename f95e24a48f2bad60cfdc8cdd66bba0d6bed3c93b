@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "211f1167_6634c74b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2025-03-27T10:09:15Z",
+      "side": 1,
+      "message": "When you are already at it: use `Stopwatch` instead, there are many examples in the Gerrit code base.",
+      "revId": "f95e24a48f2bad60cfdc8cdd66bba0d6bed3c93b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -101,8 +101,8 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   }
 
   private StatusSummary handleError(long ts, Exception e, String message, Result result) {
-    log.warn(message, e);
     Long elapsed = System.currentTimeMillis() - ts;
+    log.warn(message, e);
     StatusSummary checkStatusSummary =
         new StatusSummary(result, ts, elapsed, Collections.emptyMap());
     failureCounterMetric.increment();

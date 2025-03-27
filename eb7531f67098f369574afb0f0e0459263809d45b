@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43b335cd_88dc0c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2025-03-27T10:05:52Z",
+      "side": 1,
+      "message": "Why not also switch to `FluentLogger` in the context of this series?",
+      "revId": "eb7531f67098f369574afb0f0e0459263809d45b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad5d47c_85c36b91",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/AbstractHealthCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2025-03-27T10:05:52Z",
+      "side": 1,
+      "message": "This creates an implicit assumption that the `message` contains exactly one `{}` placeholder for the `name`. It would be better if we avoid that assumption and the message is already formatted by the caller",
+      "range": {
+        "startLine": 99,
+        "startChar": 13,
+        "endLine": 99,
+        "endChar": 26
+      },
+      "revId": "eb7531f67098f369574afb0f0e0459263809d45b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.account.AccountCache;
@@ -26,12 +27,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class AuthHealthCheck extends AbstractHealthCheck {
-  private static final Logger log = LoggerFactory.getLogger(AuthHealthCheck.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private final Realm realm;
   private final AccountCache byIdCache;
   private final String username;
@@ -63,11 +62,11 @@ public class AuthHealthCheck extends AbstractHealthCheck {
 
     Optional<AccountState> accountState = byIdCache.getByUsername(username);
     if (!accountState.isPresent()) {
-      log.error("Cannot load account state for username " + username);
+      logger.atSevere().log("Cannot load account state for username %s", username);
       return Result.FAILED;
     }
     if (!accountState.get().account().isActive()) {
-      log.error("Authentication error, account " + username + " is inactive");
+      logger.atSevere().log("Authentication error, account %s  is inactive", username);
       return Result.FAILED;
     }
     return Result.PASSED;

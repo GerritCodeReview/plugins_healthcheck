@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.PROJECTSLIST;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.extensions.common.ProjectInfo;
 import com.google.gerrit.metrics.MetricMaker;
@@ -27,12 +28,10 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.SortedMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class ProjectsListHealthCheck extends AbstractHealthCheck {
-  private static final Logger log = LoggerFactory.getLogger(ProjectsListHealthCheck.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private static final int PROJECTS_LIST_LIMIT = 100;
   private final Provider<ListProjects> listProjectsProvider;
   private final OneOffRequestContext oneOffCtx;
@@ -63,9 +62,10 @@ public class ProjectsListHealthCheck extends AbstractHealthCheck {
         if (projects != null && projects.size() > 0) {
           return Result.PASSED;
         }
-        log.warn("Empty or null projects list: Gerrit should always have at least 1 project");
+        logger.atWarning().log(
+            "Empty or null projects list: Gerrit should always have at least 1 project");
       } catch (Exception e) {
-        log.warn("Unable to list projects", e);
+        logger.atWarning().withCause(e).log("Unable to list projects");
       }
       return Result.FAILED;
     }

@@ -19,6 +19,7 @@ import static java.util.stream.Collectors.toList;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.flogger.FluentLogger;
 import com.google.inject.Inject;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import com.googlesource.gerrit.plugins.healthcheck.check.BlockedThreadsCheck.Collector;
@@ -32,12 +33,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.stream.Collectors;
 
 @VisibleForTesting
 public class BlockedThreadsConfigurator {
-  private static final Logger log = LoggerFactory.getLogger(BlockedThreadsConfigurator.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private static final Pattern THRESHOLD_PATTERN = Pattern.compile("^(\\d\\d?)$");
 
   static final int DEFAULT_BLOCKED_THREADS_THRESHOLD = 50;
@@ -89,10 +89,10 @@ public class BlockedThreadsConfigurator {
     // check configuration consistency
     if (specsClassified.size() > 1) {
       Collection<Threshold> specs = deduplicatePrefixes(specsClassified.get(true));
-      log.warn(
+      logger.atWarning().log(
           "Global and specific thresholds were configured for blocked threads check. Specific"
-              + " configuration is used {}.",
-          specs);
+              + " configuration is used %s.",
+          specs.stream().map(Threshold::toString).collect(Collectors.joining(", ")));
       return specs;
     }
 
@@ -103,8 +103,8 @@ public class BlockedThreadsConfigurator {
           : deduplicateGlobal(entry.getValue());
     }
 
-    log.info(
-        "Default blocked threads check is configured with {}% threshold",
+    logger.atInfo().log(
+        "Default blocked threads check is configured with %d%% threshold",
         DEFAULT_BLOCKED_THREADS_THRESHOLD);
     return ImmutableSet.of(new Threshold(DEFAULT_BLOCKED_THREADS_THRESHOLD));
   }
@@ -112,7 +112,7 @@ public class BlockedThreadsConfigurator {
   private static Collection<Threshold> deduplicateGlobal(List<Threshold> input) {
     if (input.size() > 1) {
       Threshold spec = input.get(input.size() - 1);
-      log.warn("Multiple threshold values were configured. Using {}", spec);
+      logger.atWarning().log("Multiple threshold values were configured. Using %s", spec);
       return ImmutableSet.of(spec);
     }
     return input;
@@ -122,10 +122,12 @@ public class BlockedThreadsConfigurator {
     Map<String, Threshold> deduplicated = new HashMap<>();
     input.forEach(t -> deduplicated.put(t.prefix.get(), t));
     if (deduplicated.size() != input.size()) {
-      log.warn(
+      logger.atWarning().log(
           "The same prefixes were configured multiple times. The following configuration is used"
-              + " {}",
-          deduplicated.values());
+              + " %s",
+          deduplicated.values().stream()
+              .map(Threshold::toString)
+              .collect(Collectors.joining(", ")));
     }
     return deduplicated.values();
   }
@@ -144,7 +146,7 @@ public class BlockedThreadsConfigurator {
       }
     }
 
-    log.warn("Invalid configuration of blocked threads threshold [{}]", spec);
+    logger.atWarning().log("Invalid configuration of blocked threads threshold [%s]", spec);
     return Optional.empty();
   }
 

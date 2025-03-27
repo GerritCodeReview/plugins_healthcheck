@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.CHANGES_INDEX;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.index.IndexType;
 import com.google.gerrit.metrics.MetricMaker;
@@ -34,12 +35,10 @@ import org.eclipse.jgit.errors.ConfigInvalidException;
 import org.eclipse.jgit.lib.Config;
 import org.eclipse.jgit.storage.file.FileBasedConfig;
 import org.eclipse.jgit.util.FS;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class ChangesIndexHealthCheck extends AbstractHealthCheck implements OnlineUpgradeListener {
-  private static final Logger log = LoggerFactory.getLogger(QueryChangesHealthCheck.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private static final String lockFilename = "write.lock";
 
   private final SitePaths sitePaths;
@@ -82,13 +81,13 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
         Optional.of(
             getChangesLockFiles(sitePaths.index_dir, String.format("changes_%04d", newVersion)));
     if (!changes.compareAndSet(changes.get(), newLockFiles)) {
-      log.info(
-          "New version {} of changes index healthcheck lock files was set already by another"
+      logger.atInfo().log(
+          "New version %d of changes index healthcheck lock files was set already by another"
               + " thread",
           newVersion);
     } else {
-      log.info(
-          "Changes index healthcheck switched from index version {} to {}", oldVersion, newVersion);
+      logger.atInfo().log(
+          "Changes index healthcheck switched from index version %d to %d", oldVersion, newVersion);
     }
   }
 
@@ -99,8 +98,8 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
     IndexType indexType = new IndexType(cfg.getString("index", null, "type"));
     boolean isLucene = indexType.isLucene();
     if (!isLucene) {
-      log.warn(
-          "Configured index type [{}] is not supported for index health check therefore it is"
+      logger.atWarning().log(
+          "Configured index type [%s] is not supported for index health check therefore it is"
               + " disabled.",
           indexType);
     }
@@ -119,7 +118,7 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
       return getActiveIndexVersion(cfg, "changes")
           .map(version -> getChangesLockFiles(indexDir, version));
     } catch (IOException | ConfigInvalidException e) {
-      log.error("Getting changes index version from configuration failed", e);
+      logger.atSevere().withCause(e).log("Getting changes index version from configuration failed");
     }
     return Optional.empty();
   }

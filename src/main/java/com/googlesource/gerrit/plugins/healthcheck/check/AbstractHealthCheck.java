@@ -14,6 +14,7 @@
 
 package com.googlesource.gerrit.plugins.healthcheck.check;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.Counter0;
@@ -25,11 +26,9 @@ import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AbstractHealthCheck implements HealthCheck {
-  private static final Logger log = LoggerFactory.getLogger(AbstractHealthCheck.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private final long timeout;
   private final String name;
   private final ListeningExecutorService executor;
@@ -72,7 +71,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
               try {
                 healthy = enabled ? doCheck() : Result.DISABLED;
               } catch (Exception e) {
-                log.warn("Check {} failed", name, e);
+                logger.atWarning().withCause(e).log("Check %s failed", name);
                 healthy = Result.FAILED;
               }
               Long elapsed = System.currentTimeMillis() - ts;
@@ -106,7 +105,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
       ListenableFuture<StatusSummary> future, long ts, Exception e, String message, Result result) {
     future.cancel(true);
     Long elapsed = System.currentTimeMillis() - ts;
-    log.warn(message, e);
+    logger.atWarning().withCause(e).log("%s", message);
     StatusSummary checkStatusSummary =
         new StatusSummary(result, ts, elapsed, Collections.emptyMap());
     failureCounterMetric.increment();

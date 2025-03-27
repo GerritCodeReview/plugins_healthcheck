@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.restapi.change.QueryChanges;
@@ -26,12 +27,10 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class QueryChangesHealthCheck extends AbstractHealthCheck {
-  private static final Logger log = LoggerFactory.getLogger(QueryChangesHealthCheck.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private final Provider<QueryChanges> queryChangesProvider;
   private final int limit;
   private final OneOffRequestContext oneOffCtx;
@@ -62,15 +61,14 @@ public class QueryChangesHealthCheck extends AbstractHealthCheck {
 
       List<?> changes = queryChanges.apply(null).value();
       if (changes == null) {
-        log.warn("Cannot query changes: received a null list of results");
+        logger.atWarning().log("Cannot query changes: received a null list of results");
         return Result.FAILED;
       }
 
       if (changes.size() < limit) {
-        log.warn(
-            "Query changes did not return enough items: expected {} items but got only {}",
-            limit,
-            changes.size());
+        logger.atWarning().log(
+            "Query changes did not return enough items: expected %d items but got only %d",
+            limit, changes.size());
         return Result.FAILED;
       }
 

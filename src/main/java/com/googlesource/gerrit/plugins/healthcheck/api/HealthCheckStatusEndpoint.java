@@ -24,7 +24,6 @@ import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
@@ -63,7 +62,7 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
         : HttpServletResponse.SC_OK;
   }
 
-  private boolean failFlagFileExists() throws IOException {
+  private boolean failFlagFileExists() {
     File file = new File(failedFileFlagPath);
     try (InputStream targetStream = new FileInputStream(file)) {
       return true;

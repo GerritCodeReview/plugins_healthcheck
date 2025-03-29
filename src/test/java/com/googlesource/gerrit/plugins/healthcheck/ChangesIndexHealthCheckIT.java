@@ -22,8 +22,6 @@ import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.UseLocalDisk;
 import com.google.gerrit.acceptance.config.GerritConfig;
-import com.google.gerrit.server.config.SitePaths;
-import com.google.inject.Inject;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -39,7 +37,6 @@ import org.junit.Test;
     httpModule = "com.googlesource.gerrit.plugins.healthcheck.HttpModule")
 @Sandboxed
 public class ChangesIndexHealthCheckIT extends AbstractHealthCheckIntegrationTest {
-  @Inject SitePaths sitePaths;
 
   @Test
   @UseLocalDisk

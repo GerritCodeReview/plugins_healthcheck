@@ -52,7 +52,7 @@ public class HttpActiveWorkersCheckTest {
         new HealthCheckConfig(
             "[healthcheck \"" + HTTPACTIVEWORKERS + "\"]\n" + "  threshold = " + thresholdPerc);
     HttpActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -72,7 +72,7 @@ public class HttpActiveWorkersCheckTest {
         new HealthCheckConfig(
             "[healthcheck \"" + HTTPACTIVEWORKERS + "\"]\n" + "  threshold = " + thresholdPerc);
     HttpActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -90,7 +90,7 @@ public class HttpActiveWorkersCheckTest {
     Injector injector = testInjector(new TestModule(new Config(), metricRegistry));
 
     HttpActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   private MetricRegistry createHttpMetricRegistry(Integer value) {

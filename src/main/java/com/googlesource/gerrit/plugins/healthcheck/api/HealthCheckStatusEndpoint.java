@@ -50,14 +50,14 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
     }
     HealthCheck.StatusSummary globalHealthCheckStatus = healthChecks.run();
 
-    Map<String, Object> result = globalHealthCheckStatus.subChecks;
-    result.put("ts", globalHealthCheckStatus.ts);
-    result.put("elapsed", globalHealthCheckStatus.elapsed);
+    Map<String, Object> result = globalHealthCheckStatus.subChecks();
+    result.put("ts", globalHealthCheckStatus.ts());
+    result.put("elapsed", globalHealthCheckStatus.elapsed());
     return Response.withStatusCode(getHTTPResultCode(globalHealthCheckStatus), result);
   }
 
   private int getHTTPResultCode(HealthCheck.StatusSummary checkStatus) {
-    return checkStatus.result == Result.FAILED
+    return checkStatus.result() == Result.FAILED
         ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR
         : HttpServletResponse.SC_OK;
   }

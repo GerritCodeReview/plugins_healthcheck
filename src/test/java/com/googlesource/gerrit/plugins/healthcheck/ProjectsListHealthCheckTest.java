@@ -60,7 +60,7 @@ public class ProjectsListHealthCheckTest {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
             executor, DEFAULT_CONFIG, getWorkingProjectList(0), mockOneOffCtx, disabledMetricMaker);
-    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.PASSED);
+    assertThat(jGitHealthCheck.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -68,7 +68,7 @@ public class ProjectsListHealthCheckTest {
     ProjectsListHealthCheck jGitHealthCheck =
         new ProjectsListHealthCheck(
             executor, DEFAULT_CONFIG, getFailingProjectList(), mockOneOffCtx, disabledMetricMaker);
-    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
+    assertThat(jGitHealthCheck.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -80,7 +80,7 @@ public class ProjectsListHealthCheckTest {
             getWorkingProjectList(DEFAULT_CONFIG.getTimeout() * 2),
             mockOneOffCtx,
             disabledMetricMaker);
-    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.TIMEOUT);
+    assertThat(jGitHealthCheck.run().result()).isEqualTo(Result.TIMEOUT);
   }
 
   private Provider<ListProjects> getFailingProjectList() {

@@ -39,7 +39,7 @@ public class DeadlockCheckTest {
     Injector injector = testInjector(new TestModule(new MetricRegistry()));
 
     DeadlockCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -47,7 +47,7 @@ public class DeadlockCheckTest {
     Injector injector = testInjector(new TestModule(createMetricRegistry(0)));
 
     DeadlockCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -56,7 +56,7 @@ public class DeadlockCheckTest {
     Injector injector = testInjector(new TestModule(createMetricRegistry(1)));
 
     DeadlockCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -65,7 +65,7 @@ public class DeadlockCheckTest {
     Injector injector = testInjector(new TestModule(createMetricRegistry(5)));
 
     DeadlockCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   private Injector testInjector(AbstractModule testModule) {

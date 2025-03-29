@@ -75,7 +75,7 @@ public class JGitHealthCheckTest {
     JGitHealthCheck check =
         new JGitHealthCheck(
             executor, DEFAULT_CONFIG, getWorkingRepositoryManager(), disabledMetricMaker);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -83,7 +83,7 @@ public class JGitHealthCheckTest {
     JGitHealthCheck jGitHealthCheck =
         new JGitHealthCheck(
             executor, DEFAULT_CONFIG, getFailingGitRepositoryManager(), disabledMetricMaker);
-    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
+    assertThat(jGitHealthCheck.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -97,7 +97,7 @@ public class JGitHealthCheckTest {
                 + "  project = Not-Existing-Repo");
     JGitHealthCheck jGitHealthCheck =
         new JGitHealthCheck(executor, config, getWorkingRepositoryManager(), disabledMetricMaker);
-    assertThat(jGitHealthCheck.run().result).isEqualTo(Result.FAILED);
+    assertThat(jGitHealthCheck.run().result()).isEqualTo(Result.FAILED);
   }
 
   private GitRepositoryManager getFailingGitRepositoryManager() {

@@ -63,7 +63,7 @@ public class BlockedThreadsCheckTest {
   public void shouldPassCheckWhenNoThreadsAreReturned() {
     BlockedThreadsCheck objectUnderTest = createCheck();
     when(beanMock.getThreadInfo(null, 0)).thenReturn(new ThreadInfo[0]);
-    assertThat(objectUnderTest.run().result).isEqualTo(Result.PASSED);
+    assertThat(objectUnderTest.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -111,8 +111,8 @@ public class BlockedThreadsCheckTest {
             failingThreadInfo.toArray(new ThreadInfo[0]),
             successThreadInfo.toArray(new ThreadInfo[0]));
 
-    assertThat(createCheck().run().result).isEqualTo(Result.FAILED);
-    assertThat(createCheck().run().result).isEqualTo(Result.PASSED);
+    assertThat(createCheck().run().result()).isEqualTo(Result.FAILED);
+    assertThat(createCheck().run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -191,7 +191,7 @@ public class BlockedThreadsCheckTest {
 
   private void checkResult(Result expected) {
     BlockedThreadsCheck objectUnderTest = createCheck();
-    assertThat(objectUnderTest.run().result).isEqualTo(expected);
+    assertThat(objectUnderTest.run().result()).isEqualTo(expected);
   }
 
   private void mockThreads(int running, int blocked, String prefix) {

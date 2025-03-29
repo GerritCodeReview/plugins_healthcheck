@@ -93,7 +93,7 @@ public class GlobalHealthCheck extends AbstractHealthCheck {
 
   @Override
   protected Result doCheck() {
-    return run().result;
+    return run().result();
   }
 
   public static boolean hasAnyFailureOnResults(Map<String, MemoizedStatusSummary> results) {

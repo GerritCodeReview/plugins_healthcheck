@@ -42,7 +42,7 @@ public class ActiveWorkersCheckTest {
     Injector injector = testInjector(new TestModule(new Config(), metricRegistry));
 
     ActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -55,7 +55,7 @@ public class ActiveWorkersCheckTest {
     Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
 
     ActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -69,7 +69,7 @@ public class ActiveWorkersCheckTest {
     Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
 
     ActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -85,7 +85,7 @@ public class ActiveWorkersCheckTest {
     HealthCheckConfig healthCheckConfig =
         new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
     ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   @Test
@@ -101,7 +101,7 @@ public class ActiveWorkersCheckTest {
     HealthCheckConfig healthCheckConfig =
         new HealthCheckConfig("[healthcheck \"" + ACTIVEWORKERS + "\"]\n" + "  threshold = 50");
     ActiveWorkersCheck check = createCheck(injector, healthCheckConfig);
-    assertThat(check.run().result).isEqualTo(Result.PASSED);
+    assertThat(check.run().result()).isEqualTo(Result.PASSED);
   }
 
   @Test
@@ -122,7 +122,7 @@ public class ActiveWorkersCheckTest {
     Injector injector = testInjector(new TestModule(gerritConfig, metricRegistry));
 
     ActiveWorkersCheck check = createCheck(injector);
-    assertThat(check.run().result).isEqualTo(Result.FAILED);
+    assertThat(check.run().result()).isEqualTo(Result.FAILED);
   }
 
   private Injector testInjector(AbstractModule testModule) {

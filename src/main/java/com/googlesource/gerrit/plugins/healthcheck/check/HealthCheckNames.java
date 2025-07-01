@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck.check;
 
 public interface HealthCheckNames {
   String JGIT = "jgit";
+  String GITSPACE = "gitspace";
   String PROJECTSLIST = "projectslist";
   String QUERYCHANGES = "querychanges";
   String AUTH = "auth";

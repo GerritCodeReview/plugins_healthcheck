@@ -17,9 +17,42 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
+import com.google.common.util.concurrent.MoreExecutors;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.google.gerrit.server.config.SitePaths;
+import com.google.gerrit.testing.InMemoryRepositoryManager;
+import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.GitSpaceCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.JGitHealthCheck;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.eclipse.jgit.lib.Config;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class HealthCheckConfigTest {
+
+  private Path tempSitePath;
+
+  private static Path createTempSitePath() throws IOException {
+    Path tmp = Files.createTempFile("gerrit_", "_site");
+    Files.deleteIfExists(tmp);
+    return tmp;
+  }
+
+  @Before
+  public void setUp() throws IOException {
+    tempSitePath = createTempSitePath();
+  }
+
+  @After
+  public void tearDown() throws IOException {
+    if (tempSitePath != null && Files.exists(tempSitePath)) {
+      Files.delete(tempSitePath);
+    }
+  }
 
   @Test
   public void shouldHaveDefaultTimeout() {
@@ -63,15 +96,15 @@ public class HealthCheckConfigTest {
   }
 
   @Test
-  public void shouldHaveAnEnabledValue() {
+  public void shouldHaveAnEnabledValue() throws IOException {
     HealthCheckConfig config =
         new HealthCheckConfig("[healthcheck \"fooCheck\"]\n" + "enabled=false");
 
-    assertThat(config.healthCheckEnabled("fooCheck")).isEqualTo(false);
+    assertThat(config.healthCheckEnabled("fooCheck", getCheckEnabledByDefault())).isEqualTo(false);
   }
 
   @Test
-  public void shouldHaveEnabledAndDisabledValue() {
+  public void shouldHaveEnabledAndDisabledValue() throws IOException {
     HealthCheckConfig config =
         new HealthCheckConfig(
             "[healthcheck \"fooCheck\"]\n"
@@ -81,8 +114,33 @@ public class HealthCheckConfigTest {
                 + "[healthcheck \"bazCheck\"]\n"
                 + "enabled=true\n");
 
-    assertThat(config.healthCheckEnabled("fooCheck")).isEqualTo(false);
-    assertThat(config.healthCheckEnabled("barCheck")).isEqualTo(true);
-    assertThat(config.healthCheckEnabled("bazCheck")).isEqualTo(true);
+    assertThat(config.healthCheckEnabled("fooCheck", getCheckEnabledByDefault())).isEqualTo(false);
+    assertThat(config.healthCheckEnabled("barCheck", getCheckEnabledByDefault())).isEqualTo(true);
+    assertThat(config.healthCheckEnabled("bazCheck", getCheckEnabledByDefault())).isEqualTo(true);
+  }
+
+  @Test
+  public void shouldHonourDefaultEnabledValue() throws IOException {
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"fooCheck\"]");
+
+    assertThat(config.healthCheckEnabled("gitSpace", getCheckDisabledByDefault())).isEqualTo(false);
+    assertThat(config.healthCheckEnabled("jgit", getCheckEnabledByDefault())).isEqualTo(true);
+  }
+
+  private AbstractHealthCheck getCheckDisabledByDefault() throws IOException {
+    return new GitSpaceCheck(
+        new Config(),
+        new SitePaths(tempSitePath),
+        MoreExecutors.newDirectExecutorService(),
+        DEFAULT_CONFIG,
+        new DisabledMetricMaker());
+  }
+
+  private AbstractHealthCheck getCheckEnabledByDefault() throws IOException {
+    return new JGitHealthCheck(
+        MoreExecutors.newDirectExecutorService(),
+        DEFAULT_CONFIG,
+        new InMemoryRepositoryManager(),
+        new DisabledMetricMaker());
   }
 }

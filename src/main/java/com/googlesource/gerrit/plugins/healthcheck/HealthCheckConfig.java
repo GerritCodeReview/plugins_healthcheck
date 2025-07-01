@@ -30,6 +30,9 @@ import com.google.gerrit.server.config.GerritIsReplica;
 import com.google.gerrit.server.config.PluginConfigFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.healthcheck.check.GitSpaceCheck;
+import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -50,7 +53,6 @@ public class HealthCheckConfig {
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
   private static final String FAIL_FILE_FLAG_DEFAULT = "data/healthcheck/fail";
-  private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -59,6 +61,8 @@ public class HealthCheckConfig {
 
   private static final Set<String> HEALTH_CHECK_DISABLED_FOR_REPLICAS =
       ImmutableSet.of(CHANGES_INDEX, QUERYCHANGES);
+
+  private static final Class<?>[] checksDisabledByDefault = new Class[] {GitSpaceCheck.class};
 
   @Inject
   public HealthCheckConfig(
@@ -146,12 +150,15 @@ public class HealthCheckConfig {
     return getStringWithFallback("failFileFlagPath", null, FAIL_FILE_FLAG_DEFAULT);
   }
 
-  public boolean healthCheckEnabled(String healthCheckName) {
+  public boolean healthCheckEnabled(String healthCheckName, HealthCheck hc) {
     if (isReplica && HEALTH_CHECK_DISABLED_FOR_REPLICAS.contains(healthCheckName)) {
       return false;
     }
-    return config.getBoolean(
-        HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
+
+    boolean defaultValue =
+        Arrays.stream(checksDisabledByDefault).noneMatch(clazz -> clazz.isInstance(hc));
+
+    return config.getBoolean(HEALTHCHECK, checkNotNull(healthCheckName), "enabled", defaultValue);
   }
 
   public String[] getListOfBlockedThreadsThresholds() {

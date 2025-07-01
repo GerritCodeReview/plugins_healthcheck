@@ -62,7 +62,7 @@ public abstract class AbstractHealthCheck implements HealthCheck {
   @Override
   public StatusSummary run() {
     StatusSummary checkStatusSummary;
-    boolean enabled = config.healthCheckEnabled(name);
+    boolean enabled = config.healthCheckEnabled(name, this);
     final long ts = System.currentTimeMillis();
     ListenableFuture<StatusSummary> resultFuture =
         executor.submit(

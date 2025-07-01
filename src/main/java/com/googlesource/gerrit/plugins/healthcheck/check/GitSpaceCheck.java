@@ -42,6 +42,11 @@ public class GitSpaceCheck extends AbstractHealthCheck {
     this.gitPath = site.resolve(gerritConfig.getString("gerrit", null, "basePath"));
   }
 
+  @Override
+  public boolean isEnabledByDefault() {
+    return false;
+  }
+
   protected Path getGitPath() {
     return gitPath;
   }

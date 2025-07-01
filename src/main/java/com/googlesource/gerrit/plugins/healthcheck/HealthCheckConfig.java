@@ -46,6 +46,7 @@ public class HealthCheckConfig {
   private static final String QUERY_DEFAULT = "status:open";
   private static final int LIMIT_DEFAULT = 10;
   private static final int ACTIVE_WORKERS_THRESHOLD_DEFAULT = 80;
+  private static final int GIT_SPACE_MIN_DISK_FREE_PCT_DEFAULT = 10;
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
   private static final String FAIL_FILE_FLAG_DEFAULT = "data/healthcheck/fail";
@@ -126,6 +127,11 @@ public class HealthCheckConfig {
     repos.add(allProjectsName);
     repos.add(allUsersName);
     return repos;
+  }
+
+  public int getMinDiskFreePercent(String healthCheckName) {
+    return config.getInt(
+        HEALTHCHECK, healthCheckName, "minDiskFreePercent", GIT_SPACE_MIN_DISK_FREE_PCT_DEFAULT);
   }
 
   public String getUsername(String healthCheckName) {

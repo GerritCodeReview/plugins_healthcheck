@@ -17,6 +17,9 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
+import com.google.common.util.concurrent.MoreExecutors;
+import com.google.gerrit.metrics.DisabledMetricMaker;
+import com.googlesource.gerrit.plugins.healthcheck.check.AbstractHealthCheck;
 import org.junit.Test;
 
 public class HealthCheckConfigTest {
@@ -67,7 +70,8 @@ public class HealthCheckConfigTest {
     HealthCheckConfig config =
         new HealthCheckConfig("[healthcheck \"fooCheck\"]\n" + "enabled=false");
 
-    assertThat(config.healthCheckEnabled("fooCheck")).isEqualTo(false);
+    assertThat(config.healthCheckEnabled("fooCheck", new TestHealthCheck(config, true)))
+        .isEqualTo(false);
   }
 
   @Test
@@ -81,8 +85,45 @@ public class HealthCheckConfigTest {
                 + "[healthcheck \"bazCheck\"]\n"
                 + "enabled=true\n");
 
-    assertThat(config.healthCheckEnabled("fooCheck")).isEqualTo(false);
-    assertThat(config.healthCheckEnabled("barCheck")).isEqualTo(true);
-    assertThat(config.healthCheckEnabled("bazCheck")).isEqualTo(true);
+    assertThat(config.healthCheckEnabled("fooCheck", new TestHealthCheck(config, true)))
+        .isEqualTo(false);
+    assertThat(config.healthCheckEnabled("barCheck", new TestHealthCheck(config, true)))
+        .isEqualTo(true);
+    assertThat(config.healthCheckEnabled("bazCheck", new TestHealthCheck(config, true)))
+        .isEqualTo(true);
+  }
+
+  @Test
+  public void shouldHonourDefaultEnabledValue() {
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"fooCheck\"]");
+
+    assertThat(config.healthCheckEnabled("fooCheck", new TestHealthCheck(config, true)))
+        .isEqualTo(true);
+    assertThat(config.healthCheckEnabled("fooCheck", new TestHealthCheck(config, false)))
+        .isEqualTo(false);
+  }
+
+  private static class TestHealthCheck extends AbstractHealthCheck {
+
+    private final boolean isEnabledByDefault;
+
+    protected TestHealthCheck(HealthCheckConfig healthCheckConfig, boolean isEnabledByDefault) {
+      super(
+          MoreExecutors.newDirectExecutorService(),
+          healthCheckConfig,
+          "test-check",
+          new DisabledMetricMaker());
+      this.isEnabledByDefault = isEnabledByDefault;
+    }
+
+    @Override
+    protected Result doCheck() throws Exception {
+      return null;
+    }
+
+    @Override
+    public boolean isEnabledByDefault() {
+      return isEnabledByDefault;
+    }
   }
 }

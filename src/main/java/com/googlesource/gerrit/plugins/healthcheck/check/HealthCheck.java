@@ -48,6 +48,10 @@ public interface HealthCheck {
     }
   }
 
+  default boolean isEnabledByDefault() {
+    return true;
+  }
+
   StatusSummary run();
 
   String name();

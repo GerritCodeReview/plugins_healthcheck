@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f0ff11c_0c3d1822",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "```suggestion\nAdd check to control disk space usage for git directory\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fe0b3e6_6640865a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -14,6 +37,144 @@
       "writtenOn": "2025-07-01T15:49:39Z",
       "side": 1,
       "message": "In a follow up I am going to disable the plugin by default.",
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27376e7_1be7cd17",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "Do we even need to bother with this? If someone\u0027s total space is 0 we\u0027ll have issues well before we get to this point, usableSpace will be 0 anyway and the check will fail regardless.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9009b223_49899ebe",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "```suggestion\n  String GIT_DIR_SPACE \u003d \"gitspace\";\n```\nWDYT?",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983971e1_0e00b426",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "```suggestion\n- `gitspace`: Checks that sufficient disk space is available on the volume where Git repositories are stored\n```",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 11
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a20f5c6_e0239ecd",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "nit: wrap line",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48a9a6e_596b11a9",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "I might be being pedantic here, but should the check not pass when the value is below the threshold? (i.e. if disk usage is 95% when the threshold is 90%, then the check fails...)\n\nGuess you can see it either way.",
+      "range": {
+        "startLine": 81,
+        "startChar": 14,
+        "endLine": 81,
+        "endChar": 51
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8b010c_de0886b6",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-01T16:11:28Z",
+      "side": 1,
+      "message": "```suggestion\n  public void shouldComplyWithNonDefaultThreshold() throws Exception {\n```",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 47
+      },
       "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

@@ -17,11 +17,13 @@ package com.googlesource.gerrit.plugins.healthcheck;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.CHANGES_INDEX;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.GITSPACE;
 import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.config.AllProjectsName;
@@ -50,7 +52,6 @@ public class HealthCheckConfig {
   private static final String USERNAME_DEFAULT = "healthcheck";
   private static final String PASSWORD_DEFAULT = "";
   private static final String FAIL_FILE_FLAG_DEFAULT = "data/healthcheck/fail";
-  private static final boolean HEALTH_CHECK_ENABLED_DEFAULT = true;
   private final AllProjectsName allProjectsName;
   private final AllUsersName allUsersName;
 
@@ -59,6 +60,9 @@ public class HealthCheckConfig {
 
   private static final Set<String> HEALTH_CHECK_DISABLED_FOR_REPLICAS =
       ImmutableSet.of(CHANGES_INDEX, QUERYCHANGES);
+
+  private static final ImmutableList<String> HEALTH_CHECKS_DISABLED_BY_DEFAULT =
+      ImmutableList.of(GITSPACE);
 
   @Inject
   public HealthCheckConfig(
@@ -150,8 +154,13 @@ public class HealthCheckConfig {
     if (isReplica && HEALTH_CHECK_DISABLED_FOR_REPLICAS.contains(healthCheckName)) {
       return false;
     }
-    return config.getBoolean(
-        HEALTHCHECK, checkNotNull(healthCheckName), "enabled", HEALTH_CHECK_ENABLED_DEFAULT);
+
+    String notNullHealthcheckName = checkNotNull(healthCheckName);
+    boolean defaultValue =
+        HEALTH_CHECKS_DISABLED_BY_DEFAULT.stream()
+            .noneMatch(hc -> hc.equals(notNullHealthcheckName));
+
+    return config.getBoolean(HEALTHCHECK, notNullHealthcheckName, "enabled", defaultValue);
   }
 
   public String[] getListOfBlockedThreadsThresholds() {

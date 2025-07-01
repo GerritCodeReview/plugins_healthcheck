@@ -16,6 +16,16 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.ACTIVEWORKERS;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.AUTH;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.BLOCKEDTHREADS;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.CHANGES_INDEX;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.DEADLOCK;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.GITSPACE;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.HTTPACTIVEWORKERS;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.JGIT;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.PROJECTSLIST;
+import static com.googlesource.gerrit.plugins.healthcheck.check.HealthCheckNames.QUERYCHANGES;
 
 import org.junit.Test;
 
@@ -84,5 +94,35 @@ public class HealthCheckConfigTest {
     assertThat(config.healthCheckEnabled("fooCheck")).isEqualTo(false);
     assertThat(config.healthCheckEnabled("barCheck")).isEqualTo(true);
     assertThat(config.healthCheckEnabled("bazCheck")).isEqualTo(true);
+  }
+
+  @Test
+  public void shouldHonourDefaultEnabledValue() {
+    HealthCheckConfig config = new HealthCheckConfig("[healthcheck \"fooCheck\"]");
+
+    assertThat(config.healthCheckEnabled(GITSPACE)).isEqualTo(false);
+
+    assertThat(config.healthCheckEnabled(JGIT)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(PROJECTSLIST)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(QUERYCHANGES)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(AUTH)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(ACTIVEWORKERS)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(HTTPACTIVEWORKERS)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(DEADLOCK)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(BLOCKEDTHREADS)).isEqualTo(true);
+    assertThat(config.healthCheckEnabled(CHANGES_INDEX)).isEqualTo(true);
+  }
+
+  @Test
+  public void shouldOverrideDisabledByDefault() {
+    HealthCheckConfig config =
+        new HealthCheckConfig(
+            """
+             [healthcheck "%s"]
+                enabled=true
+            """
+                .formatted(GITSPACE));
+
+    assertThat(config.healthCheckEnabled(GITSPACE)).isEqualTo(true);
   }
 }

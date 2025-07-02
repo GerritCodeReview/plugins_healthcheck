@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd4837c1_150fe059",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T16:27:51Z",
+      "side": 1,
+      "message": "\u003e Well the check will fail anyway, not sure there\u0027s any need to shortcircuit it?\n\nI have to check for total to be \u003e 0 at some point.\nShortcircuiting enhance readability IMO (less nesting levels).\n\n\u003e Fair, but this sounds more like an exception-al case we might want to handle.\n\nI have added a logging when this case occours. I don\u0027t think we can do more to handle it. did you have anything else in mind?",
+      "parentUuid": "595bdc3b_8115e44d",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9009b223_49899ebe",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
         "patchSetId": 4

@@ -160,6 +160,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "494c6e5e_37f98024",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-02T16:28:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dd4837c1_150fe059",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9009b223_49899ebe",

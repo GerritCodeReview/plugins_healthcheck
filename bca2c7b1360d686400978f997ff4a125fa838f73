@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "595bdc3b_8115e44d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-07-02T16:14:10Z",
+      "side": 1,
+      "message": "I don\u0027t feel strongly about this, my 2 cents:\n\u003e Sudden increase of storage used\n\nWell the check will fail anyway, not sure there\u0027s any need to shortcircuit it?\n\n\u003e Defensively avoid division by 0\n\nFair, but this sounds more like an exception-al case we might want to handle.",
+      "parentUuid": "baec91e8_b69c1ace",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9009b223_49899ebe",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
         "patchSetId": 4

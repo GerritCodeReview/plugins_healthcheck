@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baec91e8_b69c1ace",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "I have put it there for 2 reasons:\n* sudden increase of storage used (for exmaple import of a big repository) which drasticaly bring the total space to 0\n* defensively avoid division by 0 at line #58",
+      "parentUuid": "d27376e7_1be7cd17",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 5
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9009b223_49899ebe",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
         "patchSetId": 4
@@ -77,6 +101,30 @@
       "writtenOn": "2025-07-01T16:11:28Z",
       "side": 1,
       "message": "```suggestion\n  String GIT_DIR_SPACE \u003d \"gitspace\";\n```\nWDYT?",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b3aa961_2dc4afb8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/HealthCheckNames.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9009b223_49899ebe",
       "range": {
         "startLine": 19,
         "startChar": 9,
@@ -110,6 +158,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5d771a_add98557",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "983971e1_0e00b426",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 11
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a20f5c6_e0239ecd",
@@ -123,6 +195,30 @@
       "writtenOn": "2025-07-01T16:11:28Z",
       "side": 1,
       "message": "nit: wrap line",
+      "range": {
+        "startLine": 91,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae1db02f_9df1e42a",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a20f5c6_e0239ecd",
       "range": {
         "startLine": 91,
         "startChar": 2,
@@ -158,6 +254,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "129a35d1_6ea4717c",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "Check if the new naming is better.",
+      "parentUuid": "a48a9a6e_596b11a9",
+      "range": {
+        "startLine": 81,
+        "startChar": 14,
+        "endLine": 81,
+        "endChar": 51
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e8b010c_de0886b6",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
         "patchSetId": 4
@@ -169,6 +289,30 @@
       "writtenOn": "2025-07-01T16:11:28Z",
       "side": 1,
       "message": "```suggestion\n  public void shouldComplyWithNonDefaultThreshold() throws Exception {\n```",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 47
+      },
+      "revId": "bca2c7b1360d686400978f997ff4a125fa838f73",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79260182_dabf48b5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-02T09:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e8b010c_de0886b6",
       "range": {
         "startLine": 99,
         "startChar": 14,

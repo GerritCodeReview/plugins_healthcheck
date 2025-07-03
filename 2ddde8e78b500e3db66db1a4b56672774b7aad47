@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77fc450_9808fb30",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T14:46:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c799d3_05147b02",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 44
+      },
+      "revId": "2ddde8e78b500e3db66db1a4b56672774b7aad47",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "402111c0_54f5549c",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-03T14:24:51Z",
       "side": 1,
       "message": "Why passing an extra argument? Isn\u0027t the name enough to decide whether the check is enabled/disabled by default?\n\nHave you considered `checksDisabledByDefault` to be a list of `String` instead? I think that would simplify the code and the tests.",
+      "range": {
+        "startLine": 155,
+        "startChar": 58,
+        "endLine": 155,
+        "endChar": 74
+      },
+      "revId": "2ddde8e78b500e3db66db1a4b56672774b7aad47",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dfe3224_cd1798f7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T14:46:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "402111c0_54f5549c",
       "range": {
         "startLine": 155,
         "startChar": 58,

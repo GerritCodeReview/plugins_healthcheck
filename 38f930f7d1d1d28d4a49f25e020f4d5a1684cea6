@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c84d7df0_71618c7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T15:21:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27040ca1_acbff097",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "38f930f7d1d1d28d4a49f25e020f4d5a1684cea6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3485a4b0_ac74123d",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80e0435b_af5fc19a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T15:21:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3485a4b0_ac74123d",
+      "range": {
+        "startLine": 64,
+        "startChar": 45,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "38f930f7d1d1d28d4a49f25e020f4d5a1684cea6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e820e69_37c1e1aa",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-07-03T15:06:51Z",
       "side": 1,
       "message": "nit: have you considered adding a test to confirm that explicitly enabling gitspace in will override the default?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 49
+      },
+      "revId": "38f930f7d1d1d28d4a49f25e020f4d5a1684cea6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbbbdd90_5783927a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfigTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T15:21:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e820e69_37c1e1aa",
       "range": {
         "startLine": 100,
         "startChar": 0,

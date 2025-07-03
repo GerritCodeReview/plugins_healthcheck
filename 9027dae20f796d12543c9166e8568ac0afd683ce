@@ -68,6 +68,30 @@
       },
       "revId": "9027dae20f796d12543c9166e8568ac0afd683ce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27edaa4_9234eb5f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T05:01:08Z",
+      "side": 1,
+      "message": "heh, it was already debated :D",
+      "parentUuid": "314537e4_e185cf6f",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "9027dae20f796d12543c9166e8568ac0afd683ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

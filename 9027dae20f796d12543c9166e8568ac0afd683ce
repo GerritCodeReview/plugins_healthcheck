@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3ed7981_21250754",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:59:34Z",
+      "side": 1,
+      "message": "nit: can `? extends AbstractHealthCheck` be used so that scope is narrowed to `AbstractHealthCheck` implementations?",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 30
+      },
+      "revId": "9027dae20f796d12543c9166e8568ac0afd683ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "314537e4_e185cf6f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:59:34Z",
+      "side": 1,
+      "message": "another option would be to add function `isEnabledByDefault \u003d true` to the `AbstractHealthCheck` class and `override` it in specific check to `false` so that check creator could decide it if should be by default enabled or not and it will be in the same file. The benefit of current approach is that it is in one file and one doesn\u0027t have to check each check individually to determine if it is enabled by default. If that was rationale behind then ignore it ;)",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "9027dae20f796d12543c9166e8568ac0afd683ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea9984e_3e0267e5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:59:34Z",
+      "side": 1,
+      "message": "question: why array? you could create an `ImmutableList.of` instead and have stream available without `Arrays.stream`...",
+      "range": {
+        "startLine": 65,
+        "startChar": 31,
+        "endLine": 65,
+        "endChar": 33
+      },
+      "revId": "9027dae20f796d12543c9166e8568ac0afd683ce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f87590_a832046c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:46:44Z",
+      "side": 1,
+      "message": "nit: can be package protected?",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b604d8e4_0d21b566",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:46:44Z",
+      "side": 1,
+      "message": "nit: private?",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 11
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ed30ac_68203724",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:46:44Z",
+      "side": 1,
+      "message": "nit: missing `@Overrida` annotation?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 11
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3bc471_e034ec46",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:46:44Z",
+      "side": 1,
+      "message": "question: should we distinguish between `0` case (no space left) and `\u003c0` case anomaly?",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1668447_39b9416b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T04:46:44Z",
+      "side": 1,
+      "message": "nit: could be under `check` package so that the `GitSpaceCheck` could have package protected constructor?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

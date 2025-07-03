@@ -95,6 +95,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f8b72b_206fdd81",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T13:09:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f9fe9141_08c6c607",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 48,
+        "endChar": 11
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ed30ac_68203724",
@@ -250,6 +274,30 @@
       "side": 1,
       "message": "I thought about it. Unfortunately I won\u0027t be able to access `HealthCheckConfig` in the test, which is the reason I believe all the other `*CheckTest` are not under the `check` namespace. I am happy to move them all under the `check` namespace in a separate change, making the `HealthCheckConfig` public.",
       "parentUuid": "b1668447_39b9416b",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b72f14e_32f8526b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T13:09:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cd3d6607_50372407",
       "range": {
         "startLine": 15,
         "startChar": 0,

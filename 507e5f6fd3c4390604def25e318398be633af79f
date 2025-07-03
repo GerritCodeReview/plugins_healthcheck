@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c4189b_9baf6868",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-07-03T05:00:05Z",
+      "side": 1,
+      "message": "it cannot - it is used in `HealthCheckConfigTest` in the follow up",
+      "parentUuid": "03f87590_a832046c",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b604d8e4_0d21b566",

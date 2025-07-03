@@ -364,6 +364,30 @@
       },
       "revId": "716bf12fea50238be432a51abca23ce3427d5f0a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25aaf9f7_76250f8a",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-07-03T14:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "723e9a2f_1e89bcf5",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 93
+      },
+      "revId": "716bf12fea50238be432a51abca23ce3427d5f0a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

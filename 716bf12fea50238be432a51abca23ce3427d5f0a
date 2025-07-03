@@ -340,6 +340,30 @@
       },
       "revId": "716bf12fea50238be432a51abca23ce3427d5f0a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723e9a2f_1e89bcf5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2025-07-03T14:31:00Z",
+      "side": 1,
+      "message": "@ponch78@gmail.com how about something more structured?\n\n\n```\nConfig config \u003d new Config();\nconfig.setBoolean(\"healthcheck\", \"gitspace\", \"enabled\", true);\nconfig.setInt(\"healthcheck\", \"gitspace\", \"minFreeDiskPercent\", 50);\nconfig.toText();\n```",
+      "parentUuid": "55978ce1_816ef951",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 93
+      },
+      "revId": "716bf12fea50238be432a51abca23ce3427d5f0a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

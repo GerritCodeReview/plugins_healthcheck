@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "427cc86f_6d6e8caf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/check/GitSpaceCheck.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-07-03T07:45:14Z",
+      "side": 1,
+      "message": "They are both the same anomaly IMHO: the reporting of the total disk space isn\u0027t working properly.\n\nAlso the warning description is incorrect: it isn\u0027t true that there is no space on disk left, but the reporting of the total size of the disk isn\u0027t working because it\u0027s impossible that a disk has zero or negative *total capacity*",
+      "parentUuid": "0b3bc471_e034ec46",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "507e5f6fd3c4390604def25e318398be633af79f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1668447_39b9416b",
         "filename": "src/test/java/com/googlesource/gerrit/plugins/healthcheck/GitSpaceCheckTest.java",
         "patchSetId": 7

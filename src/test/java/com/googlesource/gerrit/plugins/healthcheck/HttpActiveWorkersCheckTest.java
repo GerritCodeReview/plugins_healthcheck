@@ -118,7 +118,7 @@ public class HttpActiveWorkersCheckTest {
         healtchCheckConfig,
         injector.getInstance(ThreadSettingsConfig.class),
         injector.getInstance(MetricRegistry.class),
-        new TestMetricMaker());
+        TestMetricMaker.getInstance());
   }
 
   private Injector testInjector(AbstractModule testModule) {

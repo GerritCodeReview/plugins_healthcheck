@@ -131,7 +131,7 @@ at a configurable path specified like:
 
 ```
 [healtcheck]
-  failFileFlaPath="data/healthcheck/fail"
+  failFileFlagPath="data/healthcheck/fail"
 ```
 
 This will make the healthcheck endpoint return 500 even if the node is otherwise

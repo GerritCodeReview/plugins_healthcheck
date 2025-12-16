@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.gerrit.testing.GerritJUnit.assertThrows;
 import static com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig.DEFAULT_CONFIG;
 
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -102,7 +103,7 @@ public class HealthCheckStatusEndpointTest {
   }
 
   @Test
-  public void shouldReturnServerErrorWhenOneChecksTimesOut() throws Exception {
+  public void shouldThrowHealthCheckFailedWhenOneChecksTimesOut() throws Exception {
     Injector injector =
         testInjector(
             new AbstractModule() {
@@ -124,13 +125,12 @@ public class HealthCheckStatusEndpointTest {
 
     HealthCheckStatusEndpoint healthCheckApi =
         injector.getInstance(HealthCheckStatusEndpoint.class);
-    Response<?> resp = healthCheckApi.apply(null);
 
-    assertThat(resp.statusCode()).isEqualTo(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    assertThrows(HealthCheckFailedException.class, () -> healthCheckApi.apply(null));
   }
 
   @Test
-  public void shouldReturnServerErrorWhenAtLeastOneCheckIsFailing() throws Exception {
+  public void shouldThrowHealthCheckFailedWhenAtLeastOneCheckIsFailing() throws Exception {
     Injector injector =
         testInjector(
             new AbstractModule() {
@@ -166,9 +166,8 @@ public class HealthCheckStatusEndpointTest {
 
     HealthCheckStatusEndpoint healthCheckApi =
         injector.getInstance(HealthCheckStatusEndpoint.class);
-    Response<?> resp = healthCheckApi.apply(null);
 
-    assertThat(resp.statusCode()).isEqualTo(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    assertThrows(HealthCheckFailedException.class, () -> healthCheckApi.apply(null));
   }
 
   private Injector testInjector(AbstractModule testModule) {

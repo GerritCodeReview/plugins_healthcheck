@@ -1,4 +1,4 @@
-// Copyright (C) 2019 The Android Open Source Project
+// Copyright (C) 2025 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,17 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-import com.google.inject.AbstractModule;
 
-public class Module extends AbstractModule {
+import java.util.Map;
 
-  @Override
-  protected void configure() {
-    install(HealthCheckExceptionHook.module());
-    install(new HealthCheckSubsystemsModule());
-    install(new HealthCheckApiModule());
+public class HealthCheckFailedException extends Exception {
+  private final Map<String, Object> result;
+
+  public HealthCheckFailedException(Map<String, Object> result) {
+    this.result = result;
+  }
+
+  Map<String, Object> getResult() {
+    return result;
   }
 }

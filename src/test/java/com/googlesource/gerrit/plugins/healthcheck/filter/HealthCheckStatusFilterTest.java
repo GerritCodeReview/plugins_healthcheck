@@ -58,7 +58,7 @@ public class HealthCheckStatusFilterTest {
   private HealthCheckStatusFilter createFilter(List<String> listenUrl) {
     Config cfg = new Config();
     cfg.setStringList("httpd", null, "listenUrl", listenUrl);
-    return new HealthCheckStatusFilter(null, "healthcheck", cfg);
+    return new HealthCheckStatusFilter(null, "healthcheck", cfg, null);
   }
 
   private HttpServletRequest createRequest(String path) {

@@ -19,6 +19,7 @@ import com.google.gerrit.server.config.ConfigResource;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.healthcheck.HealthCheckConfig;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckFailedException;
 import com.googlesource.gerrit.plugins.healthcheck.check.GlobalHealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck;
 import com.googlesource.gerrit.plugins.healthcheck.check.HealthCheck.Result;
@@ -45,21 +46,23 @@ public class HealthCheckStatusEndpoint implements RestReadView<ConfigResource> {
   public Response<Map<String, Object>> apply(ConfigResource resource)
       throws AuthException, BadRequestException, ResourceConflictException, Exception {
     if (failFlagFileExists()) {
-      return Response.withStatusCode(
-          HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Map.of("reason", "Fail Flag File exists"));
+      throw new HealthCheckFailedException(Map.of("reason", "Fail Flag File exists"));
     }
     HealthCheck.StatusSummary globalHealthCheckStatus = healthChecks.run();
 
     Map<String, Object> result = globalHealthCheckStatus.subChecks();
     result.put("ts", globalHealthCheckStatus.ts());
     result.put("elapsed", globalHealthCheckStatus.elapsed());
-    return Response.withStatusCode(getHTTPResultCode(globalHealthCheckStatus), result);
+    return Response.withStatusCode(getHTTPResultCode(globalHealthCheckStatus, result), result);
   }
 
-  private int getHTTPResultCode(HealthCheck.StatusSummary checkStatus) {
-    return checkStatus.result() == Result.FAILED
-        ? HttpServletResponse.SC_INTERNAL_SERVER_ERROR
-        : HttpServletResponse.SC_OK;
+  private int getHTTPResultCode(HealthCheck.StatusSummary checkStatus, Map<String, Object> result)
+      throws HealthCheckFailedException {
+    if (checkStatus.result() == Result.FAILED) {
+      throw new HealthCheckFailedException(result);
+    }
+
+    return HttpServletResponse.SC_OK;
   }
 
   private boolean failFlagFileExists() {

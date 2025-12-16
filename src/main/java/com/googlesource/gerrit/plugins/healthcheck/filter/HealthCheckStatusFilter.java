@@ -20,16 +20,19 @@ import com.google.gerrit.extensions.restapi.Response;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.restapi.RestApiServlet;
 import com.google.gerrit.json.OutputFormat;
+import com.google.gerrit.server.ExceptionHook;
 import com.google.gerrit.server.config.ConfigResource;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+import com.googlesource.gerrit.plugins.healthcheck.HealthCheckExceptionHook;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -39,22 +42,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jgit.lib.Config;
 
 public class HealthCheckStatusFilter extends AllRequestFilter {
+  public static final Gson GSON = OutputFormat.JSON.newGsonBuilder().create();
+
   private final HealthCheckStatusEndpoint statusEndpoint;
-  private final Gson gson;
   private final String pluginName;
   private final Config cfg;
   private final String uriPattern;
+  private final HealthCheckExceptionHook exceptionHook;
 
   @Inject
   public HealthCheckStatusFilter(
       HealthCheckStatusEndpoint statusEndpoint,
       @PluginName String pluginName,
-      @GerritServerConfig Config cfg) {
+      @GerritServerConfig Config cfg,
+      HealthCheckExceptionHook exceptionHook) {
     this.statusEndpoint = statusEndpoint;
-    this.gson = OutputFormat.JSON.newGsonBuilder().create();
     this.pluginName = pluginName;
     this.cfg = cfg;
     this.uriPattern = getUriPattern();
+    this.exceptionHook = exceptionHook;
   }
 
   private static List<String> extractUriPrefixes(String[] listenUrls) {
@@ -120,10 +126,11 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
     return httpServletRequest.getRequestURI().matches(uriPattern);
   }
 
-  private void doStatusCheck(HttpServletResponse httpResponse) throws ServletException {
+  private void doStatusCheck(HttpServletResponse httpResponse)
+      throws ServletException, IOException {
     try {
       Response<Map<String, Object>> healthStatus = statusEndpoint.apply(new ConfigResource());
-      String healthStatusJson = gson.toJson(healthStatus.value());
+      String healthStatusJson = GSON.toJson(healthStatus.value());
       if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
         PrintWriter writer = httpResponse.getWriter();
         writer.print(new String(RestApiServlet.JSON_MAGIC));
@@ -132,7 +139,12 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
         httpResponse.sendError(healthStatus.statusCode(), healthStatusJson);
       }
     } catch (Exception e) {
-      throw new ServletException(e);
+      Optional<ExceptionHook.Status> status = exceptionHook.getStatus(e);
+      if (status.isPresent()) {
+        httpResponse.sendError(status.get().statusCode(), status.get().statusMessage());
+      } else {
+        throw new ServletException(e);
+      }
     }
   }
 }

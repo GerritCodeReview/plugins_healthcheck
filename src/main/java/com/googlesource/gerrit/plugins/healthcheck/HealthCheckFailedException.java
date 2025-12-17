@@ -26,4 +26,9 @@ public class HealthCheckFailedException extends Exception {
   Map<String, Object> getResult() {
     return result;
   }
+
+  @Override
+  public String toString() {
+    return "Health check failed: " + result;
+  }
 }

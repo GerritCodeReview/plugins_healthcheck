@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d889201_945c9745",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckFailedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-12-17T08:54:08Z",
+      "side": 1,
+      "message": "question: not sure if it would print the actual values or just the Map reference... can you confirm it?",
+      "range": {
+        "startLine": 32,
+        "startChar": 37,
+        "endLine": 32,
+        "endChar": 43
+      },
+      "revId": "03dfb52e927d6f6be568c2d2ee7e434affb8f5fb",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

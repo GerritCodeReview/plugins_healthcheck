@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a30d4183_670fa59e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2025-12-17T07:52:39Z",
+      "side": 1,
+      "message": "```suggestion\nHealthCheckFailedException and properly format the JSON\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 31,
+        "endLine": 19,
+        "endChar": 40
+      },
+      "revId": "9582a5bc7fb5cb66b578e405f44198394e6b20e3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe4fade6_33b5bb49",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckExceptionHook.java",
         "patchSetId": 3

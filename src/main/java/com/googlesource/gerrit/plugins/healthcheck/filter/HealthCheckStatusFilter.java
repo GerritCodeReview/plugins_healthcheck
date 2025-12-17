@@ -44,7 +44,8 @@ import org.eclipse.jgit.lib.Config;
 
 public class HealthCheckStatusFilter extends AllRequestFilter {
   public static final Gson GSON = OutputFormat.JSON.newGsonBuilder().create();
-  public static final String JSON_MAGIC_STRING = new String(RestApiServlet.JSON_MAGIC, StandardCharsets.UTF_8);
+  public static final String JSON_MAGIC_STRING =
+      new String(RestApiServlet.JSON_MAGIC, StandardCharsets.UTF_8);
 
   private final HealthCheckStatusEndpoint statusEndpoint;
   private final String pluginName;

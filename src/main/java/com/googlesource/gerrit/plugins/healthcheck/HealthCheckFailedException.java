@@ -14,7 +14,6 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-
 import java.util.Map;
 
 public class HealthCheckFailedException extends Exception {

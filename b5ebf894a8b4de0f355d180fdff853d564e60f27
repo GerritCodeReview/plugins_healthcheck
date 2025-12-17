@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713bf2fe_9cb0dc6b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckFailedException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2025-12-17T08:51:27Z",
+      "side": 0,
+      "message": "unrealted",
+      "revId": "b5ebf894a8b4de0f355d180fdff853d564e60f27",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

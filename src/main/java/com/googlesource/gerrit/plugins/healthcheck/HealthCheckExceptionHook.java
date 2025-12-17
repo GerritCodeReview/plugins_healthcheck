@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.healthcheck;
 
 import static com.google.gerrit.httpd.restapi.RestApiServlet.JSON_MAGIC;
 import static com.googlesource.gerrit.plugins.healthcheck.filter.HealthCheckStatusFilter.GSON;
+import static com.googlesource.gerrit.plugins.healthcheck.filter.HealthCheckStatusFilter.JSON_MAGIC_STRING;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
 import com.google.gerrit.extensions.registration.DynamicSet;
@@ -32,7 +33,7 @@ public class HealthCheckExceptionHook implements ExceptionHook {
       return Optional.of(
           Status.create(
               SC_INTERNAL_SERVER_ERROR,
-              new String(JSON_MAGIC, StandardCharsets.UTF_8) + GSON.toJson(exc.getResult())));
+              JSON_MAGIC_STRING + GSON.toJson(exc.getResult())));
     }
     return Optional.empty();
   }

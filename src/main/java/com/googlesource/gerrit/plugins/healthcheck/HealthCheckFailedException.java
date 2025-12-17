@@ -14,7 +14,6 @@
 
 package com.googlesource.gerrit.plugins.healthcheck;
 
-
 import java.util.Map;
 
 public class HealthCheckFailedException extends Exception {
@@ -26,5 +25,10 @@ public class HealthCheckFailedException extends Exception {
 
   Map<String, Object> getResult() {
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Health check failed: " + result;
   }
 }

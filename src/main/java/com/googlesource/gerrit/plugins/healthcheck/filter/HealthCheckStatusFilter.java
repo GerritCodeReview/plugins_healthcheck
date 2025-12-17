@@ -29,6 +29,7 @@ import com.googlesource.gerrit.plugins.healthcheck.HealthCheckExceptionHook;
 import com.googlesource.gerrit.plugins.healthcheck.api.HealthCheckStatusEndpoint;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ import org.eclipse.jgit.lib.Config;
 
 public class HealthCheckStatusFilter extends AllRequestFilter {
   public static final Gson GSON = OutputFormat.JSON.newGsonBuilder().create();
+  public static final String JSON_MAGIC_STRING = new String(RestApiServlet.JSON_MAGIC, StandardCharsets.UTF_8);
 
   private final HealthCheckStatusEndpoint statusEndpoint;
   private final String pluginName;
@@ -133,7 +135,7 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
       String healthStatusJson = GSON.toJson(healthStatus.value());
       if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
         PrintWriter writer = httpResponse.getWriter();
-        writer.print(new String(RestApiServlet.JSON_MAGIC));
+        writer.print(JSON_MAGIC_STRING);
         writer.print(healthStatusJson);
       } else {
         httpResponse.sendError(healthStatus.statusCode(), healthStatusJson);

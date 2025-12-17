@@ -93,6 +93,30 @@
       },
       "revId": "9582a5bc7fb5cb66b578e405f44198394e6b20e3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b58e46_3adcae92",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckExceptionHook.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2025-12-17T08:15:33Z",
+      "side": 1,
+      "message": "Done with I3c0df8fb20fcf",
+      "parentUuid": "f1101a15_54695ffa",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "9582a5bc7fb5cb66b578e405f44198394e6b20e3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe4fade6_33b5bb49",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/HealthCheckExceptionHook.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2025-12-17T07:07:22Z",
+      "side": 1,
+      "message": "question: perhaps it would make sense to create it as a String constant?",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "9582a5bc7fb5cb66b578e405f44198394e6b20e3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

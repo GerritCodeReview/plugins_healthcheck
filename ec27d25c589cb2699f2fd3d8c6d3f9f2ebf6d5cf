@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a152e7b_80f4a8bb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-02-18T10:59:40Z",
+      "side": 1,
+      "message": "This might be unnecessary",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 56
+      },
+      "revId": "ec27d25c589cb2699f2fd3d8c6d3f9f2ebf6d5cf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19238711_645394cf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/healthcheck/filter/HealthCheckStatusFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-02-18T10:59:40Z",
+      "side": 1,
+      "message": "These are probably unnecessary",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 49
+      },
+      "revId": "ec27d25c589cb2699f2fd3d8c6d3f9f2ebf6d5cf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

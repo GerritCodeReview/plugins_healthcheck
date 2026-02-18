@@ -124,13 +124,12 @@ public class HealthCheckStatusFilter extends AllRequestFilter {
     try {
       Response<Map<String, Object>> healthStatus = statusEndpoint.apply(new ConfigResource());
       String healthStatusJson = gson.toJson(healthStatus.value());
-      if (healthStatus.statusCode() == HttpServletResponse.SC_OK) {
-        PrintWriter writer = httpResponse.getWriter();
-        writer.print(new String(RestApiServlet.JSON_MAGIC));
-        writer.print(healthStatusJson);
-      } else {
-        httpResponse.sendError(healthStatus.statusCode(), healthStatusJson);
-      }
+      httpResponse.setStatus(healthStatus.statusCode());
+      httpResponse.setContentType("application/json");
+      httpResponse.setCharacterEncoding("UTF-8");
+      PrintWriter writer = httpResponse.getWriter();
+      writer.print(new String(RestApiServlet.JSON_MAGIC));
+      writer.print(healthStatusJson);
     } catch (Exception e) {
       throw new ServletException(e);
     }

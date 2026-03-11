@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96dd4d11_a64eca31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1155599
+      },
+      "writtenOn": "2026-03-11T21:13:16Z",
+      "side": 1,
+      "message": "Should we instead ensure that error prone doesn\u0027t run for this plugin??",
+      "revId": "cbf22e4e2262cc4dc6f89b2bef232ce355e514ef",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

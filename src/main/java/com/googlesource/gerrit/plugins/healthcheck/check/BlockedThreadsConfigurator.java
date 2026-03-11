@@ -98,7 +98,7 @@ public class BlockedThreadsConfigurator {
 
     if (specsClassified.size() == 1) {
       Map.Entry<Boolean, List<Threshold>> entry = specsClassified.entrySet().iterator().next();
-      return Boolean.TRUE == entry.getKey()
+      return Boolean.TRUE.equals(entry.getKey())
           ? deduplicatePrefixes(entry.getValue())
           : deduplicateGlobal(entry.getValue());
     }

@@ -16,6 +16,24 @@
       "message": "Should we instead ensure that error prone doesn\u0027t run for this plugin??",
       "revId": "cbf22e4e2262cc4dc6f89b2bef232ce355e514ef",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a60bd1b3_016e1827",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2026-03-15T18:33:29Z",
+      "side": 1,
+      "message": "I believe it\u0027s good to have error prone run for plugins as well.",
+      "parentUuid": "96dd4d11_a64eca31",
+      "revId": "cbf22e4e2262cc4dc6f89b2bef232ce355e514ef",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

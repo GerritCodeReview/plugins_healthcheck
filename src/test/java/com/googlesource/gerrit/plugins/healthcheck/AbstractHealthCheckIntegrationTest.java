@@ -86,7 +86,7 @@ class AbstractHealthCheckIntegrationTest extends LightweightPluginDaemonTest {
     for (int i = 0; i < numChanges; i++) {
       createChange("refs/for/master");
     }
-    accountCreator.create(config.getUsername(HealthCheckNames.AUTH));
+    var unused = accountCreator.create(config.getUsername(HealthCheckNames.AUTH));
 
     healthCheckUriPath =
         String.format(

@@ -4,6 +4,7 @@ load(
     "gerrit_plugin_test_util",
     "gerrit_plugin_tests",
 )
+load("@rules_java//java:defs.bzl", "java_library")
 
 PLUGIN = "healthcheck"
 

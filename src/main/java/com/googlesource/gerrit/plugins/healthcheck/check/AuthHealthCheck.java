@@ -58,7 +58,7 @@ public class AuthHealthCheck extends AbstractHealthCheck {
   protected Result doCheck() throws Exception {
     AuthRequest authRequest = authRequestFactory.createForUser(username);
     authRequest.setPassword(password);
-    realm.authenticate(authRequest);
+    var unused = realm.authenticate(authRequest);
 
     Optional<AccountState> accountState = byIdCache.getByUsername(username);
     if (!accountState.isPresent()) {

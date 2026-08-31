@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af011c7_e5edda08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-08-31T14:25:19Z",
+      "side": 1,
+      "message": "context:\nhttps://gerrit-review.googlesource.com/c/gerrit/+/620861 was done on stable-3.12 and seems to have broken building tests for healthcheck.",
+      "revId": "76d346fb2c7de98357d31002444a366ec94aa4d0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

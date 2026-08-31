@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2cb8fc_d61fb116",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-08-31T12:22:41Z",
+      "side": 1,
+      "message": "@syntonyze@gmail.com\nhttps://gerrit-review.googlesource.com/c/gerrit/+/620861 was done on stable-3.12 and seems to have broken building tests for healthcheck, but this only seems to need a backport to 3.13 to be able to build the tests, 3.12 appears unaffected.\n\nI am unsure if this is the correct approach?",
+      "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

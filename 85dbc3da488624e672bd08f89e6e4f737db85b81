@@ -34,6 +34,24 @@
       "parentUuid": "7c2cb8fc_d61fb116",
       "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828588c8_eca5cc65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-08-31T13:53:02Z",
+      "side": 1,
+      "message": "I can\u0027t move this, but I could abandon it and create a new cherry-pick from master to stable-3.12. Should I do that instead?",
+      "parentUuid": "e0208e5c_464d404b",
+      "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

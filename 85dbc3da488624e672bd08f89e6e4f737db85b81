@@ -88,6 +88,24 @@
       "parentUuid": "03d644c6_c764902f",
       "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f70114_fc5df9e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2026-08-31T14:58:45Z",
+      "side": 1,
+      "message": "Yes thanks @rikardal@axis.com, having this in 3.12 seems the right fix to me.\nSorry to have broken stable-3.12, but we had to target stable branches for that fix.",
+      "parentUuid": "3afff9e0_ce0a4cba",
+      "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [

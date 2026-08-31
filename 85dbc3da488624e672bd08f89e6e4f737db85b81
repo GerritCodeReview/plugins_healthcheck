@@ -70,6 +70,24 @@
       "parentUuid": "828588c8_eca5cc65",
       "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3afff9e0_ce0a4cba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1071857
+      },
+      "writtenOn": "2026-08-31T14:24:22Z",
+      "side": 1,
+      "message": "abandoned in favor of https://gerrit-review.googlesource.com/c/plugins/healthcheck/+/623582 on stable-3.12 instead.",
+      "parentUuid": "03d644c6_c764902f",
+      "revId": "85dbc3da488624e672bd08f89e6e4f737db85b81",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d498a1_42959d8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2026-10-05T09:08:13Z",
+      "side": 1,
+      "message": "Adding Matthias who approved the change in master and Tony who approved it for stable-3.12.\n\nI know the branches are EOL, I am catching up with Gerrit upgrades and this fix is trivial enough :)",
+      "revId": "3a42ae241ed1e56c2551b3111dcfd663b5a05265",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

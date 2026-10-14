@@ -16,6 +16,24 @@
       "message": "I believe there was a change moving from `SitePaths` to the new `@IndexDir` annotation. Can we just revert that commit instead?",
       "revId": "557c240a19c293d79c68c18ed301136ba5ba88d8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "968cd4e4_20e3c985",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072905
+      },
+      "writtenOn": "2026-10-14T19:12:31Z",
+      "side": 1,
+      "message": "You\u0027re right, that\u0027d be clearer.\nDone with [1]\n\n[1] https://gerrit-review.googlesource.com/c/plugins/healthcheck/+/643683",
+      "parentUuid": "49eb0a48_8a9a0fcc",
+      "revId": "557c240a19c293d79c68c18ed301136ba5ba88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }

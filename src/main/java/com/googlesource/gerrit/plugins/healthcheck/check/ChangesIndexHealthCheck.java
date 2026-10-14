@@ -21,7 +21,7 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.gerrit.index.IndexType;
 import com.google.gerrit.metrics.MetricMaker;
 import com.google.gerrit.server.config.GerritServerConfig;
-import com.google.gerrit.server.index.IndexDir;
+import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.index.OnlineUpgradeListener;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -51,9 +51,9 @@ public class ChangesIndexHealthCheck extends AbstractHealthCheck implements Onli
       ListeningExecutorService executor,
       HealthCheckConfig config,
       MetricMaker metricMaker,
-      @IndexDir Path indexDir) {
+      SitePaths sitePaths) {
     super(executor, config, CHANGES_INDEX, metricMaker);
-    this.indexDir = indexDir;
+    this.indexDir = sitePaths.index_dir;
     this.isLuceneIndex = isIndexTypeLucene(cfg);
     this.changes = new AtomicReference<>(getChangesIndexLockFiles(indexDir));
   }

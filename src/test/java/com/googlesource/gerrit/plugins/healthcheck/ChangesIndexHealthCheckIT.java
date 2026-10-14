@@ -22,7 +22,7 @@ import com.google.gerrit.acceptance.Sandboxed;
 import com.google.gerrit.acceptance.TestPlugin;
 import com.google.gerrit.acceptance.UseLocalDisk;
 import com.google.gerrit.acceptance.config.GerritConfig;
-import com.google.gerrit.server.index.IndexDir;
+import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -40,7 +40,7 @@ import org.junit.Test;
 @Sandboxed
 public class ChangesIndexHealthCheckIT extends AbstractHealthCheckIntegrationTest {
 
-  @Inject @IndexDir Path indexDir;
+  @Inject SitePaths sitePaths;
 
   @Test
   @UseLocalDisk
@@ -72,7 +72,7 @@ public class ChangesIndexHealthCheckIT extends AbstractHealthCheckIntegrationTes
 
     assertCheckResult(getResponseJson(resp), CHANGES_INDEX, "passed");
 
-    Path openChangesIndexLockPath = getIndexLockFile(indexDir, indexType);
+    Path openChangesIndexLockPath = getIndexLockFile(sitePaths.index_dir, indexType);
     assertThat(
             openChangesIndexLockPath
                 .toFile()
